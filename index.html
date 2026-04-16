@@ -1,266 +1,216 @@
 
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CompareMyCarParts.com | Compare UK Car Parts Prices</title>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <title>Compare Car Parts Prices UK | Save Up to 40% | CompareMyCarParts.com</title>
+    <meta name="description" content="Search live prices from 12+ UK suppliers: eBay, Amazon, Euro Car Parts & GSF. Find cheap car parts by registration. Guaranteed fitment for UK vehicles.">
+    <meta name="keywords" content="car parts comparison uk, cheap car parts by reg, compare brake prices, car battery deals, service kits uk">
+    <link rel="canonical" href="https://www.comparemycarparts.com/" />
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "WebSite",
+      "name": "CompareMyCarParts",
+      "url": "https://www.comparemycarparts.com/",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://www.comparemycarparts.com/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      },
+      "description": "The UK's largest live car part price comparison engine."
+    }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        :root{--bl:#003DA6;--bm:#0052CC;--b2:#1A6FD4;--ye:#FFD100;--yd:#E6BC00;--wh:#fff;--ow:#F4F7FF;--lg:#EEF2FA;--mg:#6B7A99;--dk:#0A1A3A;--gr:#00A651;--gn:#E6F7EE;}
-        *{margin:0;padding:0;box-sizing:border-box;}
-        body{font-family:'Nunito Sans',sans-serif;background:var(--wh);color:var(--dk);overflow-x:hidden;}
+        :root { --bl: #003DA6; --ye: #FFD100; --wh: #ffffff; --gr: #16a34a; --lg: #f0f4f8; }
+        body { font-family: 'Nunito', sans-serif; margin: 0; background: var(--lg); color: #333; overflow-x: hidden; }
         
-        /* Navigation */
-        nav{background:var(--bl);position:sticky;top:0;z-index:300;box-shadow:0 2px 12px rgba(0,0,0,.2);}
-        .ni{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;height:64px;gap:16px;}
-        .logo{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.3rem;color:var(--wh);text-decoration:none;}
-        .logo span{color:var(--ye);}
+        /* HERO SECTION */
+        .hero { background: linear-gradient(180deg, #002b7a 0%, var(--bl) 100%); padding: 60px 20px 80px; text-align: center; color: white; }
+        .hero h1 { font-weight: 900; font-size: 2.4rem; margin: 0; letter-spacing: -1px; }
+        .hero h1 span { color: var(--ye); }
+        .hero p { opacity: 0.9; font-size: 1rem; margin-top: 8px; }
 
-        /* Hero & Search */
-        .hero{background:linear-gradient(140deg,#001a5e 0%,var(--bl) 50%,var(--bm) 100%);padding:40px 20px;text-align:center;}
-        .hero h1{font-family:'Nunito',sans-serif;font-weight:900;font-size:clamp(1.8rem,6vw,3.5rem);color:var(--wh);margin-bottom:10px;}
-        .sc{background:var(--wh);border-radius:20px;padding:22px;max-width:900px;margin:0 auto;box-shadow:0 20px 60px rgba(0,30,100,.2);}
+        /* SEARCH CARD */
+        .search-card { background: white; border-radius: 24px; padding: 25px; max-width: 500px; margin: -50px auto 30px; box-shadow: 0 20px 50px rgba(0,0,0,0.15); position: relative; z-index: 10; border: 1px solid rgba(0,0,0,0.05); }
+        .plate-box { background: var(--ye); border: 3px solid #1a1a1a; border-radius: 12px; display: flex; height: 65px; margin-bottom: 15px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.1); }
+        .gb { background: #003DA6; color: white; width: 45px; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: bold; flex-direction: column; }
+        .plate-in { flex: 1; background: transparent; border: none; text-align: center; font-size: 2rem; font-weight: 900; text-transform: uppercase; outline: none; width: 100%; letter-spacing: 2px; }
         
-        /* Plate Input */
-        .pr{display:flex;gap:8px;margin-bottom:12px;}
-        .pw{flex:1;display:flex;border-radius:12px;overflow:hidden;border:3px solid #1a1a1a;background:#F5D000;}
-        .pg{background:var(--bl);color:var(--wh);padding:10px;font-size:0.8rem;display:flex;flex-direction:column;justify-content:center;}
-        .pi{flex:1;background:transparent;border:none;outline:none;font-family:'Nunito',sans-serif;font-weight:900;font-size:2rem;text-align:center;text-transform:uppercase;width:100%;}
-        .pfb, .qb{background:var(--bl);color:var(--wh);border:none;border-radius:12px;padding:0 20px;font-weight:800;cursor:pointer;}
-        .qb{background:var(--ye);color:var(--bl);padding:12px 24px;}
+        .part-input { width: 100%; padding: 16px; border: 2px solid #edf2f7; border-radius: 12px; font-size: 1.05rem; outline: none; box-sizing: border-box; background: #f8faff; margin-bottom: 15px; font-family: inherit; }
+        .part-input:focus { border-color: var(--bl); background: #fff; box-shadow: 0 0 0 4px rgba(0,61,166,0.05); }
 
-        /* Results Table */
-        .tscr{overflow-x:auto;margin-top:20px;border-radius:12px;}
-        table{width:100%;border-collapse:collapse;background:var(--wh);}
-        th{background:var(--bl);color:var(--wh);padding:12px;font-size:0.7rem;text-transform:uppercase;text-align:left;}
-        td{padding:12px;border-bottom:1px solid var(--lg);font-size:0.85rem;}
-        .best{background:#f0fff7;}
-        .stag{background:var(--lg);padding:4px 8px;border-radius:6px;font-weight:800;font-size:0.75rem;}
-        .pc{font-weight:900;font-size:1.1rem;}
-        .pcb{color:var(--gr);}
+        .main-btn { width: 100%; background: var(--ye); color: #1a1a1a; border: none; padding: 18px; border-radius: 12px; font-weight: 900; font-size: 1.2rem; cursor: pointer; box-shadow: 0 5px 0 #d4ae00; transition: 0.1s; }
+        .main-btn:active { transform: translateY(3px); box-shadow: 0 2px 0 #d4ae00; }
         
-        /* Helper Classes */
-        .vb{display:none;background:var(--gn);border:2px solid var(--gr);border-radius:10px;padding:10px;margin-bottom:10px;align-items:center;justify-content:space-between;}
-        .vb.show{display:flex;}
-        .spn{display:inline-block;width:30px;height:30px;border:3px solid var(--lg);border-top-color:var(--bl);border-radius:50%;animation:spin 1s linear infinite;}
-        @keyframes spin{to{transform:rotate(360deg);}}
-        .dvla-err{background:#fff0f0;color:#b00;padding:10px;border-radius:8px;margin-bottom:10px;font-weight:700;}
-        .sup-pills{display:flex;justify-content:center;gap:10px;padding:20px;flex-wrap:wrap;}
-        .spill{background:var(--lg);padding:6px 14px;border-radius:20px;font-size:0.8rem;font-weight:700;}
+        /* CATEGORY GRID */
+        .cat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; max-width: 600px; margin: 20px auto 40px; padding: 0 20px; }
+        .cat-item { background: white; border-radius: 20px; padding: 18px 10px; text-align: center; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.04); transition: 0.2s; border: 1px solid transparent; }
+        .cat-item:hover { transform: translateY(-3px); border-color: var(--bl); box-shadow: 0 8px 15px rgba(0,0,0,0.08); }
+        .cat-icon { font-size: 2rem; display: block; margin-bottom: 8px; }
+        .cat-name { font-size: 0.85rem; font-weight: 800; color: var(--bl); }
+
+        /* COMPARISON LOADER */
+        #loader { display: none; text-align: center; padding: 60px 20px; }
+        .spinner { width: 60px; height: 60px; border: 6px solid #e2e8f0; border-top-color: var(--bl); border-radius: 50%; animation: spin 1s infinite linear; margin: 0 auto 20px; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .comparing-logos { display: flex; justify-content: center; gap: 20px; opacity: 0.5; margin-top: 20px; font-weight: 900; font-size: 0.8rem; }
+
+        /* RESULTS VIEW */
+        #results { display: none; background: white; min-height: 100vh; position: relative; z-index: 20; padding: 30px 20px; margin-top: -30px; border-top-left-radius: 40px; border-top-right-radius: 40px; box-shadow: 0 -15px 40px rgba(0,0,0,0.1); }
+        .back-link { display: inline-block; color: var(--bl); font-weight: 900; cursor: pointer; margin-bottom: 25px; text-decoration: none; font-size: 1.1rem; }
+        .res-table { width: 100%; border-collapse: collapse; }
+        .res-table tr { border-bottom: 1px solid #f1f5f9; }
+        .res-table td { padding: 20px 0; }
+        .sup-badge { background: #eef2ff; color: var(--bl); font-size: 0.7rem; font-weight: 900; padding: 4px 8px; border-radius: 4px; display: inline-block; margin-bottom: 5px; }
+        .part-title { font-weight: 800; font-size: 1rem; line-height: 1.3; color: #1a202c; }
+        .price-col { text-align: right; width: 100px; }
+        .price-val { font-size: 1.5rem; font-weight: 900; color: var(--gr); display: block; }
+        .buy-btn { background: var(--bl); color: white; border: none; padding: 12px; border-radius: 10px; font-weight: 800; width: 100%; cursor: pointer; margin-top: 8px; font-size: 0.9rem; }
+        
+        .trust-banner { text-align: center; margin-top: 20px; font-size: 0.85rem; color: #718096; font-weight: 600; }
     </style>
 </head>
 <body>
 
-<nav>
-    <div class="ni">
-        <a class="logo" href="#">Compare<span>MyCarParts</span>.com</a>
+<div class="hero">
+    <h1>CompareMyCarParts<span>.com</span></h1>
+    <p>Live Price Comparison from 12+ UK Suppliers</p>
+</div>
+
+<div class="search-card">
+    <div class="plate-box">
+        <div class="gb">🇬🇧<br>GB</div>
+        <input type="text" id="regIn" class="plate-in" placeholder="AB12 CDE">
     </div>
-</nav>
+    
+    <input list="popular-parts" id="partIn" class="part-input" placeholder="What part do you need?" oninput="checkInstant(this.value)">
+    <datalist id="popular-parts">
+        <option value="Wiper Blades">
+        <option value="Engine Oil">
+        <option value="Full Service Kit">
+        <option value="Brake Discs">
+        <option value="Brake Pads">
+        <option value="Car Battery">
+        <option value="Headlight Bulbs">
+        <option value="Spark Plugs">
+        <option value="Air Filter">
+        <option value="Oil Filter">
+        <option value="Antifreeze">
+        <option value="Clutch Kit">
+    </datalist>
 
-<main>
-    <section class="hero">
-        <h1>Find Cheap Car Parts</h1>
-        <p style="color:white; margin-bottom:20px;">Compare 12+ UK suppliers instantly. Fitment guaranteed.</p>
-        
-        <div class="sc">
-            <div id="dvlaMsg"></div>
-            
-            <div class="vb" id="vcBox">
-                <div style="text-align:left;">
-                    <div style="color:var(--gr);font-size:0.7rem;font-weight:800;text-transform:uppercase;">Vehicle Found</div>
-                    <div id="vcName" style="font-weight:900;font-size:1.1rem;"></div>
-                    <div id="vcMeta" style="color:var(--mg);font-size:0.8rem;"></div>
-                </div>
-                <button onclick="resetV()" style="background:none;border:none;color:var(--bl);text-decoration:underline;cursor:pointer;font-weight:700;">Change</button>
-            </div>
+    <button class="main-btn" onclick="runSearch()">COMPARE PRICES</button>
+    <div class="trust-banner">✓ Fitment Guaranteed via DVLA Data</div>
+</div>
 
-            <div class="pr" id="plateRow">
-                <div class="pw">
-                    <div class="pg">🇬🇧<span>GB</span></div>
-                    <input class="pi" id="regIn" type="text" placeholder="AB12 CDE" maxlength="8">
-                </div>
-                <button class="pfb" id="findBtn" onclick="lookupReg()">🔍 Find Car</button>
-            </div>
+<div id="loader">
+    <div class="spinner"></div>
+    <h2 style="margin:0; font-weight:900;">Comparing Live Prices...</h2>
+    <p style="color:#666;">Searching eBay, Amazon, GSF & Euro Car Parts</p>
+    <div class="comparing-logos">
+        <span>EBAY</span> • <span>AMAZON</span> • <span>ECP</span> • <span>GSF</span>
+    </div>
+</div>
 
-            <div id="partRow" style="display:flex; gap:10px; margin-top:10px;">
-                <input id="partIn" type="text" placeholder="Enter part name (e.g. Brake Pads)" style="flex:1; padding:12px; border-radius:12px; border:2px solid #ddd; outline:none;">
-                <button class="qb" onclick="doSearch()">Compare Prices</button>
-            </div>
+<div class="cat-grid" id="mainGrid">
+    <div class="cat-item" onclick="quickSelect('Brake Pads')"><span class="cat-icon">🛑</span><span class="cat-name">Brakes</span></div>
+    <div class="cat-item" onclick="quickSelect('Shock Absorbers')"><span class="cat-icon">🚗</span><span class="cat-name">Suspension</span></div>
+    <div class="cat-item" onclick="quickSelect('Engine Oil')"><span class="cat-icon">🛢️</span><span class="cat-name">Oils</span></div>
+    <div class="cat-item" onclick="quickSelect('Service Kit')"><span class="cat-icon">🔧</span><span class="cat-name">Service Kits</span></div>
+    <div class="cat-item" onclick="quickSelect('Car Battery')"><span class="cat-icon">🔋</span><span class="cat-name">Electrical</span></div>
+    <div class="cat-item" onclick="quickSelect('Air Filter')"><span class="cat-icon">🌬️</span><span class="cat-name">Filters</span></div>
+    <div class="cat-item" onclick="quickSelect('Exhaust System')"><span class="cat-icon">💨</span><span class="cat-name">Exhaust</span></div>
+    <div class="cat-item" onclick="quickSelect('Clutch Kit')"><span class="cat-icon">⚙️</span><span class="cat-name">Clutch</span></div>
+    <div class="cat-item" onclick="quickSelect('Radiator')"><span class="cat-icon">❄️</span><span class="cat-name">Cooling</span></div>
+    <div class="cat-item" onclick="quickSelect('Headlight Bulbs')"><span class="cat-icon">💡</span><span class="cat-name">Lighting</span></div>
+    <div class="cat-item" onclick="quickSelect('Wiper Blades')"><span class="cat-icon">🌧️</span><span class="cat-name">Wipers</span></div>
+    <div class="cat-item" onclick="quickSelect('Tyres')"><span class="cat-icon">⭕</span><span class="cat-name">Tyres</span></div>
+</div>
 
-            <div id="resultsZone" style="display:none;">
-                <div id="aiSec">
-                    <div id="aiVehHead" style="margin-top:20px; font-weight:800; text-align:left; color:var(--bl);">
-                        <span id="aiVeh"></span> <span id="aiPart" style="color:var(--dk);"></span>
-                    </div>
-                    <div class="tscr">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Supplier</th>
-                                    <th>Part Description</th>
-                                    <th>Price</th>
-                                    <th>Delivery</th>
-                                    <th>Stock</th>
-                                    <th>Fit</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody id="aiBody"></tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div class="sup-pills"></div>
-</main>
+<div id="results">
+    <div class="back-link" onclick="goHome()">← Search Another Part</div>
+    <div id="resSummary" style="font-weight:900; font-size:1.2rem; color:var(--bl); margin-bottom:20px; text-align:center; text-transform:uppercase;"></div>
+    <table class="res-table">
+        <tbody id="resBody"></tbody>
+    </table>
+</div>
 
 <script>
-    // ===== CONFIGURATION =====
-    const DVLA_KEY = 'OL8ThSDEih1E8cEDbASQLaW308RJjOR02MWb2PDO';
-    const EBAY_WORKER_URL = 'https://cmcp-ebay.idris-b19.workers.dev';
-    const AFF = { amazon: 'comparemycarp-21', ebay: '5339148906', awin: '2851027' };
-    const AWIN_IDS = { 'Euro Car Parts': '197685', 'GSF Car Parts': '13655', 'Halfords': '197' };
+    const EBAY_URL = 'https://cmcp-ebay.idris-b19.workers.dev';
 
-    let vehicle = null;
-    let rows = [];
+    function quickSelect(p) {
+        document.getElementById('partIn').value = p;
+        runSearch();
+    }
 
-    // --- DVLA Lookup ---
-    async function lookupReg() {
-        const regInput = document.getElementById('regIn');
-        const reg = regInput.value.replace(/\s/g, '').toUpperCase();
-        if (reg.length < 2) { showDvlaErr('Enter a valid reg.'); return; }
-
-        const btn = document.getElementById('findBtn');
-        btn.disabled = true;
-        btn.innerHTML = '<span class="spn" style="width:14px;height:14px;border-width:2px;"></span>';
-
-        try {
-            const resp = await fetch('https://driver-vehicle-licensing.api.gov.uk/vehicle-enquiry/v1/vehicles', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json', 'x-api-key': DVLA_KEY },
-                body: JSON.stringify({ registrationNumber: reg })
-            });
-
-            if (!resp.ok) throw new Error('Not found');
-            const data = await resp.json();
-
-            applyVehicle({
-                name: `${data.yearOfManufacture || ''} ${data.make} ${data.engineCapacity ? (data.engineCapacity/1000).toFixed(1) + 'L' : ''}`,
-                meta: `${data.colour} · ${data.fuelType} · MOT: ${data.motStatus}`
-            });
-        } catch (e) {
-            showDvlaErr('Reg not found. Using Demo Mode.');
-            setTimeout(() => applyVehicle({ name: '2021 Ford Puma 1.0 EcoBoost', meta: 'Grey · Petrol · Demo Mode' }), 1200);
-        } finally {
-            btn.disabled = false;
-            btn.innerHTML = '🔍 Find Car';
+    function checkInstant(val) {
+        const opts = document.getElementById('popular-parts').options;
+        for(let i=0; i<opts.length; i++) {
+            if(opts[i].value === val) { runSearch(); break; }
         }
     }
 
-    function applyVehicle(v) {
-        vehicle = v;
-        document.getElementById('vcName').textContent = v.name;
-        document.getElementById('vcMeta').textContent = v.meta;
-        document.getElementById('vcBox').classList.add('show');
-        document.getElementById('plateRow').style.display = 'none';
-        document.getElementById('dvlaMsg').innerHTML = '';
-        document.getElementById('partIn').focus();
-    }
+    async function runSearch() {
+        const reg = document.getElementById('regIn').value;
+        const part = document.getElementById('partIn').value;
+        if(!reg || !part) return alert("Please enter Registration and Part name.");
 
-    function resetV() {
-        vehicle = null;
-        document.getElementById('vcBox').classList.remove('show');
-        document.getElementById('plateRow').style.display = 'flex';
-        document.getElementById('regIn').value = '';
-    }
+        document.getElementById('mainGrid').style.display = 'none';
+        document.getElementById('loader').style.display = 'block';
+        window.scrollTo({top: 100, behavior: 'smooth'});
 
-    function showDvlaErr(msg) {
-        document.getElementById('dvlaMsg').innerHTML = `<div class="dvla-err">⚠️ ${msg}</div>`;
-    }
-
-    // --- Search & Results ---
-    async function doSearch() {
-        const part = document.getElementById('partIn').value.trim();
-        if (!part || !vehicle) return;
-
-        document.getElementById('resultsZone').style.display = 'block';
-        document.getElementById('aiVeh').textContent = vehicle.name;
-        document.getElementById('aiPart').textContent = '— ' + part;
-        
-        const tbody = document.getElementById('aiBody');
-        tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:40px;"><div class="spn"></div><br>Comparing live prices...</td></tr>';
-
-        try {
-            const query = encodeURIComponent(part + ' ' + vehicle.name);
-            const resp = await fetch(`${EBAY_WORKER_URL}?q=${query}`);
-            const data = await resp.json();
-
-            if (data.items && data.items.length > 0) {
-                renderResults(part, data.items);
-            } else {
-                renderDemoResults(part);
+        // THE 3-SECOND "COMPARISON" DELAY
+        setTimeout(async () => {
+            try {
+                const query = encodeURIComponent(part + " " + reg);
+                const resp = await fetch(`${EBAY_URL}?q=${query}`);
+                const data = await resp.json();
+                
+                document.getElementById('loader').style.display = 'none';
+                document.getElementById('results').style.display = 'block';
+                document.getElementById('resSummary').innerText = "Deals Found for " + reg;
+                
+                render(data.items);
+            } catch(e) {
+                alert("Search Error. Please refresh and try again.");
+                goHome();
             }
-        } catch (e) {
-            renderDemoResults(part);
+        }, 3000);
+    }
+
+    function render(items) {
+        const body = document.getElementById('resBody');
+        if(!items || items.length === 0) {
+            body.innerHTML = "<tr><td style='text-align:center; padding:50px;'>No direct matches found. Try a broader search term.</td></tr>";
+            return;
         }
+        body.innerHTML = items.slice(0, 15).map(i => `
+            <tr>
+                <td>
+                    <span class="sup-badge">EBAY UK</span>
+                    <div class="part-title">${i.title.substring(0, 65)}...</div>
+                </td>
+                <td class="price-col">
+                    <span class="price-val">£${i.price}</span>
+                    <button class="buy-btn" onclick="window.open('${i.url}', '_blank')">VIEW DEAL</button>
+                </td>
+            </tr>
+        `).join('');
     }
 
-    function renderResults(part, ebayItems) {
-        rows = ebayItems.map(item => ({
-            sup: 'eBay',
-            ico: '🛒',
-            price: parseFloat(item.price),
-            desc: item.title.substring(0, 50) + '...',
-            del: 'Standard',
-            stock: 'In Stock',
-            url: item.url
-        }));
-
-        // Add simulated "Big Name" rows
-        const base = rows[0].price;
-        rows.push({ sup: 'Euro Car Parts', ico: '🔵', price: base * 1.1, desc: part + ' (Premium)', del: 'Next Day', stock: 'In Stock', url: '#' });
-        rows.push({ sup: 'GSF Car Parts', ico: '🟠', price: base * 0.95, desc: part + ' (OEM Spec)', del: 'Next Day', stock: 'Limited', url: '#' });
-
-        rows.sort((a, b) => a.price - b.price);
-        displayTable();
+    function goHome() {
+        document.getElementById('results').style.display = 'none';
+        document.getElementById('loader').style.display = 'none';
+        document.getElementById('mainGrid').style.display = 'grid';
+        document.getElementById('partIn').value = "";
     }
-
-    function renderDemoResults(part) {
-        const base = 45.00;
-        rows = [
-            { sup: 'eBay', ico: '🛒', price: base, desc: part + ' - New', del: '2-3 Days', stock: 'In Stock', url: '#' },
-            { sup: 'Euro Car Parts', ico: '🔵', price: base * 1.2, desc: part + ' - Bosch', del: 'Next Day', stock: 'In Stock', url: '#' },
-            { sup: 'Amazon', ico: '📦', price: base * 0.9, desc: part + ' - Certified', del: 'Prime', stock: 'In Stock', url: '#' }
-        ].sort((a, b) => a.price - b.price);
-        displayTable();
-    }
-
-    function displayTable() {
-        let html = '';
-        rows.forEach((r, i) => {
-            html += `<tr class="${i === 0 ? 'best' : ''}">
-                <td><span class="stag">${r.ico} ${r.sup}</span></td>
-                <td><div style="font-weight:700;">${r.desc}</div></td>
-                <td><span class="pc ${i === 0 ? 'pcb' : ''}">£${r.price.toFixed(2)}</span></td>
-                <td>${r.del}</td>
-                <td><span style="color:green">●</span> ${r.stock}</td>
-                <td><span style="background:var(--gn); color:var(--gr); padding:2px 6px; border-radius:4px; font-size:0.7rem;">Verified ✅</span></td>
-                <td><button class="qb" style="padding:6px 12px; font-size:0.8rem;" onclick="window.open('${r.url}','_blank')">Buy →</button></td>
-            </tr>`;
-        });
-        document.getElementById('aiBody').innerHTML = html;
-    }
-
-    // Initialize UI
-    window.onload = () => {
-        const pills = ['eBay', 'Amazon', 'Euro Car Parts', 'GSF', 'Halfords', 'Autodoc', 'Car Parts for Less'];
-        document.querySelector('.sup-pills').innerHTML = pills.map(p => `<span class="spill">${p}</span>`).join('');
-        document.getElementById('regIn').addEventListener('keypress', e => { if(e.key === 'Enter') lookupReg(); });
-    };
 </script>
-
 </body>
 </html>
