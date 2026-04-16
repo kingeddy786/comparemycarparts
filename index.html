@@ -513,13 +513,11 @@ async function lookupReg(){
   showDvlaLoading('Checking DVLA database for '+reg+' ...');
 
   try {
-    var resp = await fetch('https://driver-vehicle-licensing.api.gov.uk/vehicle-enquiry/v1/vehicles', {
-      method: 'POST',
+    var resp = await fetch('https://cmcp-ebay.idris-b19.workers.dev/dvla?reg=' + reg, {
+      method: 'GET',
       headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': DVLA_KEY
-      },
-      body: JSON.stringify({ registrationNumber: reg })
+        'Content-Type': 'application/json'
+      }
     });
 
     clearDvlaMsg();
