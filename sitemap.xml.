@@ -8,39 +8,11 @@
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
-
+  
   <url>
-    <loc>https://www.comparemycarparts.com/brakes</loc>
+    <loc>https://www.comparemycarparts.com/index.html</loc>
     <lastmod>2026-04-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://www.comparemycarparts.com/car-batteries</loc>
-    <lastmod>2026-04-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://www.comparemycarparts.com/service-kits</loc>
-    <lastmod>2026-04-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://www.comparemycarparts.com/engine-oil</loc>
-    <lastmod>2026-04-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://www.comparemycarparts.com/wiper-blades</loc>
-    <lastmod>2026-04-16</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 </urlset>
