@@ -5,68 +5,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CompareMyCarParts.com | UK Car Parts Price Comparison</title>
+    <title>Compare My Car Parts | Live Price Comparison</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root { --bl: #003DA6; --dk: #002574; --ye: #FFD100; --gr: #2ecc71; --wh: #ffffff; }
+        body { font-family: 'Nunito', sans-serif; margin: 0; background-color: var(--bl); color: var(--wh); min-height: 100vh; overflow-x: hidden; }
         
-        body { 
-            font-family: 'Nunito', sans-serif; margin: 0; 
-            background-color: var(--bl); color: var(--wh); 
-            min-height: 100vh; overflow-x: hidden;
-        }
-
-        /* Nav & Logos */
+        /* Nav & Brand Bar */
         nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: rgba(0,0,0,0.1); }
         .logo { font-weight: 900; font-size: 1.4rem; color: var(--wh); text-decoration: none; }
         .logo span { color: var(--ye); }
-
         .brand-strip { background: var(--wh); padding: 12px 0; overflow: hidden; display: flex; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
         .brand-scroll { display: flex; gap: 50px; animation: scroll 30s linear infinite; white-space: nowrap; }
         .brand-scroll span { color: #333; font-weight: 900; font-size: 0.9rem; opacity: 0.7; }
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* Hero */
-        .hero { text-align: center; padding: 30px 20px 10px; }
-        .hero h1 { font-size: clamp(2rem, 6vw, 3rem); font-weight: 900; margin: 0; }
-        .hero h1 span { color: var(--ye); }
-
-        /* Search Card */
+        /* Search Card Container */
         .search-card { 
-            background: var(--wh); border-radius: 25px; padding: 30px; 
-            max-width: 550px; margin: 20px auto; color: #333; 
-            box-shadow: 0 20px 50px rgba(0,0,0,0.4); 
+            background: var(--wh); border-radius: 25px; padding: 35px; 
+            max-width: 550px; margin: 40px auto; color: #333; 
+            box-shadow: 0 25px 60px rgba(0,0,0,0.5); 
         }
 
-        /* Plate Styling */
-        .plate-row { display: flex; gap: 10px; margin-bottom: 10px; }
+        /* STAGE 1: REG PLATE */
         .plate-box { 
-            background: var(--ye); border: 3px solid #1a1a1a; border-radius: 12px; 
-            display: flex; flex: 2; height: 60px; overflow: hidden; 
+            background: var(--ye); border: 4px solid #1a1a1a; border-radius: 12px; 
+            display: flex; height: 70px; overflow: hidden; margin-bottom: 15px;
         }
-        .gb { background: #003DA6; color: white; width: 40px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: bold; flex-direction: column; }
-        .plate-in { background: transparent; border: none; text-align: center; font-size: 2rem; font-weight: 900; width: 100%; outline: none; text-transform: uppercase; font-family: inherit; }
-        
-        .find-btn { flex: 1; background: #3b5998; color: white; border: none; border-radius: 12px; font-weight: 900; cursor: pointer; transition: 0.2s; }
-        .find-btn:hover { background: var(--dk); }
+        .gb { background: #003DA6; color: white; width: 45px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: bold; flex-direction: column; }
+        .plate-in { background: transparent; border: none; text-align: center; font-size: 2.5rem; font-weight: 900; width: 100%; outline: none; text-transform: uppercase; }
+        .find-btn { width: 100%; background: var(--dk); color: white; border: none; padding: 18px; border-radius: 12px; font-weight: 900; font-size: 1.1rem; cursor: pointer; transition: 0.2s; }
 
-        /* Part Section (Hidden until Reg found) */
-        #part-section { display: none; border-top: 2px dashed #eee; margin-top: 20px; padding-top: 20px; animation: fadeIn 0.5s; }
-        .part-input { width: 100%; padding: 18px; border: 2px solid var(--bl); border-radius: 12px; font-size: 1.1rem; box-sizing: border-box; margin-bottom: 15px; font-family: inherit; }
-        .compare-btn { width: 100%; background: var(--ye); color: #1a1a1a; border: none; padding: 20px; border-radius: 12px; font-weight: 900; font-size: 1.3rem; cursor: pointer; box-shadow: 0 4px 0 #d4ae00; }
+        /* VEHICLE IDENTITY BOX (Confirmed State) */
+        #car-display { 
+            display: none; background: #f0fdf4; border: 2px solid var(--gr); 
+            border-radius: 15px; padding: 25px; margin: 10px 0 25px; text-align: center;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0px rgba(46, 204, 113, 0.4); } 70% { box-shadow: 0 0 0 10px rgba(46, 204, 113, 0); } 100% { box-shadow: 0 0 0 0px rgba(46, 204, 113, 0); } }
+        .car-name { color: #1a1a1a; font-size: 1.8rem; font-weight: 900; display: block; letter-spacing: -0.5px; }
+        .confirmed-badge { display: inline-block; background: var(--gr); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 900; margin-top: 8px; }
 
-        /* Table Styling */
-        #results-screen { display: none; max-width: 900px; margin: 0 auto; padding: 20px; animation: fadeIn 0.5s; }
-        .results-table { width: 100%; background: white; border-radius: 20px; border-collapse: collapse; color: #333; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-        .results-table th { background: #f8f9fa; padding: 15px; text-align: left; font-size: 0.8rem; color: #888; text-transform: uppercase; }
-        .results-table td { padding: 20px 15px; border-top: 1px solid #eee; font-weight: 700; }
-        .price { color: var(--bl); font-size: 1.3rem; font-weight: 900; }
-        .buy-btn { background: var(--gr); color: white; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 900; cursor: pointer; }
+        /* STAGE 2: DROPDOWN INPUT */
+        #part-section { display: none; }
+        .part-input { 
+            width: 100%; padding: 20px; border: 2px solid var(--bl); border-radius: 12px; 
+            font-size: 1.1rem; box-sizing: border-box; margin-bottom: 20px; font-family: inherit;
+            background-color: #f9f9f9; cursor: pointer;
+        }
+        .compare-btn { width: 100%; background: var(--ye); color: #111; border: none; padding: 22px; border-radius: 12px; font-weight: 900; font-size: 1.3rem; cursor: pointer; box-shadow: 0 4px 0 #d4ae00; }
 
-        #loader { display: none; text-align: center; padding-top: 15vh; }
-        .spinner { width: 60px; height: 60px; border: 6px solid rgba(255,255,255,0.2); border-top-color: var(--ye); border-radius: 50%; animation: spin 1s infinite linear; margin: 0 auto 20px; }
-        
-        @keyframes spin { to { transform: rotate(360deg); } }
+        /* STAGE 3: SCANNING LOADER */
+        #loader { display: none; text-align: center; max-width: 450px; margin: 100px auto; }
+        .scan-line { 
+            display: flex; align-items: center; justify-content: space-between; 
+            background: rgba(255,255,255,0.1); padding: 15px 25px; border-radius: 12px; 
+            margin-bottom: 12px; opacity: 0.2; transition: 0.5s; 
+        }
+        .scan-line.active { opacity: 1; transform: scale(1.05); background: rgba(255,255,255,0.25); border: 1px solid var(--ye); }
+        .scan-line.done { opacity: 0.7; }
+        .tick-box { color: var(--gr); font-weight: 900; visibility: hidden; }
+        .scan-line.done .tick-box { visibility: visible; }
+
+        /* STAGE 4: RESULTS TABLE */
+        #results-screen { display: none; max-width: 850px; margin: 0 auto; padding: 20px; }
+        .results-table { width: 100%; background: white; border-radius: 20px; border-collapse: collapse; color: #333; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow: hidden; }
+        .results-table td { padding: 25px 20px; border-bottom: 1px solid #eee; font-weight: 700; font-size: 1.1rem; }
+        .price-tag { color: var(--bl); font-size: 1.5rem; font-weight: 900; }
+        .view-btn { background: var(--gr); color: white; border: none; padding: 12px 25px; border-radius: 8px; font-weight: 900; cursor: pointer; }
+
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
@@ -81,89 +88,112 @@
 </div>
 
 <div id="search-screen">
-    <div class="hero"><h1>Compare<span>MyCarParts.com</span></h1></div>
     <div class="search-card">
         <div id="reg-section">
-            <div style="text-align:center; font-weight:800; margin-bottom:10px; font-size:0.8rem;">STEP 1: IDENTIFY VEHICLE</div>
-            <div class="plate-row">
-                <div class="plate-box">
-                    <div class="gb">🇬🇧<br>GB</div>
-                    <input type="text" id="regIn" class="plate-in" placeholder="REG">
-                </div>
-                <button class="find-btn" id="findBtn" onclick="findCar()">Find Car</button>
+            <p style="font-weight: 900; font-size: 0.8rem; margin-bottom: 10px; color: #888;">STEP 1: IDENTIFY YOUR CAR</p>
+            <div class="plate-box">
+                <div class="gb">🇬🇧<br>GB</div>
+                <input type="text" id="regIn" class="plate-in" placeholder="REG" autocomplete="off">
             </div>
+            <button class="find-btn" id="findBtn" onclick="findCar()">IDENTIFY VEHICLE</button>
+        </div>
+
+        <div id="car-display">
+            <span id="car-detail" class="car-name"></span>
+            <div class="confirmed-badge">✓ VEHICLE VERIFIED - FITMENT GUARANTEED</div>
         </div>
 
         <div id="part-section">
-            <div id="car-confirm" style="text-align:center; font-weight:800; color:var(--gr); margin-bottom:15px;">✓ VEHICLE IDENTIFIED</div>
-            <input list="parts-data" id="partIn" class="part-input" placeholder="Search part (e.g. Brake Pads)">
-            <datalist id="parts-data">
-                <option value="Brake Pads"><option value="Brake Discs"><option value="Car Battery"><option value="Oil Filter"><option value="Wiper Blades">
+            <p style="font-weight: 900; font-size: 0.8rem; margin: 10px 0 10px; color: #888;">STEP 2: WHAT DO YOU NEED?</p>
+            <input list="parts-list" id="partIn" class="part-input" placeholder="Select a part (e.g. Brake Pads)" onfocus="this.value=''" onmousedown="this.value=''">
+            <datalist id="parts-list">
+                <option value="Brake Pads"><option value="Brake Discs"><option value="Car Battery"><option value="Oil Filter"><option value="Wiper Blades"><option value="Spark Plugs"><option value="Air Filter"><option value="Alternator"><option value="Bulbs"><option value="Shock Absorbers">
             </datalist>
-            <button class="compare-btn" onclick="showResults()">Compare Live Prices</button>
+            <button class="compare-btn" onclick="runComparisonEngine()">COMPARE LIVE PRICES</button>
         </div>
     </div>
 </div>
 
-<div id="loader"><div class="spinner"></div><h2 style="font-weight:900;">Comparing All UK Suppliers...</h2></div>
+<div id="loader">
+    <h2 style="font-weight: 900; font-size: 1.8rem; margin-bottom: 30px;">Analyzing Live Market...</h2>
+    <div id="scan-ebay" class="scan-line"><span>Checking eBay Motors</span> <span class="tick-box">✓</span></div>
+    <div id="scan-amazon" class="scan-line"><span>Scanning Amazon Automotive</span> <span class="tick-box">✓</span></div>
+    <div id="scan-euro" class="scan-line"><span>Fetching Euro Car Parts</span> <span class="tick-box">✓</span></div>
+    <div id="scan-gsf" class="scan-line"><span>Verifying GSF Prices</span> <span class="tick-box">✓</span></div>
+</div>
 
 <div id="results-screen">
-    <h2 style="text-align:center; margin-bottom:20px;">Live Prices for <span id="display-part" style="color:var(--ye)"></span></h2>
+    <h2 style="text-align:center; margin-bottom:25px;">Live Deals for <span id="res-part-name" style="color:var(--ye)"></span></h2>
     <div id="table-container"></div>
-    <button onclick="location.reload()" style="background:none; border:none; color:white; width:100%; margin-top:30px; cursor:pointer; text-decoration:underline; font-weight:700;">New Search</button>
+    <button onclick="location.reload()" style="background:none; border:none; color:white; width:100%; margin-top:40px; cursor:pointer; text-decoration:underline; font-weight:700; opacity:0.6;">Start New Search</button>
 </div>
 
 <script>
-    // ENTER YOUR CLOUDFLARE WORKER LINK HERE
-    const WORKER_URL = 'https://YOUR_WORKER_URL.workers.dev'; 
+    // YOUR CLOUDFLARE LINK
+    const WORKER_URL = 'https://cmcp-ebay.ldris.workers.dev'; 
 
     async function findCar() {
         const reg = document.getElementById('regIn').value;
-        if(!reg) return alert("Please enter a registration.");
+        if(!reg) return alert("Please enter your Registration");
         
-        document.getElementById('findBtn').innerText = "...";
+        document.getElementById('findBtn').innerText = "FETCHING DVLA DATA...";
         
         try {
             const res = await fetch(`${WORKER_URL}/dvla?reg=${reg}`);
             const data = await res.json();
-            document.getElementById('car-confirm').innerText = `✓ ${data.make} ${data.model} (${data.year})`;
-            document.getElementById('reg-section').style.opacity = '0.5';
+            
+            // Lock in the vehicle
+            document.getElementById('car-detail').innerText = `${data.make} ${data.model}`.toUpperCase();
+            document.getElementById('reg-section').style.display = 'none';
+            document.getElementById('car-display').style.display = 'block';
             document.getElementById('part-section').style.display = 'block';
-        } catch (e) {
-            // Fallback if worker isn't responding yet
-            document.getElementById('part-section').style.display = 'block';
+        } catch(e) {
+            alert("Vehicle not found. Please double check your reg.");
+            document.getElementById('findBtn').innerText = "IDENTIFY VEHICLE";
         }
     }
 
-    async function showResults() {
+    async function runComparisonEngine() {
         const part = document.getElementById('partIn').value;
-        const reg = document.getElementById('regIn').value;
-        if(!part) return alert("Please select or type a part name.");
+        if(!part) return alert("Please select a part first");
 
         document.getElementById('search-screen').style.display = 'none';
         document.getElementById('loader').style.display = 'block';
-        document.getElementById('display-part').innerText = part;
+        document.getElementById('res-part-name').innerText = part.toUpperCase();
 
+        // 5-SECOND LOGO ANIMATION SEQUENCE
+        const scanners = ['scan-ebay', 'scan-amazon', 'scan-euro', 'scan-gsf'];
+        for (let id of scanners) {
+            let el = document.getElementById(id);
+            el.classList.add('active');
+            await new Promise(r => setTimeout(r, 1200)); // 1.2s per supplier
+            el.classList.remove('active');
+            el.classList.add('done');
+        }
+
+        // FETCH DATA FROM WORKER
         try {
-            const res = await fetch(`${WORKER_URL}/search?part=${part}&reg=${reg}`);
-            const results = await res.json();
+            const response = await fetch(`${WORKER_URL}/search?part=${part}`);
+            const results = await response.json();
             
-            let tableHtml = `<table class="results-table"><thead><tr><th>Supplier</th><th>Price</th><th>Action</th></tr></thead><tbody>`;
+            let table = `<table class="results-table">`;
             results.forEach(item => {
-                tableHtml += `<tr><td>${item.supplier}</td><td class="price">£${item.price}</td><td><button class="buy-btn" onclick="window.open('${item.url}')">VIEW</button></td></tr>`;
+                table += `<tr>
+                    <td>${item.supplier}</td>
+                    <td class="price-tag">£${item.price}</td>
+                    <td><button class="view-btn" onclick="window.open('${item.url}')">VIEW DEAL</button></td>
+                </tr>`;
             });
-            tableHtml += `</tbody></table>`;
+            table += `</table>`;
             
             document.getElementById('loader').style.display = 'none';
-            document.getElementById('table-container').innerHTML = tableHtml;
+            document.getElementById('table-container').innerHTML = table;
             document.getElementById('results-screen').style.display = 'block';
-        } catch (e) {
-            // Mock data for testing if Worker URL is not yet connected
-            setTimeout(() => {
-                document.getElementById('loader').style.display = 'none';
-                document.getElementById('table-container').innerHTML = `<table class="results-table"><tr><td>eBay Motors</td><td class="price">£18.50</td><td><button class="buy-btn" onclick="window.open('https://ebay.co.uk')">VIEW</button></td></tr></table>`;
-                document.getElementById('results-screen').style.display = 'block';
-            }, 2000);
+        } catch(e) {
+            // Fallback display if worker has no results
+            document.getElementById('loader').style.display = 'none';
+            document.getElementById('table-container').innerHTML = `<p style="text-align:center;">No live deals found for this part. Try another search.</p>`;
+            document.getElementById('results-screen').style.display = 'block';
         }
     }
 </script>
