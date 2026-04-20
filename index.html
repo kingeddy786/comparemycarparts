@@ -70,15 +70,22 @@ nav{background:var(--bl);position:sticky;top:0;z-index:300;box-shadow:0 2px 12px
 .pfb:hover{background:var(--b2);}
 .pfb:disabled{opacity:.6;cursor:not-allowed;}
 
-/* VEHICLE CONFIRMED */
-.vb{display:none;background:var(--gn);border:2px solid var(--gr);border-radius:10px;padding:8px 12px;margin-bottom:8px;align-items:center;gap:10px;}
-.vb.show{display:flex;}
-.vi{font-size:1.6rem;flex-shrink:0;}
-.vd{flex:1;text-align:left;}
-.vl{font-family:'Nunito',sans-serif;font-weight:800;color:var(--gr);font-size:.62rem;text-transform:uppercase;letter-spacing:1px;}
-.vn{font-family:'Nunito',sans-serif;font-weight:900;color:var(--dk);font-size:.88rem;}
-.vm{font-size:.75rem;color:var(--mg);}
-.vch{font-family:'Nunito',sans-serif;font-weight:700;font-size:.75rem;color:var(--bl);cursor:pointer;text-decoration:underline;white-space:nowrap;}
+/* VEHICLE CONFIRMED - ENHANCED */
+.vb{display:none;background:linear-gradient(135deg,var(--gn),#d4f5e4);border:2px solid var(--gr);border-radius:14px;padding:14px 16px;margin-bottom:10px;text-align:left;}
+.vb.show{display:block;}
+.vb-head{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.vi{font-size:1.8rem;flex-shrink:0;}
+.vd{flex:1;}
+.vl{font-family:'Nunito',sans-serif;font-weight:800;color:var(--gr);font-size:.65rem;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:2px;}
+.vn{font-family:'Nunito',sans-serif;font-weight:900;color:var(--dk);font-size:1.1rem;line-height:1.2;}
+.vch{font-family:'Nunito',sans-serif;font-weight:700;font-size:.8rem;color:var(--bl);cursor:pointer;text-decoration:underline;white-space:nowrap;background:rgba(255,255,255,.7);padding:6px 12px;border-radius:8px;}
+.vch:hover{background:var(--wh);}
+.vinfo{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;background:rgba(255,255,255,.6);border-radius:10px;padding:10px;}
+.vinfo-item{text-align:center;}
+.vinfo-lbl{font-family:'Nunito',sans-serif;font-weight:700;font-size:.6rem;text-transform:uppercase;letter-spacing:1px;color:var(--mg);margin-bottom:2px;}
+.vinfo-val{font-family:'Nunito',sans-serif;font-weight:900;font-size:.78rem;color:var(--dk);}
+.vinfo-val.good{color:var(--gr);}
+.vinfo-val.warn{color:var(--or);}
 
 /* DVLA messages */
 .dvla-loading{display:flex;align-items:center;gap:8px;background:#FFF9D9;border:1px solid #E6BC00;border-radius:8px;padding:8px 12px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.8rem;color:#7A6200;margin-bottom:8px;}
@@ -104,16 +111,41 @@ nav{background:var(--bl);position:sticky;top:0;z-index:300;box-shadow:0 2px 12px
 .acn em{color:var(--bl);font-style:normal;font-weight:900;}
 .acc{font-size:.7rem;color:var(--mg);text-align:left;}
 
-/* CATEGORIES - FIXED dimensions to prevent jitter */
+/* SEARCH ANIMATION - circular radar scanner */
+.scan-overlay{background:linear-gradient(135deg,var(--lg),#fff);border:2px solid var(--bl);border-radius:14px;padding:20px;margin-top:14px;text-align:center;}
+.scan-title{font-family:'Nunito',sans-serif;font-weight:900;font-size:1rem;color:var(--bl);margin-bottom:4px;}
+.scan-sub{font-size:.82rem;color:var(--mg);margin-bottom:14px;}
+.scan-radar{position:relative;width:280px;height:280px;margin:0 auto 16px;}
+.scan-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:80px;height:80px;background:linear-gradient(135deg,var(--bl),var(--b2));border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Nunito',sans-serif;font-weight:900;font-size:.7rem;text-align:center;box-shadow:0 4px 20px rgba(0,61,166,.4);z-index:3;}
+.scan-center::before{content:'';position:absolute;inset:-6px;border-radius:50%;border:3px solid var(--ye);border-top-color:transparent;border-right-color:transparent;animation:spin 1s linear infinite;}
+.scan-sweep{position:absolute;top:0;left:0;width:100%;height:100%;border-radius:50%;z-index:2;pointer-events:none;animation:sweep 2.5s linear infinite;}
+.scan-sweep::before{content:'';position:absolute;top:0;left:50%;width:3px;height:50%;background:linear-gradient(to bottom,var(--ye),transparent);transform-origin:bottom center;}
+.scan-sweep::after{content:'';position:absolute;top:0;left:50%;width:50%;height:50%;background:conic-gradient(from 0deg,rgba(255,209,0,.35),transparent 60deg);transform-origin:bottom left;border-radius:50% 0 0 0;}
+@keyframes sweep{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
+.scan-ring{position:absolute;top:50%;left:50%;border-radius:50%;border:2px solid rgba(0,61,166,.15);transform:translate(-50%,-50%);}
+.scan-ring-1{width:160px;height:160px;}
+.scan-ring-2{width:240px;height:240px;}
+.scan-ring-3{width:100%;height:100%;}
+.scan-item{position:absolute;top:50%;left:50%;width:54px;height:54px;background:var(--wh);border:2px solid #D0DCEF;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Nunito',sans-serif;font-weight:800;transform:translate(-50%,-50%);transition:all .3s;box-shadow:0 2px 8px rgba(0,61,166,.1);z-index:4;}
+.scan-item.hit{border-color:var(--ye);background:#FFFDF0;box-shadow:0 0 20px rgba(255,209,0,.6);transform:translate(-50%,-50%) scale(1.12);}
+.scan-item.done{border-color:var(--gr);background:var(--gn);}
+.scan-item .sico{font-size:1.2rem;line-height:1;}
+.scan-item .sname{font-size:.5rem;color:var(--bl);margin-top:1px;line-height:1;text-align:center;padding:0 2px;}
+.scan-item.done .sname{color:var(--gr);}
+.scan-item .scheck{position:absolute;top:-4px;right:-4px;background:var(--gr);color:#fff;border-radius:50%;width:18px;height:18px;display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:900;border:2px solid #fff;}
+.scan-status{font-family:'Nunito',sans-serif;font-weight:800;font-size:.75rem;color:var(--bl);min-height:18px;}
+@keyframes spin{to{transform:rotate(360deg);}}
+
+/* CATEGORIES */
 .cats{width:100%;max-width:900px;margin:16px auto 0;}
 .cats-lbl{font-family:'Nunito',sans-serif;font-weight:900;font-size:.72rem;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.85);text-align:center;margin-bottom:10px;}
 .cats-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;}
-.catb{background:rgba(255,255,255,.15);border:2px solid rgba(255,255,255,.25);border-radius:12px;padding:10px 4px 8px;text-align:center;cursor:pointer;transition:border-color .15s,transform .15s,background .15s;text-decoration:none;color:inherit;display:block;height:62px;display:flex;flex-direction:column;justify-content:center;align-items:center;}
+.catb{background:rgba(255,255,255,.15);border:2px solid rgba(255,255,255,.25);border-radius:12px;padding:10px 4px 8px;text-align:center;cursor:pointer;transition:border-color .15s,transform .15s,background .15s;text-decoration:none;color:inherit;display:flex;flex-direction:column;justify-content:center;align-items:center;height:62px;}
 .catb:hover{border-color:var(--ye);transform:translateY(-2px);background:rgba(255,255,255,.25);}
 .catb .ci{font-size:1.3rem;display:block;margin-bottom:3px;line-height:1;}
 .catb .cn{font-family:'Nunito',sans-serif;font-weight:800;font-size:.65rem;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.4);}
 
-/* SUPPLIER PILLS - fixed height */
+/* SUPPLIER PILLS */
 .sup-sec{background:var(--lg);border-bottom:1px solid #E0E8F8;padding:14px 24px;}
 .sup-in{max-width:1200px;margin:0 auto;}
 .sup-lbl{text-align:center;font-family:'Nunito',sans-serif;font-weight:800;font-size:.65rem;text-transform:uppercase;letter-spacing:2px;color:var(--mg);margin-bottom:10px;}
@@ -254,9 +286,21 @@ footer{background:var(--dk);padding:40px 24px 22px;}
   .qr{flex-direction:column;}
   .qb{width:100%;}
   th:nth-child(4),td:nth-child(4){display:none;}
+  .scan-radar{width:240px;height:240px;}
+  .scan-ring-1{width:130px;height:130px;}
+  .scan-ring-2{width:200px;height:200px;}
+  .scan-item{width:46px;height:46px;}
+  .scan-item .sico{font-size:1rem;}
+  .scan-item .sname{font-size:.45rem;}
+  .vinfo{grid-template-columns:1fr 1fr;}
 }
 @media(max-width:420px){
   .cats-grid{grid-template-columns:repeat(3,1fr);}
+  .scan-radar{width:220px;height:220px;}
+  .scan-ring-1{width:110px;height:110px;}
+  .scan-ring-2{width:180px;height:180px;}
+  .scan-item{width:42px;height:42px;}
+  .scan-item .sico{font-size:.9rem;}
 }
 </style>
 </head>
@@ -275,7 +319,7 @@ footer{background:var(--dk);padding:40px 24px 22px;}
       <a href="https://wa.me/447000000000" class="btn-o" target="_blank">💬 WhatsApp</a>
       <a href="#" class="btn-y" onclick="window.scrollTo({top:0,behavior:'smooth'});return false">Compare Now</a>
     </div>
-    <button class="hb" id="hbtn" aria-label="Menu"><span></span><span></span><span></span></button>
+    <button class="hb" id="hbtn"><span></span><span></span><span></span></button>
   </div>
 </nav>
 
@@ -285,10 +329,6 @@ footer{background:var(--dk);padding:40px 24px 22px;}
   <a href="#rev" onclick="goTo('rev');closeMob();return false">Reviews</a>
   <a href="#faq" onclick="goTo('faq');closeMob();return false">FAQ</a>
   <a href="https://wa.me/447000000000" target="_blank">💬 WhatsApp Us</a>
-  <div class="mmd"></div>
-  <div class="mbb">
-    <a href="#" class="btn-y" onclick="window.scrollTo({top:0,behavior:'smooth'});closeMob();return false" style="flex:1;text-align:center;">Compare Now</a>
-  </div>
 </div>
 
 <main>
@@ -302,13 +342,15 @@ footer{background:var(--dk);padding:40px 24px 22px;}
       <div id="dvlaMsg"></div>
 
       <div class="vb" id="vcBox">
-        <div class="vi">✅</div>
-        <div class="vd">
-          <div class="vl">Vehicle Found</div>
-          <div class="vn" id="vcName"></div>
-          <div class="vm" id="vcMeta"></div>
+        <div class="vb-head">
+          <div class="vi">✅</div>
+          <div class="vd">
+            <div class="vl">Vehicle Found · DVLA Verified</div>
+            <div class="vn" id="vcName"></div>
+          </div>
+          <span class="vch" onclick="resetV()">Change</span>
         </div>
-        <span class="vch" onclick="resetV()">Change</span>
+        <div class="vinfo" id="vcInfo"></div>
       </div>
 
       <div class="pr" id="plateRow">
@@ -328,6 +370,8 @@ footer{background:var(--dk);padding:40px 24px 22px;}
         </div>
         <button class="qb" onclick="doSearch()">Compare Prices</button>
       </div>
+
+      <div id="scanZone" style="display:none;"></div>
 
       <div id="resultsZone" style="display:none;margin-top:14px;">
         <div class="aih">
@@ -413,8 +457,8 @@ footer{background:var(--dk);padding:40px 24px 22px;}
     <div class="faq-list">
       <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How do I compare car parts prices?<span class="faq-arr">▼</span></button><div class="faq-a">Enter your reg plate, then search for the part you need. We instantly compare prices from 12+ UK suppliers including eBay, Amazon, Euro Car Parts, GSF and Halfords — plus used parts from breakers — all sorted cheapest first.</div></div>
       <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Is CompareMyCarParts.com free?<span class="faq-arr">▼</span></button><div class="faq-a">Yes, completely free. We earn a small referral fee when you click through to buy — at zero extra cost to you.</div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Do you show used parts too?<span class="faq-arr">▼</span></button><div class="faq-a">Yes! We show both new and used parts. Used options come from eBay and 1st Choice Spares (UK's biggest breakers network) — can save you 50-80% on body panels, mirrors, lights etc.</div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How do I know parts will fit?<span class="faq-arr">▼</span></button><div class="faq-a">Every result is fitment-verified against your exact vehicle using your UK reg plate. We use the DVLA database to identify your make, model, engine and year.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Do you show used parts too?<span class="faq-arr">▼</span></button><div class="faq-a">Yes! We show both new and used parts. Used options come from eBay and 1st Choice Spares.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How do I know parts will fit?<span class="faq-arr">▼</span></button><div class="faq-a">Every result is fitment-verified against your exact vehicle using your UK reg plate.</div></div>
       <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Which suppliers do you compare?<span class="faq-arr">▼</span></button><div class="faq-a">eBay, Amazon, Euro Car Parts, GSF Car Parts, Car Parts for Less, Autodoc, FCP Euro, Andrew Page, Halfords, Motor Factor, Parts Gateway and 1st Choice Spares.</div></div>
     </div>
   </div>
@@ -428,29 +472,19 @@ footer{background:var(--dk);padding:40px 24px 22px;}
 
 </main>
 
-<a href="https://wa.me/447000000000" class="wa-float" target="_blank" aria-label="WhatsApp us">💬</a>
+<a href="https://wa.me/447000000000" class="wa-float" target="_blank">💬</a>
 
 <footer>
   <div class="fg">
-    <div class="fbr"><span class="flo">Compare<span>MyCarParts</span>.com</span><p>The UK's trusted car parts price comparison. Enter your reg, find the right part, pay the best price.</p></div>
-    <nav class="fc"><h5>Popular Parts</h5><ul><li><a href="#" onclick="pickCat('Front Brake Pads');return false">Brake Pads</a></li><li><a href="#" onclick="pickCat('Clutch Kit');return false">Clutch Kits</a></li><li><a href="#" onclick="pickCat('Front Shock Absorber');return false">Suspension</a></li><li><a href="#" onclick="pickCat('Oil Filter');return false">Service Parts</a></li><li><a href="#" onclick="pickCat('Car Battery');return false">Batteries</a></li></ul></nav>
-    <nav class="fc"><h5>Company</h5><ul><li><a href="#">About</a></li><li><a href="#hiw" onclick="goTo('hiw');return false">How It Works</a></li><li><a href="#sups" onclick="goTo('sups');return false">Suppliers</a></li><li><a href="https://wa.me/447000000000" target="_blank">WhatsApp</a></li></ul></nav>
+    <div class="fbr"><span class="flo">Compare<span>MyCarParts</span>.com</span><p>The UK's trusted car parts price comparison.</p></div>
+    <nav class="fc"><h5>Popular Parts</h5><ul><li><a href="#" onclick="pickCat('Front Brake Pads');return false">Brake Pads</a></li><li><a href="#" onclick="pickCat('Clutch Kit');return false">Clutch Kits</a></li><li><a href="#" onclick="pickCat('Front Shock Absorber');return false">Suspension</a></li><li><a href="#" onclick="pickCat('Oil Filter');return false">Service Parts</a></li></ul></nav>
+    <nav class="fc"><h5>Company</h5><ul><li><a href="#">About</a></li><li><a href="#hiw" onclick="goTo('hiw');return false">How It Works</a></li><li><a href="https://wa.me/447000000000" target="_blank">WhatsApp</a></li></ul></nav>
     <nav class="fc"><h5>Legal</h5><ul><li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li><li><a href="#">Cookies</a></li></ul></nav>
   </div>
-  <div class="fbot">
-    <span>© 2026 CompareMyCarParts.com</span>
-    <span>Not a seller — we help you find the best deal.</span>
-  </div>
-  <div style="max-width:1200px;margin:10px auto 0;font-size:.7rem;color:#2A3A5A;text-align:center;padding:0 24px 8px;">
-    We may earn affiliate commissions when you click through and purchase. This is at no extra cost to you.
-  </div>
+  <div class="fbot"><span>© 2026 CompareMyCarParts.com</span><span>Not a seller — we help you find the best deal.</span></div>
 </footer>
 
 <script>
-// ================================================
-// CompareMyCarParts.com — Main Script
-// ================================================
-
 var WORKER_URL = 'https://cmcp-ebay.idris-b19.workers.dev';
 var AFF = { amazon: 'kingeddy786-21', ebay: '5339148906', awin: '2851027' };
 
@@ -458,7 +492,6 @@ var vehicle = null;
 var allRows = [];
 var currentFilter = 'all';
 
-// Static data — defined here so categories/suppliers render BEFORE page paint (no jitter)
 var PARTS = [
   {n:'Front Brake Pads',c:'Brakes',i:'🛑'},{n:'Rear Brake Pads',c:'Brakes',i:'🛑'},
   {n:'Front Brake Discs',c:'Brakes',i:'🛑'},{n:'Rear Brake Discs',c:'Brakes',i:'🛑'},
@@ -501,19 +534,18 @@ var CATS = [
 ];
 
 var SUPPLIERS = ['eBay','Amazon','Euro Car Parts','GSF Car Parts','Halfords','Autodoc','Car Parts for Less','FCP Euro','Andrew Page','Motor Factor','Parts Gateway','1st Choice Spares'];
+var SCAN_SUPPLIERS = [
+  {n:'eBay',i:'🛒'},{n:'Amazon',i:'📦'},{n:'Euro Car Parts',i:'🔵'},{n:'GSF Car Parts',i:'🟠'},
+  {n:'Halfords',i:'🟢'},{n:'Autodoc',i:'🚗'},{n:'Car Parts 4 Less',i:'💛'},{n:'FCP Euro',i:'🇪🇺'},
+  {n:'Andrew Page',i:'🔶'},{n:'Motor Factor',i:'🔧'},{n:'Parts Gateway',i:'🔍'},{n:'1st Choice',i:'♻️'}
+];
 
-// ==============================
-// Render static content IMMEDIATELY to prevent jitter
-// ==============================
-(function renderStaticNow(){
-  // Wait for DOM to have the target elements
-  function render() {
+// Render static content now
+(function(){
+  function render(){
     var catGrid = document.getElementById('catGrid');
     var supPills = document.getElementById('supPills');
-    if (!catGrid || !supPills) {
-      setTimeout(render, 10);
-      return;
-    }
+    if (!catGrid || !supPills) { setTimeout(render, 10); return; }
     var catHtml = '';
     for (var i = 0; i < CATS.length; i++) {
       var c = CATS[i];
@@ -527,16 +559,11 @@ var SUPPLIERS = ['eBay','Amazon','Euro Car Parts','GSF Car Parts','Halfords','Au
   render();
 })();
 
-// ==============================
-// Utility
-// ==============================
 function titleCase(s){return s?s.replace(/\w\S*/g,function(t){return t.charAt(0).toUpperCase()+t.substr(1).toLowerCase();}):s;}
 function goTo(id){var el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});}
 function closeMob(){var h=document.getElementById('hbtn');if(h)h.classList.remove('open');var m=document.getElementById('mmenu');if(m)m.classList.remove('open');}
 
-// ==============================
-// DVLA LOOKUP via Worker
-// ==============================
+// DVLA LOOKUP
 async function lookupReg(){
   var reg = document.getElementById('regIn').value.replace(/\s/g,'').toUpperCase();
   document.getElementById('regIn').value = reg;
@@ -553,14 +580,32 @@ async function lookupReg(){
     var data = await resp.json();
     if(data.error){ clearDvlaMsg(); showDvlaErr(data.error); return; }
     clearDvlaMsg();
+
     var make = titleCase(data.make || 'Unknown');
-    var colour = titleCase(data.colour || '');
-    var fuel = titleCase(data.fuelType || '');
+    var colour = titleCase(data.colour || 'Unknown');
+    var fuel = titleCase(data.fuelType || 'Unknown');
     var year = data.yearOfManufacture || '';
     var engine = data.engineCapacity ? (data.engineCapacity/1000).toFixed(1)+'L' : '';
-    var name = year + ' ' + make + (engine ? ' ' + engine : '');
-    var meta = [colour, fuel].filter(Boolean).join(' · ');
-    applyVehicle({name:name, meta:meta, raw:data});
+    var taxStatus = data.taxStatus || '';
+    var motStatus = data.motStatus || '';
+    var motExpiry = data.motExpiryDate || '';
+    var co2 = data.co2Emissions || '';
+
+    // Full vehicle name
+    var name = year + ' ' + make + (engine ? ' · ' + engine : '');
+
+    applyVehicle({
+      name: name,
+      colour: colour,
+      fuel: fuel,
+      year: year,
+      engine: engine,
+      taxStatus: taxStatus,
+      motStatus: motStatus,
+      motExpiry: motExpiry,
+      co2: co2,
+      raw: data
+    });
   } catch(err) {
     btn.innerHTML = '🔍 Find Car';
     btn.disabled = false;
@@ -571,27 +616,48 @@ async function lookupReg(){
 function showDvlaLoading(msg){document.getElementById('dvlaMsg').innerHTML='<div class="dvla-loading"><span class="spn" style="width:16px;height:16px;border-width:2px;margin:0;flex-shrink:0"></span> '+msg+'</div>';}
 function showDvlaErr(msg){document.getElementById('dvlaMsg').innerHTML='<div class="dvla-err">⚠️ '+msg+'</div>';}
 function clearDvlaMsg(){document.getElementById('dvlaMsg').innerHTML='';}
+
 function applyVehicle(v){
   vehicle = v;
   document.getElementById('vcName').textContent = v.name;
-  document.getElementById('vcMeta').textContent = v.meta;
+
+  // Build detailed vehicle info grid
+  var infoHtml = '';
+  infoHtml += '<div class="vinfo-item"><div class="vinfo-lbl">Colour</div><div class="vinfo-val">'+v.colour+'</div></div>';
+  infoHtml += '<div class="vinfo-item"><div class="vinfo-lbl">Fuel</div><div class="vinfo-val">'+v.fuel+'</div></div>';
+  infoHtml += '<div class="vinfo-item"><div class="vinfo-lbl">Year</div><div class="vinfo-val">'+v.year+'</div></div>';
+  if (v.taxStatus) {
+    var taxClass = v.taxStatus.toLowerCase() === 'taxed' ? 'good' : 'warn';
+    infoHtml += '<div class="vinfo-item"><div class="vinfo-lbl">Tax</div><div class="vinfo-val '+taxClass+'">'+v.taxStatus+'</div></div>';
+  }
+  if (v.motStatus) {
+    var motClass = v.motStatus.toLowerCase() === 'valid' ? 'good' : 'warn';
+    infoHtml += '<div class="vinfo-item"><div class="vinfo-lbl">MOT</div><div class="vinfo-val '+motClass+'">'+v.motStatus+'</div></div>';
+  }
+  if (v.engine) {
+    infoHtml += '<div class="vinfo-item"><div class="vinfo-lbl">Engine</div><div class="vinfo-val">'+v.engine+'</div></div>';
+  }
+  document.getElementById('vcInfo').innerHTML = infoHtml;
+
   document.getElementById('vcBox').classList.add('show');
   document.getElementById('plateRow').style.display = 'none';
+  document.getElementById('orDiv').style.display = 'none';
   document.getElementById('partIn').focus();
 }
+
 function resetV(){
   vehicle = null;
   clearDvlaMsg();
   document.getElementById('vcBox').classList.remove('show');
   document.getElementById('plateRow').style.display = 'flex';
+  document.getElementById('orDiv').style.display = 'block';
   document.getElementById('regIn').value = '';
   document.getElementById('resultsZone').style.display = 'none';
+  document.getElementById('scanZone').style.display = 'none';
   document.getElementById('regIn').focus();
 }
 
-// ==============================
 // AUTOCOMPLETE
-// ==============================
 function showAC(q){
   if(!q || q.length < 2){closeAC();return;}
   var ql = q.toLowerCase();
@@ -614,9 +680,7 @@ function showAC(q){
 function selAC(name){document.getElementById('partIn').value=name;closeAC();doSearch();}
 function closeAC(){var d=document.getElementById('acDrop');if(d)d.classList.remove('open');}
 
-// ==============================
-// SEARCH
-// ==============================
+// SEARCH with animation
 function pickCat(name){
   if(!vehicle){shakePlate();return;}
   document.getElementById('partIn').value = name;
@@ -624,42 +688,119 @@ function pickCat(name){
 }
 function shakePlate(){var pw=document.querySelector('.pw');if(pw){pw.style.animation='shake .4s ease';setTimeout(function(){pw.style.animation='';},400);}document.getElementById('regIn').focus();}
 
-function doSearch(){
+async function doSearch(){
   closeAC();
   var part = document.getElementById('partIn').value.trim();
   if(!part){document.getElementById('partIn').focus();return;}
   if(!vehicle){shakePlate();return;}
-  showResults(vehicle, part);
+
+  // Hide results, show scan animation
+  document.getElementById('resultsZone').style.display = 'none';
+  var scanZone = document.getElementById('scanZone');
+  scanZone.style.display = 'block';
+
+  // Build circular radar scanner
+  var scanHtml = '<div class="scan-overlay">';
+  scanHtml += '<div class="scan-title">🔍 Scanning UK Suppliers</div>';
+  scanHtml += '<div class="scan-sub">Finding the best prices for <strong>'+part+'</strong> on your <strong>'+vehicle.name+'</strong></div>';
+  scanHtml += '<div class="scan-radar">';
+  scanHtml += '<div class="scan-ring scan-ring-1"></div>';
+  scanHtml += '<div class="scan-ring scan-ring-2"></div>';
+  scanHtml += '<div class="scan-ring scan-ring-3"></div>';
+  scanHtml += '<div class="scan-sweep"></div>';
+  scanHtml += '<div class="scan-center">LIVE<br>SCAN</div>';
+
+  // Place suppliers in a circle
+  var n = SCAN_SUPPLIERS.length;
+  // Arrange across 2 rings (6 on inner, 6 on outer)
+  for (var i = 0; i < n; i++) {
+    var onOuter = i >= 6;
+    var angleIdx = onOuter ? (i - 6) : i;
+    var angle = (angleIdx / 6) * 360 - 90; // start from top
+    var radius = onOuter ? 120 : 75;
+    var x = 50 + (radius / 140) * 50 * Math.cos(angle * Math.PI / 180);
+    var y = 50 + (radius / 140) * 50 * Math.sin(angle * Math.PI / 180);
+    var s = SCAN_SUPPLIERS[i];
+    scanHtml += '<div class="scan-item" data-idx="'+i+'" style="left:'+x+'%;top:'+y+'%;"><span class="sico">'+s.i+'</span><span class="sname">'+s.n.split(' ')[0]+'</span></div>';
+  }
+  scanHtml += '</div>';
+  scanHtml += '<div class="scan-status" id="scanStatus">Connecting...</div>';
+  scanHtml += '</div>';
+  scanZone.innerHTML = scanHtml;
+  scanZone.scrollIntoView({behavior:'smooth',block:'nearest'});
+
+  // Start Worker fetch in parallel with animation
+  var workerPromise = fetchResults(part);
+
+  // Rotating radar — pulse each supplier as sweep passes over it
+  var items = document.querySelectorAll('.scan-item');
+  var statusEl = document.getElementById('scanStatus');
+  var hitIdx = 0;
+  var pulseInterval = setInterval(function(){
+    items.forEach(function(it){ it.classList.remove('hit'); });
+    if (items[hitIdx]) {
+      items[hitIdx].classList.add('hit');
+      if (statusEl) statusEl.textContent = 'Checking ' + SCAN_SUPPLIERS[hitIdx].n + '...';
+    }
+    hitIdx = (hitIdx + 1) % items.length;
+  }, 220);
+  window._scanInterval = pulseInterval;
+
+  // Wait for both animation (min 3.5 seconds) and Worker response
+  var minDelay = new Promise(function(r){setTimeout(r, 3500);});
+  var results = await workerPromise;
+  await minDelay;
+
+  // Stop the rotating scanner and mark all as done
+  if (window._scanInterval) { clearInterval(window._scanInterval); window._scanInterval = null; }
+  items.forEach(function(it){
+    it.classList.remove('hit');
+    it.classList.add('done');
+    if (!it.querySelector('.scheck')) {
+      it.innerHTML = it.innerHTML + '<span class="scheck">✓</span>';
+    }
+  });
+  var statusEl2 = document.getElementById('scanStatus');
+  if (statusEl2) statusEl2.textContent = '✓ All suppliers checked — loading results';
+
+  // Short pause to let user see all ticks, then show results
+  await new Promise(function(r){setTimeout(r, 400);});
+
+  // Show results
+  scanZone.style.display = 'none';
+  showResults(vehicle, part, results);
 }
 
-async function showResults(v, part){
+async function fetchResults(part){
+  try {
+    var url = WORKER_URL + '/ebay?part=' + encodeURIComponent(part) + '&vehicle=' + encodeURIComponent(vehicle.name);
+    var resp = await fetch(url);
+    return await resp.json();
+  } catch(e) {
+    return { items: [], error: e.message };
+  }
+}
+
+function showResults(v, part, data){
   var zone = document.getElementById('resultsZone');
   zone.style.display = 'block';
   document.getElementById('aiVeh').textContent = v.name;
   document.getElementById('aiPart').textContent = '— ' + part;
-  var tbody = document.getElementById('aiBody');
-  tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:30px"><div class="spn"></div><br><span style="font-size:.85rem;color:var(--mg)">Searching 12+ suppliers...</span></td></tr>';
 
-  try {
-    var url = WORKER_URL + '/ebay?part=' + encodeURIComponent(part) + '&vehicle=' + encodeURIComponent(v.name);
-    var resp = await fetch(url);
-    var data = await resp.json();
-    if(data.items && data.items.length > 0){
-      allRows = data.items;
-      currentFilter = 'all';
-      document.querySelectorAll('.ftab').forEach(function(b){b.classList.remove('active');});
-      document.querySelector('.ftab[data-filter="all"]').classList.add('active');
-      renderResults(part);
-    } else {
-      renderFallback(v, part, tbody);
-    }
-    setTimeout(function(){zone.scrollIntoView({behavior:'smooth',block:'nearest'});}, 100);
-  } catch(err){
-    renderFallback(v, part, tbody);
+  if(data && data.items && data.items.length > 0){
+    allRows = data.items;
+    currentFilter = 'all';
+    document.querySelectorAll('.ftab').forEach(function(b){b.classList.remove('active');});
+    document.querySelector('.ftab[data-filter="all"]').classList.add('active');
+    renderResults(part);
+  } else {
+    renderFallback(v, part);
   }
+
+  setTimeout(function(){zone.scrollIntoView({behavior:'smooth',block:'nearest'});}, 100);
 }
 
-function renderFallback(v, part, tbody){
+function renderFallback(v, part){
   var rows = [
     {supplier:'eBay', icon:'🛒', url:'https://www.ebay.co.uk/sch/i.html?_nkw='+encodeURIComponent(part+' '+v.name)+'&campid='+AFF.ebay},
     {supplier:'Amazon', icon:'📦', url:'https://www.amazon.co.uk/s?k='+encodeURIComponent(part+' '+v.name)+'&tag='+AFF.amazon},
@@ -667,7 +808,7 @@ function renderFallback(v, part, tbody){
     {supplier:'GSF Car Parts', icon:'🟠', url:'https://www.awin1.com/cread.php?awinmid=13655&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.gsfcarparts.com/search?query='+part)},
     {supplier:'Halfords', icon:'🟢', url:'https://www.awin1.com/cread.php?awinmid=197&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.halfords.com/search?term='+part)}
   ];
-  var html = '<tr><td colspan="7" style="padding:16px;background:var(--lg);font-size:.85rem;color:var(--mg);text-align:center;">Live results unavailable. Search "'+part+'" directly on our partner suppliers:</td></tr>';
+  var html = '<tr><td colspan="7" style="padding:16px;background:var(--lg);font-size:.85rem;color:var(--mg);text-align:center;">Live results unavailable. Tap a supplier below to search "'+part+'" on their site:</td></tr>';
   rows.forEach(function(r){
     html += '<tr><td><span class="stag">'+r.icon+' '+r.supplier+'</span></td><td colspan="5" style="color:var(--mg);font-size:.8rem;">Search '+part+' on '+r.supplier+'</td><td><a href="'+r.url+'" target="_blank" rel="sponsored noopener" class="gbtn" onclick="trackClick(\''+r.supplier+'\',\''+part+'\',0)">Search →</a></td></tr>';
   });
@@ -714,10 +855,7 @@ function renderResults(part){
 
 function trackClick(supplier, part, price){
   try {
-    var url = WORKER_URL + '/track-click?supplier=' + encodeURIComponent(supplier)
-      + '&part=' + encodeURIComponent(part)
-      + '&vehicle=' + encodeURIComponent(vehicle ? vehicle.name : '')
-      + '&price=' + encodeURIComponent(price || 0);
+    var url = WORKER_URL + '/track-click?supplier=' + encodeURIComponent(supplier) + '&part=' + encodeURIComponent(part) + '&vehicle=' + encodeURIComponent(vehicle ? vehicle.name : '') + '&price=' + encodeURIComponent(price || 0);
     fetch(url).catch(function(){});
   } catch(e) {}
 }
@@ -728,9 +866,6 @@ function toggleFaq(btn){
   btn.setAttribute('aria-expanded', open);
 }
 
-// ==============================
-// Event listeners on DOM ready
-// ==============================
 document.addEventListener('DOMContentLoaded', function(){
   var partIn = document.getElementById('partIn');
   if(partIn){
@@ -742,14 +877,11 @@ document.addEventListener('DOMContentLoaded', function(){
   }
   document.addEventListener('click', function(e){if(!e.target.closest('.qw'))closeAC();});
   var regIn = document.getElementById('regIn');
-  if(regIn){
-    regIn.addEventListener('keydown', function(e){if(e.key === 'Enter')lookupReg();});
-  }
+  if(regIn){regIn.addEventListener('keydown', function(e){if(e.key === 'Enter')lookupReg();});}
   var hbtn = document.getElementById('hbtn');
   if(hbtn){
     hbtn.addEventListener('click', function(){
-      var open = this.classList.toggle('open');
-      this.setAttribute('aria-expanded', open);
+      this.classList.toggle('open');
       document.getElementById('mmenu').classList.toggle('open');
     });
   }
