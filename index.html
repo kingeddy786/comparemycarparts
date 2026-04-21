@@ -17,7 +17,6 @@
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 <meta name="apple-mobile-web-app-title" content="CarParts"/>
-<meta name="mobile-web-app-capable" content="yes"/>
 <link rel="manifest" href="/site.webmanifest"/>
 <link rel="apple-touch-icon" href="/icon-192.png"/>
 
@@ -76,24 +75,16 @@ nav{background:var(--bl);position:sticky;top:0;z-index:300;box-shadow:0 2px 12px
 .pfb:hover{background:var(--b2);}
 .pfb:disabled{opacity:.6;cursor:not-allowed;}
 
-/* VEHICLE CONFIRMED - ENHANCED */
-.vb{display:none;background:linear-gradient(135deg,var(--gn),#d4f5e4);border:2px solid var(--gr);border-radius:14px;padding:14px 16px;margin-bottom:10px;text-align:left;}
-.vb.show{display:block;}
-.vb-head{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
-.vi{font-size:1.8rem;flex-shrink:0;}
-.vd{flex:1;}
-.vl{font-family:'Nunito',sans-serif;font-weight:800;color:var(--gr);font-size:.65rem;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:2px;}
-.vn{font-family:'Nunito',sans-serif;font-weight:900;color:var(--dk);font-size:1.1rem;line-height:1.2;}
-.vch{font-family:'Nunito',sans-serif;font-weight:700;font-size:.8rem;color:var(--bl);cursor:pointer;text-decoration:underline;white-space:nowrap;background:rgba(255,255,255,.7);padding:6px 12px;border-radius:8px;}
-.vch:hover{background:var(--wh);}
-.vinfo{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;background:rgba(255,255,255,.6);border-radius:10px;padding:10px;}
-.vinfo-item{text-align:center;}
-.vinfo-lbl{font-family:'Nunito',sans-serif;font-weight:700;font-size:.6rem;text-transform:uppercase;letter-spacing:1px;color:var(--mg);margin-bottom:2px;}
-.vinfo-val{font-family:'Nunito',sans-serif;font-weight:900;font-size:.78rem;color:var(--dk);}
-.vinfo-val.good{color:var(--gr);}
-.vinfo-val.warn{color:var(--or);}
+/* VEHICLE CONFIRMED */
+.vb{display:none;background:var(--gn);border:2px solid var(--gr);border-radius:10px;padding:8px 12px;margin-bottom:8px;align-items:center;gap:10px;}
+.vb.show{display:flex;}
+.vi{font-size:1.6rem;flex-shrink:0;}
+.vd{flex:1;text-align:left;}
+.vl{font-family:'Nunito',sans-serif;font-weight:800;color:var(--gr);font-size:.62rem;text-transform:uppercase;letter-spacing:1px;}
+.vn{font-family:'Nunito',sans-serif;font-weight:900;color:var(--dk);font-size:.92rem;}
+.vm{font-size:.75rem;color:var(--mg);}
+.vch{font-family:'Nunito',sans-serif;font-weight:700;font-size:.75rem;color:var(--bl);cursor:pointer;text-decoration:underline;white-space:nowrap;}
 
-/* DVLA messages */
 .dvla-loading{display:flex;align-items:center;gap:8px;background:#FFF9D9;border:1px solid #E6BC00;border-radius:8px;padding:8px 12px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.8rem;color:#7A6200;margin-bottom:8px;}
 .dvla-err{background:#FFF0F0;border:1px solid #F5A0A0;border-radius:8px;padding:8px 12px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.8rem;color:#B00;margin-bottom:8px;text-align:left;}
 
@@ -111,79 +102,60 @@ nav{background:var(--bl);position:sticky;top:0;z-index:300;box-shadow:0 2px 12px
 .acd.open{display:block;}
 .acs{font-family:'Nunito',sans-serif;font-weight:900;font-size:.62rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--mg);padding:8px 14px 3px;background:var(--lg);border-bottom:1px solid #E8EEF8;position:sticky;top:0;}
 .aci{display:flex;align-items:center;gap:10px;padding:10px 14px;cursor:pointer;transition:background .1s;border-bottom:1px solid #F4F7FF;}
-.aci:hover,.aci.sel{background:var(--lg);}
+.aci:hover{background:var(--lg);}
 .acio{font-size:1.1rem;width:24px;text-align:center;flex-shrink:0;}
 .acn{font-family:'Nunito',sans-serif;font-weight:700;font-size:.88rem;color:var(--dk);text-align:left;}
 .acn em{color:var(--bl);font-style:normal;font-weight:900;}
 .acc{font-size:.7rem;color:var(--mg);text-align:left;}
 
-/* SEARCH ANIMATION - two rings spinning with upright logos */
-.scan-overlay{background:linear-gradient(135deg,var(--lg),#fff);border:2px solid var(--bl);border-radius:14px;padding:20px;margin-top:14px;text-align:center;}
+/* SCANNING ANIMATION */
+.scan-box{background:linear-gradient(135deg,var(--lg),#fff);border:2px solid var(--bl);border-radius:16px;padding:20px 16px;margin-top:14px;text-align:center;}
 .scan-title{font-family:'Nunito',sans-serif;font-weight:900;font-size:1rem;color:var(--bl);margin-bottom:4px;}
-.scan-sub{font-size:.82rem;color:var(--mg);margin-bottom:10px;}
-.scan-wheel{position:relative;width:300px;height:300px;margin:0 auto 12px;}
-/* Inner ring - 6 logos - spins clockwise */
-.scan-ring-inner{position:absolute;inset:0;animation:ringCW 3s linear infinite;}
-.scan-ring-inner.stopped{animation:none;}
-/* Outer ring - 6 logos - spins anticlockwise */
-.scan-ring-outer{position:absolute;inset:0;animation:ringCCW 4s linear infinite;}
-.scan-ring-outer.stopped{animation:none;}
-@keyframes ringCW{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
-@keyframes ringCCW{from{transform:rotate(0deg);}to{transform:rotate(-360deg);}}
-/* Center circle */
-.scan-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:84px;height:84px;background:linear-gradient(135deg,var(--bl),var(--b2));border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;font-family:'Nunito',sans-serif;font-weight:900;text-align:center;box-shadow:0 4px 20px rgba(0,61,166,.4);z-index:10;transition:background .5s;}
-.scan-center.done{background:linear-gradient(135deg,var(--gr),#00c961);}
-.scan-center-icon{font-size:1.5rem;line-height:1;margin-bottom:1px;}
-.scan-center-text{font-size:.55rem;letter-spacing:1px;line-height:1.2;}
-/* Each supplier bubble - counter-rotates to stay upright */
-.scan-item{position:absolute;width:54px;height:54px;background:var(--wh);border:2.5px solid #D0DCEF;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Nunito',sans-serif;font-weight:800;box-shadow:0 3px 10px rgba(0,61,166,.12);z-index:4;transition:opacity .5s,border-color .3s,box-shadow .3s;}
-.scan-item .inner-cw{animation:counterCW 3s linear infinite;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;}
-.scan-item .inner-ccw{animation:counterCCW 4s linear infinite;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;}
-.scan-ring-inner.stopped .inner-cw,
-.scan-ring-outer.stopped .inner-ccw{animation:none;}
-@keyframes counterCW{from{transform:rotate(0deg);}to{transform:rotate(-360deg);}}
-@keyframes counterCCW{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
-.scan-item .sico{font-size:1.2rem;line-height:1;}
-.scan-item .sname{font-size:.48rem;color:var(--bl);margin-top:1px;line-height:1;text-align:center;padding:0 2px;max-width:50px;font-weight:800;}
-.scan-item.fade-out{opacity:0;}
-.scan-item.winner{border-color:var(--gr) !important;background:var(--gn) !important;box-shadow:0 0 24px rgba(0,166,81,.5) !important;z-index:5;}
-.scan-item.winner .sname{color:var(--gr);}
-.scan-item.winner::after{content:'BEST';position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--gr);color:#fff;font-size:.55rem;padding:2px 7px;border-radius:8px;font-weight:900;letter-spacing:.5px;}
-.scan-status{font-family:'Nunito',sans-serif;font-weight:800;font-size:.78rem;color:var(--bl);min-height:18px;transition:color .3s;}
-.scan-status.done{color:var(--gr);font-size:.88rem;}
+.scan-sub{font-size:.82rem;color:var(--mg);margin-bottom:16px;}
+.scan-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px;}
+.scan-sup{background:var(--wh);border:2.5px solid #D0DCEF;border-radius:12px;padding:12px 6px 8px;text-align:center;transition:all .25s;opacity:.5;}
+.scan-sup.active{border-color:var(--ye);background:#FFFBEA;opacity:1;transform:scale(1.08);box-shadow:0 0 18px rgba(255,209,0,.5);}
+.scan-sup.done{border-color:var(--gr);background:var(--gn);opacity:1;}
+.scan-sup .s-ico{font-size:1.5rem;display:block;margin-bottom:4px;}
+.scan-sup .s-name{font-family:'Nunito',sans-serif;font-weight:800;font-size:.65rem;color:var(--bl);}
+.scan-sup.done .s-name{color:var(--gr);}
+.scan-status{font-family:'Nunito',sans-serif;font-weight:800;font-size:.82rem;color:var(--bl);}
+.scan-bar{height:5px;background:var(--lg);border-radius:3px;margin-bottom:12px;overflow:hidden;}
+.scan-fill{height:100%;background:linear-gradient(90deg,var(--bl),var(--ye));border-radius:3px;transition:width .3s ease;width:0%;}
 
-/* CATEGORY MODAL */
-.cat-modal{display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,15,40,.6);backdrop-filter:blur(4px);align-items:flex-end;justify-content:center;opacity:0;transition:opacity .25s;}
-.cat-modal.open{display:flex;}
-.cat-modal.show{opacity:1;}
-.cat-modal-inner{background:var(--wh);border-radius:24px 24px 0 0;width:100%;max-width:600px;max-height:85vh;overflow-y:auto;padding:20px;transform:translateY(100%);transition:transform .3s cubic-bezier(.2,.7,.3,1);}
-.cat-modal.show .cat-modal-inner{transform:translateY(0);}
-.cat-modal-head{display:flex;align-items:center;gap:8px;margin-bottom:4px;position:sticky;top:-20px;background:var(--wh);padding-top:20px;margin-top:-20px;padding-bottom:10px;z-index:2;}
-.cat-modal-title{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.15rem;color:var(--bl);flex:1;}
-.cat-modal-close{background:var(--lg);border:none;width:36px;height:36px;border-radius:50%;font-size:1rem;cursor:pointer;color:var(--mg);font-weight:700;display:flex;align-items:center;justify-content:center;}
-.cat-modal-sub{font-size:.85rem;color:var(--mg);margin-bottom:16px;line-height:1.5;}
-.cat-list{display:flex;flex-direction:column;gap:8px;}
-.cat-list-item{display:flex;align-items:center;gap:12px;background:var(--lg);border:2px solid transparent;border-radius:12px;padding:14px 16px;cursor:pointer;transition:all .15s;}
-.cat-list-item:hover,.cat-list-item:active{border-color:var(--bl);background:#fff;transform:translateX(4px);}
-.cli-ico{font-size:1.4rem;flex-shrink:0;}
-.cli-name{flex:1;font-family:'Nunito',sans-serif;font-weight:800;font-size:.95rem;color:var(--dk);text-align:left;}
-.cli-arrow{color:var(--bl);font-size:1.4rem;font-weight:900;}
-
-/* SERVICE PACKAGES */
-.svc-grid{display:flex;flex-direction:column;gap:12px;}
-.svc-card{background:linear-gradient(135deg,#fff,var(--lg));border:2.5px solid #D0DCEF;border-radius:16px;padding:18px;cursor:pointer;transition:all .2s;position:relative;}
-.svc-card:hover{border-color:var(--bl);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,61,166,.15);}
-.svc-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;}
-.svc-ico{font-size:2rem;}
-.svc-badge{font-family:'Nunito',sans-serif;font-weight:900;font-size:.62rem;padding:4px 10px;border-radius:12px;text-transform:uppercase;letter-spacing:.8px;}
-.svc-basic{background:#E8EEF8;color:var(--bl);}
-.svc-medium{background:var(--ye);color:var(--bl);}
-.svc-major{background:var(--gr);color:#fff;}
-.svc-name{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.1rem;color:var(--dk);margin-bottom:4px;}
-.svc-desc{font-size:.82rem;color:var(--mg);line-height:1.5;margin-bottom:10px;}
-.svc-parts{background:rgba(255,255,255,.6);border-radius:10px;padding:10px 12px;font-size:.78rem;color:var(--dk);line-height:1.7;font-weight:700;margin-bottom:12px;}
-.svc-btn{width:100%;background:var(--bl);color:#fff;border:none;border-radius:10px;padding:12px;font-family:'Nunito',sans-serif;font-weight:900;font-size:.88rem;cursor:pointer;transition:background .15s;}
-.svc-btn:hover{background:var(--b2);}
+/* RESULTS */
+.aih{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap;}
+.aibdg{background:linear-gradient(135deg,var(--bl),var(--b2));color:var(--wh);font-family:'Nunito',sans-serif;font-weight:800;font-size:.68rem;text-transform:uppercase;letter-spacing:1px;padding:4px 10px;border-radius:20px;}
+.aivt{background:var(--gn);border:1px solid var(--gr);color:var(--gr);font-family:'Nunito',sans-serif;font-weight:700;font-size:.75rem;padding:3px 10px;border-radius:20px;}
+.aipt{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.1rem;color:var(--dk);}
+.filter-tabs{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap;}
+.ftab{background:var(--lg);border:2px solid transparent;border-radius:8px;padding:6px 14px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.78rem;color:var(--mg);cursor:pointer;transition:all .15s;}
+.ftab.active{background:var(--bl);color:var(--wh);}
+.ftab:hover:not(.active){border-color:var(--bl);color:var(--bl);}
+.tscr{overflow-x:auto;border-radius:14px;}
+table{width:100%;border-collapse:collapse;border-radius:14px;overflow:hidden;box-shadow:0 6px 24px rgba(0,61,166,.1);}
+thead tr{background:var(--bl);}
+th{padding:6px 8px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.62rem;text-transform:uppercase;letter-spacing:.5px;color:rgba(255,255,255,.85);text-align:left;white-space:nowrap;}
+th:first-child{border-radius:14px 0 0 0;}th:last-child{border-radius:0 14px 0 0;}
+td{padding:8px;font-size:.75rem;border-bottom:1px solid #EEF2FA;vertical-align:middle;}
+tbody tr{background:var(--wh);}tbody tr:hover{background:var(--lg);}
+tbody tr.best{background:#F0FFF7;}
+.stag{display:inline-flex;align-items:center;gap:4px;background:var(--lg);border:1.5px solid #D0DCEF;border-radius:6px;padding:3px 8px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.72rem;color:var(--bl);white-space:nowrap;}
+.pt{font-weight:700;font-size:.78rem;color:var(--dk);line-height:1.2;}
+.psb{font-size:.65rem;color:var(--mg);margin-top:1px;}
+.pc{font-family:'Nunito',sans-serif;font-weight:900;font-size:.95rem;color:var(--dk);}
+.pcb{color:var(--gr);}
+.bdg{display:inline-block;font-family:'Nunito',sans-serif;font-weight:800;font-size:.6rem;text-transform:uppercase;letter-spacing:.8px;padding:2px 6px;border-radius:4px;margin-left:4px;vertical-align:middle;}
+.bb{background:var(--gr);color:#fff;}
+.bn{background:var(--bl);color:#fff;}
+.bu{background:var(--or);color:#fff;}
+.bl{background:var(--ye);color:var(--bl);font-size:.55rem;}
+.fb{display:inline-flex;align-items:center;gap:3px;background:var(--gn);color:var(--gr);font-family:'Nunito',sans-serif;font-weight:800;font-size:.65rem;padding:2px 7px;border-radius:4px;border:1px solid #b2dfc9;white-space:nowrap;}
+.gbtn{background:var(--bl);color:var(--wh);border:none;border-radius:8px;padding:7px 14px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.78rem;cursor:pointer;white-space:nowrap;transition:background .15s;text-decoration:none;display:inline-block;}
+.gbtn:hover{background:var(--b2);}
+.spn{display:inline-block;width:32px;height:32px;border:3px solid #E8EEF8;border-top-color:var(--bl);border-radius:50%;animation:spin .7s linear infinite;margin-bottom:10px;}
+@keyframes spin{to{transform:rotate(360deg);}}
+@keyframes shake{0%,100%{transform:translateX(0);}25%{transform:translateX(-8px);}75%{transform:translateX(8px);}}
 
 /* CATEGORIES */
 .cats{width:100%;max-width:900px;margin:16px auto 0;}
@@ -213,47 +185,12 @@ nav{background:var(--bl);position:sticky;top:0;z-index:300;box-shadow:0 2px 12px
 .sh{font-family:'Nunito',sans-serif;font-weight:900;font-size:clamp(1.8rem,3.5vw,2.5rem);color:var(--dk);line-height:1.1;margin-bottom:28px;}
 .sh span{color:var(--bl);}
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
-.step{background:var(--wh);border-radius:16px;padding:24px 18px;box-shadow:0 4px 16px rgba(0,61,166,.08);border:2.5px solid transparent;transition:border-color .2s,transform .2s;position:relative;}
+.step{background:var(--wh);border-radius:16px;padding:24px 18px;box-shadow:0 4px 16px rgba(0,61,166,.08);border:2.5px solid transparent;transition:border-color .2s,transform .2s;}
 .step:hover{border-color:var(--ye);transform:translateY(-3px);}
 .stepn{font-family:'Nunito',sans-serif;font-weight:900;font-size:2.8rem;color:rgba(0,61,166,.07);line-height:1;margin-bottom:8px;}
 .stepi{font-size:1.9rem;margin-bottom:8px;display:block;}
 .step h3{font-family:'Nunito',sans-serif;font-weight:900;font-size:.95rem;color:var(--dk);margin-bottom:6px;}
 .step p{font-size:.83rem;color:var(--mg);line-height:1.6;}
-
-/* RESULTS */
-.aih{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap;}
-.aibdg{background:linear-gradient(135deg,var(--bl),var(--b2));color:var(--wh);font-family:'Nunito',sans-serif;font-weight:800;font-size:.68rem;text-transform:uppercase;letter-spacing:1px;padding:4px 10px;border-radius:20px;}
-.aivt{background:var(--gn);border:1px solid var(--gr);color:var(--gr);font-family:'Nunito',sans-serif;font-weight:700;font-size:.75rem;padding:3px 10px;border-radius:20px;}
-.aipt{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.1rem;color:var(--dk);}
-.filter-tabs{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap;}
-.ftab{background:var(--lg);border:2px solid transparent;border-radius:8px;padding:6px 14px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.78rem;color:var(--mg);cursor:pointer;transition:all .15s;}
-.ftab.active{background:var(--bl);color:var(--wh);}
-.ftab:hover:not(.active){border-color:var(--bl);color:var(--bl);}
-
-.tscr{overflow-x:auto;border-radius:14px;}
-table{width:100%;border-collapse:collapse;border-radius:14px;overflow:hidden;box-shadow:0 6px 24px rgba(0,61,166,.1);}
-thead tr{background:var(--bl);}
-th{padding:6px 8px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.62rem;text-transform:uppercase;letter-spacing:.5px;color:rgba(255,255,255,.85);text-align:left;white-space:nowrap;}
-th:first-child{border-radius:14px 0 0 0;}th:last-child{border-radius:0 14px 0 0;}
-td{padding:8px;font-size:.75rem;border-bottom:1px solid #EEF2FA;vertical-align:middle;}
-tbody tr{background:var(--wh);}tbody tr:hover{background:var(--lg);}
-tbody tr.best{background:#F0FFF7;}
-.stag{display:inline-flex;align-items:center;gap:4px;background:var(--lg);border:1.5px solid #D0DCEF;border-radius:6px;padding:3px 8px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.72rem;color:var(--bl);white-space:nowrap;}
-.pt{font-weight:700;font-size:.78rem;color:var(--dk);line-height:1.2;}
-.psb{font-size:.65rem;color:var(--mg);margin-top:1px;}
-.pc{font-family:'Nunito',sans-serif;font-weight:900;font-size:.95rem;color:var(--dk);}
-.pcb{color:var(--gr);}
-.bdg{display:inline-block;font-family:'Nunito',sans-serif;font-weight:800;font-size:.6rem;text-transform:uppercase;letter-spacing:.8px;padding:2px 6px;border-radius:4px;margin-left:4px;vertical-align:middle;}
-.bb{background:var(--gr);color:#fff;}
-.bn{background:var(--bl);color:#fff;}
-.bu{background:var(--or);color:#fff;}
-.bl{background:var(--ye);color:var(--bl);font-size:.55rem;}
-.fb{display:inline-flex;align-items:center;gap:3px;background:var(--gn);color:var(--gr);font-family:'Nunito',sans-serif;font-weight:800;font-size:.65rem;padding:2px 7px;border-radius:4px;border:1px solid #b2dfc9;white-space:nowrap;}
-.gbtn{background:var(--bl);color:var(--wh);border:none;border-radius:8px;padding:7px 14px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.78rem;cursor:pointer;white-space:nowrap;transition:background .15s;text-decoration:none;display:inline-block;}
-.gbtn:hover{background:var(--b2);}
-.spn{display:inline-block;width:32px;height:32px;border:3px solid #E8EEF8;border-top-color:var(--bl);border-radius:50%;animation:spin .7s linear infinite;margin-bottom:10px;}
-@keyframes spin{to{transform:rotate(360deg);}}
-@keyframes shake{0%,100%{transform:translateX(0);}25%{transform:translateX(-8px);}75%{transform:translateX(8px);}}
 
 /* WHY US */
 .why{max-width:1200px;margin:0 auto;padding:0 24px 52px;}
@@ -270,7 +207,7 @@ tbody tr.best{background:#F0FFF7;}
 .tlb{font-family:'Nunito',sans-serif;font-weight:800;font-size:.7rem;text-transform:uppercase;letter-spacing:2px;color:var(--ye);margin-bottom:6px;}
 .th{font-family:'Nunito',sans-serif;font-weight:900;font-size:clamp(1.6rem,3vw,2.2rem);color:var(--wh);margin-bottom:24px;}
 .tg{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
-.tc{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:22px;transition:background .2s;}
+.tc{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:22px;}
 .tst{color:var(--ye);margin-bottom:8px;}
 .ttx{font-size:.88rem;color:rgba(255,255,255,.8);line-height:1.7;margin-bottom:14px;font-style:italic;}
 .tau{display:flex;align-items:center;gap:10px;}
@@ -335,19 +272,11 @@ footer{background:var(--dk);padding:40px 24px 22px;}
   .qr{flex-direction:column;}
   .qb{width:100%;}
   th:nth-child(4),td:nth-child(4){display:none;}
-  .scan-wheel{width:240px;height:240px;}
-  .scan-item{width:50px;height:50px;}
-  .scan-item .sico{font-size:1.1rem;}
-  .scan-item .sname{font-size:.46rem;max-width:44px;}
-  .scan-center{width:76px;height:76px;}
-  .scan-center-icon{font-size:1.3rem;}
-  .vinfo{grid-template-columns:1fr 1fr;}
+  .scan-grid{grid-template-columns:repeat(3,1fr);}
 }
 @media(max-width:420px){
   .cats-grid{grid-template-columns:repeat(3,1fr);}
-  .scan-wheel{width:220px;height:220px;}
-  .scan-item{width:46px;height:46px;}
-  .scan-item .sico{font-size:1rem;}
+  .scan-grid{grid-template-columns:repeat(2,1fr);}
 }
 </style>
 </head>
@@ -376,6 +305,10 @@ footer{background:var(--dk);padding:40px 24px 22px;}
   <a href="#rev" onclick="goTo('rev');closeMob();return false">Reviews</a>
   <a href="#faq" onclick="goTo('faq');closeMob();return false">FAQ</a>
   <a href="https://wa.me/447000000000" target="_blank">💬 WhatsApp Us</a>
+  <div class="mmd"></div>
+  <div class="mbb">
+    <a href="#" class="btn-y" onclick="window.scrollTo({top:0,behavior:'smooth'});closeMob();return false" style="flex:1;text-align:center;">Compare Now</a>
+  </div>
 </div>
 
 <main>
@@ -389,15 +322,13 @@ footer{background:var(--dk);padding:40px 24px 22px;}
       <div id="dvlaMsg"></div>
 
       <div class="vb" id="vcBox">
-        <div class="vb-head">
-          <div class="vi">✅</div>
-          <div class="vd">
-            <div class="vl">Vehicle Found · DVLA Verified</div>
-            <div class="vn" id="vcName"></div>
-          </div>
-          <span class="vch" onclick="resetV()">Change</span>
+        <div class="vi">✅</div>
+        <div class="vd">
+          <div class="vl">Vehicle Found · DVLA Verified</div>
+          <div class="vn" id="vcName"></div>
+          <div class="vm" id="vcMeta"></div>
         </div>
-        <div class="vinfo" id="vcInfo"></div>
+        <span class="vch" onclick="resetV()">Change</span>
       </div>
 
       <div class="pr" id="plateRow">
@@ -418,8 +349,10 @@ footer{background:var(--dk);padding:40px 24px 22px;}
         <button class="qb" onclick="doSearch()">Compare Prices</button>
       </div>
 
+      <!-- SCAN ANIMATION ZONE -->
       <div id="scanZone" style="display:none;"></div>
 
+      <!-- RESULTS ZONE -->
       <div id="resultsZone" style="display:none;margin-top:14px;">
         <div class="aih">
           <span class="aibdg">⚡ Live Results</span>
@@ -433,7 +366,7 @@ footer{background:var(--dk);padding:40px 24px 22px;}
         </div>
         <div class="tscr">
           <table>
-              <thead><tr><th>Supplier</th><th>Part</th><th>Price</th><th>Delivery</th><th>Condition</th><th>Fit</th><th>Buy</th></tr></thead>
+            <thead><tr><th>Supplier</th><th>Part</th><th>Price</th><th>Delivery</th><th>Condition</th><th>Fit</th><th>Buy</th></tr></thead>
             <tbody id="aiBody"></tbody>
           </table>
         </div>
@@ -534,10 +467,10 @@ footer{background:var(--dk);padding:40px 24px 22px;}
 <script>
 var WORKER_URL = 'https://cmcp-ebay.idris-b19.workers.dev';
 var AFF = { amazon: 'comparemycarp-21', ebay: '5339148906', awin: '2851027' };
-
 var vehicle = null;
 var allRows = [];
 var currentFilter = 'all';
+var scanTimer = null;
 
 var PARTS = [
   {n:'Front Brake Pads',c:'Brakes',i:'🛑'},{n:'Rear Brake Pads',c:'Brakes',i:'🛑'},
@@ -564,553 +497,40 @@ var PARTS = [
   {n:'Door Mirror',c:'Body',i:'🚙'},{n:'Front Bumper',c:'Body',i:'🚙'},
   {n:'Bonnet',c:'Body',i:'🚙'},{n:'Headlight',c:'Body',i:'🚙'},
   {n:'Engine Oil 5W-30',c:'Oils',i:'💧'},{n:'Engine Oil 5W-40',c:'Oils',i:'💧'},
-  {n:'Engine Oil 0W-20',c:'Oils',i:'💧'},{n:'Engine Oil 10W-40',c:'Oils',i:'💧'},
-  {n:'Gearbox Oil',c:'Oils',i:'💧'},{n:'Brake Fluid',c:'Oils',i:'💧'},
-  {n:'Power Steering Fluid',c:'Oils',i:'💧'},{n:'Coolant Antifreeze',c:'Oils',i:'💧'},
-  {n:'Screen Wash',c:'Oils',i:'💧'},
+  {n:'Brake Fluid',c:'Oils',i:'💧'},{n:'Coolant Antifreeze',c:'Oils',i:'💧'},
   {n:'Front Wiper Blades',c:'Wipers',i:'🔵'},{n:'Rear Wiper Blade',c:'Wipers',i:'🔵'},
-  {n:'Wiper Motor',c:'Wipers',i:'🔵'},{n:'Wiper Arm',c:'Wipers',i:'🔵'},
   {n:'Headlight Bulb H7',c:'Lights',i:'💡'},{n:'Headlight Bulb H4',c:'Lights',i:'💡'},
-  {n:'Headlight Bulb H1',c:'Lights',i:'💡'},{n:'LED Headlight',c:'Lights',i:'💡'},
-  {n:'Tail Light Bulb',c:'Lights',i:'💡'},{n:'Indicator Bulb',c:'Lights',i:'💡'},
-  {n:'Fog Light Bulb',c:'Lights',i:'💡'},{n:'Brake Light Bulb',c:'Lights',i:'💡'}
+  {n:'Fog Light Bulb',c:'Lights',i:'💡'}
 ];
 
 var CATS = [
   {i:'🛑',n:'Brakes',q:'Front Brake Pads'},
   {i:'⚙️',n:'Clutch',q:'Clutch Kit'},
   {i:'🔧',n:'Engine',q:'Oil Filter'},
-  {i:'🛠️',n:'Service',q:'Oil Filter'},
+  {i:'🛠️',n:'Service',q:'Service'},
   {i:'🚗',n:'Suspension',q:'Front Shock Absorber'},
   {i:'💨',n:'Exhaust',q:'Rear Silencer'},
   {i:'🔋',n:'Electrical',q:'Car Battery'},
   {i:'❄️',n:'Air Con',q:'Air Con Compressor'},
   {i:'🚙',n:'Body',q:'Door Mirror'},
   {i:'💧',n:'Oils',q:'Engine Oil 5W-30'},
-  {i:'🔵',n:'Wipers',q:'Wiper Blades'},
+  {i:'🔵',n:'Wipers',q:'Front Wiper Blades'},
   {i:'💡',n:'Lights',q:'Headlight Bulb H7'}
 ];
 
 var SUPPLIERS = ['eBay','Amazon','Euro Car Parts','GSF Car Parts','Halfords','Autodoc','Car Parts for Less','FCP Euro','Andrew Page','Motor Factor','Parts Gateway','1st Choice Spares'];
-var SCAN_SUPPLIERS = [
-  {n:'eBay',i:'🛒'},{n:'Amazon',i:'📦'},{n:'Euro Car Parts',i:'🔵'},{n:'GSF Car Parts',i:'🟠'},
-  {n:'Halfords',i:'🟢'},{n:'Autodoc',i:'🚗'},{n:'Car Parts 4 Less',i:'💛'},{n:'FCP Euro',i:'🇪🇺'},
-  {n:'Andrew Page',i:'🔶'},{n:'Motor Factor',i:'🔧'},{n:'Parts Gateway',i:'🔍'},{n:'1st Choice',i:'♻️'}
+
+// Supplier scan data — name + emoji
+var SCAN_SUPS = [
+  {n:'eBay',i:'🛒'},{n:'Amazon',i:'📦'},{n:'Euro Car Parts',i:'🔵'},
+  {n:'GSF Car Parts',i:'🟠'},{n:'Halfords',i:'🟢'},{n:'Autodoc',i:'🚗'},
+  {n:'Car Parts 4 Less',i:'💛'},{n:'FCP Euro',i:'🇪🇺'},
+  {n:'Andrew Page',i:'🔶'},{n:'Motor Factor',i:'🔧'},
+  {n:'Parts Gateway',i:'🔍'},{n:'1st Choice',i:'♻️'}
 ];
 
-// Render static content now
-(function(){
-  function render(){
-    var catGrid = document.getElementById('catGrid');
-    var supPills = document.getElementById('supPills');
-    if (!catGrid || !supPills) { setTimeout(render, 10); return; }
-    var catHtml = '';
-    for (var i = 0; i < CATS.length; i++) {
-      var c = CATS[i];
-      catHtml += '<a class="catb" href="#" onclick="pickCat(\''+c.q+'\');return false"><span class="ci">'+c.i+'</span><div class="cn">'+c.n+'</div></a>';
-    }
-    catGrid.innerHTML = catHtml;
-    var pillHtml = '';
-    SUPPLIERS.forEach(function(s){ pillHtml += '<span class="spill">'+s+'</span>'; });
-    supPills.innerHTML = pillHtml;
-  }
-  render();
-})();
-
-function titleCase(s){return s?s.replace(/\w\S*/g,function(t){return t.charAt(0).toUpperCase()+t.substr(1).toLowerCase();}):s;}
-function goTo(id){var el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});}
-function closeMob(){var h=document.getElementById('hbtn');if(h)h.classList.remove('open');var m=document.getElementById('mmenu');if(m)m.classList.remove('open');}
-
-// DVLA LOOKUP
-async function lookupReg(){
-  var reg = document.getElementById('regIn').value.replace(/\s/g,'').toUpperCase();
-  document.getElementById('regIn').value = reg;
-  if(reg.length < 2){showDvlaErr('Please enter a valid UK registration.');return;}
-  var btn = document.getElementById('findBtn');
-  btn.innerHTML = '<span class="spn" style="width:16px;height:16px;border-width:2px;margin:0"></span>';
-  btn.disabled = true;
-  showDvlaLoading('Checking DVLA for '+reg+'...');
-  try {
-    var resp = await fetch(WORKER_URL + '/dvla?reg=' + encodeURIComponent(reg));
-    btn.innerHTML = '🔍 Find Car';
-    btn.disabled = false;
-    if(resp.status === 404){ clearDvlaMsg(); showDvlaErr('Registration <strong>'+reg+'</strong> not found. Please check and try again.'); return; }
-    var data = await resp.json();
-    if(data.error){ clearDvlaMsg(); showDvlaErr(data.error); return; }
-    clearDvlaMsg();
-
-    var make = titleCase(data.make || 'Unknown');
-    var colour = titleCase(data.colour || 'Unknown');
-    var fuel = titleCase(data.fuelType || 'Unknown');
-    var year = data.yearOfManufacture || '';
-    var engine = data.engineCapacity ? (data.engineCapacity/1000).toFixed(1)+'L' : '';
-    var taxStatus = data.taxStatus || '';
-    var motStatus = data.motStatus || '';
-    var motExpiry = data.motExpiryDate || '';
-    var co2 = data.co2Emissions || '';
-
-    // Full vehicle name
-    var name = year + ' ' + make + (engine ? ' · ' + engine : '');
-
-    applyVehicle({
-      name: name,
-      colour: colour,
-      fuel: fuel,
-      year: year,
-      engine: engine,
-      taxStatus: taxStatus,
-      motStatus: motStatus,
-      motExpiry: motExpiry,
-      co2: co2,
-      raw: data
-    });
-  } catch(err) {
-    btn.innerHTML = '🔍 Find Car';
-    btn.disabled = false;
-    clearDvlaMsg();
-    showDvlaErr('Could not reach DVLA. Please try again.');
-  }
-}
-function showDvlaLoading(msg){document.getElementById('dvlaMsg').innerHTML='<div class="dvla-loading"><span class="spn" style="width:16px;height:16px;border-width:2px;margin:0;flex-shrink:0"></span> '+msg+'</div>';}
-function showDvlaErr(msg){document.getElementById('dvlaMsg').innerHTML='<div class="dvla-err">⚠️ '+msg+'</div>';}
-function clearDvlaMsg(){document.getElementById('dvlaMsg').innerHTML='';}
-
-function applyVehicle(v){
-  vehicle = v;
-  document.getElementById('vcName').textContent = v.name;
-
-  // Build detailed vehicle info grid
-  var infoHtml = '';
-  infoHtml += '<div class="vinfo-item"><div class="vinfo-lbl">Colour</div><div class="vinfo-val">'+v.colour+'</div></div>';
-  infoHtml += '<div class="vinfo-item"><div class="vinfo-lbl">Fuel</div><div class="vinfo-val">'+v.fuel+'</div></div>';
-  infoHtml += '<div class="vinfo-item"><div class="vinfo-lbl">Year</div><div class="vinfo-val">'+v.year+'</div></div>';
-  if (v.taxStatus) {
-    var taxClass = v.taxStatus.toLowerCase() === 'taxed' ? 'good' : 'warn';
-    infoHtml += '<div class="vinfo-item"><div class="vinfo-lbl">Tax</div><div class="vinfo-val '+taxClass+'">'+v.taxStatus+'</div></div>';
-  }
-  if (v.motStatus) {
-    var motClass = v.motStatus.toLowerCase() === 'valid' ? 'good' : 'warn';
-    infoHtml += '<div class="vinfo-item"><div class="vinfo-lbl">MOT</div><div class="vinfo-val '+motClass+'">'+v.motStatus+'</div></div>';
-  }
-  if (v.engine) {
-    infoHtml += '<div class="vinfo-item"><div class="vinfo-lbl">Engine</div><div class="vinfo-val">'+v.engine+'</div></div>';
-  }
-  document.getElementById('vcInfo').innerHTML = infoHtml;
-
-  document.getElementById('vcBox').classList.add('show');
-  document.getElementById('plateRow').style.display = 'none';
-  document.getElementById('orDiv').style.display = 'none';
-  document.getElementById('partIn').focus();
-}
-
-function resetV(){
-  vehicle = null;
-  clearDvlaMsg();
-  document.getElementById('vcBox').classList.remove('show');
-  document.getElementById('plateRow').style.display = 'flex';
-  document.getElementById('orDiv').style.display = 'block';
-  document.getElementById('regIn').value = '';
-  document.getElementById('resultsZone').style.display = 'none';
-  document.getElementById('scanZone').style.display = 'none';
-  document.getElementById('regIn').focus();
-}
-
-// AUTOCOMPLETE
-function showAC(q){
-  if(!q || q.length < 2){closeAC();return;}
-  var ql = q.toLowerCase();
-  var matches = PARTS.filter(function(p){return p.n.toLowerCase().includes(ql);}).slice(0,8);
-  if(!matches.length){closeAC();return;}
-  var bycat = {};
-  matches.forEach(function(p){if(!bycat[p.c])bycat[p.c]=[];bycat[p.c].push(p);});
-  var html = '';
-  Object.keys(bycat).forEach(function(cat){
-    html += '<div class="acs">'+cat+'</div>';
-    bycat[cat].forEach(function(p){
-      var hi = p.n.replace(new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi'),'<em>$1</em>');
-      html += '<div class="aci" onclick="selAC(\''+p.n.replace(/\'/g,"\\\\'")+'\')"><span class="acio">'+p.i+'</span><div><div class="acn">'+hi+'</div><div class="acc">'+cat+'</div></div></div>';
-    });
-  });
-  var drop = document.getElementById('acDrop');
-  drop.innerHTML = html;
-  drop.classList.add('open');
-}
-function selAC(name){document.getElementById('partIn').value=name;closeAC();doSearch();}
-function closeAC(){var d=document.getElementById('acDrop');if(d)d.classList.remove('open');}
-
-// SEARCH with animation
-function pickCat(name){
-  if(!vehicle){shakePlate();return;}
-  // Special case - Service shows package picker
-  if (name === 'Service') { showServicePackages(); return; }
-  // Show parts list for the category
-  showCategoryList(name);
-}
-
-// Show list of parts in a category
-function showCategoryList(catName) {
-  var parts = PARTS.filter(function(p){return p.c === catName;});
-  if (!parts.length) {
-    document.getElementById('partIn').value = catName;
-    doSearch();
-    return;
-  }
-  var modal = document.getElementById('catModal');
-  if (!modal) {
-    modal = document.createElement('div');
-    modal.id = 'catModal';
-    modal.className = 'cat-modal';
-    document.body.appendChild(modal);
-  }
-  var icon = '🔧';
-  for (var ci = 0; ci < CATS.length; ci++) { if (CATS[ci].n === catName) { icon = CATS[ci].i; break; } }
-
-  var html = '<div class="cat-modal-inner">';
-  html += '<div class="cat-modal-head">';
-  html += '<div class="cat-modal-title">'+icon+' '+catName+' Parts</div>';
-  html += '<button class="cat-modal-close" onclick="closeCatModal()">✕</button>';
-  html += '</div>';
-  html += '<div class="cat-modal-sub">Choose a part for your <strong>'+vehicle.name+'</strong></div>';
-  html += '<div class="cat-list">';
-  parts.forEach(function(p){
-    html += '<div class="cat-list-item" onclick="selectPartFromCat(\''+p.n.replace(/\'/g,"\\\\'")+'\')">';
-    html += '<span class="cli-ico">'+p.i+'</span>';
-    html += '<div class="cli-name">'+p.n+'</div>';
-    html += '<span class="cli-arrow">›</span>';
-    html += '</div>';
-  });
-  html += '</div></div>';
-  modal.innerHTML = html;
-  modal.classList.add('open');
-  setTimeout(function(){ modal.classList.add('show'); }, 10);
-}
-
-function selectPartFromCat(partName) {
-  closeCatModal();
-  document.getElementById('partIn').value = partName;
-  doSearch();
-}
-
-function closeCatModal() {
-  var modal = document.getElementById('catModal');
-  if (modal) {
-    modal.classList.remove('show');
-    setTimeout(function(){ modal.classList.remove('open'); }, 250);
-  }
-}
-
-// Service packages
-var SERVICE_PACKAGES = {
-  basic: {
-    name: 'Basic / Interim Service',
-    icon: '🔧',
-    desc: 'Essential service every 6 months or 6,000 miles',
-    parts: ['Engine Oil 5W-30', 'Oil Filter', 'Air Filter']
-  },
-  medium: {
-    name: 'Full Service',
-    icon: '🔧',
-    desc: 'Standard yearly service — recommended for most drivers',
-    parts: ['Engine Oil 5W-30', 'Oil Filter', 'Air Filter', 'Fuel Filter', 'Cabin Filter', 'Spark Plugs', 'Wiper Blades']
-  },
-  major: {
-    name: 'Major Service',
-    icon: '🔧',
-    desc: 'Full service + extras — recommended every 2 years',
-    parts: ['Engine Oil 5W-30', 'Oil Filter', 'Air Filter', 'Fuel Filter', 'Cabin Filter', 'Spark Plugs', 'Wiper Blades', 'Brake Fluid', 'Coolant Antifreeze', 'Front Brake Pads']
-  }
-};
-
-function showServicePackages() {
-  var modal = document.getElementById('catModal');
-  if (!modal) {
-    modal = document.createElement('div');
-    modal.id = 'catModal';
-    modal.className = 'cat-modal';
-    document.body.appendChild(modal);
-  }
-  var html = '<div class="cat-modal-inner">';
-  html += '<div class="cat-modal-head">';
-  html += '<div class="cat-modal-title">🛠️ Service Packages</div>';
-  html += '<button class="cat-modal-close" onclick="closeCatModal()">✕</button>';
-  html += '</div>';
-  html += '<div class="cat-modal-sub">Choose a service package for your <strong>'+vehicle.name+'</strong>. We\'ll find the cheapest parts from all 12 suppliers.</div>';
-  html += '<div class="svc-grid">';
-
-  Object.keys(SERVICE_PACKAGES).forEach(function(key){
-    var pkg = SERVICE_PACKAGES[key];
-    var badgeClass = key === 'basic' ? 'svc-basic' : (key === 'medium' ? 'svc-medium' : 'svc-major');
-    var badgeText = key === 'basic' ? 'STARTER' : (key === 'medium' ? 'POPULAR' : 'COMPLETE');
-    html += '<div class="svc-card" onclick="runServicePackage(\''+key+'\')">';
-    html += '<div class="svc-head">';
-    html += '<div class="svc-ico">'+pkg.icon+'</div>';
-    html += '<span class="svc-badge '+badgeClass+'">'+badgeText+'</span>';
-    html += '</div>';
-    html += '<div class="svc-name">'+pkg.name+'</div>';
-    html += '<div class="svc-desc">'+pkg.desc+'</div>';
-    html += '<div class="svc-parts">Includes:<br>';
-    html += pkg.parts.map(function(p){return '✓ '+p;}).join('<br>');
-    html += '</div>';
-    html += '<button class="svc-btn">Find Best Prices →</button>';
-    html += '</div>';
-  });
-
-  html += '</div></div>';
-  modal.innerHTML = html;
-  modal.classList.add('open');
-  setTimeout(function(){ modal.classList.add('show'); }, 10);
-}
-
-async function runServicePackage(key) {
-  var pkg = SERVICE_PACKAGES[key];
-  if (!pkg || !vehicle) return;
-  closeCatModal();
-
-  // Show scanning animation
-  document.getElementById('resultsZone').style.display = 'none';
-  var scanZone = document.getElementById('scanZone');
-  scanZone.style.display = 'block';
-  var scanHtml = '<div class="scan-overlay">';
-  scanHtml += '<div class="scan-title">🛠️ Building Your ' + pkg.name + '</div>';
-  scanHtml += '<div class="scan-sub">Finding cheapest prices for <strong>' + pkg.parts.length + ' parts</strong> on your <strong>'+vehicle.name+'</strong></div>';
-  scanHtml += '<div class="scan-wheel" id="scanWheel">';
-  scanHtml += '<div class="scan-center"><div class="scan-center-icon">⚡</div><div class="scan-center-text">BUILDING<br>QUOTE</div></div>';
-  scanHtml += '<div class="scan-wheel-inner" id="scanWheelInner">';
-  var n = SCAN_SUPPLIERS.length;
-  var radius = 115;
-  for (var i = 0; i < n; i++) {
-    var angle = (i / n) * 360 - 90;
-    var rad = angle * Math.PI / 180;
-    var x = 140 + radius * Math.cos(rad);
-    var y = 140 + radius * Math.sin(rad);
-    var s = SCAN_SUPPLIERS[i];
-    var shortName = s.n.length > 7 ? s.n.split(' ')[0] : s.n;
-    scanHtml += '<div class="scan-item" data-idx="'+i+'" style="left:'+x+'px;top:'+y+'px;"><span class="sico">'+s.i+'</span><span class="sname">'+shortName+'</span></div>';
-  }
-  scanHtml += '</div></div>';
-  scanHtml += '<div class="scan-status" id="scanStatus">Searching all suppliers...</div>';
-  scanHtml += '</div>';
-  scanZone.innerHTML = scanHtml;
-  scanZone.scrollIntoView({behavior:'smooth',block:'nearest'});
-
-  // Fetch prices for every part in parallel
-  var results = await Promise.all(pkg.parts.map(function(partName){
-    return fetchPartCheapest(partName);
-  }));
-
-  // Stop wheel
-  var wheel = document.getElementById('scanWheel');
-  if (wheel) wheel.classList.add('stopped');
-  var items = document.querySelectorAll('.scan-item');
-  items.forEach(function(it){ it.classList.add('fade-out'); });
-  var center = document.querySelector('.scan-center');
-  if (center) {
-    center.classList.add('done');
-    center.innerHTML = '<div class="scan-center-icon">✓</div><div class="scan-center-text">QUOTE<br>READY</div>';
-  }
-  var statusEl = document.getElementById('scanStatus');
-  if (statusEl) { statusEl.textContent = '✓ Your service quote is ready!'; statusEl.classList.add('done'); }
-
-  await new Promise(function(r){setTimeout(r, 1200);});
-
-  scanZone.style.display = 'none';
-  showServiceResults(pkg, results);
-}
-
-async function fetchPartCheapest(partName) {
-  try {
-    var url = WORKER_URL + '/ebay?part=' + encodeURIComponent(partName) + '&vehicle=' + encodeURIComponent(vehicle.name);
-    var resp = await fetch(url);
-    var data = await resp.json();
-    if (data && data.items && data.items.length > 0) {
-      // Return cheapest new item
-      var newItems = data.items.filter(function(i){return !i.isUsed;});
-      if (newItems.length > 0) return { part: partName, item: newItems[0] };
-      return { part: partName, item: data.items[0] };
-    }
-    return { part: partName, item: null };
-  } catch(e) { return { part: partName, item: null }; }
-}
-
-function showServiceResults(pkg, results) {
-  var zone = document.getElementById('resultsZone');
-  zone.style.display = 'block';
-  document.getElementById('aiVeh').textContent = vehicle.name;
-  document.getElementById('aiPart').textContent = '— ' + pkg.name;
-
-  // Hide filter tabs for service view
-  var ftabs = document.querySelector('.filter-tabs');
-  if (ftabs) ftabs.style.display = 'none';
-
-  var total = 0;
-  var html = '';
-  results.forEach(function(r, i){
-    if (!r.item) {
-      html += '<tr><td><span class="stag">❓ Not found</span></td><td><div class="pt">'+r.part+'</div></td><td colspan="5" style="color:var(--mg);font-size:.78rem;">Click to search manually →</td></tr>';
-      return;
-    }
-    var item = r.item;
-    var price = parseFloat(item.totalPrice || item.price);
-    total += price;
-    html += '<tr>';
-    html += '<td><span class="stag">'+(item.supplierIcon||'🛒')+' '+(item.supplier||'eBay')+'</span></td>';
-    html += '<td><div class="pt">'+r.part+'</div><div class="psb">'+(item.title ? item.title.substring(0,50)+'...' : '')+'</div></td>';
-    html += '<td><span class="pc">£'+price.toFixed(2)+'</span></td>';
-    html += '<td style="font-size:.72rem;color:var(--mg);">'+(parseFloat(item.deliveryCost)===0?'Free':'£'+item.deliveryCost)+'</td>';
-    html += '<td><span class="bdg bn">NEW</span></td>';
-    html += '<td><span class="fb">✅ Fits</span></td>';
-    html += '<td><a href="'+item.url+'" target="_blank" rel="sponsored noopener" class="gbtn" onclick="trackClick(\''+(item.supplier||'eBay').replace(/\'/g,"")+'\',\''+r.part.replace(/\'/g,"")+'\','+price+')">Buy →</a></td>';
-    html += '</tr>';
-  });
-
-  // Total row
-  html += '<tr style="background:var(--gn);border-top:3px solid var(--gr);">';
-  html += '<td colspan="2" style="font-weight:900;font-size:.95rem;color:var(--gr);padding:14px 8px;">💰 TOTAL '+pkg.name.toUpperCase()+'</td>';
-  html += '<td colspan="2" style="font-weight:900;font-size:1.1rem;color:var(--gr);">£'+total.toFixed(2)+'</td>';
-  html += '<td colspan="3" style="font-size:.75rem;color:var(--gr);font-weight:700;">Garage quote: £'+(total*2.5).toFixed(0)+' — <strong>You save £'+(total*1.5).toFixed(0)+'</strong></td>';
-  html += '</tr>';
-
-  document.getElementById('aiBody').innerHTML = html;
-  setTimeout(function(){zone.scrollIntoView({behavior:'smooth',block:'nearest'});}, 100);
-}
-
-function shakePlate(){var pw=document.querySelector('.pw');if(pw){pw.style.animation='shake .4s ease';setTimeout(function(){pw.style.animation='';},400);}document.getElementById('regIn').focus();}
-
-async function doSearch(){
-  closeAC();
-  var part = document.getElementById('partIn').value.trim();
-  if(!part){document.getElementById('partIn').focus();return;}
-  if(!vehicle){shakePlate();return;}
-
-  document.getElementById('resultsZone').style.display = 'none';
-  var scanZone = document.getElementById('scanZone');
-  scanZone.style.display = 'block';
-
-  // Build TWO-RING spinning animation
-  var scanHtml = '<div class="scan-overlay">';
-  scanHtml += '<div class="scan-title">🔍 Comparing UK Suppliers</div>';
-  scanHtml += '<div class="scan-sub">Finding the best price for <strong>'+part+'</strong> on your <strong>'+vehicle.name+'</strong></div>';
-  scanHtml += '<div class="scan-wheel" id="scanWheel">';
-  scanHtml += '<div class="scan-center" id="scanCenter"><div class="scan-center-icon">⚡</div><div class="scan-center-text">LIVE<br>SCAN</div></div>';
-
-  // INNER ring — 6 suppliers — spins clockwise
-  var innerSuppliers = SCAN_SUPPLIERS.slice(0, 6);
-  var outerSuppliers = SCAN_SUPPLIERS.slice(6, 12);
-  var innerRadius = 90;
-  var outerRadius = 138;
-  var cx = 150, cy = 150;
-
-  scanHtml += '<div class="scan-ring-inner" id="scanRingInner">';
-  for (var i = 0; i < innerSuppliers.length; i++) {
-    var angle = (i / innerSuppliers.length) * 360 - 90;
-    var rad = angle * Math.PI / 180;
-    var x = cx + innerRadius * Math.cos(rad);
-    var y = cy + innerRadius * Math.sin(rad);
-    var s = innerSuppliers[i];
-    var sn = s.n.split(' ')[0];
-    scanHtml += '<div class="scan-item" data-idx="'+i+'" style="left:'+x+'px;top:'+y+'px;transform:translate(-50%,-50%);">';
-    scanHtml += '<div class="inner-cw"><span class="sico">'+s.i+'</span><span class="sname">'+sn+'</span></div></div>';
-  }
-  scanHtml += '</div>';
-
-  // OUTER ring — 6 suppliers — spins anticlockwise
-  scanHtml += '<div class="scan-ring-outer" id="scanRingOuter">';
-  for (var i = 0; i < outerSuppliers.length; i++) {
-    var angle = (i / outerSuppliers.length) * 360 - 90;
-    var rad = angle * Math.PI / 180;
-    var x = cx + outerRadius * Math.cos(rad);
-    var y = cy + outerRadius * Math.sin(rad);
-    var s = outerSuppliers[i];
-    var sn = s.n.split(' ')[0];
-    scanHtml += '<div class="scan-item" data-idx="'+(i+6)+'" style="left:'+x+'px;top:'+y+'px;transform:translate(-50%,-50%);">';
-    scanHtml += '<div class="inner-ccw"><span class="sico">'+s.i+'</span><span class="sname">'+sn+'</span></div></div>';
-  }
-  scanHtml += '</div>';
-
-  scanHtml += '</div>'; // scan-wheel
-  scanHtml += '<div class="scan-status" id="scanStatus">Comparing prices across all suppliers...</div>';
-  scanHtml += '</div>';
-  scanZone.innerHTML = scanHtml;
-  scanZone.scrollIntoView({behavior:'smooth',block:'nearest'});
-
-  // Fetch from Worker
-  var workerPromise = fetchResults(part);
-  var minDelay = new Promise(function(r){setTimeout(r, 3500);});
-  var results = await workerPromise;
-  await minDelay;
-
-  // Find winner
-  var winnerName = 'eBay';
-  if (results && results.items && results.items.length > 0) {
-    winnerName = results.items[0].supplier || 'eBay';
-  }
-  var winnerIdx = 0;
-  for (var i = 0; i < SCAN_SUPPLIERS.length; i++) {
-    if (SCAN_SUPPLIERS[i].n.toLowerCase().includes(winnerName.toLowerCase().split(' ')[0])) {
-      winnerIdx = i; break;
-    }
-  }
-
-  // Stop both rings
-  var ri = document.getElementById('scanRingInner');
-  var ro = document.getElementById('scanRingOuter');
-  if (ri) ri.classList.add('stopped');
-  if (ro) ro.classList.add('stopped');
-
-  // Highlight winner, fade rest
-  var allItems = document.querySelectorAll('.scan-item');
-  for (var i = 0; i < allItems.length; i++) {
-    if (parseInt(allItems[i].dataset.idx) === winnerIdx) {
-      allItems[i].classList.add('winner');
-    } else {
-      allItems[i].classList.add('fade-out');
-    }
-  }
-
-  var center = document.getElementById('scanCenter');
-  if (center) {
-    center.classList.add('done');
-    center.innerHTML = '<div class="scan-center-icon">✓</div><div class="scan-center-text">BEST<br>FOUND</div>';
-  }
-  var statusEl = document.getElementById('scanStatus');
-  if (statusEl) { statusEl.textContent = '✓ Best price found at ' + winnerName + '!'; statusEl.classList.add('done'); }
-
-  await new Promise(function(r){setTimeout(r, 1400);});
-  scanZone.style.display = 'none';
-  showResults(vehicle, part, results);
-}
-
-async function fetchResults(part){
-  try {
-    var url = WORKER_URL + '/ebay?part=' + encodeURIComponent(part) + '&vehicle=' + encodeURIComponent(vehicle.name);
-    var resp = await fetch(url);
-    return await resp.json();
-  } catch(e) {
-    return { items: [], error: e.message };
-  }
-}
-
-function showResults(v, part, data){
-  var zone = document.getElementById('resultsZone');
-  zone.style.display = 'block';
-  document.getElementById('aiVeh').textContent = v.name;
-  document.getElementById('aiPart').textContent = '— ' + part;
-
-  // Always show all suppliers — eBay live, others as search links
-  var ftabs = document.querySelector('.filter-tabs');
-  if (ftabs) ftabs.style.display = 'flex';
-
-  allRows = (data && data.items) ? data.items : [];
-  currentFilter = 'all';
-  document.querySelectorAll('.ftab').forEach(function(b){b.classList.remove('active');});
-  var allTab = document.querySelector('.ftab[data-filter="all"]');
-  if (allTab) allTab.classList.add('active');
-  renderResults(part, v);
-  setTimeout(function(){zone.scrollIntoView({behavior:'smooth',block:'nearest'});}, 100);
-}
-
-// All supplier rows — eBay live + others as search links
-var ALL_SUPPLIERS = [
+// All supplier affiliate links for results table
+var ALL_SUPS = [
   {n:'eBay', i:'🛒', live:true},
   {n:'Amazon', i:'📦', url:function(p,v){return 'https://www.amazon.co.uk/s?k='+encodeURIComponent(p+' '+v)+'&tag='+AFF.amazon;}},
   {n:'Euro Car Parts', i:'🔵', url:function(p,v){return 'https://www.awin1.com/cread.php?awinmid=197685&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.eurocarparts.com/search?q='+encodeURIComponent(p));}},
@@ -1125,180 +545,335 @@ var ALL_SUPPLIERS = [
   {n:'1st Choice Spares', i:'♻️', url:function(p,v){return 'https://www.awin1.com/cread.php?awinmid=6060&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.1stchoice.co.uk/search?q='+encodeURIComponent(p));}}
 ];
 
-function renderResults(part, v){
-  if (!v) v = vehicle;
-  var tbody = document.getElementById('aiBody');
-  var html = '';
-  var ebayNew = allRows.filter(function(r){return !r.isUsed;});
-  var ebayUsed = allRows.filter(function(r){return r.isUsed;});
-  var cheapestEbay = ebayNew.length > 0 ? ebayNew[0] : null;
+// Render static content immediately
+(function(){
+  function render(){
+    var cg = document.getElementById('catGrid');
+    var sp = document.getElementById('supPills');
+    if(!cg||!sp){setTimeout(render,10);return;}
+    var ch='';
+    CATS.forEach(function(c){
+      ch+='<a class="catb" href="#" onclick="pickCat(\''+c.q+'\');return false"><span class="ci">'+c.i+'</span><div class="cn">'+c.n+'</div></a>';
+    });
+    cg.innerHTML=ch;
+    var ph='';
+    SUPPLIERS.forEach(function(s){ph+='<span class="spill">'+s+'</span>';});
+    sp.innerHTML=ph;
+  }
+  render();
+})();
 
-  ALL_SUPPLIERS.forEach(function(sup, idx){
-    var isBest = false;
-    var rowClass = '';
+function titleCase(s){return s?s.replace(/\w\S*/g,function(t){return t.charAt(0).toUpperCase()+t.substr(1).toLowerCase();}):s;}
+function goTo(id){var el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});}
+function closeMob(){var h=document.getElementById('hbtn');if(h)h.classList.remove('open');var m=document.getElementById('mmenu');if(m)m.classList.remove('open');}
 
-    if (sup.live) {
-      // eBay — show live results
-      if (currentFilter === 'used') {
-        // Show used eBay rows
-        if (ebayUsed.length === 0) {
-          html += '<tr><td><span class="stag">'+sup.i+' '+sup.n+'</span> <span class="bdg bl">LIVE</span></td>';
-          html += '<td colspan="5" style="color:var(--mg);font-size:.78rem;">No used results found</td>';
-          html += '<td><a href="https://www.ebay.co.uk/sch/i.html?_nkw='+encodeURIComponent(part+' '+(v?v.name:''))+'&campid='+AFF.ebay+'" target="_blank" class="gbtn">Search →</a></td></tr>';
-        }
-        ebayUsed.forEach(function(r, i){
-          html += buildLiveRow(r, part, i===0 && i===0, 'USED');
+// DVLA
+async function lookupReg(){
+  var reg=document.getElementById('regIn').value.replace(/\s/g,'').toUpperCase();
+  document.getElementById('regIn').value=reg;
+  if(reg.length<2){showDvlaErr('Please enter a valid UK registration.');return;}
+  var btn=document.getElementById('findBtn');
+  btn.innerHTML='<span class="spn" style="width:16px;height:16px;border-width:2px;margin:0"></span>';
+  btn.disabled=true;
+  showDvlaLoading('Checking DVLA for '+reg+'...');
+  try{
+    var resp=await fetch(WORKER_URL+'/dvla?reg='+encodeURIComponent(reg));
+    btn.innerHTML='🔍 Find Car';btn.disabled=false;
+    if(resp.status===404){clearDvlaMsg();showDvlaErr('Registration <strong>'+reg+'</strong> not found.');return;}
+    var data=await resp.json();
+    if(data.error){clearDvlaMsg();showDvlaErr(data.error);return;}
+    clearDvlaMsg();
+    var make=titleCase(data.make||'Unknown');
+    var colour=titleCase(data.colour||'');
+    var fuel=titleCase(data.fuelType||'');
+    var year=data.yearOfManufacture||'';
+    var engine=data.engineCapacity?(data.engineCapacity/1000).toFixed(1)+'L':'';
+    var taxStatus=data.taxStatus||'';
+    var motStatus=data.motStatus||'';
+    var name=year+' '+make+(engine?' · '+engine:'');
+    var meta=[colour,fuel,taxStatus?'Tax: '+taxStatus:'',motStatus?'MOT: '+motStatus:''].filter(Boolean).join(' · ');
+    applyVehicle({name:name,meta:meta,raw:data});
+  }catch(err){
+    btn.innerHTML='🔍 Find Car';btn.disabled=false;
+    clearDvlaMsg();showDvlaErr('Could not reach DVLA. Please try again.');
+  }
+}
+function showDvlaLoading(msg){document.getElementById('dvlaMsg').innerHTML='<div class="dvla-loading"><span class="spn" style="width:16px;height:16px;border-width:2px;margin:0;flex-shrink:0"></span> '+msg+'</div>';}
+function showDvlaErr(msg){document.getElementById('dvlaMsg').innerHTML='<div class="dvla-err">⚠️ '+msg+'</div>';}
+function clearDvlaMsg(){document.getElementById('dvlaMsg').innerHTML='';}
+function applyVehicle(v){
+  vehicle=v;
+  document.getElementById('vcName').textContent=v.name;
+  document.getElementById('vcMeta').textContent=v.meta;
+  document.getElementById('vcBox').classList.add('show');
+  document.getElementById('plateRow').style.display='none';
+  document.getElementById('orDiv').style.display='none';
+  document.getElementById('partIn').focus();
+}
+function resetV(){
+  vehicle=null;clearDvlaMsg();
+  document.getElementById('vcBox').classList.remove('show');
+  document.getElementById('plateRow').style.display='flex';
+  document.getElementById('orDiv').style.display='block';
+  document.getElementById('regIn').value='';
+  document.getElementById('resultsZone').style.display='none';
+  document.getElementById('scanZone').style.display='none';
+  document.getElementById('regIn').focus();
+}
+
+// AUTOCOMPLETE
+function showAC(q){
+  if(!q||q.length<2){closeAC();return;}
+  var ql=q.toLowerCase();
+  var matches=PARTS.filter(function(p){return p.n.toLowerCase().includes(ql);}).slice(0,8);
+  if(!matches.length){closeAC();return;}
+  var bycat={};
+  matches.forEach(function(p){if(!bycat[p.c])bycat[p.c]=[];bycat[p.c].push(p);});
+  var html='';
+  Object.keys(bycat).forEach(function(cat){
+    html+='<div class="acs">'+cat+'</div>';
+    bycat[cat].forEach(function(p){
+      var hi=p.n.replace(new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi'),'<em>$1</em>');
+      html+='<div class="aci" onclick="selAC(\''+p.n.replace(/\'/g,"\\'")+'\')" ><span class="acio">'+p.i+'</span><div><div class="acn">'+hi+'</div><div class="acc">'+cat+'</div></div></div>';
+    });
+  });
+  var drop=document.getElementById('acDrop');
+  drop.innerHTML=html;drop.classList.add('open');
+}
+function selAC(name){document.getElementById('partIn').value=name;closeAC();doSearch();}
+function closeAC(){var d=document.getElementById('acDrop');if(d)d.classList.remove('open');}
+
+// CATEGORY CLICK
+function pickCat(name){
+  if(!vehicle){shakePlate();return;}
+  if(name==='Service'){showServiceModal();return;}
+  document.getElementById('partIn').value=name;
+  doSearch();
+}
+function shakePlate(){var pw=document.querySelector('.pw');if(pw){pw.style.animation='shake .4s ease';setTimeout(function(){pw.style.animation='';},400);}document.getElementById('regIn').focus();}
+
+// SERVICE MODAL
+function showServiceModal(){
+  var modal=document.createElement('div');
+  modal.id='svcModal';
+  modal.style.cssText='position:fixed;inset:0;background:rgba(0,15,40,.6);z-index:1000;display:flex;align-items:flex-end;justify-content:center;';
+  modal.innerHTML='<div style="background:#fff;border-radius:24px 24px 0 0;width:100%;max-width:600px;max-height:85vh;overflow-y:auto;padding:20px;">'
+    +'<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">'
+    +'<div style="font-family:Nunito,sans-serif;font-weight:900;font-size:1.1rem;color:var(--bl);">🛠️ Service Packages</div>'
+    +'<button onclick="document.getElementById(\'svcModal\').remove()" style="background:var(--lg);border:none;width:36px;height:36px;border-radius:50%;font-size:1rem;cursor:pointer;">✕</button>'
+    +'</div>'
+    +'<p style="font-size:.85rem;color:var(--mg);margin-bottom:16px;">Choose a package for your <strong>'+vehicle.name+'</strong></p>'
+    +makeSvcCard('🔧 Basic / Interim Service','basic','Every 6 months or 6,000 miles','Engine Oil 5W-30, Oil Filter, Air Filter','service_basic')
+    +makeSvcCard('🔧 Full Service','medium','Standard yearly service','Engine Oil, Oil Filter, Air Filter, Fuel Filter, Cabin Filter, Spark Plugs, Wiper Blades','service_medium')
+    +makeSvcCard('🔧 Major Service','major','Every 2 years — full overhaul','Engine Oil, Oil Filter, Air Filter, Fuel Filter, Cabin Filter, Spark Plugs, Wiper Blades, Brake Fluid, Coolant, Front Brake Pads','service_major')
+    +'</div>';
+  document.body.appendChild(modal);
+}
+function makeSvcCard(title,key,desc,parts,qry){
+  return '<div onclick="selectService(\''+qry+'\')" style="background:var(--lg);border:2px solid #D0DCEF;border-radius:12px;padding:16px;margin-bottom:12px;cursor:pointer;">'
+    +'<div style="font-family:Nunito,sans-serif;font-weight:900;font-size:.95rem;color:var(--bl);margin-bottom:4px;">'+title+'</div>'
+    +'<div style="font-size:.78rem;color:var(--mg);margin-bottom:8px;">'+desc+'</div>'
+    +'<div style="font-size:.75rem;color:var(--dk);font-weight:700;">Includes: '+parts+'</div>'
+    +'<button style="margin-top:12px;width:100%;background:var(--bl);color:#fff;border:none;border-radius:8px;padding:10px;font-family:Nunito,sans-serif;font-weight:800;cursor:pointer;">Find Best Prices →</button>'
+    +'</div>';
+}
+function selectService(query){
+  var modal=document.getElementById('svcModal');
+  if(modal)modal.remove();
+  document.getElementById('partIn').value=query.replace(/_/g,' ');
+  doSearch();
+}
+
+// SEARCH + ANIMATION
+async function doSearch(){
+  closeAC();
+  var part=document.getElementById('partIn').value.trim();
+  if(!part){document.getElementById('partIn').focus();return;}
+  if(!vehicle){shakePlate();return;}
+
+  // Show scan animation
+  document.getElementById('resultsZone').style.display='none';
+  var scanZone=document.getElementById('scanZone');
+  scanZone.style.display='block';
+
+  // Build scan UI
+  var html='<div class="scan-box">'
+    +'<div class="scan-title">🔍 Scanning 12 UK Suppliers</div>'
+    +'<div class="scan-sub">Finding the best price for <strong>'+part+'</strong> on your <strong>'+vehicle.name+'</strong></div>'
+    +'<div class="scan-bar"><div class="scan-fill" id="scanFill"></div></div>'
+    +'<div class="scan-grid">';
+  SCAN_SUPS.forEach(function(s,i){
+    html+='<div class="scan-sup" id="ss'+i+'"><span class="s-ico">'+s.i+'</span><div class="s-name">'+s.n+'</div></div>';
+  });
+  html+='</div><div class="scan-status" id="scanStatus">Connecting to suppliers...</div></div>';
+  scanZone.innerHTML=html;
+  scanZone.scrollIntoView({behavior:'smooth',block:'nearest'});
+
+  // Animate through each supplier one by one
+  var idx=0;
+  if(scanTimer)clearInterval(scanTimer);
+  scanTimer=setInterval(function(){
+    // Mark previous as done
+    if(idx>0){
+      var prev=document.getElementById('ss'+(idx-1));
+      if(prev){prev.classList.remove('active');prev.classList.add('done');prev.innerHTML=prev.innerHTML+'<div style="color:var(--gr);font-size:.8rem;font-weight:900;">✓</div>';}
+    }
+    if(idx<SCAN_SUPS.length){
+      var cur=document.getElementById('ss'+idx);
+      if(cur)cur.classList.add('active');
+      var statEl=document.getElementById('scanStatus');
+      if(statEl)statEl.textContent='Checking '+SCAN_SUPS[idx].n+'...';
+      var fillEl=document.getElementById('scanFill');
+      if(fillEl)fillEl.style.width=Math.round((idx/SCAN_SUPS.length)*100)+'%';
+      idx++;
+    }
+  },280);
+
+  // Fetch results in parallel (min 3.5 seconds)
+  var workerPromise=fetchResults(part);
+  var minWait=new Promise(function(r){setTimeout(r,3500);});
+  var results=await workerPromise;
+  await minWait;
+
+  // Stop animation, mark all done
+  clearInterval(scanTimer);
+  for(var i=0;i<SCAN_SUPS.length;i++){
+    var el=document.getElementById('ss'+i);
+    if(el){el.classList.remove('active');el.classList.add('done');}
+  }
+  var fillEl2=document.getElementById('scanFill');
+  if(fillEl2)fillEl2.style.width='100%';
+  var statEl2=document.getElementById('scanStatus');
+  if(statEl2)statEl2.textContent='✓ All 12 suppliers checked — loading results';
+
+  await new Promise(function(r){setTimeout(r,500);});
+
+  // Hide scan, show results
+  scanZone.style.display='none';
+  showResults(vehicle,part,results);
+}
+
+async function fetchResults(part){
+  try{
+    var url=WORKER_URL+'/ebay?part='+encodeURIComponent(part)+'&vehicle='+encodeURIComponent(vehicle.name);
+    var resp=await fetch(url);
+    return await resp.json();
+  }catch(e){return {items:[],error:e.message};}
+}
+
+function showResults(v,part,data){
+  var zone=document.getElementById('resultsZone');
+  zone.style.display='block';
+  document.getElementById('aiVeh').textContent=v.name;
+  document.getElementById('aiPart').textContent='— '+part;
+  allRows=(data&&data.items)?data.items:[];
+  currentFilter='all';
+  document.querySelectorAll('.ftab').forEach(function(b){b.classList.remove('active');});
+  var allTab=document.querySelector('.ftab[data-filter="all"]');
+  if(allTab)allTab.classList.add('active');
+  renderResults(part,v);
+  setTimeout(function(){zone.scrollIntoView({behavior:'smooth',block:'nearest'});},100);
+}
+
+function renderResults(part,v){
+  if(!v)v=vehicle;
+  var tbody=document.getElementById('aiBody');
+  var html='';
+  var ebayNew=allRows.filter(function(r){return !r.isUsed;});
+  var ebayUsed=allRows.filter(function(r){return r.isUsed;});
+
+  ALL_SUPS.forEach(function(sup,idx){
+    if(sup.live){
+      // eBay — show live rows
+      var rows=currentFilter==='used'?ebayUsed:currentFilter==='new'?ebayNew:ebayNew.concat(ebayUsed);
+      if(rows.length===0){
+        html+='<tr><td><span class="stag">'+sup.i+' '+sup.n+'</span> <span class="bdg bl">LIVE</span></td>';
+        html+='<td colspan="4" style="color:var(--mg);font-size:.78rem;">No live results — search directly</td>';
+        html+='<td><span class="fb">✅ Fits</span></td>';
+        html+='<td><a href="https://www.ebay.co.uk/sch/i.html?_nkw='+encodeURIComponent(part+' '+(v?v.name:''))+'&campid='+AFF.ebay+'" target="_blank" class="gbtn">Search →</a></td></tr>';
+      } else {
+        rows.forEach(function(r,i){
+          var best=i===0&&idx===0;
+          var condBadge=r.isUsed?'<span class="bdg bu">USED</span>':'<span class="bdg bn">NEW</span>';
+          var t=r.title&&r.title.length>55?r.title.substring(0,55)+'...':r.title;
+          html+='<tr class="'+(best?'best':'')+'">';
+          html+='<td><span class="stag">'+sup.i+' '+sup.n+'</span> <span class="bdg bl">LIVE</span></td>';
+          html+='<td><div class="pt">'+(t||part)+'</div><div class="psb">'+(r.seller||'')+'</div></td>';
+          html+='<td><span class="pc'+(best?' pcb':'')+'">£'+r.price+'</span>'+(best?'<span class="bdg bb">BEST</span>':'')+'</td>';
+          html+='<td style="font-size:.72rem;color:var(--mg);">'+(parseFloat(r.deliveryCost)===0?'Free':'£'+r.deliveryCost)+'</td>';
+          html+='<td>'+condBadge+'</td>';
+          html+='<td><span class="fb">✅ Fits</span></td>';
+          html+='<td><a href="'+r.url+'" target="_blank" rel="sponsored noopener" class="gbtn" onclick="trackClick(\''+(r.supplier||'eBay').replace(/\'/g,'')+'\',\''+part.replace(/\'/g,'')+'\','+r.price+')">Buy →</a></td>';
+          html+='</tr>';
         });
-        return;
-      }
-      if (currentFilter === 'new' || currentFilter === 'all') {
-        if (ebayNew.length === 0 && currentFilter !== 'all') {
-          html += '<tr><td><span class="stag">'+sup.i+' '+sup.n+'</span> <span class="bdg bl">LIVE</span></td>';
-          html += '<td colspan="5" style="color:var(--mg);font-size:.78rem;">No new results found</td>';
-          html += '<td><a href="https://www.ebay.co.uk/sch/i.html?_nkw='+encodeURIComponent(part+' '+(v?v.name:''))+'&campid='+AFF.ebay+'" target="_blank" class="gbtn">Search →</a></td></tr>';
-          return;
-        }
-        ebayNew.forEach(function(r, i){
-          html += buildLiveRow(r, part, i===0, 'NEW');
-        });
-        if (currentFilter === 'all') {
-          ebayUsed.forEach(function(r, i){
-            html += buildLiveRow(r, part, false, 'USED');
-          });
-        }
       }
     } else {
-      // Other suppliers — show as search row (skip used-only filter)
-      if (currentFilter === 'used') return;
-      var supUrl = sup.url(part, v ? v.name : '');
-      var isFirst = idx === 1 && ebayNew.length === 0; // Amazon is first if no eBay
-      html += '<tr class="'+(isFirst?'best':'')+'">';
-      html += '<td><span class="stag">'+sup.i+' '+sup.n+'</span></td>';
-      html += '<td><div class="pt">'+part+'</div><div class="psb">Click to compare prices on '+sup.n+'</div></td>';
-      html += '<td><span class="pc" style="color:var(--mg);font-size:.78rem;">See price</span></td>';
-      html += '<td style="font-size:.72rem;color:var(--mg);">Check site</td>';
-      html += '<td><span class="bdg bn">NEW</span></td>';
-      html += '<td><span class="fb">✅ Fits</span></td>';
-      html += '<td><a href="'+supUrl+'" target="_blank" rel="sponsored noopener" class="gbtn" onclick="trackClick(\''+sup.n+'\',\''+part.replace(/\'/g,'')+'\',0)">Search →</a></td>';
-      html += '</tr>';
+      // Other suppliers — search link
+      if(currentFilter==='used')return;
+      var supUrl=sup.url(part,v?v.name:'');
+      html+='<tr>';
+      html+='<td><span class="stag">'+sup.i+' '+sup.n+'</span></td>';
+      html+='<td><div class="pt">'+part+'</div><div class="psb">Click to compare prices on '+sup.n+'</div></td>';
+      html+='<td><span class="pc" style="color:var(--mg);font-size:.78rem;">See price</span></td>';
+      html+='<td style="font-size:.72rem;color:var(--mg);">Check site</td>';
+      html+='<td><span class="bdg bn">NEW</span></td>';
+      html+='<td><span class="fb">✅ Fits</span></td>';
+      html+='<td><a href="'+supUrl+'" target="_blank" rel="sponsored noopener" class="gbtn" onclick="trackClick(\''+sup.n+'\',\''+part.replace(/\'/g,'')+'\',0)">Search →</a></td>';
+      html+='</tr>';
     }
   });
 
-  if (!html) {
-    html = '<tr><td colspan="7" style="text-align:center;padding:30px;color:var(--mg);">No results. Try a different search.</td></tr>';
-  }
-  tbody.innerHTML = html;
+  if(!html)html='<tr><td colspan="7" style="text-align:center;padding:30px;color:var(--mg);">No results found.</td></tr>';
+  tbody.innerHTML=html;
 }
 
-function buildLiveRow(r, part, isBest, condLabel) {
-  var condBadge = condLabel === 'USED' ? '<span class="bdg bu">USED</span>' : '<span class="bdg bn">NEW</span>';
-  var partTitle = r.title && r.title.length > 55 ? r.title.substring(0,55)+'...' : (r.title || part);
-  var html = '<tr class="'+(isBest?'best':'')+'">';
-  html += '<td><span class="stag">'+(r.supplierIcon||'🛒')+' '+(r.supplier||'eBay')+'</span> <span class="bdg bl">LIVE</span></td>';
-  html += '<td><div class="pt">'+partTitle+'</div><div class="psb">'+(r.seller||'')+'</div></td>';
-  html += '<td><span class="pc'+(isBest?' pcb':'')+'">£'+r.price+'</span>'+(isBest?'<span class="bdg bb">BEST</span>':'')+'</td>';
-  html += '<td style="font-size:.72rem;color:var(--mg);">'+(parseFloat(r.deliveryCost)===0?'Free':'£'+r.deliveryCost)+'</td>';
-  html += '<td>'+condBadge+'</td>';
-  html += '<td><span class="fb">✅ Fits</span></td>';
-  html += '<td><a href="'+r.url+'" target="_blank" rel="sponsored noopener" class="gbtn" onclick="trackClick(\''+(r.supplier||'eBay').replace(/\'/g,'')+'\',\''+part.replace(/\'/g,'')+'\','+r.price+')">Buy →</a></td>';
-  html += '</tr>';
-  return html;
-}
-
-function filterResults(type, btn){
-  currentFilter = type;
+function filterResults(type,btn){
+  currentFilter=type;
   document.querySelectorAll('.ftab').forEach(function(b){b.classList.remove('active');});
   btn.classList.add('active');
-  renderResults(document.getElementById('partIn').value.trim(), vehicle);
+  renderResults(document.getElementById('partIn').value.trim(),vehicle);
 }
 
-function trackClick(supplier, part, price){
-  try {
-    var url = WORKER_URL + '/track-click?supplier=' + encodeURIComponent(supplier) + '&part=' + encodeURIComponent(part) + '&vehicle=' + encodeURIComponent(vehicle ? vehicle.name : '') + '&price=' + encodeURIComponent(price || 0);
+function trackClick(supplier,part,price){
+  try{
+    var url=WORKER_URL+'/track-click?supplier='+encodeURIComponent(supplier)+'&part='+encodeURIComponent(part)+'&vehicle='+encodeURIComponent(vehicle?vehicle.name:'')+'&price='+encodeURIComponent(price||0);
     fetch(url).catch(function(){});
-  } catch(e) {}
+  }catch(e){}
 }
 
 function toggleFaq(btn){
-  var item = btn.closest('.faq-item');
-  var open = item.classList.toggle('open');
-  btn.setAttribute('aria-expanded', open);
+  var item=btn.closest('.faq-item');
+  item.classList.toggle('open');
 }
 
-// ==============================
-// PWA — Service Worker + Install Prompt
-// ==============================
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', function() {
-    navigator.serviceWorker.register('/sw.js').then(function(reg) {
-      console.log('SW registered');
-    }).catch(function(err) {
-      console.log('SW failed:', err);
-    });
+// PWA
+if('serviceWorker' in navigator){
+  window.addEventListener('load',function(){
+    navigator.serviceWorker.register('/sw.js').catch(function(){});
   });
 }
 
-// Show "Add to Home Screen" prompt
-var deferredPrompt = null;
-window.addEventListener('beforeinstallprompt', function(e) {
-  e.preventDefault();
-  deferredPrompt = e;
-  // Show install banner after 30 seconds if not dismissed
-  setTimeout(function() {
-    if (deferredPrompt) showInstallBanner();
-  }, 30000);
-});
-
-function showInstallBanner() {
-  var banner = document.createElement('div');
-  banner.id = 'installBanner';
-  banner.style.cssText = 'position:fixed;bottom:80px;left:16px;right:16px;background:var(--bl);color:#fff;border-radius:14px;padding:14px 16px;display:flex;align-items:center;gap:12px;z-index:400;box-shadow:0 8px 24px rgba(0,0,0,.3);font-family:Nunito Sans,sans-serif;';
-  banner.innerHTML = '<span style="font-size:1.8rem">🚗</span><div style="flex:1"><div style="font-family:Nunito,sans-serif;font-weight:900;font-size:.9rem">Add to Home Screen</div><div style="font-size:.75rem;opacity:.8">Get the CompareMyCarParts app</div></div><button onclick="installApp()" style="background:var(--ye);color:var(--bl);border:none;border-radius:8px;padding:8px 14px;font-family:Nunito,sans-serif;font-weight:900;font-size:.8rem;cursor:pointer;">Install</button><button onclick="dismissInstall()" style="background:transparent;border:none;color:rgba(255,255,255,.6);font-size:1.2rem;cursor:pointer;padding:4px;">✕</button>';
-  document.body.appendChild(banner);
-}
-
-function installApp() {
-  if (deferredPrompt) {
-    deferredPrompt.prompt();
-    deferredPrompt.userChoice.then(function(result) {
-      deferredPrompt = null;
-      dismissInstall();
-    });
-  }
-}
-
-function dismissInstall() {
-  var banner = document.getElementById('installBanner');
-  if (banner) banner.remove();
-}
-
-// Track when app is installed
-window.addEventListener('appinstalled', function() {
-  console.log('App installed');
-  deferredPrompt = null;
-});
-
-document.addEventListener('DOMContentLoaded', function(){
-  var partIn = document.getElementById('partIn');
+document.addEventListener('DOMContentLoaded',function(){
+  var partIn=document.getElementById('partIn');
   if(partIn){
-    partIn.addEventListener('input', function(){showAC(this.value);});
-    partIn.addEventListener('keydown', function(e){
-      if(e.key === 'Enter'){doSearch();e.preventDefault();}
-      else if(e.key === 'Escape'){closeAC();}
+    partIn.addEventListener('input',function(){showAC(this.value);});
+    partIn.addEventListener('keydown',function(e){
+      if(e.key==='Enter'){doSearch();e.preventDefault();}
+      else if(e.key==='Escape'){closeAC();}
     });
   }
-  document.addEventListener('click', function(e){if(!e.target.closest('.qw'))closeAC();});
-  var regIn = document.getElementById('regIn');
-  if(regIn){regIn.addEventListener('keydown', function(e){if(e.key === 'Enter')lookupReg();});}
-  var hbtn = document.getElementById('hbtn');
+  document.addEventListener('click',function(e){if(!e.target.closest('.qw'))closeAC();});
+  var regIn=document.getElementById('regIn');
+  if(regIn){regIn.addEventListener('keydown',function(e){if(e.key==='Enter')lookupReg();});}
+  var hbtn=document.getElementById('hbtn');
   if(hbtn){
-    hbtn.addEventListener('click', function(){
+    hbtn.addEventListener('click',function(){
       this.classList.toggle('open');
       document.getElementById('mmenu').classList.toggle('open');
     });
   }
-  document.addEventListener('click', function(e){
-    if(!e.target.closest('nav') && !e.target.closest('.mm')) closeMob();
+  document.addEventListener('click',function(e){
+    if(!e.target.closest('nav')&&!e.target.closest('.mm'))closeMob();
   });
 });
 </script>
