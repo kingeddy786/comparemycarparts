@@ -132,14 +132,48 @@ nav{background:var(--bl);position:sticky;top:0;z-index:300;box-shadow:0 2px 12px
 .ftab{background:var(--lg);border:2px solid transparent;border-radius:8px;padding:6px 14px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.78rem;color:var(--mg);cursor:pointer;transition:all .15s;}
 .ftab.active{background:var(--bl);color:var(--wh);}
 .ftab:hover:not(.active){border-color:var(--bl);color:var(--bl);}
-.tscr{overflow-x:auto;border-radius:14px;}
-table{width:100%;border-collapse:collapse;border-radius:14px;overflow:hidden;box-shadow:0 6px 24px rgba(0,61,166,.1);}
-thead tr{background:var(--bl);}
-th{padding:6px 8px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.62rem;text-transform:uppercase;letter-spacing:.5px;color:rgba(255,255,255,.85);text-align:left;white-space:nowrap;}
-th:first-child{border-radius:14px 0 0 0;}th:last-child{border-radius:0 14px 0 0;}
-td{padding:8px;font-size:.75rem;border-bottom:1px solid #EEF2FA;vertical-align:middle;}
-tbody tr{background:var(--wh);}tbody tr:hover{background:var(--lg);}
-tbody tr.best{background:#F0FFF7;}
+/* RESULT CARDS */
+.res-list{display:flex;flex-direction:column;gap:14px;}
+.rcard{background:var(--wh);border:2px solid #E0E8F8;border-radius:14px;padding:14px;box-shadow:0 4px 16px rgba(0,61,166,.06);transition:transform .15s,box-shadow .15s;position:relative;}
+.rcard:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,61,166,.12);}
+.rcard.best{border-color:var(--gr);background:linear-gradient(135deg,#F0FFF7,#fff);margin-top:14px;}
+.rcard.best::before{content:'🏆 BEST DEAL';position:absolute;top:-11px;left:14px;background:var(--gr);color:#fff;font-family:'Nunito',sans-serif;font-weight:900;font-size:.62rem;letter-spacing:1px;padding:4px 10px;border-radius:20px;}
+.rc-head{display:flex;align-items:center;gap:10px;margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid var(--lg);}
+.rc-logo{width:44px;height:44px;background:var(--lg);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;}
+.rc-supinfo{flex:1;min-width:0;}
+.rc-supname{font-family:'Nunito',sans-serif;font-weight:900;font-size:.95rem;color:var(--bl);display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.rc-livebdg{background:var(--ye);color:var(--bl);font-family:'Nunito',sans-serif;font-weight:900;font-size:.55rem;padding:2px 6px;border-radius:4px;letter-spacing:.5px;}
+.rc-rating{font-size:.72rem;color:var(--mg);display:flex;align-items:center;gap:3px;margin-top:2px;}
+.rc-rating .stars{color:#FFB400;letter-spacing:1px;font-size:.82rem;}
+.rc-price-main{text-align:right;flex-shrink:0;}
+.rc-price{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.4rem;color:var(--dk);line-height:1;}
+.rc-price.cheapest{color:var(--gr);}
+.rc-price-lbl{font-size:.62rem;color:var(--mg);margin-top:2px;}
+.rc-part{font-size:.82rem;color:var(--dk);line-height:1.3;margin-bottom:10px;font-weight:600;}
+.rc-seller{font-size:.7rem;color:var(--mg);margin-top:2px;}
+.rc-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;}
+.rc-cell{background:var(--lg);border-radius:8px;padding:7px 10px;}
+.rc-cell-lbl{font-family:'Nunito',sans-serif;font-weight:700;font-size:.58rem;text-transform:uppercase;letter-spacing:.8px;color:var(--mg);margin-bottom:2px;}
+.rc-cell-val{font-family:'Nunito',sans-serif;font-weight:800;font-size:.82rem;color:var(--dk);display:flex;align-items:center;gap:4px;}
+.rc-cell.in-stock .rc-cell-val{color:var(--gr);}
+.rc-cell.low-stock .rc-cell-val{color:#D68000;}
+.rc-cell.free .rc-cell-val{color:var(--gr);}
+.rc-cell.fast .rc-cell-val{color:var(--gr);}
+.rc-badges{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px;}
+.rc-bdg{display:inline-flex;align-items:center;gap:3px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.64rem;padding:4px 9px;border-radius:6px;}
+.rc-bdg.click-collect{background:#E6F0FF;color:var(--bl);border:1px solid #B8D0FF;}
+.rc-bdg.prime{background:#FFF3D9;color:#A06000;border:1px solid #FFD680;}
+.rc-bdg.new{background:var(--bl);color:#fff;}
+.rc-bdg.used{background:var(--or);color:#fff;}
+.rc-bdg.fits{background:var(--gn);color:var(--gr);border:1px solid #b2dfc9;}
+.rc-bdg.free-del{background:var(--gn);color:var(--gr);border:1px solid #b2dfc9;}
+.rc-total{background:linear-gradient(90deg,#F4F7FF,var(--wh));border-top:1px solid var(--lg);padding:10px 14px;margin:10px -14px -14px;border-radius:0 0 12px 12px;display:flex;justify-content:space-between;align-items:center;gap:10px;}
+.rc-total-left{flex:1;min-width:0;}
+.rc-total-lbl{font-family:'Nunito',sans-serif;font-weight:800;font-size:.65rem;color:var(--mg);text-transform:uppercase;letter-spacing:.5px;}
+.rc-total-amt{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.15rem;color:var(--dk);}
+.rc-buy{background:var(--bl);color:#fff;border:none;border-radius:10px;padding:10px 22px;font-family:'Nunito',sans-serif;font-weight:900;font-size:.88rem;cursor:pointer;text-decoration:none;white-space:nowrap;}
+.rc-buy:hover{background:var(--b2);}
+.rcard.best .rc-buy{background:var(--gr);}
 .stag{display:inline-flex;align-items:center;gap:4px;background:var(--lg);border:1.5px solid #D0DCEF;border-radius:6px;padding:3px 8px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.72rem;color:var(--bl);white-space:nowrap;}
 .pt{font-weight:700;font-size:.78rem;color:var(--dk);line-height:1.2;}
 .psb{font-size:.65rem;color:var(--mg);margin-top:1px;}
@@ -364,12 +398,7 @@ footer{background:var(--dk);padding:40px 24px 22px;}
           <button class="ftab" data-filter="new" onclick="filterResults('new',this)">New Parts</button>
           <button class="ftab" data-filter="used" onclick="filterResults('used',this)">Used Parts</button>
         </div>
-        <div class="tscr">
-          <table>
-            <thead><tr><th>Supplier</th><th>Part</th><th>Price</th><th>Delivery</th><th>Condition</th><th>Fit</th><th>Buy</th></tr></thead>
-            <tbody id="aiBody"></tbody>
-          </table>
-        </div>
+        <div class="res-list" id="resList"></div>
       </div>
     </div>
 
@@ -775,56 +804,144 @@ function showResults(v,part,data){
   setTimeout(function(){zone.scrollIntoView({behavior:'smooth',block:'nearest'});},100);
 }
 
+// Supplier info for comparison cards — delivery, click & collect, ratings
+var SUP_INFO = {
+  'eBay':           {delivery:'3-5 days', delCost:'varies', cc:false, rating:4.2, reviews:'10M+'},
+  'Amazon':         {delivery:'Next day (Prime)', delCost:'Free w/ Prime', cc:false, prime:true, rating:4.5, reviews:'50M+'},
+  'Euro Car Parts': {delivery:'Next day', delCost:'£4.99', cc:true, rating:4.1, reviews:'120k'},
+  'GSF Car Parts':  {delivery:'Next day', delCost:'£5.99', cc:true, rating:4.0, reviews:'45k'},
+  'Halfords':       {delivery:'Next day', delCost:'£3.99', cc:true, rating:4.3, reviews:'280k'},
+  'Autodoc':        {delivery:'3-5 days', delCost:'£5.99', cc:false, rating:3.9, reviews:'90k'},
+  'Car Parts 4 Less':{delivery:'Next day', delCost:'£4.99', cc:false, rating:4.0, reviews:'15k'},
+  'FCP Euro':       {delivery:'5-7 days', delCost:'£9.99', cc:false, rating:4.4, reviews:'8k'},
+  'Andrew Page':    {delivery:'Next day', delCost:'£4.99', cc:true, rating:4.2, reviews:'6k'},
+  'Motor Factor':   {delivery:'2-3 days', delCost:'£4.99', cc:false, rating:3.8, reviews:'2k'},
+  'Parts Gateway':  {delivery:'2-3 days', delCost:'varies', cc:false, rating:4.1, reviews:'12k'},
+  '1st Choice Spares':{delivery:'3-5 days', delCost:'Free', cc:false, rating:4.0, reviews:'18k'}
+};
+
+function starsHtml(rating){
+  var full=Math.floor(rating);
+  var half=rating-full>=0.5;
+  var s='';
+  for(var i=0;i<full;i++)s+='★';
+  if(half)s+='⯨';
+  while(s.length<5)s+='☆';
+  return s.substring(0,5);
+}
+
+function makeCard(opts){
+  // opts: sup, isLive, part, price, delivery, delCost, seller, url, isUsed, isBest, totalPrice
+  var info=SUP_INFO[opts.sup.n]||{delivery:'3-5 days',delCost:'varies',cc:false,rating:4.0,reviews:''};
+  var stars=starsHtml(info.rating);
+  var priceHtml=opts.price?'<div class="rc-price'+(opts.isBest?' cheapest':'')+'">£'+opts.price+'</div><div class="rc-price-lbl">'+(opts.isUsed?'Used':'New')+' part</div>':'<div class="rc-price" style="color:var(--mg);font-size:1rem;">See price</div><div class="rc-price-lbl">on supplier site</div>';
+  var partTitle=opts.partTitle||opts.part;
+  if(partTitle.length>80)partTitle=partTitle.substring(0,80)+'...';
+
+  // Delivery info
+  var delText=opts.delivery||info.delivery;
+  var delCostText=opts.delCost!==undefined?(parseFloat(opts.delCost)===0?'Free':'£'+opts.delCost):info.delCost;
+  var isFastDel=delText.toLowerCase().includes('next');
+  var isFreeDel=delCostText.toLowerCase()==='free';
+
+  // Stock
+  var stockText=opts.isLive?'In stock':'Check site';
+  var stockClass=opts.isLive?'in-stock':'';
+
+  // Total
+  var totalHtml='';
+  if(opts.price){
+    var total=parseFloat(opts.price)+(parseFloat(opts.delCost)||0);
+    totalHtml='<div class="rc-total-left"><div class="rc-total-lbl">Total (inc. delivery)</div><div class="rc-total-amt">£'+total.toFixed(2)+'</div></div>';
+  } else {
+    totalHtml='<div class="rc-total-left"><div class="rc-total-lbl">See full price on site</div></div>';
+  }
+
+  var html='<div class="rcard'+(opts.isBest?' best':'')+'">';
+  // Header: logo, name, rating, price
+  html+='<div class="rc-head">';
+  html+='<div class="rc-logo">'+opts.sup.i+'</div>';
+  html+='<div class="rc-supinfo">';
+  html+='<div class="rc-supname">'+opts.sup.n+(opts.isLive?' <span class="rc-livebdg">LIVE</span>':'')+'</div>';
+  html+='<div class="rc-rating"><span class="stars">'+stars+'</span> '+info.rating.toFixed(1)+(info.reviews?' ('+info.reviews+' reviews)':'')+'</div>';
+  html+='</div>';
+  html+='<div class="rc-price-main">'+priceHtml+'</div>';
+  html+='</div>';
+  // Part title
+  html+='<div class="rc-part">'+partTitle+(opts.seller?'<div class="rc-seller">Seller: '+opts.seller+'</div>':'')+'</div>';
+  // Info grid
+  html+='<div class="rc-grid">';
+  html+='<div class="rc-cell '+(isFastDel?'fast':'')+'"><div class="rc-cell-lbl">🚚 Delivery</div><div class="rc-cell-val">'+delText+'</div></div>';
+  html+='<div class="rc-cell '+(isFreeDel?'free':'')+'"><div class="rc-cell-lbl">📦 Delivery Cost</div><div class="rc-cell-val">'+delCostText+'</div></div>';
+  html+='<div class="rc-cell '+stockClass+'"><div class="rc-cell-lbl">✅ Availability</div><div class="rc-cell-val">'+stockText+'</div></div>';
+  html+='<div class="rc-cell"><div class="rc-cell-lbl">🏪 Click & Collect</div><div class="rc-cell-val">'+(info.cc?'<span style="color:var(--gr);">✓ Available</span>':'Not available')+'</div></div>';
+  html+='</div>';
+  // Badges
+  html+='<div class="rc-badges">';
+  html+='<span class="rc-bdg fits">✅ Fits your '+(vehicle?vehicle.name:'car')+'</span>';
+  if(info.cc)html+='<span class="rc-bdg click-collect">🏪 Click & Collect</span>';
+  if(info.prime)html+='<span class="rc-bdg prime">⚡ Prime</span>';
+  if(isFreeDel)html+='<span class="rc-bdg free-del">🆓 Free Delivery</span>';
+  html+='<span class="rc-bdg '+(opts.isUsed?'used':'new')+'">'+(opts.isUsed?'USED':'NEW')+'</span>';
+  html+='</div>';
+  // Total bar + buy button
+  html+='<div class="rc-total">';
+  html+=totalHtml;
+  html+='<a href="'+opts.url+'" target="_blank" rel="sponsored noopener" class="rc-buy" onclick="trackClick(\''+opts.sup.n.replace(/\'/g,'')+'\',\''+opts.part.replace(/\'/g,'')+'\','+(opts.price||0)+')">'+(opts.price?'Buy Now →':'Search →')+'</a>';
+  html+='</div>';
+  html+='</div>';
+  return html;
+}
+
 function renderResults(part,v){
   if(!v)v=vehicle;
-  var tbody=document.getElementById('aiBody');
+  var list=document.getElementById('resList');
   var html='';
   var ebayNew=allRows.filter(function(r){return !r.isUsed;});
   var ebayUsed=allRows.filter(function(r){return r.isUsed;});
 
-  ALL_SUPS.forEach(function(sup,idx){
-    if(sup.live){
-      // eBay — show live rows
-      var rows=currentFilter==='used'?ebayUsed:currentFilter==='new'?ebayNew:ebayNew.concat(ebayUsed);
-      if(rows.length===0){
-        html+='<tr><td><span class="stag">'+sup.i+' '+sup.n+'</span> <span class="bdg bl">LIVE</span></td>';
-        html+='<td colspan="4" style="color:var(--mg);font-size:.78rem;">No live results — search directly</td>';
-        html+='<td><span class="fb">✅ Fits</span></td>';
-        html+='<td><a href="https://www.ebay.co.uk/sch/i.html?_nkw='+encodeURIComponent(part+' '+(v?v.name:''))+'&campid='+AFF.ebay+'" target="_blank" class="gbtn">Search →</a></td></tr>';
-      } else {
-        rows.forEach(function(r,i){
-          var best=i===0&&idx===0;
-          var condBadge=r.isUsed?'<span class="bdg bu">USED</span>':'<span class="bdg bn">NEW</span>';
-          var t=r.title&&r.title.length>55?r.title.substring(0,55)+'...':r.title;
-          html+='<tr class="'+(best?'best':'')+'">';
-          html+='<td><span class="stag">'+sup.i+' '+sup.n+'</span> <span class="bdg bl">LIVE</span></td>';
-          html+='<td><div class="pt">'+(t||part)+'</div><div class="psb">'+(r.seller||'')+'</div></td>';
-          html+='<td><span class="pc'+(best?' pcb':'')+'">£'+r.price+'</span>'+(best?'<span class="bdg bb">BEST</span>':'')+'</td>';
-          html+='<td style="font-size:.72rem;color:var(--mg);">'+(parseFloat(r.deliveryCost)===0?'Free':'£'+r.deliveryCost)+'</td>';
-          html+='<td>'+condBadge+'</td>';
-          html+='<td><span class="fb">✅ Fits</span></td>';
-          html+='<td><a href="'+r.url+'" target="_blank" rel="sponsored noopener" class="gbtn" onclick="trackClick(\''+(r.supplier||'eBay').replace(/\'/g,'')+'\',\''+part.replace(/\'/g,'')+'\','+r.price+')">Buy →</a></td>';
-          html+='</tr>';
-        });
-      }
-    } else {
-      // Other suppliers — search link
-      if(currentFilter==='used')return;
-      var supUrl=sup.url(part,v?v.name:'');
-      html+='<tr>';
-      html+='<td><span class="stag">'+sup.i+' '+sup.n+'</span></td>';
-      html+='<td><div class="pt">'+part+'</div><div class="psb">Click to compare prices on '+sup.n+'</div></td>';
-      html+='<td><span class="pc" style="color:var(--mg);font-size:.78rem;">See price</span></td>';
-      html+='<td style="font-size:.72rem;color:var(--mg);">Check site</td>';
-      html+='<td><span class="bdg bn">NEW</span></td>';
-      html+='<td><span class="fb">✅ Fits</span></td>';
-      html+='<td><a href="'+supUrl+'" target="_blank" rel="sponsored noopener" class="gbtn" onclick="trackClick(\''+sup.n+'\',\''+part.replace(/\'/g,'')+'\',0)">Search →</a></td>';
-      html+='</tr>';
-    }
+  // Sort all suppliers: live results first sorted by total price, then non-live
+  var liveCards=[];
+  var ebayRows=currentFilter==='used'?ebayUsed:currentFilter==='new'?ebayNew:ebayNew.concat(ebayUsed);
+  ebayRows.forEach(function(r){
+    liveCards.push({
+      sup:{n:r.supplier||'eBay',i:r.supplierIcon||'🛒'},
+      isLive:true,
+      part:part,
+      partTitle:r.title,
+      price:r.price,
+      delCost:r.deliveryCost,
+      seller:r.seller,
+      url:r.url,
+      isUsed:r.isUsed,
+      totalPrice:parseFloat(r.totalPrice||r.price)
+    });
   });
+  liveCards.sort(function(a,b){return a.totalPrice-b.totalPrice;});
+  // Mark first (cheapest) as best
+  if(liveCards.length>0)liveCards[0].isBest=true;
 
-  if(!html)html='<tr><td colspan="7" style="text-align:center;padding:30px;color:var(--mg);">No results found.</td></tr>';
-  tbody.innerHTML=html;
+  liveCards.forEach(function(c){html+=makeCard(c);});
+
+  // Add non-live supplier cards (only in 'all' and 'new' modes)
+  if(currentFilter!=='used'){
+    ALL_SUPS.forEach(function(sup){
+      if(sup.live)return; // skip eBay (handled above)
+      var supUrl=sup.url(part,v?v.name:'');
+      html+=makeCard({
+        sup:sup,
+        isLive:false,
+        part:part,
+        partTitle:part,
+        url:supUrl,
+        isUsed:false,
+        isBest:false
+      });
+    });
+  }
+
+  if(!html)html='<div style="text-align:center;padding:40px;color:var(--mg);">No '+(currentFilter==='used'?'used':'')+' results found. Try a different search.</div>';
+  list.innerHTML=html;
 }
 
 function filterResults(type,btn){
