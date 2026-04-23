@@ -132,48 +132,64 @@ nav{background:var(--bl);position:sticky;top:0;z-index:300;box-shadow:0 2px 12px
 .ftab{background:var(--lg);border:2px solid transparent;border-radius:8px;padding:6px 14px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.78rem;color:var(--mg);cursor:pointer;transition:all .15s;}
 .ftab.active{background:var(--bl);color:var(--wh);}
 .ftab:hover:not(.active){border-color:var(--bl);color:var(--bl);}
-/* RESULT CARDS */
-.res-list{display:flex;flex-direction:column;gap:14px;}
-.rcard{background:var(--wh);border:2px solid #E0E8F8;border-radius:14px;padding:14px;box-shadow:0 4px 16px rgba(0,61,166,.06);transition:transform .15s,box-shadow .15s;position:relative;}
-.rcard:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,61,166,.12);}
-.rcard.best{border-color:var(--gr);background:linear-gradient(135deg,#F0FFF7,#fff);margin-top:14px;}
-.rcard.best::before{content:'🏆 BEST DEAL';position:absolute;top:-11px;left:14px;background:var(--gr);color:#fff;font-family:'Nunito',sans-serif;font-weight:900;font-size:.62rem;letter-spacing:1px;padding:4px 10px;border-radius:20px;}
-.rc-head{display:flex;align-items:center;gap:10px;margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid var(--lg);}
-.rc-logo{width:44px;height:44px;background:var(--lg);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;}
-.rc-supinfo{flex:1;min-width:0;}
-.rc-supname{font-family:'Nunito',sans-serif;font-weight:900;font-size:.95rem;color:var(--bl);display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
-.rc-livebdg{background:var(--ye);color:var(--bl);font-family:'Nunito',sans-serif;font-weight:900;font-size:.55rem;padding:2px 6px;border-radius:4px;letter-spacing:.5px;}
-.rc-rating{font-size:.72rem;color:var(--mg);display:flex;align-items:center;gap:3px;margin-top:2px;}
-.rc-rating .stars{color:#FFB400;letter-spacing:1px;font-size:.82rem;}
-.rc-price-main{text-align:right;flex-shrink:0;}
-.rc-price{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.4rem;color:var(--dk);line-height:1;}
-.rc-price.cheapest{color:var(--gr);}
-.rc-price-lbl{font-size:.62rem;color:var(--mg);margin-top:2px;}
-.rc-part{font-size:.82rem;color:var(--dk);line-height:1.3;margin-bottom:10px;font-weight:600;}
-.rc-seller{font-size:.7rem;color:var(--mg);margin-top:2px;}
-.rc-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;}
-.rc-cell{background:var(--lg);border-radius:8px;padding:7px 10px;}
-.rc-cell-lbl{font-family:'Nunito',sans-serif;font-weight:700;font-size:.58rem;text-transform:uppercase;letter-spacing:.8px;color:var(--mg);margin-bottom:2px;}
-.rc-cell-val{font-family:'Nunito',sans-serif;font-weight:800;font-size:.82rem;color:var(--dk);display:flex;align-items:center;gap:4px;}
-.rc-cell.in-stock .rc-cell-val{color:var(--gr);}
-.rc-cell.low-stock .rc-cell-val{color:#D68000;}
-.rc-cell.free .rc-cell-val{color:var(--gr);}
-.rc-cell.fast .rc-cell-val{color:var(--gr);}
-.rc-badges{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px;}
-.rc-bdg{display:inline-flex;align-items:center;gap:3px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.64rem;padding:4px 9px;border-radius:6px;}
-.rc-bdg.click-collect{background:#E6F0FF;color:var(--bl);border:1px solid #B8D0FF;}
-.rc-bdg.prime{background:#FFF3D9;color:#A06000;border:1px solid #FFD680;}
-.rc-bdg.new{background:var(--bl);color:#fff;}
-.rc-bdg.used{background:var(--or);color:#fff;}
-.rc-bdg.fits{background:var(--gn);color:var(--gr);border:1px solid #b2dfc9;}
-.rc-bdg.free-del{background:var(--gn);color:var(--gr);border:1px solid #b2dfc9;}
-.rc-total{background:linear-gradient(90deg,#F4F7FF,var(--wh));border-top:1px solid var(--lg);padding:10px 14px;margin:10px -14px -14px;border-radius:0 0 12px 12px;display:flex;justify-content:space-between;align-items:center;gap:10px;}
-.rc-total-left{flex:1;min-width:0;}
-.rc-total-lbl{font-family:'Nunito',sans-serif;font-weight:800;font-size:.65rem;color:var(--mg);text-transform:uppercase;letter-spacing:.5px;}
-.rc-total-amt{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.15rem;color:var(--dk);}
-.rc-buy{background:var(--bl);color:#fff;border:none;border-radius:10px;padding:10px 22px;font-family:'Nunito',sans-serif;font-weight:900;font-size:.88rem;cursor:pointer;text-decoration:none;white-space:nowrap;}
-.rc-buy:hover{background:var(--b2);}
-.rcard.best .rc-buy{background:var(--gr);}
+/* COMPACT COMPARISON TABLE */
+.ctbl{background:var(--wh);border:1.5px solid #E0E8F8;border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(0,61,166,.08);}
+.ctbl-head{display:grid;grid-template-columns:90px 1fr 62px 62px 60px 52px 70px;gap:0;background:var(--bl);padding:6px 4px;}
+.ctbl-head > div{font-family:'Nunito',sans-serif;font-weight:800;font-size:.55rem;color:rgba(255,255,255,.9);text-transform:uppercase;letter-spacing:.3px;text-align:center;padding:2px;line-height:1.1;}
+.ctbl-head > div:nth-child(2){text-align:left;padding-left:6px;}
+.crow{display:grid;grid-template-columns:90px 1fr 62px 62px 60px 52px 70px;gap:0;padding:6px 4px;border-bottom:1px solid #EEF2FA;align-items:center;min-height:56px;font-size:.68rem;}
+.crow:last-child{border-bottom:none;}
+.crow:hover{background:#F8FBFF;}
+.crow.best{background:linear-gradient(90deg,#F0FFF7,#fff);border-left:3px solid var(--gr);}
+.crow > div{text-align:center;padding:2px 3px;}
+.crow > div:nth-child(2){text-align:left;padding-left:6px;}
+
+/* Column 1: Supplier */
+.c-sup{display:flex;flex-direction:column;align-items:center;gap:2px;}
+.c-sup-ico{font-size:1.3rem;line-height:1;}
+.c-sup-name{font-family:'Nunito',sans-serif;font-weight:900;font-size:.58rem;color:var(--bl);line-height:1.05;text-align:center;}
+.c-sup-live{background:var(--ye);color:var(--bl);font-family:'Nunito',sans-serif;font-weight:900;font-size:.5rem;padding:1px 4px;border-radius:3px;letter-spacing:.3px;margin-top:1px;}
+
+/* Column 2: Part */
+.c-part{min-width:0;}
+.c-part-t{font-family:'Nunito',sans-serif;font-weight:700;font-size:.72rem;color:var(--dk);line-height:1.15;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.c-part-s{font-size:.58rem;color:var(--mg);margin-top:1px;}
+.c-part-b{display:flex;gap:3px;margin-top:2px;flex-wrap:wrap;}
+.c-mini-bdg{font-family:'Nunito',sans-serif;font-weight:800;font-size:.52rem;padding:1px 4px;border-radius:3px;letter-spacing:.2px;}
+.c-mini-bdg.cc{background:#E6F0FF;color:var(--bl);}
+.c-mini-bdg.prime{background:#FFF3D9;color:#A06000;}
+.c-mini-bdg.new{background:var(--bl);color:#fff;}
+.c-mini-bdg.used{background:var(--or);color:#fff;}
+.c-mini-bdg.free{background:var(--gn);color:var(--gr);}
+
+/* Column 3: Price */
+.c-price{font-family:'Nunito',sans-serif;font-weight:900;font-size:.95rem;color:var(--dk);line-height:1;}
+.c-price.best{color:var(--gr);font-size:1rem;}
+.c-price-sub{font-size:.52rem;color:var(--mg);margin-top:2px;font-weight:600;}
+
+/* Column 4: Delivery */
+.c-del{font-family:'Nunito',sans-serif;font-weight:800;font-size:.68rem;color:var(--dk);line-height:1.1;}
+.c-del.fast{color:var(--gr);}
+.c-del-cost{font-size:.58rem;color:var(--mg);margin-top:1px;font-weight:700;}
+.c-del-cost.free{color:var(--gr);}
+
+/* Column 5: Stock */
+.c-stock{font-family:'Nunito',sans-serif;font-weight:800;font-size:.62rem;line-height:1.1;}
+.c-stock.ok{color:var(--gr);}
+.c-stock.check{color:var(--mg);}
+
+/* Column 6: Rating */
+.c-rating{font-family:'Nunito',sans-serif;font-weight:900;font-size:.72rem;color:var(--dk);}
+.c-rating-stars{color:#FFB400;font-size:.6rem;letter-spacing:.5px;line-height:1;margin-top:1px;}
+.c-rating-ct{font-size:.5rem;color:var(--mg);margin-top:1px;}
+
+/* Column 7: Buy button */
+.c-buy{background:var(--bl);color:#fff;border:none;border-radius:6px;padding:6px 4px;font-family:'Nunito',sans-serif;font-weight:900;font-size:.65rem;cursor:pointer;text-decoration:none;display:inline-block;width:100%;text-align:center;line-height:1.1;}
+.c-buy:hover{background:var(--b2);}
+.crow.best .c-buy{background:var(--gr);}
+
+/* Best deal ribbon */
+.best-rib{background:var(--gr);color:#fff;font-family:'Nunito',sans-serif;font-weight:900;font-size:.55rem;padding:2px 8px;letter-spacing:.5px;display:inline-block;margin-bottom:4px;border-radius:3px;}
 .stag{display:inline-flex;align-items:center;gap:4px;background:var(--lg);border:1.5px solid #D0DCEF;border-radius:6px;padding:3px 8px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.72rem;color:var(--bl);white-space:nowrap;}
 .pt{font-weight:700;font-size:.78rem;color:var(--dk);line-height:1.2;}
 .psb{font-size:.65rem;color:var(--mg);margin-top:1px;}
@@ -305,8 +321,29 @@ footer{background:var(--dk);padding:40px 24px 22px;}
   .stats{gap:18px;padding:12px;}
   .qr{flex-direction:column;}
   .qb{width:100%;}
-  th:nth-child(4),td:nth-child(4){display:none;}
   .scan-grid{grid-template-columns:repeat(3,1fr);}
+  /* Compact table on mobile — tighter columns */
+  .ctbl-head{grid-template-columns:62px 1fr 52px 56px 50px 44px 56px;padding:5px 3px;}
+  .ctbl-head > div{font-size:.48rem;padding:1px;}
+  .crow{grid-template-columns:62px 1fr 52px 56px 50px 44px 56px;padding:5px 3px;min-height:54px;font-size:.62rem;}
+  .crow > div{padding:1px 2px;}
+  .c-sup-ico{font-size:1rem;}
+  .c-sup-name{font-size:.5rem;}
+  .c-sup-live{font-size:.44rem;padding:1px 3px;}
+  .c-part-t{font-size:.64rem;-webkit-line-clamp:2;}
+  .c-part-s{font-size:.52rem;}
+  .c-mini-bdg{font-size:.46rem;padding:1px 3px;}
+  .c-price{font-size:.82rem;}
+  .c-price.best{font-size:.88rem;}
+  .c-price-sub{font-size:.48rem;}
+  .c-del{font-size:.58rem;}
+  .c-del-cost{font-size:.52rem;}
+  .c-stock{font-size:.54rem;}
+  .c-rating{font-size:.62rem;}
+  .c-rating-stars{font-size:.52rem;}
+  .c-rating-ct{font-size:.44rem;}
+  .c-buy{font-size:.55rem;padding:5px 2px;}
+  .best-rib{font-size:.48rem;padding:1px 5px;}
 }
 @media(max-width:420px){
   .cats-grid{grid-template-columns:repeat(3,1fr);}
@@ -394,11 +431,23 @@ footer{background:var(--dk);padding:40px 24px 22px;}
           <span class="aipt" id="aiPart"></span>
         </div>
         <div class="filter-tabs">
-          <button class="ftab active" data-filter="all" onclick="filterResults('all',this)">All Results</button>
-          <button class="ftab" data-filter="new" onclick="filterResults('new',this)">New Parts</button>
-          <button class="ftab" data-filter="used" onclick="filterResults('used',this)">Used Parts</button>
+          <button class="ftab active" data-filter="all" onclick="filterResults('all',this)">All</button>
+          <button class="ftab" data-filter="new" onclick="filterResults('new',this)">New</button>
+          <button class="ftab" data-filter="used" onclick="filterResults('used',this)">Used</button>
+          <button class="ftab" data-filter="today" onclick="filterResults('today',this)">⚡ Today</button>
         </div>
-        <div class="res-list" id="resList"></div>
+        <div class="ctbl" id="resTable">
+          <div class="ctbl-head">
+            <div>Supplier</div>
+            <div>Part</div>
+            <div>Price</div>
+            <div>Delivery</div>
+            <div>Stock</div>
+            <div>Rating</div>
+            <div>Buy</div>
+          </div>
+          <div id="resList"></div>
+        </div>
       </div>
     </div>
 
@@ -830,65 +879,63 @@ function starsHtml(rating){
   return s.substring(0,5);
 }
 
-function makeCard(opts){
-  // opts: sup, isLive, part, price, delivery, delCost, seller, url, isUsed, isBest, totalPrice
+function makeRow(opts){
+  // opts: sup, isLive, part, partTitle, price, delCost, delivery, seller, url, isUsed, isBest
   var info=SUP_INFO[opts.sup.n]||{delivery:'3-5 days',delCost:'varies',cc:false,rating:4.0,reviews:''};
   var stars=starsHtml(info.rating);
-  var priceHtml=opts.price?'<div class="rc-price'+(opts.isBest?' cheapest':'')+'">£'+opts.price+'</div><div class="rc-price-lbl">'+(opts.isUsed?'Used':'New')+' part</div>':'<div class="rc-price" style="color:var(--mg);font-size:1rem;">See price</div><div class="rc-price-lbl">on supplier site</div>';
-  var partTitle=opts.partTitle||opts.part;
-  if(partTitle.length>80)partTitle=partTitle.substring(0,80)+'...';
 
-  // Delivery info
+  var priceHtml;
+  if(opts.price){
+    priceHtml='<div class="c-price'+(opts.isBest?' best':'')+'">£'+opts.price+'</div>';
+    if(opts.delCost!==undefined){
+      var total=parseFloat(opts.price)+(parseFloat(opts.delCost)||0);
+      priceHtml+='<div class="c-price-sub">Total £'+total.toFixed(2)+'</div>';
+    }
+  } else {
+    priceHtml='<div class="c-price" style="color:var(--mg);font-size:.72rem;">See site</div>';
+  }
+
+  var partTitle=opts.partTitle||opts.part;
+  if(partTitle.length>60)partTitle=partTitle.substring(0,60)+'...';
+
   var delText=opts.delivery||info.delivery;
   var delCostText=opts.delCost!==undefined?(parseFloat(opts.delCost)===0?'Free':'£'+opts.delCost):info.delCost;
   var isFastDel=delText.toLowerCase().includes('next');
   var isFreeDel=delCostText.toLowerCase()==='free';
 
-  // Stock
-  var stockText=opts.isLive?'In stock':'Check site';
-  var stockClass=opts.isLive?'in-stock':'';
+  var stockText=opts.isLive?'In Stock':'Check site';
+  var stockClass=opts.isLive?'ok':'check';
 
-  // Total
-  var totalHtml='';
-  if(opts.price){
-    var total=parseFloat(opts.price)+(parseFloat(opts.delCost)||0);
-    totalHtml='<div class="rc-total-left"><div class="rc-total-lbl">Total (inc. delivery)</div><div class="rc-total-amt">£'+total.toFixed(2)+'</div></div>';
-  } else {
-    totalHtml='<div class="rc-total-left"><div class="rc-total-lbl">See full price on site</div></div>';
-  }
+  var miniBadges='';
+  if(info.cc)miniBadges+='<span class="c-mini-bdg cc">🏪 C&C</span>';
+  if(info.prime)miniBadges+='<span class="c-mini-bdg prime">⚡Prime</span>';
+  if(isFreeDel)miniBadges+='<span class="c-mini-bdg free">🆓Free</span>';
+  miniBadges+='<span class="c-mini-bdg '+(opts.isUsed?'used':'new')+'">'+(opts.isUsed?'USED':'NEW')+'</span>';
 
-  var html='<div class="rcard'+(opts.isBest?' best':'')+'">';
-  // Header: logo, name, rating, price
-  html+='<div class="rc-head">';
-  html+='<div class="rc-logo">'+opts.sup.i+'</div>';
-  html+='<div class="rc-supinfo">';
-  html+='<div class="rc-supname">'+opts.sup.n+(opts.isLive?' <span class="rc-livebdg">LIVE</span>':'')+'</div>';
-  html+='<div class="rc-rating"><span class="stars">'+stars+'</span> '+info.rating.toFixed(1)+(info.reviews?' ('+info.reviews+' reviews)':'')+'</div>';
+  var html='<div class="crow'+(opts.isBest?' best':'')+'">';
+  // Col 1: Supplier
+  html+='<div><div class="c-sup">';
+  html+='<div class="c-sup-ico">'+opts.sup.i+'</div>';
+  html+='<div class="c-sup-name">'+opts.sup.n+'</div>';
+  if(opts.isLive)html+='<div class="c-sup-live">LIVE</div>';
+  html+='</div></div>';
+  // Col 2: Part
+  html+='<div class="c-part">';
+  if(opts.isBest)html+='<div class="best-rib">🏆 BEST DEAL</div>';
+  html+='<div class="c-part-t">'+partTitle+'</div>';
+  if(opts.seller)html+='<div class="c-part-s">'+opts.seller+'</div>';
+  html+='<div class="c-part-b">'+miniBadges+'</div>';
   html+='</div>';
-  html+='<div class="rc-price-main">'+priceHtml+'</div>';
-  html+='</div>';
-  // Part title
-  html+='<div class="rc-part">'+partTitle+(opts.seller?'<div class="rc-seller">Seller: '+opts.seller+'</div>':'')+'</div>';
-  // Info grid
-  html+='<div class="rc-grid">';
-  html+='<div class="rc-cell '+(isFastDel?'fast':'')+'"><div class="rc-cell-lbl">🚚 Delivery</div><div class="rc-cell-val">'+delText+'</div></div>';
-  html+='<div class="rc-cell '+(isFreeDel?'free':'')+'"><div class="rc-cell-lbl">📦 Delivery Cost</div><div class="rc-cell-val">'+delCostText+'</div></div>';
-  html+='<div class="rc-cell '+stockClass+'"><div class="rc-cell-lbl">✅ Availability</div><div class="rc-cell-val">'+stockText+'</div></div>';
-  html+='<div class="rc-cell"><div class="rc-cell-lbl">🏪 Click & Collect</div><div class="rc-cell-val">'+(info.cc?'<span style="color:var(--gr);">✓ Available</span>':'Not available')+'</div></div>';
-  html+='</div>';
-  // Badges
-  html+='<div class="rc-badges">';
-  html+='<span class="rc-bdg fits">✅ Fits your '+(vehicle?vehicle.name:'car')+'</span>';
-  if(info.cc)html+='<span class="rc-bdg click-collect">🏪 Click & Collect</span>';
-  if(info.prime)html+='<span class="rc-bdg prime">⚡ Prime</span>';
-  if(isFreeDel)html+='<span class="rc-bdg free-del">🆓 Free Delivery</span>';
-  html+='<span class="rc-bdg '+(opts.isUsed?'used':'new')+'">'+(opts.isUsed?'USED':'NEW')+'</span>';
-  html+='</div>';
-  // Total bar + buy button
-  html+='<div class="rc-total">';
-  html+=totalHtml;
-  html+='<a href="'+opts.url+'" target="_blank" rel="sponsored noopener" class="rc-buy" onclick="trackClick(\''+opts.sup.n.replace(/\'/g,'')+'\',\''+opts.part.replace(/\'/g,'')+'\','+(opts.price||0)+')">'+(opts.price?'Buy Now →':'Search →')+'</a>';
-  html+='</div>';
+  // Col 3: Price
+  html+='<div>'+priceHtml+'</div>';
+  // Col 4: Delivery
+  html+='<div><div class="c-del'+(isFastDel?' fast':'')+'">'+delText+'</div><div class="c-del-cost'+(isFreeDel?' free':'')+'">'+delCostText+'</div></div>';
+  // Col 5: Stock
+  html+='<div><div class="c-stock '+stockClass+'">'+stockText+'</div></div>';
+  // Col 6: Rating
+  html+='<div><div class="c-rating">'+info.rating.toFixed(1)+'</div><div class="c-rating-stars">'+stars+'</div>'+(info.reviews?'<div class="c-rating-ct">'+info.reviews+'</div>':'')+'</div>';
+  // Col 7: Buy
+  html+='<div><a href="'+opts.url+'" target="_blank" rel="sponsored noopener" class="c-buy" onclick="trackClick(\''+opts.sup.n.replace(/\'/g,'')+'\',\''+opts.part.replace(/\'/g,'')+'\','+(opts.price||0)+')">'+(opts.price?'Buy →':'Search →')+'</a></div>';
   html+='</div>';
   return html;
 }
@@ -900,11 +947,15 @@ function renderResults(part,v){
   var ebayNew=allRows.filter(function(r){return !r.isUsed;});
   var ebayUsed=allRows.filter(function(r){return r.isUsed;});
 
-  // Sort all suppliers: live results first sorted by total price, then non-live
-  var liveCards=[];
-  var ebayRows=currentFilter==='used'?ebayUsed:currentFilter==='new'?ebayNew:ebayNew.concat(ebayUsed);
+  var liveRows=[];
+  var ebayRows;
+  if(currentFilter==='used')ebayRows=ebayUsed;
+  else if(currentFilter==='new')ebayRows=ebayNew;
+  else if(currentFilter==='today')ebayRows=[]; // eBay has no C&C
+  else ebayRows=ebayNew.concat(ebayUsed);
+
   ebayRows.forEach(function(r){
-    liveCards.push({
+    liveRows.push({
       sup:{n:r.supplier||'eBay',i:r.supplierIcon||'🛒'},
       isLive:true,
       part:part,
@@ -917,18 +968,21 @@ function renderResults(part,v){
       totalPrice:parseFloat(r.totalPrice||r.price)
     });
   });
-  liveCards.sort(function(a,b){return a.totalPrice-b.totalPrice;});
-  // Mark first (cheapest) as best
-  if(liveCards.length>0)liveCards[0].isBest=true;
+  liveRows.sort(function(a,b){return a.totalPrice-b.totalPrice;});
+  if(liveRows.length>0)liveRows[0].isBest=true;
 
-  liveCards.forEach(function(c){html+=makeCard(c);});
+  liveRows.forEach(function(r){html+=makeRow(r);});
 
-  // Add non-live supplier cards (only in 'all' and 'new' modes)
   if(currentFilter!=='used'){
     ALL_SUPS.forEach(function(sup){
-      if(sup.live)return; // skip eBay (handled above)
+      if(sup.live)return;
+      // "Today" filter: only show suppliers with Click & Collect
+      if(currentFilter==='today'){
+        var info=SUP_INFO[sup.n];
+        if(!info||!info.cc)return;
+      }
       var supUrl=sup.url(part,v?v.name:'');
-      html+=makeCard({
+      html+=makeRow({
         sup:sup,
         isLive:false,
         part:part,
@@ -940,7 +994,13 @@ function renderResults(part,v){
     });
   }
 
-  if(!html)html='<div style="text-align:center;padding:40px;color:var(--mg);">No '+(currentFilter==='used'?'used':'')+' results found. Try a different search.</div>';
+  if(!html){
+    if(currentFilter==='today'){
+      html='<div style="text-align:center;padding:30px;color:var(--mg);font-size:.85rem;">No Click & Collect options available for this part. <br>Try "All" filter instead.</div>';
+    } else {
+      html='<div style="text-align:center;padding:30px;color:var(--mg);">No results found.</div>';
+    }
+  }
   list.innerHTML=html;
 }
 
