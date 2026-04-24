@@ -458,7 +458,7 @@ footer nav.fc{background:transparent !important;}
             <div>Delivery</div>
             <div>Stock</div>
             <div>Rating</div>
-            <div>C&amp;C</div>
+            <div>Collect</div>
             <div>Buy</div>
           </div>
           <div id="resList"></div>
@@ -955,7 +955,7 @@ function makeRow(opts){
   var stockClass=opts.isLive?'ok':'check';
 
   var miniBadges='';
-  if(info.cc)miniBadges+='<span class="c-mini-bdg cc">🏪 C&C</span>';
+  if(info.cc)miniBadges+='<span class="c-mini-bdg cc">🏪 Click &amp; Collect</span>';
   if(info.prime)miniBadges+='<span class="c-mini-bdg prime">⚡Prime</span>';
   if(isFreeDel)miniBadges+='<span class="c-mini-bdg free">🆓Free</span>';
   miniBadges+='<span class="c-mini-bdg '+(opts.isUsed?'used':'new')+'">'+(opts.isUsed?'USED':'NEW')+'</span>';
@@ -985,8 +985,12 @@ function makeRow(opts){
   html+='<div><div class="c-stock '+stockClass+'">'+stockText+'</div></div>';
   // Col 6: Rating
   html+='<div><div class="c-rating">'+info.rating.toFixed(1)+'</div><div class="c-rating-stars">'+stars+'</div>'+(info.reviews?'<div class="c-rating-ct">'+info.reviews+'</div>':'')+'</div>';
-  // Col 7: Click & Collect
-  html+='<div style="text-align:center;">'+(info.cc?'<div style="color:var(--gr);font-weight:900;font-size:1.1rem;line-height:1;">✓</div><div style="font-size:.55rem;color:var(--gr);font-weight:700;margin-top:2px;">Available</div>':'<div style="color:#B0B8C8;font-size:.95rem;line-height:1;">—</div><div style="font-size:.55rem;color:#B0B8C8;margin-top:2px;">N/A</div>')+'</div>';
+  // Col 7: Click & Collect — BIG clear label
+  if(info.cc){
+    html+='<div style="text-align:center;"><div style="color:var(--gr);font-weight:900;font-size:1.4rem;line-height:1;">✓</div><div style="font-size:.68rem;color:var(--gr);font-weight:800;margin-top:3px;line-height:1.1;">Collect<br/>In Store</div></div>';
+  } else {
+    html+='<div style="text-align:center;"><div style="color:#B0B8C8;font-size:1.3rem;line-height:1;font-weight:700;">✕</div><div style="font-size:.68rem;color:#B0B8C8;font-weight:700;margin-top:3px;line-height:1.1;">Delivery<br/>Only</div></div>';
+  }
   // Col 8: Buy
   html+='<div><a href="'+opts.url+'" target="_blank" rel="sponsored noopener" class="c-buy" onclick="trackClick(\''+opts.sup.n.replace(/\'/g,'')+'\',\''+opts.part.replace(/\'/g,'')+'\','+(opts.price||0)+')">'+(opts.price?'Buy →':'Search →')+'</a></div>';
   html+='</div>';
