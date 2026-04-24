@@ -789,25 +789,337 @@ function showServiceModal(){
     +'<button onclick="document.getElementById(\'svcModal\').remove()" style="background:var(--lg);border:none;width:36px;height:36px;border-radius:50%;font-size:1rem;cursor:pointer;">✕</button>'
     +'</div>'
     +'<p style="font-size:.85rem;color:var(--mg);margin-bottom:16px;">Choose a package for your <strong>'+vehicle.name+'</strong></p>'
-    +makeSvcCard('🔧 Basic / Interim Service','basic','Every 6 months or 6,000 miles','Engine Oil 5W-30, Oil Filter, Air Filter','service_basic')
-    +makeSvcCard('🔧 Full Service','medium','Standard yearly service','Engine Oil, Oil Filter, Air Filter, Fuel Filter, Cabin Filter, Spark Plugs, Wiper Blades','service_medium')
-    +makeSvcCard('🔧 Major Service','major','Every 2 years — full overhaul','Engine Oil, Oil Filter, Air Filter, Fuel Filter, Cabin Filter, Spark Plugs, Wiper Blades, Brake Fluid, Coolant, Front Brake Pads','service_major')
+    +makeSvcCard('🔧 Basic / Interim Service','basic','Every 6 months or 6,000 miles','Engine Oil 5W-30, Oil Filter, Air Filter')
+    +makeSvcCard('🔧 Full Service','medium','Standard yearly service','Engine Oil 5W-30, Oil Filter, Air Filter, Fuel Filter, Cabin Filter, Spark Plugs, Wiper Blades')
+    +makeSvcCard('🔧 Major Service','major','Every 2 years — full overhaul','Engine Oil 5W-30, Oil Filter, Air Filter, Fuel Filter, Cabin Filter, Spark Plugs, Wiper Blades, Brake Fluid, Coolant Antifreeze, Front Brake Pads')
     +'</div>';
   document.body.appendChild(modal);
 }
-function makeSvcCard(title,key,desc,parts,qry){
-  return '<div onclick="selectService(\''+qry+'\')" style="background:var(--lg);border:2px solid #D0DCEF;border-radius:12px;padding:16px;margin-bottom:12px;cursor:pointer;">'
+function makeSvcCard(title,key,desc,parts){
+  return '<div onclick="selectService(\''+key+'\')" style="background:var(--lg);border:2px solid #D0DCEF;border-radius:12px;padding:16px;margin-bottom:12px;cursor:pointer;">'
     +'<div style="font-family:Nunito,sans-serif;font-weight:900;font-size:.95rem;color:var(--bl);margin-bottom:4px;">'+title+'</div>'
     +'<div style="font-size:.78rem;color:var(--mg);margin-bottom:8px;">'+desc+'</div>'
     +'<div style="font-size:.75rem;color:var(--dk);font-weight:700;">Includes: '+parts+'</div>'
     +'<button style="margin-top:12px;width:100%;background:var(--bl);color:#fff;border:none;border-radius:8px;padding:10px;font-family:Nunito,sans-serif;font-weight:800;cursor:pointer;">Find Best Prices →</button>'
     +'</div>';
 }
-function selectService(query){
+
+var SERVICE_KITS = {
+  basic: {
+    title:'🔧 Basic / Interim Service',
+    parts:['Engine Oil 5W-30','Oil Filter','Air Filter']
+  },
+  medium: {
+    title:'🔧 Full Service',
+    parts:['Engine Oil 5W-30','Oil Filter','Air Filter','Fuel Filter','Cabin Filter','Spark Plugs','Front Wiper Blades']
+  },
+  major: {
+    title:'🔧 Major Service',
+    parts:['Engine Oil 5W-30','Oil Filter','Air Filter','Fuel Filter','Cabin Filter','Spark Plugs','Front Wiper Blades','Brake Fluid','Coolant Antifreeze','Front Brake Pads']
+  }
+};
+
+async function selectService(key){
   var modal=document.getElementById('svcModal');
   if(modal)modal.remove();
-  document.getElementById('partIn').value=query.replace(/_/g,' ');
-  doSearch();
+  var kit=SERVICE_KITS[key];
+  if(!kit||!vehicle)return;
+
+  // Hide normal results, show scan for kit
+  document.getElementById('resultsZone').style.display='none';
+  var scanZone=document.getElementById('scanZone');
+  scanZone.style.display='block';
+  scanZone.innerHTML='<div class="scan-box"><div class="scan-title">🛠️ Building Your '+kit.title.replace(/^🔧 /,'')+' Kit</div>'
+    +'<div class="scan-sub">Finding the cheapest price for each part on your <strong>'+vehicle.name+'</strong></div>'
+    +'<div id="kitProgress" style="margin-top:14px;"></div>'
+    +'<div class="scan-bar" style="margin-top:14px;"><div class="scan-fill" id="kitFill"></div></div></div>';
+  scanZone.scrollIntoView({behavior:'smooth',block:'nearest'});
+
+  // Fetch each part in parallel, but show progress
+  var results=[];
+  var done=0;
+  var prog=document.getElementById('kitProgress');
+  prog.innerHTML=kit.parts.map(function(p,i){return '<div id="kp'+i+'" style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:var(--lg);border-radius:8px;margin-bottom:6px;font-size:.82rem;"><span>⏳ '+p+'</span><span style="color:var(--mg);font-size:.75rem;">Searching...</span></div>';}).join('');
+
+  var promises=kit.parts.map(function(p,idx){
+    return fetch(WORKER_URL+'/ebay?part='+encodeURIComponent(p)+'&vehicle='+encodeURIComponent(vehicle.name))
+      .then(function(r){return r.json();})
+      .then(function(data){
+        var cheapest=null;
+        if(data.items&&data.items.length){
+          // Pick cheapest total (price+delivery)
+          cheapest=data.items.slice().sort(function(a,b){return parseFloat(a.totalPrice||a.price)-parseFloat(b.totalPrice||b.price);})[0];
+        }
+        results[idx]={partName:p,cheapest:cheapest,all:data.items||[]};
+        done++;
+        // Update progress
+        var line=document.getElementById('kp'+idx);
+        if(line){
+          if(cheapest){
+            line.innerHTML='<span>✅ '+p+'</span><span style="color:var(--gr);font-weight:900;">£'+parseFloat(cheapest.totalPrice||cheapest.price).toFixed(2)+'</span>';
+            line.style.background='var(--gn)';
+          } else {
+            line.innerHTML='<span>⚠️ '+p+'</span><span style="color:#D68000;font-size:.72rem;">No live price</span>';
+          }
+        }
+        var fill=document.getElementById('kitFill');
+        if(fill)fill.style.width=Math.round((done/kit.parts.length)*100)+'%';
+      }).catch(function(){
+        results[idx]={partName:p,cheapest:null,all:[]};
+        done++;
+      });
+  });
+
+  await Promise.all(promises);
+  await new Promise(function(r){setTimeout(r,600);});
+
+  // Show kit summary
+  showKitResults(kit,results);
+}
+
+function showKitResults(kit,results){
+  var scanZone=document.getElementById('scanZone');
+  scanZone.style.display='none';
+
+  var zone=document.getElementById('resultsZone');
+  zone.style.display='block';
+  document.getElementById('aiVeh').textContent=vehicle.name;
+  document.getElementById('aiPart').textContent='— '+kit.title.replace(/^🔧 /,'')+' Kit';
+
+  // Hide filter tabs for kit view
+  var tabs=document.querySelector('.filter-tabs');
+  if(tabs)tabs.style.display='none';
+
+  // Build per-supplier basket totals
+  // Each non-live supplier: estimate using their typical margin over cheapest eBay price
+  // Live supplier (eBay): sum actual cheapest eBay prices from results
+  var SUPPLIER_MARGIN = {
+    'eBay': 1.00,              // uses live data
+    'Amazon': 1.05,            // usually close to eBay
+    'Euro Car Parts': 1.15,    // high street markup
+    'GSF Car Parts': 1.10,
+    'Halfords': 1.30,          // most expensive
+    'Autodoc': 0.95,           // often cheaper
+    'Car Parts 4 Less': 1.00,
+    'FCP Euro': 1.20,
+    'Andrew Page': 1.12,
+    'Motor Factor': 1.08,
+    'Parts Gateway': 1.05,
+    '1st Choice Spares': 0.75  // used/breakers cheaper
+  };
+
+  // Calculate baseline: sum of cheapest eBay totals for each part
+  var baselineTotal = 0;
+  var partsFound = 0;
+  var ebayTotal = 0;
+  results.forEach(function(r){
+    if(r.cheapest){
+      var t = parseFloat(r.cheapest.totalPrice||r.cheapest.price);
+      baselineTotal += t;
+      ebayTotal += t;
+      partsFound++;
+    }
+  });
+
+  if(partsFound===0){
+    document.getElementById('resList').innerHTML='<div style="text-align:center;padding:40px;color:var(--mg);">Could not find prices for this kit. Try searching parts individually.</div>';
+    return;
+  }
+
+  // Build baskets
+  var baskets = [];
+  Object.keys(SUPPLIER_MARGIN).forEach(function(supName){
+    var margin = SUPPLIER_MARGIN[supName];
+    var total = baselineTotal * margin;
+    // Delivery estimate: free if kit >£75 for most suppliers
+    var delivery = total > 75 ? 0 : 4.99;
+    if(supName==='Amazon' && total > 35) delivery = 0;
+    if(supName==='Halfords') delivery = 0; // C&C available
+    if(supName==='1st Choice Spares') delivery = 0;
+    var grandTotal = total + delivery;
+    baskets.push({
+      name: supName,
+      subtotal: total,
+      delivery: delivery,
+      total: grandTotal,
+      isEstimate: supName !== 'eBay',
+      url: buildKitUrl(supName, kit)
+    });
+  });
+
+  // Sort cheapest first
+  baskets.sort(function(a,b){return a.total - b.total;});
+  var cheapest = baskets[0];
+  var savings = baskets[baskets.length-1].total - cheapest.total;
+
+  var html='';
+
+  // Hero banner - cheapest basket
+  html+='<div style="background:linear-gradient(135deg,#00A651,#007D3D);color:#fff;border-radius:16px;padding:20px;margin-bottom:16px;text-align:center;">'
+    +'<div style="font-family:Nunito,sans-serif;font-weight:800;font-size:.72rem;letter-spacing:2px;text-transform:uppercase;opacity:.85;margin-bottom:6px;">🏆 Cheapest Complete Basket</div>'
+    +'<div style="font-family:Nunito,sans-serif;font-weight:900;font-size:1.4rem;margin-bottom:4px;">'+cheapest.name+'</div>'
+    +'<div style="font-family:Nunito,sans-serif;font-weight:900;font-size:2.5rem;line-height:1;margin:6px 0;">£'+cheapest.total.toFixed(2)+'</div>'
+    +'<div style="font-size:.82rem;opacity:.9;margin-bottom:14px;">All '+partsFound+' parts · '+(cheapest.delivery===0?'Free delivery':'£'+cheapest.delivery.toFixed(2)+' delivery')+'</div>'
+    +(savings>5?'<div style="display:inline-block;background:var(--ye);color:var(--bl);border-radius:8px;padding:4px 10px;font-family:Nunito,sans-serif;font-weight:900;font-size:.78rem;margin-bottom:14px;">💰 Save £'+savings.toFixed(2)+' vs most expensive</div>':'')
+    +'<div><a href="'+cheapest.url+'" target="_blank" rel="sponsored noopener" onclick="trackClick(\''+cheapest.name+'\',\'kit_'+kit.title.replace(/[^a-z]/gi,'')+'\','+cheapest.total.toFixed(2)+')" style="display:inline-block;background:#fff;color:var(--bl);padding:14px 28px;border-radius:12px;font-family:Nunito,sans-serif;font-weight:900;font-size:1rem;text-decoration:none;">🛒 Buy Full Kit at '+cheapest.name+' →</a></div>'
+    +'</div>';
+
+  // What's in the kit — collapsed list
+  html+='<div style="background:var(--lg);border-radius:12px;padding:14px 16px;margin-bottom:16px;">'
+    +'<div style="font-family:Nunito,sans-serif;font-weight:900;font-size:.85rem;color:var(--bl);margin-bottom:8px;">📋 Your Kit Includes ('+partsFound+' parts)</div>';
+  results.forEach(function(r){
+    if(r.cheapest){
+      html+='<div style="display:flex;justify-content:space-between;padding:4px 0;font-size:.82rem;color:var(--dk);"><span>✓ '+r.partName+'</span><span style="color:var(--mg);font-size:.75rem;">from £'+parseFloat(r.cheapest.totalPrice||r.cheapest.price).toFixed(2)+'</span></div>';
+    } else {
+      html+='<div style="display:flex;justify-content:space-between;padding:4px 0;font-size:.82rem;color:#D68000;"><span>⚠️ '+r.partName+'</span><span style="font-size:.75rem;">Not found live</span></div>';
+    }
+  });
+  html+='</div>';
+
+  // Compare all baskets
+  html+='<div style="font-family:Nunito,sans-serif;font-weight:900;font-size:.82rem;color:var(--bl);margin-bottom:10px;letter-spacing:.5px;text-transform:uppercase;">Compare All Supplier Baskets</div>';
+  html+='<div class="res-list">';
+  baskets.forEach(function(b,i){
+    var isBest = i===0;
+    var logo = LOGOS[b.name] || '<div style="font-weight:900;font-size:11px;color:var(--bl);">'+b.name+'</div>';
+    var rating = (SUP_INFO[b.name]||{rating:4.0}).rating;
+    html+='<div class="rcard'+(isBest?' best':'')+'">'
+      +'<div class="rc-head">'
+      +'<div class="rc-logo" style="background:var(--wh);border:1.5px solid #E0E8F8;">'+logo+'</div>'
+      +'<div class="rc-supinfo">'
+      +'<div class="rc-supname">'+b.name+(b.isEstimate?' <span style="background:#FFF3D9;color:#A06000;font-size:.55rem;padding:2px 6px;border-radius:4px;font-weight:800;">EST.</span>':' <span class="rc-livebdg">LIVE</span>')+'</div>'
+      +'<div class="rc-rating"><span class="stars">'+starsHtml(rating)+'</span> '+rating.toFixed(1)+'</div>'
+      +'</div>'
+      +'<div class="rc-price-main">'
+      +'<div class="rc-price'+(isBest?' cheapest':'')+'">£'+b.total.toFixed(2)+'</div>'
+      +'<div class="rc-price-lbl">full basket</div>'
+      +'</div>'
+      +'</div>'
+      +'<div style="display:flex;justify-content:space-between;padding:8px 0;font-size:.78rem;color:var(--mg);border-bottom:1px solid var(--lg);">'
+      +'<span>Parts subtotal</span><span>£'+b.subtotal.toFixed(2)+'</span>'
+      +'</div>'
+      +'<div style="display:flex;justify-content:space-between;padding:8px 0;font-size:.78rem;color:var(--mg);">'
+      +'<span>Delivery</span><span style="color:'+(b.delivery===0?'var(--gr);font-weight:800':'var(--mg)')+';">'+(b.delivery===0?'FREE':'£'+b.delivery.toFixed(2))+'</span>'
+      +'</div>'
+      +'<div style="text-align:center;padding-top:10px;">'
+      +'<a href="'+b.url+'" target="_blank" rel="sponsored noopener" class="rc-buy" onclick="trackClick(\''+b.name+'\',\'kit_basket\','+b.total.toFixed(2)+')">🛒 Buy Kit at '+b.name+' →</a>'
+      +'</div>'
+      +'</div>';
+  });
+  html+='</div>';
+
+  // Mix and match alternative
+  html+='<div style="background:#FFFBEA;border:2px dashed #E6BC00;border-radius:12px;padding:16px;margin-top:16px;text-align:center;">'
+    +'<div style="font-family:Nunito,sans-serif;font-weight:900;font-size:.88rem;color:#7A6200;margin-bottom:6px;">💡 Want the absolute cheapest possible?</div>'
+    +'<div style="font-size:.82rem;color:#7A6200;margin-bottom:12px;">Buy each part from its individual cheapest supplier (£'+ebayTotal.toFixed(2)+' total, multiple orders)</div>'
+    +'<button onclick="showMixMatch()" style="background:var(--ye);color:var(--bl);border:none;border-radius:8px;padding:10px 20px;font-family:Nunito,sans-serif;font-weight:900;font-size:.85rem;cursor:pointer;">Show Mix & Match →</button>'
+    +'</div>';
+
+  // New search button
+  html+='<div style="margin-top:16px;text-align:center;">'
+    +'<button onclick="resetFromKit()" style="background:transparent;color:var(--bl);border:2px solid var(--bl);border-radius:10px;padding:10px 24px;font-family:Nunito,sans-serif;font-weight:800;font-size:.85rem;cursor:pointer;">🔄 Start New Search</button>'
+    +'</div>';
+
+  // Save kit results for mix/match toggle
+  window._lastKitResults = {kit:kit, results:results};
+
+  document.getElementById('resList').innerHTML=html;
+  setTimeout(function(){zone.scrollIntoView({behavior:'smooth',block:'nearest'});},100);
+}
+
+function buildKitUrl(supName, kit){
+  // Build a search URL on each supplier's site with the kit name
+  var query = kit.title.replace(/^🔧 /,'')+' kit '+(vehicle?vehicle.name:'');
+  var q = encodeURIComponent(query);
+  switch(supName){
+    case 'eBay': return 'https://www.ebay.co.uk/sch/i.html?_nkw='+q+'&campid='+AFF.ebay;
+    case 'Amazon': return 'https://www.amazon.co.uk/s?k='+q+'&tag='+AFF.amazon;
+    case 'Euro Car Parts': return 'https://www.awin1.com/cread.php?awinmid=197685&awinaffid='+AFF.awin+'&clickref=kit&p='+encodeURIComponent('https://www.eurocarparts.com/search?q=service+kit');
+    case 'GSF Car Parts': return 'https://www.awin1.com/cread.php?awinmid=13655&awinaffid='+AFF.awin+'&clickref=kit&p='+encodeURIComponent('https://www.gsfcarparts.com/search?query=service+kit');
+    case 'Halfords': return 'https://www.awin1.com/cread.php?awinmid=197&awinaffid='+AFF.awin+'&clickref=kit&p='+encodeURIComponent('https://www.halfords.com/search?term=service+kit');
+    case 'Autodoc': return 'https://www.autodoc.co.uk/search?query='+q;
+    case 'Car Parts 4 Less': return 'https://www.carparts4less.co.uk/search?q=service+kit';
+    case 'FCP Euro': return 'https://www.fcpeuro.com/search?q='+q;
+    case 'Andrew Page': return 'https://www.andrewpage.com/search?q=service+kit';
+    case 'Motor Factor': return 'https://www.motorfactordirect.co.uk/search?q=service+kit';
+    case 'Parts Gateway': return 'https://www.partsgateway.co.uk/car-parts/service-kit/';
+    case '1st Choice Spares': return 'https://www.awin1.com/cread.php?awinmid=6060&awinaffid='+AFF.awin+'&clickref=kit&p='+encodeURIComponent('https://www.1stchoice.co.uk/search?q=service+kit');
+    default: return '#';
+  }
+}
+
+function showMixMatch(){
+  var data = window._lastKitResults;
+  if(!data) return;
+  var kit = data.kit, results = data.results;
+
+  var total=0;
+  var html='<div style="background:linear-gradient(135deg,var(--ye),#FFB800);border-radius:16px;padding:18px;margin-bottom:14px;text-align:center;">'
+    +'<div style="font-family:Nunito,sans-serif;font-weight:900;font-size:.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--bl);margin-bottom:4px;">Mix & Match — Individual Cheapest</div>'
+    +'<div style="font-family:Nunito,sans-serif;font-weight:700;font-size:.82rem;color:var(--bl);">Buy each part from its cheapest supplier (multiple orders needed)</div>'
+    +'</div>';
+  html+='<div class="res-list">';
+  results.forEach(function(r){
+    if(r.cheapest){
+      var c=r.cheapest;
+      var t=parseFloat(c.totalPrice||c.price);
+      total+=t;
+      html+=makeKitCard(r.partName,c,t);
+    }
+  });
+  html+='</div>';
+
+  html+='<div style="background:var(--bl);color:#fff;border-radius:14px;padding:18px 20px;margin-top:16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">'
+    +'<div><div style="font-family:Nunito,sans-serif;font-weight:800;font-size:.72rem;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.7);">Total (Mix & Match)</div>'
+    +'<div style="font-family:Nunito,sans-serif;font-weight:900;font-size:1.8rem;color:var(--ye);">£'+total.toFixed(2)+'</div></div>'
+    +'<button onclick="showKitResults(window._lastKitResults.kit,window._lastKitResults.results)" style="background:var(--ye);color:var(--bl);border:none;border-radius:10px;padding:12px 20px;font-family:Nunito,sans-serif;font-weight:900;font-size:.88rem;cursor:pointer;">← Back to Baskets</button>'
+    +'</div>';
+
+  html+='<div style="margin-top:16px;text-align:center;">'
+    +'<button onclick="resetFromKit()" style="background:transparent;color:var(--bl);border:2px solid var(--bl);border-radius:10px;padding:10px 24px;font-family:Nunito,sans-serif;font-weight:800;font-size:.85rem;cursor:pointer;">🔄 Start New Search</button>'
+    +'</div>';
+
+  document.getElementById('resList').innerHTML=html;
+  window.scrollTo({top:document.getElementById('resultsZone').offsetTop-80,behavior:'smooth'});
+}
+
+function makeKitCard(partName,item,total){
+  var info=SUP_INFO[item.supplier||'eBay']||{rating:4.2,delivery:'3-5 days'};
+  var logoHtml=LOGOS[item.supplier||'eBay']||'<div style="font-weight:900;color:#003DA5;font-size:11px;">'+(item.supplier||'eBay')+'</div>';
+  var title=item.title||partName;
+  if(title.length>60)title=title.substring(0,60)+'...';
+  var del=parseFloat(item.deliveryCost||0);
+  var delText=del===0?'Free':'£'+del.toFixed(2);
+
+  return '<div class="rcard">'
+    +'<div class="rc-head">'
+    +'<div class="rc-logo" style="background:var(--wh);border:1.5px solid #E0E8F8;">'+logoHtml+'</div>'
+    +'<div class="rc-supinfo">'
+    +'<div class="rc-supname">'+(item.supplier||'eBay')+' <span class="rc-livebdg">CHEAPEST</span></div>'
+    +'<div class="rc-rating"><span class="stars">'+starsHtml(info.rating)+'</span> '+info.rating.toFixed(1)+'</div>'
+    +'</div>'
+    +'<div class="rc-price-main">'
+    +'<div class="rc-price cheapest">£'+total.toFixed(2)+'</div>'
+    +'<div class="rc-price-lbl">inc. delivery</div>'
+    +'</div>'
+    +'</div>'
+    +'<div style="font-family:Nunito,sans-serif;font-weight:900;font-size:.88rem;color:var(--bl);margin-bottom:4px;">'+partName+'</div>'
+    +'<div class="rc-part" style="font-weight:500;font-size:.78rem;">'+title+(item.seller?'<div class="rc-seller">Seller: '+item.seller+'</div>':'')+'</div>'
+    +'<div style="display:flex;gap:8px;align-items:center;justify-content:space-between;padding-top:10px;border-top:1px solid var(--lg);">'
+    +'<div style="font-size:.78rem;color:var(--mg);">Part: £'+parseFloat(item.price).toFixed(2)+' · Delivery: '+delText+'</div>'
+    +'<a href="'+item.url+'" target="_blank" rel="sponsored noopener" class="rc-buy" style="padding:8px 16px;font-size:.82rem;" onclick="trackClick(\''+(item.supplier||'eBay').replace(/\'/g,'')+'\',\''+partName.replace(/\'/g,'')+'\','+item.price+')">Buy →</a>'
+    +'</div>'
+    +'</div>';
+}
+
+function resetFromKit(){
+  // Restore normal result filter tabs for future searches
+  var tabs=document.querySelector('.filter-tabs');
+  if(tabs)tabs.style.display='flex';
+  document.getElementById('resultsZone').style.display='none';
+  document.getElementById('partIn').value='';
+  document.getElementById('partIn').focus();
+  window.scrollTo({top:0,behavior:'smooth'});
 }
 
 // SEARCH + ANIMATION
