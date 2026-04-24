@@ -136,10 +136,10 @@ nav{background:var(--bl);position:sticky;top:0;z-index:300;box-shadow:0 2px 12px
 .ftab:hover:not(.active){border-color:var(--bl);color:var(--bl);}
 /* COMPACT COMPARISON TABLE */
 .ctbl{background:var(--wh);border:1.5px solid #E0E8F8;border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(0,61,166,.08);}
-.ctbl-head{display:grid;grid-template-columns:90px 1fr 62px 62px 60px 52px 70px;gap:0;background:var(--bl);padding:6px 4px;}
+.ctbl-head{display:grid;grid-template-columns:90px 1fr 62px 62px 60px 52px 56px 70px;gap:0;background:var(--bl);padding:6px 4px;}
 .ctbl-head > div{font-family:'Nunito',sans-serif;font-weight:800;font-size:.55rem;color:rgba(255,255,255,.9);text-transform:uppercase;letter-spacing:.3px;text-align:center;padding:2px;line-height:1.1;}
 .ctbl-head > div:nth-child(2){text-align:left;padding-left:6px;}
-.crow{display:grid;grid-template-columns:90px 1fr 62px 62px 60px 52px 70px;gap:0;padding:6px 4px;border-bottom:1px solid #EEF2FA;align-items:center;min-height:56px;font-size:.68rem;}
+.crow{display:grid;grid-template-columns:90px 1fr 62px 62px 60px 52px 56px 70px;gap:0;padding:6px 4px;border-bottom:1px solid #EEF2FA;align-items:center;min-height:56px;font-size:.68rem;}
 .crow:last-child{border-bottom:none;}
 .crow:hover{background:#F8FBFF;}
 .crow.best{background:linear-gradient(90deg,#F0FFF7,#fff);border-left:3px solid var(--gr);}
@@ -337,9 +337,9 @@ footer nav.fc{background:transparent !important;}
   .qb{width:100%;}
   .scan-grid{grid-template-columns:repeat(3,1fr);}
   /* Compact table on mobile — tighter columns */
-  .ctbl-head{grid-template-columns:62px 1fr 52px 56px 50px 44px 56px;padding:5px 3px;}
+  .ctbl-head{grid-template-columns:62px 1fr 52px 56px 50px 44px 48px 56px;padding:5px 3px;}
   .ctbl-head > div{font-size:.48rem;padding:1px;}
-  .crow{grid-template-columns:62px 1fr 52px 56px 50px 44px 56px;padding:5px 3px;min-height:54px;font-size:.62rem;}
+  .crow{grid-template-columns:62px 1fr 52px 56px 50px 44px 48px 56px;padding:5px 3px;min-height:54px;font-size:.62rem;}
   .crow > div{padding:1px 2px;}
   .c-sup-ico{width:54px;height:22px;margin-bottom:2px;}
   .c-sup-name{font-size:.5rem;}
@@ -458,6 +458,7 @@ footer nav.fc{background:transparent !important;}
             <div>Delivery</div>
             <div>Stock</div>
             <div>Rating</div>
+            <div>C&amp;C</div>
             <div>Buy</div>
           </div>
           <div id="resList"></div>
@@ -984,7 +985,9 @@ function makeRow(opts){
   html+='<div><div class="c-stock '+stockClass+'">'+stockText+'</div></div>';
   // Col 6: Rating
   html+='<div><div class="c-rating">'+info.rating.toFixed(1)+'</div><div class="c-rating-stars">'+stars+'</div>'+(info.reviews?'<div class="c-rating-ct">'+info.reviews+'</div>':'')+'</div>';
-  // Col 7: Buy
+  // Col 7: Click & Collect
+  html+='<div style="text-align:center;">'+(info.cc?'<div style="color:var(--gr);font-weight:900;font-size:1.1rem;line-height:1;">✓</div><div style="font-size:.55rem;color:var(--gr);font-weight:700;margin-top:2px;">Available</div>':'<div style="color:#B0B8C8;font-size:.95rem;line-height:1;">—</div><div style="font-size:.55rem;color:#B0B8C8;margin-top:2px;">N/A</div>')+'</div>';
+  // Col 8: Buy
   html+='<div><a href="'+opts.url+'" target="_blank" rel="sponsored noopener" class="c-buy" onclick="trackClick(\''+opts.sup.n.replace(/\'/g,'')+'\',\''+opts.part.replace(/\'/g,'')+'\','+(opts.price||0)+')">'+(opts.price?'Buy →':'Search →')+'</a></div>';
   html+='</div>';
   return html;
