@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Block admin dashboard from being indexed
+Disallow: /admin.html
+
+# Block service worker
+Disallow: /sw.js
+
+# Sitemap location
+Sitemap: https://www.comparemycarparts.com/sitemap.xml
