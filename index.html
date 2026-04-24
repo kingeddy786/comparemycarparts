@@ -117,7 +117,8 @@ nav{background:var(--bl);position:sticky;top:0;z-index:300;box-shadow:0 2px 12px
 .scan-sup{background:var(--wh);border:2.5px solid #D0DCEF;border-radius:12px;padding:12px 6px 8px;text-align:center;transition:all .25s;opacity:.5;}
 .scan-sup.active{border-color:var(--ye);background:#FFFBEA;opacity:1;transform:scale(1.08);box-shadow:0 0 18px rgba(255,209,0,.5);}
 .scan-sup.done{border-color:var(--gr);background:var(--gn);opacity:1;}
-.scan-sup .s-ico{font-size:1.5rem;display:block;margin-bottom:4px;}
+.scan-sup .s-ico{display:flex;align-items:center;justify-content:center;height:32px;margin-bottom:6px;}
+.scan-sup .s-ico svg{max-width:100%;max-height:100%;}
 .scan-sup .s-name{font-family:'Nunito',sans-serif;font-weight:800;font-size:.65rem;color:var(--bl);}
 .scan-sup.done .s-name{color:var(--gr);}
 .scan-status{font-family:'Nunito',sans-serif;font-weight:800;font-size:.82rem;color:var(--bl);}
@@ -147,7 +148,8 @@ nav{background:var(--bl);position:sticky;top:0;z-index:300;box-shadow:0 2px 12px
 
 /* Column 1: Supplier */
 .c-sup{display:flex;flex-direction:column;align-items:center;gap:2px;}
-.c-sup-ico{font-size:1.3rem;line-height:1;}
+.c-sup-ico{display:flex;align-items:center;justify-content:center;width:72px;height:32px;margin-bottom:4px;}
+.c-sup-ico svg{max-width:100%;max-height:100%;width:auto;height:auto;}
 .c-sup-name{font-family:'Nunito',sans-serif;font-weight:900;font-size:.58rem;color:var(--bl);line-height:1.05;text-align:center;}
 .c-sup-live{background:var(--ye);color:var(--bl);font-family:'Nunito',sans-serif;font-weight:900;font-size:.5rem;padding:1px 4px;border-radius:3px;letter-spacing:.3px;margin-top:1px;}
 
@@ -212,10 +214,12 @@ nav{background:var(--bl);position:sticky;top:0;z-index:300;box-shadow:0 2px 12px
 .cats{width:100%;max-width:900px;margin:16px auto 0;}
 .cats-lbl{font-family:'Nunito',sans-serif;font-weight:900;font-size:.72rem;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.85);text-align:center;margin-bottom:10px;}
 .cats-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;}
-.catb{background:rgba(255,255,255,.15);border:2px solid rgba(255,255,255,.25);border-radius:12px;padding:10px 4px 8px;text-align:center;cursor:pointer;transition:border-color .15s,transform .15s,background .15s;text-decoration:none;color:inherit;display:flex;flex-direction:column;justify-content:center;align-items:center;height:62px;}
-.catb:hover{border-color:var(--ye);transform:translateY(-2px);background:rgba(255,255,255,.25);}
-.catb .ci{font-size:1.3rem;display:block;margin-bottom:3px;line-height:1;}
-.catb .cn{font-family:'Nunito',sans-serif;font-weight:800;font-size:.65rem;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.4);}
+.catb{background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.2);border-radius:12px;padding:12px 4px 10px;text-align:center;cursor:pointer;transition:border-color .2s,transform .2s,background .2s;text-decoration:none;color:inherit;display:flex;flex-direction:column;justify-content:center;align-items:center;height:72px;backdrop-filter:blur(8px);}
+.catb:hover{border-color:var(--ye);transform:translateY(-2px);background:rgba(255,255,255,.2);}
+.catb:hover .ci{color:var(--ye);transform:scale(1.1);}
+.catb .ci{display:flex;align-items:center;justify-content:center;margin-bottom:6px;line-height:1;color:var(--ye);height:28px;transition:transform .2s;}
+.catb .ci svg{width:26px;height:26px;}
+.catb .cn{font-family:'Nunito',sans-serif;font-weight:800;font-size:.68rem;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.4);letter-spacing:.2px;}
 
 /* SUPPLIER PILLS */
 .sup-sec{background:var(--lg);border-bottom:1px solid #E0E8F8;padding:14px 24px;}
@@ -323,7 +327,7 @@ footer nav.fc{background:transparent !important;}
   .sc{padding:14px;}
   .pi{font-size:1.6rem;letter-spacing:4px;}
   .cats-grid{grid-template-columns:repeat(4,1fr);gap:5px;}
-  .catb{height:58px;}
+  .catb{height:68px;}
   .steps{grid-template-columns:1fr;}
   .wg{grid-template-columns:1fr;}
   .tg{grid-template-columns:1fr;}
@@ -337,7 +341,7 @@ footer nav.fc{background:transparent !important;}
   .ctbl-head > div{font-size:.48rem;padding:1px;}
   .crow{grid-template-columns:62px 1fr 52px 56px 50px 44px 56px;padding:5px 3px;min-height:54px;font-size:.62rem;}
   .crow > div{padding:1px 2px;}
-  .c-sup-ico{font-size:1rem;}
+  .c-sup-ico{width:54px;height:22px;margin-bottom:2px;}
   .c-sup-name{font-size:.5rem;}
   .c-sup-live{font-size:.44rem;padding:1px 3px;}
   .c-part-t{font-size:.64rem;-webkit-line-clamp:2;}
@@ -591,46 +595,78 @@ var PARTS = [
   {n:'Fog Light Bulb',c:'Lights',i:'💡'}
 ];
 
+// Clean SVG icons — consistent stroke style, yellow color
+var ICONS = {
+  brakes: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/></svg>',
+  clutch: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>',
+  engine: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>',
+  service: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/><path d="M20 20l-3-3"/></svg>',
+  suspension: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 16H9m10 0h3v-3.15a1 1 0 0 0-.84-.99L16 11l-2.7-3.6a1 1 0 0 0-.8-.4H5.24a2 2 0 0 0-1.8 1.1l-.8 1.63A6 6 0 0 0 2 12.42V16h2"/><circle cx="6.5" cy="16.5" r="2.5"/><circle cx="16.5" cy="16.5" r="2.5"/></svg>',
+  exhaust: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9z"/><path d="M22 10v2"/></svg>',
+  electrical: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>',
+  aircon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20M12 2v20M4.93 4.93l14.14 14.14M19.07 4.93L4.93 19.07"/></svg>',
+  body: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 16H9m10 0h3v-3.15a1 1 0 0 0-.84-.99L16 11l-2.7-3.6a1 1 0 0 0-.8-.4H5.24a2 2 0 0 0-1.8 1.1l-.8 1.63A6 6 0 0 0 2 12.42V16h2"/><circle cx="6.5" cy="16.5" r="2.5"/><circle cx="16.5" cy="16.5" r="2.5"/></svg>',
+  oils: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>',
+  wipers: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21l8-18M13 3l6 18M8 13h10"/></svg>',
+  lights: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M15 14a5 5 0 0 0-2-8 5 5 0 0 0-2 8c0 1 0 2-1 3h6c-1-1-1-2-1-3z"/></svg>'
+};
+
 var CATS = [
-  {i:'🛑',n:'Brakes',q:'Front Brake Pads'},
-  {i:'⚙️',n:'Clutch',q:'Clutch Kit'},
-  {i:'🔧',n:'Engine',q:'Oil Filter'},
-  {i:'🛠️',n:'Service',q:'Service'},
-  {i:'🚗',n:'Suspension',q:'Front Shock Absorber'},
-  {i:'💨',n:'Exhaust',q:'Rear Silencer'},
-  {i:'🔋',n:'Electrical',q:'Car Battery'},
-  {i:'❄️',n:'Air Con',q:'Air Con Compressor'},
-  {i:'🚙',n:'Body',q:'Door Mirror'},
-  {i:'💧',n:'Oils',q:'Engine Oil 5W-30'},
-  {i:'🔵',n:'Wipers',q:'Front Wiper Blades'},
-  {i:'💡',n:'Lights',q:'Headlight Bulb H7'}
+  {k:'brakes',n:'Brakes',q:'Front Brake Pads'},
+  {k:'clutch',n:'Clutch',q:'Clutch Kit'},
+  {k:'engine',n:'Engine',q:'Oil Filter'},
+  {k:'service',n:'Service',q:'Service'},
+  {k:'suspension',n:'Suspension',q:'Front Shock Absorber'},
+  {k:'exhaust',n:'Exhaust',q:'Rear Silencer'},
+  {k:'electrical',n:'Electrical',q:'Car Battery'},
+  {k:'aircon',n:'Air Con',q:'Air Con Compressor'},
+  {k:'body',n:'Body',q:'Door Mirror'},
+  {k:'oils',n:'Oils',q:'Engine Oil 5W-30'},
+  {k:'wipers',n:'Wipers',q:'Front Wiper Blades'},
+  {k:'lights',n:'Lights',q:'Headlight Bulb H7'}
 ];
 
 var SUPPLIERS = ['eBay','Amazon','Euro Car Parts','GSF Car Parts','Halfords','Autodoc','Car Parts for Less','FCP Euro','Andrew Page','Motor Factor','Parts Gateway','1st Choice Spares'];
 
-// Supplier scan data — name + emoji
+// Supplier scan data — uses SVG logos from LOGOS object below
 var SCAN_SUPS = [
-  {n:'eBay',i:'🛒'},{n:'Amazon',i:'📦'},{n:'Euro Car Parts',i:'🔵'},
-  {n:'GSF Car Parts',i:'🟠'},{n:'Halfords',i:'🟢'},{n:'Autodoc',i:'🚗'},
-  {n:'Car Parts 4 Less',i:'💛'},{n:'FCP Euro',i:'🇪🇺'},
-  {n:'Andrew Page',i:'🔶'},{n:'Motor Factor',i:'🔧'},
-  {n:'Parts Gateway',i:'🔍'},{n:'1st Choice',i:'♻️'}
+  {n:'eBay'},{n:'Amazon'},{n:'Euro Car Parts'},
+  {n:'GSF Car Parts'},{n:'Halfords'},{n:'Autodoc'},
+  {n:'Car Parts 4 Less'},{n:'FCP Euro'},
+  {n:'Andrew Page'},{n:'Motor Factor'},
+  {n:'Parts Gateway'},{n:'1st Choice Spares'}
 ];
 
-// All supplier affiliate links for results table
+// Brand SVG logos — proper coloured replicas matching each supplier's real branding
+var LOGOS = {
+  'eBay': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><text x="0" y="28" font-family="Arial,sans-serif" font-weight="900" font-size="26" font-style="italic"><tspan fill="#E53238">e</tspan><tspan fill="#0064D2">b</tspan><tspan fill="#F5AF02">a</tspan><tspan fill="#86B817">y</tspan></text></svg>',
+  'Amazon': '<svg viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg"><text x="0" y="24" font-family="Arial,sans-serif" font-weight="700" font-size="22" fill="#232F3E">amazon</text><path d="M5,30 Q40,38 80,30" stroke="#FF9900" stroke-width="3" fill="none" stroke-linecap="round"/><polygon points="75,28 82,30 75,33" fill="#FF9900"/></svg>',
+  'Euro Car Parts': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><circle cx="15" cy="20" r="12" fill="#003DA5"/><text x="9" y="25" font-family="Arial,sans-serif" font-weight="900" font-size="14" fill="#fff">ECP</text><text x="32" y="16" font-family="Arial,sans-serif" font-weight="800" font-size="9" fill="#003DA5">EURO CAR</text><text x="32" y="27" font-family="Arial,sans-serif" font-weight="800" font-size="9" fill="#003DA5">PARTS</text></svg>',
+  'GSF Car Parts': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="8" width="35" height="24" rx="3" fill="#F7941D"/><text x="5" y="26" font-family="Arial,sans-serif" font-weight="900" font-size="15" fill="#fff">GSF</text><text x="42" y="17" font-family="Arial,sans-serif" font-weight="800" font-size="8" fill="#1a1a1a">CAR</text><text x="42" y="28" font-family="Arial,sans-serif" font-weight="800" font-size="8" fill="#1a1a1a">PARTS</text></svg>',
+  'Halfords': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="8" width="100" height="24" rx="3" fill="#EE3124"/><text x="8" y="26" font-family="Arial,sans-serif" font-weight="900" font-size="14" fill="#fff">Halfords</text></svg>',
+  'Autodoc': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><text x="2" y="27" font-family="Arial,sans-serif" font-weight="900" font-size="16" fill="#003DA5">AUTO</text><text x="48" y="27" font-family="Arial,sans-serif" font-weight="900" font-size="16" fill="#E30613">DOC</text></svg>',
+  'Car Parts 4 Less': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="5" width="100" height="30" rx="3" fill="#FDD800"/><text x="4" y="18" font-family="Arial,sans-serif" font-weight="900" font-size="10" fill="#003DA5">CAR PARTS</text><text x="30" y="31" font-family="Arial,sans-serif" font-weight="900" font-size="13" fill="#E30613">4LESS</text></svg>',
+  'FCP Euro': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="6" width="40" height="28" rx="3" fill="#003DA5"/><text x="5" y="27" font-family="Arial,sans-serif" font-weight="900" font-size="15" fill="#fff">FCP</text><text x="48" y="17" font-family="Arial,sans-serif" font-weight="800" font-size="9" fill="#1a1a1a">EURO</text><text x="48" y="29" font-family="Arial,sans-serif" font-weight="700" font-size="7" fill="#666">SINCE 1986</text></svg>',
+  'Andrew Page': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="8" width="100" height="24" fill="#004B87"/><text x="4" y="20" font-family="Arial,sans-serif" font-weight="900" font-size="9" fill="#fff">ANDREW</text><text x="4" y="30" font-family="Arial,sans-serif" font-weight="900" font-size="9" fill="#FDD800">PAGE</text></svg>',
+  'Motor Factor': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><circle cx="15" cy="20" r="12" fill="#1a1a1a"/><text x="8" y="24" font-family="Arial,sans-serif" font-weight="900" font-size="11" fill="#FDD800">MF</text><text x="32" y="17" font-family="Arial,sans-serif" font-weight="800" font-size="8" fill="#1a1a1a">MOTOR</text><text x="32" y="28" font-family="Arial,sans-serif" font-weight="800" font-size="8" fill="#1a1a1a">FACTOR</text></svg>',
+  'Parts Gateway': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="8" width="100" height="24" rx="3" fill="#00A651"/><text x="5" y="26" font-family="Arial,sans-serif" font-weight="900" font-size="11" fill="#fff">PartsGateway</text></svg>',
+  '1st Choice Spares': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><text x="0" y="20" font-family="Arial,sans-serif" font-weight="900" font-size="18" fill="#E30613">1st</text><text x="28" y="20" font-family="Arial,sans-serif" font-weight="800" font-size="11" fill="#1a1a1a">CHOICE</text><text x="12" y="33" font-family="Arial,sans-serif" font-weight="700" font-size="9" fill="#666">SPARES</text></svg>'
+};
+
+// All supplier affiliate links for results
 var ALL_SUPS = [
-  {n:'eBay', i:'🛒', live:true},
-  {n:'Amazon', i:'📦', url:function(p,v){return 'https://www.amazon.co.uk/s?k='+encodeURIComponent(p+' '+v)+'&tag='+AFF.amazon;}},
-  {n:'Euro Car Parts', i:'🔵', url:function(p,v){return 'https://www.awin1.com/cread.php?awinmid=197685&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.eurocarparts.com/search?q='+encodeURIComponent(p));}},
-  {n:'GSF Car Parts', i:'🟠', url:function(p,v){return 'https://www.awin1.com/cread.php?awinmid=13655&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.gsfcarparts.com/search?query='+encodeURIComponent(p));}},
-  {n:'Halfords', i:'🟢', url:function(p,v){return 'https://www.awin1.com/cread.php?awinmid=197&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.halfords.com/search?term='+encodeURIComponent(p));}},
-  {n:'Autodoc', i:'🚗', url:function(p,v){return 'https://www.autodoc.co.uk/search?query='+encodeURIComponent(p);}},
-  {n:'Car Parts 4 Less', i:'💛', url:function(p,v){return 'https://www.carparts4less.co.uk/search?q='+encodeURIComponent(p);}},
-  {n:'FCP Euro', i:'🇪🇺', url:function(p,v){return 'https://www.fcpeuro.com/search?q='+encodeURIComponent(p);}},
-  {n:'Andrew Page', i:'🔶', url:function(p,v){return 'https://www.andrewpage.com/search?q='+encodeURIComponent(p);}},
-  {n:'Motor Factor', i:'🔧', url:function(p,v){return 'https://www.motorfactordirect.co.uk/search?q='+encodeURIComponent(p);}},
-  {n:'Parts Gateway', i:'🔍', url:function(p,v){return 'https://www.partsgateway.co.uk/car-parts/'+encodeURIComponent(p.replace(/ /g,'-'))+'/';}},
-  {n:'1st Choice Spares', i:'♻️', url:function(p,v){return 'https://www.awin1.com/cread.php?awinmid=6060&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.1stchoice.co.uk/search?q='+encodeURIComponent(p));}}
+  {n:'eBay', live:true},
+  {n:'Amazon', url:function(p,v){return 'https://www.amazon.co.uk/s?k='+encodeURIComponent(p+' '+v)+'&tag='+AFF.amazon;}},
+  {n:'Euro Car Parts', url:function(p,v){return 'https://www.awin1.com/cread.php?awinmid=197685&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.eurocarparts.com/search?q='+encodeURIComponent(p));}},
+  {n:'GSF Car Parts', url:function(p,v){return 'https://www.awin1.com/cread.php?awinmid=13655&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.gsfcarparts.com/search?query='+encodeURIComponent(p));}},
+  {n:'Halfords', url:function(p,v){return 'https://www.awin1.com/cread.php?awinmid=197&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.halfords.com/search?term='+encodeURIComponent(p));}},
+  {n:'Autodoc', url:function(p,v){return 'https://www.autodoc.co.uk/search?query='+encodeURIComponent(p);}},
+  {n:'Car Parts 4 Less', url:function(p,v){return 'https://www.carparts4less.co.uk/search?q='+encodeURIComponent(p);}},
+  {n:'FCP Euro', url:function(p,v){return 'https://www.fcpeuro.com/search?q='+encodeURIComponent(p);}},
+  {n:'Andrew Page', url:function(p,v){return 'https://www.andrewpage.com/search?q='+encodeURIComponent(p);}},
+  {n:'Motor Factor', url:function(p,v){return 'https://www.motorfactordirect.co.uk/search?q='+encodeURIComponent(p);}},
+  {n:'Parts Gateway', url:function(p,v){return 'https://www.partsgateway.co.uk/car-parts/'+encodeURIComponent(p.replace(/ /g,'-'))+'/';}},
+  {n:'1st Choice Spares', url:function(p,v){return 'https://www.awin1.com/cread.php?awinmid=6060&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.1stchoice.co.uk/search?q='+encodeURIComponent(p));}}
 ];
 
 // Render static content immediately
@@ -641,7 +677,7 @@ var ALL_SUPS = [
     if(!cg||!sp){setTimeout(render,10);return;}
     var ch='';
     CATS.forEach(function(c){
-      ch+='<a class="catb" href="#" onclick="pickCat(\''+c.q+'\');return false"><span class="ci">'+c.i+'</span><div class="cn">'+c.n+'</div></a>';
+      ch+='<a class="catb" href="#" onclick="pickCat(\''+c.q+'\');return false"><span class="ci">'+ICONS[c.k]+'</span><div class="cn">'+c.n+'</div></a>';
     });
     cg.innerHTML=ch;
     var ph='';
@@ -791,7 +827,8 @@ async function doSearch(){
     +'<div class="scan-bar"><div class="scan-fill" id="scanFill"></div></div>'
     +'<div class="scan-grid">';
   SCAN_SUPS.forEach(function(s,i){
-    html+='<div class="scan-sup" id="ss'+i+'"><span class="s-ico">'+s.i+'</span><div class="s-name">'+s.n+'</div></div>';
+    var logo=LOGOS[s.n]||'<div style="font-weight:900;color:#003DA5;">'+s.n+'</div>';
+    html+='<div class="scan-sup" id="ss'+i+'"><div class="s-ico">'+logo+'</div><div class="s-name">'+s.n+'</div></div>';
   });
   html+='</div><div class="scan-status" id="scanStatus">Connecting to suppliers...</div></div>';
   scanZone.innerHTML=html;
@@ -922,10 +959,13 @@ function makeRow(opts){
   if(isFreeDel)miniBadges+='<span class="c-mini-bdg free">🆓Free</span>';
   miniBadges+='<span class="c-mini-bdg '+(opts.isUsed?'used':'new')+'">'+(opts.isUsed?'USED':'NEW')+'</span>';
 
+  // Brand logo as inline SVG
+  var logoHtml = LOGOS[opts.sup.n] || '<div style="font-family:Arial;font-weight:900;font-size:11px;color:#003DA5;">'+opts.sup.n+'</div>';
+
   var html='<div class="crow'+(opts.isBest?' best':'')+'">';
   // Col 1: Supplier
   html+='<div><div class="c-sup">';
-  html+='<div class="c-sup-ico">'+opts.sup.i+'</div>';
+  html+='<div class="c-sup-ico">'+logoHtml+'</div>';
   html+='<div class="c-sup-name">'+opts.sup.n+'</div>';
   if(opts.isLive)html+='<div class="c-sup-live">LIVE</div>';
   html+='</div></div>';
