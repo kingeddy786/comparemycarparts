@@ -194,6 +194,9 @@ nav{background:var(--bl);position:sticky;top:0;z-index:300;box-shadow:0 2px 12px
 
 /* Best deal ribbon */
 .best-rib{background:var(--gr);color:#fff;font-family:'Nunito',sans-serif;font-weight:900;font-size:.55rem;padding:2px 8px;letter-spacing:.5px;display:inline-block;margin-bottom:4px;border-radius:3px;}
+
+/* Mobile-only meta row (shown via media query below) */
+.c-mob-meta{display:none;}
 .stag{display:inline-flex;align-items:center;gap:4px;background:var(--lg);border:1.5px solid #D0DCEF;border-radius:6px;padding:3px 8px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.72rem;color:var(--bl);white-space:nowrap;}
 .pt{font-weight:700;font-size:.78rem;color:var(--dk);line-height:1.2;}
 .psb{font-size:.65rem;color:var(--mg);margin-top:1px;}
@@ -338,32 +341,86 @@ footer nav.fc{background:transparent !important;}
   .qr{flex-direction:column;}
   .qb{width:100%;}
   .scan-grid{grid-template-columns:repeat(3,1fr);}
-  /* Compact table on mobile — tighter columns */
-  .ctbl-head{grid-template-columns:62px 1fr 52px 56px 50px 44px 48px 56px;padding:5px 3px;}
-  .ctbl-head > div{font-size:.48rem;padding:1px;}
-  .crow{grid-template-columns:62px 1fr 52px 56px 50px 44px 48px 56px;padding:5px 3px;min-height:54px;font-size:.62rem;}
-  .crow > div{padding:1px 2px;}
-  .c-sup-ico{width:54px;height:22px;margin-bottom:2px;}
-  .c-sup-name{font-size:.5rem;}
-  .c-sup-live{font-size:.44rem;padding:1px 3px;}
-  .c-part-t{font-size:.64rem;-webkit-line-clamp:2;}
-  .c-part-s{font-size:.52rem;}
-  .c-mini-bdg{font-size:.46rem;padding:1px 3px;}
-  .c-price{font-size:.82rem;}
-  .c-price.best{font-size:.88rem;}
-  .c-price-sub{font-size:.48rem;}
-  .c-del{font-size:.58rem;}
-  .c-del-cost{font-size:.52rem;}
-  .c-stock{font-size:.54rem;}
-  .c-rating{font-size:.62rem;}
-  .c-rating-stars{font-size:.52rem;}
-  .c-rating-ct{font-size:.44rem;}
-  .c-buy{font-size:.55rem;padding:5px 2px;}
-  .best-rib{font-size:.48rem;padding:1px 5px;}
+
+  /* ───── MOBILE: convert table rows into stacked cards ───── */
+  .ctbl{border:none;box-shadow:none;background:transparent;overflow:visible;}
+  .ctbl-head{display:none;}
+  .crow{
+    display:grid;
+    grid-template-columns:1fr auto;
+    grid-template-areas:
+      "supplier price"
+      "part part"
+      "meta meta"
+      "buy buy";
+    gap:8px 10px;
+    background:var(--wh);
+    border:1.5px solid #E0E8F8;
+    border-radius:14px;
+    padding:14px;
+    margin-bottom:10px;
+    min-height:unset;
+    box-shadow:0 2px 10px rgba(0,61,166,.07);
+    align-items:start;
+  }
+  .crow.best{border:2px solid var(--gr);background:linear-gradient(135deg,#F0FFF7,#fff);}
+  .crow > div{text-align:left;padding:0;}
+
+  /* col 1 — supplier */
+  .crow > div:nth-child(1){grid-area:supplier;border-bottom:1px solid var(--lg);padding-bottom:10px;}
+  .c-sup{flex-direction:row;align-items:center;gap:10px;}
+  .c-sup-ico{width:60px;height:28px;margin-bottom:0;flex-shrink:0;}
+  .c-sup-name{font-size:.74rem;text-align:left;}
+  .c-sup-live{font-size:.55rem;padding:2px 5px;display:inline-block;margin-top:2px;}
+
+  /* col 3 — price (top right) */
+  .crow > div:nth-child(3){grid-area:price;text-align:right;border-bottom:1px solid var(--lg);padding-bottom:10px;}
+  .c-price{font-size:1.25rem;text-align:right;}
+  .c-price.best{font-size:1.35rem;}
+  .c-price-sub{font-size:.65rem;text-align:right;}
+
+  /* col 2 — part details */
+  .crow > div:nth-child(2){grid-area:part;padding-left:0;}
+  .c-part-t{font-size:.84rem;-webkit-line-clamp:3;line-height:1.3;}
+  .c-part-s{font-size:.72rem;margin-top:3px;}
+  .c-part-b{margin-top:6px;}
+  .c-mini-bdg{font-size:.62rem;padding:2px 6px;}
+  .best-rib{font-size:.6rem;padding:2px 8px;margin-bottom:6px;}
+
+  /* cols 4+5+6+7 — meta row (delivery / stock / rating / collect) */
+  .crow > div:nth-child(4),
+  .crow > div:nth-child(5),
+  .crow > div:nth-child(6),
+  .crow > div:nth-child(7){
+    display:none;
+  }
+  .c-mob-meta{
+    grid-area:meta;
+    display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;
+    padding:8px 0;border-top:1px solid var(--lg);border-bottom:1px solid var(--lg);
+    font-size:.72rem;color:var(--mg);
+  }
+  .c-mob-meta > span{display:inline-flex;align-items:center;gap:4px;font-weight:700;}
+  .c-mob-meta .mm-del{color:var(--dk);}
+  .c-mob-meta .mm-del.fast{color:var(--gr);}
+  .c-mob-meta .mm-stock{color:var(--gr);}
+  .c-mob-meta .mm-rating{color:var(--dk);}
+  .c-mob-meta .mm-cc{color:var(--bl);font-weight:800;}
+
+  /* col 8 — buy button full width at bottom */
+  .crow > div:nth-child(8){grid-area:buy;}
+  .c-buy{
+    display:block;width:100%;
+    font-size:.95rem;padding:13px;border-radius:10px;
+    text-align:center;font-weight:900;
+  }
 }
 @media(max-width:420px){
   .cats-grid{grid-template-columns:repeat(3,1fr);}
   .scan-grid{grid-template-columns:repeat(2,1fr);}
+  .crow{padding:12px;}
+  .c-sup-ico{width:54px;height:24px;}
+  .c-price{font-size:1.15rem;}
 }
 </style>
 
@@ -1139,41 +1196,86 @@ function starsHtml(rating){
 function makeRow(opts){
   var info=SUP_INFO[opts.sup.n]||{delivery:'3-5 days',delCost:'varies',cc:false,rating:4.0,reviews:''};
   var stars=starsHtml(info.rating);
-  var priceHtml;
+  var priceStr,totalStr;
   if(opts.price){
-    priceHtml='<div class="c-price'+(opts.isBest?' best':'')+'">£'+opts.price+'</div>';
-    if(opts.delCost!==undefined){var total=parseFloat(opts.price)+(parseFloat(opts.delCost)||0);priceHtml+='<div class="c-price-sub">Total £'+total.toFixed(2)+'</div>';}
-  } else {priceHtml='<div class="c-price" style="color:var(--mg);font-size:.72rem;">See site</div>';}
+    priceStr='£'+opts.price;
+    if(opts.delCost!==undefined){var tot=parseFloat(opts.price)+(parseFloat(opts.delCost)||0);totalStr='Total £'+tot.toFixed(2);}
+  } else {priceStr='See site';}
   var partTitle=opts.partTitle||opts.part;
-  if(partTitle.length>60)partTitle=partTitle.substring(0,60)+'...';
+  if(partTitle.length>80)partTitle=partTitle.substring(0,80)+'...';
   var delText=opts.delivery||info.delivery;
   var delCostText=opts.delCost!==undefined?(parseFloat(opts.delCost)===0?'Free':'£'+opts.delCost):info.delCost;
   var isFastDel=delText.toLowerCase().includes('next');
   var isFreeDel=delCostText.toLowerCase()==='free';
-  var stockText=opts.isLive?'In Stock':'Check site';
+  var stockText=opts.isLive?'✓ In Stock':'Check site';
   var stockClass=opts.isLive?'ok':'check';
   var miniBadges='';
-  if(info.cc)miniBadges+='<span class="c-mini-bdg cc">🏪 Click &amp; Collect</span>';
+  if(info.cc)miniBadges+='<span class="c-mini-bdg cc">🏪 C&amp;C</span>';
   if(info.prime)miniBadges+='<span class="c-mini-bdg prime">⚡Prime</span>';
-  if(isFreeDel)miniBadges+='<span class="c-mini-bdg free">🆓Free</span>';
+  if(isFreeDel)miniBadges+='<span class="c-mini-bdg free">🆓Free del.</span>';
   miniBadges+='<span class="c-mini-bdg '+(opts.isUsed?'used':'new')+'">'+(opts.isUsed?'USED':'NEW')+'</span>';
   var logoHtml=LOGOS[opts.sup.n]||'<div style="font-family:Arial;font-weight:900;font-size:11px;color:#003DA5;">'+opts.sup.n+'</div>';
+  var collectHtml=info.cc
+    ?'<span style="color:var(--gr);font-weight:800;font-size:.72rem;">🏪 C&amp;C Available</span>'
+    :'<span style="color:#B0B8C8;font-size:.72rem;">Delivery only</span>';
+
+  // Desktop: 8-col grid (unchanged). Mobile: single column card via CSS.
   var html='<div class="crow'+(opts.isBest?' best':'')+'">';
-  html+='<div><div class="c-sup"><div class="c-sup-ico">'+logoHtml+'</div><div class="c-sup-name">'+opts.sup.n+'</div>';
-  if(opts.isLive)html+='<div class="c-sup-live">LIVE</div>';
-  html+='</div></div>';
-  html+='<div class="c-part">';
-  if(opts.isBest)html+='<div class="best-rib">🏆 BEST DEAL</div>';
-  html+='<div class="c-part-t">'+partTitle+'</div>';
-  if(opts.seller)html+='<div class="c-part-s">'+opts.seller+'</div>';
-  html+='<div class="c-part-b">'+miniBadges+'</div></div>';
-  html+='<div>'+priceHtml+'</div>';
-  html+='<div><div class="c-del'+(isFastDel?' fast':'')+'">'+delText+'</div><div class="c-del-cost'+(isFreeDel?' free':'')+'">'+delCostText+'</div></div>';
+
+  // Col 1 — Supplier
+  html+='<div><div class="c-sup">'
+    +'<div class="c-sup-ico">'+logoHtml+'</div>'
+    +'<div class="c-sup-name">'+opts.sup.n+'</div>'
+    +(opts.isLive?'<div class="c-sup-live">LIVE</div>':'')
+    +'</div></div>';
+
+  // Col 2 — Part
+  html+='<div class="c-part">'
+    +(opts.isBest?'<div class="best-rib">🏆 BEST DEAL</div>':'')
+    +'<div class="c-part-t">'+partTitle+'</div>'
+    +(opts.seller?'<div class="c-part-s">'+opts.seller+'</div>':'')
+    +'<div class="c-part-b">'+miniBadges+'</div>'
+    +'</div>';
+
+  // Col 3 — Price
+  html+='<div>'
+    +'<div class="c-price'+(opts.isBest?' best':'')+'" style="'+(priceStr==='See site'?'color:var(--mg);font-size:.82rem;':'')+'">'+(priceStr==='See site'?'See site':'£'+opts.price)+'</div>'
+    +(totalStr?'<div class="c-price-sub">'+totalStr+'</div>':'')
+    +'</div>';
+
+  // Col 4 — Delivery
+  html+='<div>'
+    +'<div class="c-del'+(isFastDel?' fast':'')+'">'+delText+'</div>'
+    +'<div class="c-del-cost'+(isFreeDel?' free':'')+'">'+delCostText+'</div>'
+    +'</div>';
+
+  // Col 5 — Stock
   html+='<div><div class="c-stock '+stockClass+'">'+stockText+'</div></div>';
-  html+='<div><div class="c-rating">'+info.rating.toFixed(1)+'</div><div class="c-rating-stars">'+stars+'</div>'+(info.reviews?'<div class="c-rating-ct">'+info.reviews+'</div>':'')+'</div>';
-  if(info.cc){html+='<div style="text-align:center;"><div style="color:var(--gr);font-weight:900;font-size:1.4rem;line-height:1;">✓</div><div style="font-size:.68rem;color:var(--gr);font-weight:800;margin-top:3px;line-height:1.1;">Collect<br/>In Store</div></div>';}
-  else{html+='<div style="text-align:center;"><div style="color:#B0B8C8;font-size:1.3rem;line-height:1;font-weight:700;">✕</div><div style="font-size:.68rem;color:#B0B8C8;font-weight:700;margin-top:3px;line-height:1.1;">Delivery<br/>Only</div></div>';}
+
+  // Col 6 — Rating
+  html+='<div>'
+    +'<div class="c-rating">'+info.rating.toFixed(1)+'</div>'
+    +'<div class="c-rating-stars">'+stars+'</div>'
+    +(info.reviews?'<div class="c-rating-ct">'+info.reviews+'</div>':'')
+    +'</div>';
+
+  // Col 7 — Collect
+  html+='<div style="text-align:center;">'+(info.cc
+    ?'<div style="color:var(--gr);font-weight:900;font-size:1.3rem;">✓</div><div style="font-size:.65rem;color:var(--gr);font-weight:800;line-height:1.2;">Collect<br>In Store</div>'
+    :'<div style="color:#B0B8C8;font-size:1.2rem;font-weight:700;">✕</div><div style="font-size:.65rem;color:#B0B8C8;font-weight:700;line-height:1.2;">Delivery<br>Only</div>')
+    +'</div>';
+
+  // Mobile-only consolidated meta row (hidden on desktop via CSS)
+  html+='<div class="c-mob-meta">'
+    +'<span class="mm-del'+(isFastDel?' fast':'')+'">🚚 '+delText+(delCostText&&delCostText!=='varies'?' · '+delCostText:'')+'</span>'
+    +(opts.isLive?'<span class="mm-stock">✓ In Stock</span>':'')
+    +'<span class="mm-rating">⭐ '+info.rating.toFixed(1)+(info.reviews?' ('+info.reviews+')':'')+'</span>'
+    +(info.cc?'<span class="mm-cc">🏪 Click &amp; Collect</span>':'')
+    +'</div>';
+
+  // Col 8 — Buy
   html+='<div><a href="'+opts.url+'" target="_blank" rel="sponsored noopener" class="c-buy" onclick="trackClick(\''+opts.sup.n.replace(/\'/g,'')+'\',\''+opts.part.replace(/\'/g,'')+'\','+(opts.price||0)+')">'+(opts.price?'Buy →':'Search →')+'</a></div>';
+
   html+='</div>';
   return html;
 }
