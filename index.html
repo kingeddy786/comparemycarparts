@@ -139,9 +139,7 @@ nav{background:var(--bl);position:sticky;top:0;z-index:300;box-shadow:0 2px 12px
 /* COMPARISON TABLE — all info visible at once */
 .ctbl-wrap{background:var(--wh);border:1.5px solid #E0E8F8;border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(0,61,166,.08);margin-bottom:10px;}
 .ctbl{display:block;width:100%;}
-.ctbl-head{display:grid;grid-template-columns:62px 1fr 56px 56px 48px 60px;background:var(--bl);padding:6px 4px;}
-.ctbl-head > div{font-family:'Nunito',sans-serif;font-weight:800;font-size:.5rem;color:rgba(255,255,255,.95);text-transform:uppercase;letter-spacing:.3px;text-align:center;padding:2px;line-height:1.1;}
-.ctbl-head > div:nth-child(2){text-align:left;padding-left:4px;}
+
 .crow{display:grid;grid-template-columns:62px 1fr 56px 56px 48px 60px;padding:5px 4px;border-bottom:1px solid #EEF2FA;align-items:center;min-height:54px;}
 .crow:last-child{border-bottom:none;}
 .crow:hover{background:#F8FBFF;}
@@ -334,28 +332,33 @@ footer nav.fc{background:transparent !important;}
   .qb{width:100%;}
   .scan-grid{grid-template-columns:repeat(3,1fr);}
 
-  /* MOBILE: tighter table columns */
-  .ctbl-head{grid-template-columns:62px 1fr 52px 56px 50px 44px 48px 56px;padding:5px 3px;}
-  .ctbl-head > div{font-size:.48rem;padding:1px;}
-  .crow{grid-template-columns:62px 1fr 52px 56px 50px 44px 48px 56px;padding:5px 3px;min-height:54px;font-size:.62rem;}
-  .crow > div{padding:1px 2px;}
-  .c-sup-ico{width:54px;height:22px;margin-bottom:2px;}
-  .c-sup-name{font-size:.5rem;}
-  .c-sup-live{font-size:.44rem;padding:1px 3px;}
-  .c-part-t{font-size:.64rem;-webkit-line-clamp:2;}
-  .c-part-s{font-size:.52rem;}
-  .c-mini-bdg{font-size:.46rem;padding:1px 3px;}
-  .c-price{font-size:.82rem;}
-  .c-price.best{font-size:.88rem;}
-  .c-price-sub{font-size:.48rem;}
-  .c-del{font-size:.58rem;}
-  .c-del-cost{font-size:.52rem;}
-  .c-stock{font-size:.54rem;}
-  .c-rating{font-size:.62rem;}
-  .c-rating-stars{font-size:.52rem;}
-  .c-rating-ct{font-size:.44rem;}
-  .c-buy{font-size:.55rem;padding:5px 2px;}
-  .best-rib{font-size:.48rem;padding:1px 5px;}
+  /* MOBILE: 5-column table — Supplier, Part, Price, Delivery, Buy */
+  .ctbl-head{grid-template-columns:62px 1fr 60px 60px 64px;padding:7px 4px;}
+  .ctbl-head > div:nth-child(5),
+  .ctbl-head > div:nth-child(6),
+  .ctbl-head > div:nth-child(7){display:none;} /* hide Stock, Rating, Collect headers */
+  .ctbl-head > div{font-size:.56rem;padding:2px;}
+  .crow{grid-template-columns:62px 1fr 60px 60px 64px;padding:8px 4px;min-height:64px;font-size:.65rem;}
+  .crow > div:nth-child(5),
+  .crow > div:nth-child(6),
+  .crow > div:nth-child(7){display:none;} /* hide Stock, Rating, Collect on mobile */
+  .crow > div{padding:2px 3px;}
+  .c-sup-ico{width:54px;height:24px;margin-bottom:3px;}
+  .c-sup-name{font-size:.52rem;}
+  .c-sup-live{font-size:.46rem;padding:1px 3px;}
+  .c-part-t{font-size:.7rem;-webkit-line-clamp:2;font-weight:700;}
+  .c-part-s{font-size:.55rem;}
+  .c-mini-bdg{font-size:.48rem;padding:1px 4px;}
+  .c-price{font-size:.95rem;}
+  .c-price.best{font-size:1rem;}
+  .c-price-sub{font-size:.54rem;}
+  .c-del{font-size:.62rem;}
+  .c-del-cost{font-size:.55rem;}
+  .c-buy{font-size:.7rem;padding:9px 4px;font-weight:900;border-radius:7px;}
+  .best-rib{font-size:.5rem;padding:2px 6px;}
+  /* show-all button */
+  .show-all-btn{display:block;width:100%;background:var(--lg);border:2px solid #D0DCEF;border-radius:10px;padding:11px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.82rem;color:var(--bl);cursor:pointer;margin-top:8px;}
+  .show-all-btn:hover{background:#E0E8F8;}
 }
 @media(max-width:420px){
   .cats-grid{grid-template-columns:repeat(3,1fr);}
@@ -450,16 +453,7 @@ footer nav.fc{background:transparent !important;}
           <button class="ftab" data-filter="used" onclick="filterResults('used',this)">Used</button>
           <button class="ftab" data-filter="today" onclick="filterResults('today',this)">⚡ Today</button>
         </div>
-        <div class="ctbl-wrap">
-          <div class="ctbl-head">
-            <div>Supplier</div>
-            <div>Part / Info</div>
-            <div>Price</div>
-            <div>Delivery</div>
-            <div>Rating</div>
-            <div>Buy</div>
-          </div>
-          <div class="ctbl" id="resTable">
+        <div class="ctbl" id="resTable">
           <div class="ctbl-head">
             <div>Supplier</div>
             <div>Part</div>
@@ -471,7 +465,6 @@ footer nav.fc{background:transparent !important;}
             <div>Buy</div>
           </div>
           <div id="resList"></div>
-        </div>
         </div>
       </div>
     </div>
@@ -1096,9 +1089,24 @@ async function fetchResults(part){
 function showResults(v,part,data){
   var zone=document.getElementById('resultsZone');
   zone.style.display='block';
+  var list=document.getElementById('resList');
+  if(list)list.removeAttribute('data-showall'); // fresh search = top 5
   document.getElementById('aiVeh').textContent=v.name;
   document.getElementById('aiPart').textContent='— '+part;
-  allRows=(data&&data.items)?data.items:[];
+  // Deduplicate: filter out duplicate eBay listings by title+seller, and filter out irrelevant ones
+  var rawItems=(data&&data.items)?data.items:[];
+  var seen={};
+  var partKeywords=part.toLowerCase().split(/\s+/).filter(function(w){return w.length>2;});
+  allRows=rawItems.filter(function(r){
+    // Build dedup key
+    var key=(r.title||'').toLowerCase().trim()+'|'+(r.seller||'').toLowerCase().trim()+'|'+(r.price||'');
+    if(seen[key])return false;
+    seen[key]=true;
+    // Relevance check: at least one part keyword must appear in title
+    var title=(r.title||'').toLowerCase();
+    var matches=partKeywords.filter(function(w){return title.indexOf(w)!==-1;}).length;
+    return matches >= Math.min(1, partKeywords.length);
+  });
   currentFilter='all';
   document.querySelectorAll('.ftab').forEach(function(b){b.classList.remove('active');});
   var allTab=document.querySelector('.ftab[data-filter="all"]');
@@ -1187,7 +1195,6 @@ function makeRow(opts){
 function renderResults(part,v){
   if(!v)v=vehicle;
   var list=document.getElementById('resList');
-  var html='';
   var ebayNew=allRows.filter(function(r){return !r.isUsed;});
   var ebayUsed=allRows.filter(function(r){return r.isUsed;});
   var liveRows=[];
@@ -1200,25 +1207,54 @@ function renderResults(part,v){
     liveRows.push({sup:{n:r.supplier||'eBay',i:r.supplierIcon||'🛒'},isLive:true,part:part,partTitle:r.title,price:r.price,delCost:r.deliveryCost,seller:r.seller,url:r.url,isUsed:r.isUsed,totalPrice:parseFloat(r.totalPrice||r.price)});
   });
   liveRows.sort(function(a,b){return a.totalPrice-b.totalPrice;});
-  if(liveRows.length>0)liveRows[0].isBest=true;
-  liveRows.forEach(function(r){html+=makeRow(r);});
+
+  // Build full list of all rows (live + non-live)
+  var allCards=[];
+  liveRows.forEach(function(r,i){r.isBest=(i===0);allCards.push(r);});
   if(currentFilter!=='used'){
     ALL_SUPS.forEach(function(sup){
       if(sup.live)return;
       if(currentFilter==='today'){var info=SUP_INFO[sup.n];if(!info||!info.cc)return;}
       var supUrl=sup.url(part,v?v.name:'');
-      html+=makeRow({sup:sup,isLive:false,part:part,partTitle:part,url:supUrl,isUsed:false,isBest:false});
+      allCards.push({sup:sup,isLive:false,part:part,partTitle:part,url:supUrl,isUsed:false,isBest:false});
     });
   }
-  if(!html){
-    if(currentFilter==='today'){html='<div style="text-align:center;padding:30px;color:var(--mg);font-size:.85rem;">No Click & Collect options. Try "All" filter.</div>';}
-    else{html='<div style="text-align:center;padding:30px;color:var(--mg);">No results found.</div>';}
+
+  if(allCards.length===0){
+    list.innerHTML='<div style="text-align:center;padding:30px;color:var(--mg);font-size:.85rem;">'+(currentFilter==='today'?'No Click & Collect options. Try "All" filter.':'No results found.')+'</div>';
+    return;
+  }
+
+  // Show top 5 by default; user can expand
+  var showAll=list.getAttribute('data-showall')==='1';
+  var visible=showAll?allCards:allCards.slice(0,5);
+  var html='';
+  visible.forEach(function(r){html+=makeRow(r);});
+  if(!showAll&&allCards.length>5){
+    html+='<button class="show-all-btn" onclick="showAllResults()">Show all '+allCards.length+' results ▼</button>';
+  } else if(showAll&&allCards.length>5){
+    html+='<button class="show-all-btn" onclick="showFewerResults()">Show top 5 only ▲</button>';
   }
   list.innerHTML=html;
 }
 
+function showAllResults(){
+  var list=document.getElementById('resList');
+  list.setAttribute('data-showall','1');
+  renderResults(document.getElementById('partIn').value.trim(),vehicle);
+}
+
+function showFewerResults(){
+  var list=document.getElementById('resList');
+  list.removeAttribute('data-showall');
+  renderResults(document.getElementById('partIn').value.trim(),vehicle);
+  document.getElementById('resultsZone').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
 function filterResults(type,btn){
   currentFilter=type;
+  var list=document.getElementById('resList');
+  if(list)list.removeAttribute('data-showall'); // reset to top-5 view
   document.querySelectorAll('.ftab').forEach(function(b){b.classList.remove('active');});
   btn.classList.add('active');
   renderResults(document.getElementById('partIn').value.trim(),vehicle);
