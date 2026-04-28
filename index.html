@@ -138,9 +138,12 @@ nav{background:var(--bl);position:sticky;top:0;z-index:300;box-shadow:0 2px 12px
 
 /* COMPARISON TABLE — all info visible at once */
 .ctbl-wrap{background:var(--wh);border:1.5px solid #E0E8F8;border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(0,61,166,.08);margin-bottom:10px;}
-.ctbl{display:block;width:100%;}
+.ctbl{display:block;width:100%;background:var(--wh);border:1.5px solid #E0E8F8;border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(0,61,166,.08);}
+.ctbl-head{display:grid;grid-template-columns:90px 1fr 62px 62px 60px 52px 56px 70px;background:var(--bl);padding:8px 4px;}
+.ctbl-head > div{font-family:'Nunito',sans-serif;font-weight:800;font-size:.6rem;color:rgba(255,255,255,.95);text-transform:uppercase;letter-spacing:.4px;text-align:center;padding:2px;line-height:1.1;}
+.ctbl-head > div:nth-child(2){text-align:left;padding-left:6px;}
 
-.crow{display:grid;grid-template-columns:62px 1fr 56px 56px 48px 60px;padding:5px 4px;border-bottom:1px solid #EEF2FA;align-items:center;min-height:54px;}
+.crow{display:grid;grid-template-columns:90px 1fr 62px 62px 60px 52px 56px 70px;padding:6px 4px;border-bottom:1px solid #EEF2FA;align-items:center;min-height:56px;}
 .crow:last-child{border-bottom:none;}
 .crow:hover{background:#F8FBFF;}
 .crow.best{background:linear-gradient(90deg,#F0FFF7,#fff);border-left:3px solid var(--gr);}
@@ -155,7 +158,10 @@ nav{background:var(--bl);position:sticky;top:0;z-index:300;box-shadow:0 2px 12px
 
 /* Col 2 — Part / Info */
 .c-part-t{font-family:'Nunito',sans-serif;font-weight:700;font-size:.6rem;color:var(--dk);line-height:1.15;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
-.c-part-meta{display:flex;gap:4px;margin-top:2px;flex-wrap:wrap;align-items:center;}
+.c-part-meta{display:flex;gap:8px;margin-top:4px;flex-wrap:wrap;align-items:center;font-size:.62rem;}
+.c-rating-inline{font-family:'Nunito',sans-serif;font-weight:800;color:var(--dk);font-size:.62rem;}
+.c-rating-inline span{font-weight:600;}
+.c-stock-inline{font-family:'Nunito',sans-serif;font-weight:800;color:var(--gr);font-size:.62rem;}
 .c-mini-bdg{font-family:'Nunito',sans-serif;font-weight:800;font-size:.42rem;padding:1px 3px;border-radius:2px;letter-spacing:.2px;}
 .c-mini-bdg.cc{background:#E6F0FF;color:var(--bl);}
 .c-mini-bdg.prime{background:#FFF3D9;color:#A06000;}
@@ -338,7 +344,7 @@ footer nav.fc{background:transparent !important;}
   .ctbl-head > div:nth-child(6),
   .ctbl-head > div:nth-child(7){display:none;} /* hide Stock, Rating, Collect headers */
   .ctbl-head > div{font-size:.56rem;padding:2px;}
-  .crow{grid-template-columns:62px 1fr 60px 60px 64px;padding:8px 4px;min-height:64px;font-size:.65rem;}
+  .crow{grid-template-columns:62px 1fr 60px 60px 64px;padding:10px 4px;min-height:90px;font-size:.65rem;align-items:center;}
   .crow > div:nth-child(5),
   .crow > div:nth-child(6),
   .crow > div:nth-child(7){display:none;} /* hide Stock, Rating, Collect on mobile */
@@ -346,9 +352,13 @@ footer nav.fc{background:transparent !important;}
   .c-sup-ico{width:54px;height:24px;margin-bottom:3px;}
   .c-sup-name{font-size:.52rem;}
   .c-sup-live{font-size:.46rem;padding:1px 3px;}
-  .c-part-t{font-size:.7rem;-webkit-line-clamp:2;font-weight:700;}
-  .c-part-s{font-size:.55rem;}
-  .c-mini-bdg{font-size:.48rem;padding:1px 4px;}
+  .c-part-t{font-size:.7rem;-webkit-line-clamp:2;font-weight:700;line-height:1.2;}
+  .c-part-s{font-size:.55rem;color:var(--mg);}
+  .c-mini-bdg{font-size:.5rem;padding:2px 5px;}
+  .c-part-meta{font-size:.55rem;gap:6px;margin-top:4px;}
+  .c-rating-inline{font-size:.55rem;}
+  .c-stock-inline{font-size:.55rem;}
+  .c-part-b{margin-top:5px;gap:3px;}
   .c-price{font-size:.95rem;}
   .c-price.best{font-size:1rem;}
   .c-price-sub{font-size:.54rem;}
@@ -1153,40 +1163,64 @@ function starsHtml(rating){
 function makeRow(opts){
   var info=SUP_INFO[opts.sup.n]||{delivery:'3-5 days',delCost:'varies',cc:false,rating:4.0,reviews:''};
   var stars=starsHtml(info.rating);
-  var priceHtml;
-  if(opts.price){
-    priceHtml='<div class="c-price'+(opts.isBest?' best':'')+'">£'+opts.price+'</div>';
-    if(opts.delCost!==undefined){var total=parseFloat(opts.price)+(parseFloat(opts.delCost)||0);priceHtml+='<div class="c-price-sub">Total £'+total.toFixed(2)+'</div>';}
-  } else {priceHtml='<div class="c-price" style="color:var(--mg);font-size:.72rem;">See site</div>';}
   var partTitle=opts.partTitle||opts.part;
-  if(partTitle.length>60)partTitle=partTitle.substring(0,60)+'...';
+  if(partTitle.length>55)partTitle=partTitle.substring(0,55)+'...';
   var delText=opts.delivery||info.delivery;
   var delCostText=opts.delCost!==undefined?(parseFloat(opts.delCost)===0?'Free':'£'+opts.delCost):info.delCost;
   var isFastDel=delText.toLowerCase().includes('next');
   var isFreeDel=delCostText.toLowerCase()==='free';
-  var stockText=opts.isLive?'In Stock':'Check site';
-  var stockClass=opts.isLive?'ok':'check';
-  var miniBadges='';
-  if(info.cc)miniBadges+='<span class="c-mini-bdg cc">🏪 C&amp;C</span>';
-  if(info.prime)miniBadges+='<span class="c-mini-bdg prime">⚡Prime</span>';
-  if(isFreeDel)miniBadges+='<span class="c-mini-bdg free">🆓Free</span>';
-  miniBadges+='<span class="c-mini-bdg '+(opts.isUsed?'used':'new')+'">'+(opts.isUsed?'USED':'NEW')+'</span>';
   var logoHtml=LOGOS[opts.sup.n]||'<div style="font-family:Arial;font-weight:900;font-size:11px;color:#003DA5;">'+opts.sup.n+'</div>';
+
+  // Build all badges
+  var badges='';
+  badges+='<span class="c-mini-bdg '+(opts.isUsed?'used':'new')+'">'+(opts.isUsed?'USED':'NEW')+'</span>';
+  if(info.cc)badges+='<span class="c-mini-bdg cc">🏪 Click &amp; Collect</span>';
+  if(info.prime)badges+='<span class="c-mini-bdg prime">⚡ Prime</span>';
+  if(isFreeDel)badges+='<span class="c-mini-bdg free">🆓 Free Delivery</span>';
+  if(opts.isLive)badges+='<span class="c-mini-bdg" style="background:var(--ye);color:var(--bl);">⚡ LIVE</span>';
+
+  // Price block
+  var priceHtml;
+  if(opts.price){
+    priceHtml='<div class="c-price'+(opts.isBest?' best':'')+'">£'+opts.price+'</div>';
+    if(opts.delCost!==undefined){var total=parseFloat(opts.price)+(parseFloat(opts.delCost)||0);priceHtml+='<div class="c-price-sub">Total £'+total.toFixed(2)+'</div>';}
+  } else {priceHtml='<div class="c-price" style="color:var(--mg);font-size:.78rem;">See site</div>';}
+
   var html='<div class="crow'+(opts.isBest?' best':'')+'">';
-  html+='<div><div class="c-sup"><div class="c-sup-ico">'+logoHtml+'</div><div class="c-sup-name">'+opts.sup.n+'</div>';
-  if(opts.isLive)html+='<div class="c-sup-live">LIVE</div>';
-  html+='</div></div>';
+
+  // Col 1: Supplier
+  html+='<div><div class="c-sup"><div class="c-sup-ico">'+logoHtml+'</div><div class="c-sup-name">'+opts.sup.n+'</div></div></div>';
+
+  // Col 2: Part info (now richer — title, badges, rating, stock all inline)
   html+='<div class="c-part">';
   if(opts.isBest)html+='<div class="best-rib">🏆 BEST DEAL</div>';
   html+='<div class="c-part-t">'+partTitle+'</div>';
-  if(opts.seller)html+='<div class="c-part-s">'+opts.seller+'</div>';
-  html+='<div class="c-part-b">'+miniBadges+'</div></div>';
+  if(opts.seller)html+='<div class="c-part-s">Seller: '+opts.seller+'</div>';
+  // Inline rating + stock + reviews row
+  html+='<div class="c-part-meta">';
+  html+='<span class="c-rating-inline">⭐ '+info.rating.toFixed(1)+' '+stars+(info.reviews?' <span style="color:var(--mg);">('+info.reviews+')</span>':'')+'</span>';
+  if(opts.isLive)html+='<span class="c-stock-inline">✓ In Stock</span>';
+  html+='</div>';
+  html+='<div class="c-part-b">'+badges+'</div>';
+  html+='</div>';
+
+  // Col 3: Price
   html+='<div>'+priceHtml+'</div>';
-  html+='<div><div class="c-del'+(isFastDel?' fast':'')+'">'+delText+'</div><div class="c-del-cost'+(isFreeDel?' free':'')+'">'+delCostText+'</div></div>';
-  html+='<div><div class="c-stock '+stockClass+'">'+stockText+'</div></div>';
+
+  // Col 4: Delivery
+  html+='<div><div class="c-del'+(isFastDel?' fast':'')+'">🚚 '+delText+'</div><div class="c-del-cost'+(isFreeDel?' free':'')+'">'+delCostText+'</div></div>';
+
+  // Col 5: (hidden on mobile) Stock
+  html+='<div><div class="c-stock '+(opts.isLive?'ok':'check')+'">'+(opts.isLive?'In Stock':'Check site')+'</div></div>';
+
+  // Col 6: (hidden on mobile) Rating
   html+='<div><div class="c-rating">'+info.rating.toFixed(1)+'</div><div class="c-rating-stars">'+stars+'</div>'+(info.reviews?'<div class="c-rating-ct">'+info.reviews+'</div>':'')+'</div>';
+
+  // Col 7: (hidden on mobile) Click & Collect
   if(info.cc){html+='<div style="text-align:center;"><div style="color:var(--gr);font-weight:900;font-size:1.4rem;line-height:1;">✓</div><div style="font-size:.68rem;color:var(--gr);font-weight:800;margin-top:3px;line-height:1.1;">Collect<br/>In Store</div></div>';}
   else{html+='<div style="text-align:center;"><div style="color:#B0B8C8;font-size:1.3rem;line-height:1;font-weight:700;">✕</div><div style="font-size:.68rem;color:#B0B8C8;font-weight:700;margin-top:3px;line-height:1.1;">Delivery<br/>Only</div></div>';}
+
+  // Col 8: Buy
   html+='<div><a href="'+opts.url+'" target="_blank" rel="sponsored noopener" class="c-buy" onclick="trackClick(\''+opts.sup.n.replace(/\'/g,'')+'\',\''+opts.part.replace(/\'/g,'')+'\','+(opts.price||0)+')">'+(opts.price?'Buy →':'Search →')+'</a></div>';
   html+='</div>';
   return html;
