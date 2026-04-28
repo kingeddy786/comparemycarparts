@@ -1263,7 +1263,11 @@ function renderResults(part,v){
   ebayRows.forEach(function(r){
     liveRows.push({sup:{n:r.supplier||'eBay',i:r.supplierIcon||'🛒'},isLive:true,part:part,partTitle:r.title,price:r.price,delCost:r.deliveryCost,seller:r.seller,url:r.url,isUsed:r.isUsed,totalPrice:parseFloat(r.totalPrice||r.price)});
   });
-  liveRows.sort(function(a,b){return a.totalPrice-b.totalPrice;});
+  // Sort: NEW parts first, then USED — within each group cheapest first
+  liveRows.sort(function(a,b){
+    if(a.isUsed!==b.isUsed)return a.isUsed?1:-1; // NEW (false) above USED (true)
+    return a.totalPrice-b.totalPrice;
+  });
 
   // Build full list of all rows (live + non-live)
   var allCards=[];
