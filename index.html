@@ -338,17 +338,40 @@ footer nav.fc{background:transparent !important;}
   .qb{width:100%;}
   .scan-grid{grid-template-columns:repeat(3,1fr);}
 
-  /* MOBILE: 5-column table — Supplier, Part, Price, Delivery, Buy */
-  .ctbl-head{grid-template-columns:62px 1fr 60px 60px 64px;padding:7px 4px;}
+  /* MOBILE: 5-column table layout — bulletproof */
+  .ctbl{display:block !important;width:100% !important;}
+  .ctbl-head{
+    display:grid !important;
+    grid-template-columns:60px minmax(0,1fr) 60px 60px 64px !important;
+    padding:8px 4px !important;
+    width:100% !important;
+    box-sizing:border-box !important;
+  }
+  .ctbl-head > div{
+    font-size:.56rem !important;
+    padding:2px !important;
+    display:block !important;
+    text-align:center !important;
+    line-height:1.1 !important;
+  }
+  .ctbl-head > div:nth-child(2){text-align:left !important;padding-left:6px !important;}
   .ctbl-head > div:nth-child(5),
   .ctbl-head > div:nth-child(6),
-  .ctbl-head > div:nth-child(7){display:none;} /* hide Stock, Rating, Collect headers */
-  .ctbl-head > div{font-size:.56rem;padding:2px;}
-  .crow{grid-template-columns:62px 1fr 60px 60px 64px;padding:10px 4px;min-height:90px;font-size:.65rem;align-items:center;}
+  .ctbl-head > div:nth-child(7){display:none !important;}
+  .crow{
+    display:grid !important;
+    grid-template-columns:60px minmax(0,1fr) 60px 60px 64px !important;
+    padding:10px 4px !important;
+    min-height:90px !important;
+    font-size:.65rem !important;
+    align-items:center !important;
+    width:100% !important;
+    box-sizing:border-box !important;
+  }
+  .crow > div{padding:2px 3px;}
   .crow > div:nth-child(5),
   .crow > div:nth-child(6),
-  .crow > div:nth-child(7){display:none;} /* hide Stock, Rating, Collect on mobile */
-  .crow > div{padding:2px 3px;}
+  .crow > div:nth-child(7){display:none !important;}
   .c-sup-ico{width:54px;height:24px;margin-bottom:3px;}
   .c-sup-name{font-size:.52rem;}
   .c-sup-live{font-size:.46rem;padding:1px 3px;}
