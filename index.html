@@ -130,73 +130,36 @@ nav{background:var(--bl);position:sticky;top:0;z-index:300;box-shadow:0 2px 12px
 .aih{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap;}
 .aibdg{background:linear-gradient(135deg,var(--bl),var(--b2));color:var(--wh);font-family:'Nunito',sans-serif;font-weight:800;font-size:.68rem;text-transform:uppercase;letter-spacing:1px;padding:4px 10px;border-radius:20px;}
 .aivt{background:var(--gn);border:1px solid var(--gr);color:var(--gr);font-family:'Nunito',sans-serif;font-weight:700;font-size:.75rem;padding:3px 10px;border-radius:20px;}
-.aipt{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.1rem;color:var(--dk);}
+.aipt{font-family:'Nunito',sans-serif;font-weight:900;font-size:1rem;color:var(--dk);}
 .filter-tabs{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap;}
 .ftab{background:var(--lg);border:2px solid transparent;border-radius:8px;padding:6px 14px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.78rem;color:var(--mg);cursor:pointer;transition:all .15s;}
 .ftab.active{background:var(--bl);color:var(--wh);}
 .ftab:hover:not(.active){border-color:var(--bl);color:var(--bl);}
-/* COMPACT COMPARISON TABLE */
-.ctbl{background:var(--wh);border:1.5px solid #E0E8F8;border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(0,61,166,.08);}
-.ctbl-head{display:grid;grid-template-columns:90px 1fr 62px 62px 60px 52px 56px 70px;gap:0;background:var(--bl);padding:6px 4px;}
-.ctbl-head > div{font-family:'Nunito',sans-serif;font-weight:800;font-size:.55rem;color:rgba(255,255,255,.9);text-transform:uppercase;letter-spacing:.3px;text-align:center;padding:2px;line-height:1.1;}
-.ctbl-head > div:nth-child(2){text-align:left;padding-left:6px;}
-.crow{display:grid;grid-template-columns:90px 1fr 62px 62px 60px 52px 56px 70px;gap:0;padding:6px 4px;border-bottom:1px solid #EEF2FA;align-items:center;min-height:56px;font-size:.68rem;}
-.crow:last-child{border-bottom:none;}
-.crow:hover{background:#F8FBFF;}
-.crow.best{background:linear-gradient(90deg,#F0FFF7,#fff);border-left:3px solid var(--gr);}
-.crow > div{text-align:center;padding:2px 3px;}
-.crow > div:nth-child(2){text-align:left;padding-left:6px;}
 
-/* Column 1: Supplier */
-.c-sup{display:flex;flex-direction:column;align-items:center;gap:2px;}
-.c-sup-ico{display:flex;align-items:center;justify-content:center;width:72px;height:32px;margin-bottom:4px;}
-.c-sup-ico svg{max-width:100%;max-height:100%;width:auto;height:auto;}
-.c-sup-name{font-family:'Nunito',sans-serif;font-weight:900;font-size:.58rem;color:var(--bl);line-height:1.05;text-align:center;}
-.c-sup-live{background:var(--ye);color:var(--bl);font-family:'Nunito',sans-serif;font-weight:900;font-size:.5rem;padding:1px 4px;border-radius:3px;letter-spacing:.3px;margin-top:1px;}
-
-/* Column 2: Part */
-.c-part{min-width:0;}
-.c-part-t{font-family:'Nunito',sans-serif;font-weight:700;font-size:.72rem;color:var(--dk);line-height:1.15;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
-.c-part-s{font-size:.58rem;color:var(--mg);margin-top:1px;}
-.c-part-b{display:flex;gap:3px;margin-top:2px;flex-wrap:wrap;}
-.c-mini-bdg{font-family:'Nunito',sans-serif;font-weight:800;font-size:.52rem;padding:1px 4px;border-radius:3px;letter-spacing:.2px;}
-.c-mini-bdg.cc{background:#E6F0FF;color:var(--bl);}
-.c-mini-bdg.prime{background:#FFF3D9;color:#A06000;}
-.c-mini-bdg.new{background:var(--bl);color:#fff;}
-.c-mini-bdg.used{background:var(--or);color:#fff;}
-.c-mini-bdg.free{background:var(--gn);color:var(--gr);}
-
-/* Column 3: Price */
-.c-price{font-family:'Nunito',sans-serif;font-weight:900;font-size:.95rem;color:var(--dk);line-height:1;}
-.c-price.best{color:var(--gr);font-size:1rem;}
-.c-price-sub{font-size:.52rem;color:var(--mg);margin-top:2px;font-weight:600;}
-
-/* Column 4: Delivery */
-.c-del{font-family:'Nunito',sans-serif;font-weight:800;font-size:.68rem;color:var(--dk);line-height:1.1;}
-.c-del.fast{color:var(--gr);}
-.c-del-cost{font-size:.58rem;color:var(--mg);margin-top:1px;font-weight:700;}
-.c-del-cost.free{color:var(--gr);}
-
-/* Column 5: Stock */
-.c-stock{font-family:'Nunito',sans-serif;font-weight:800;font-size:.62rem;line-height:1.1;}
-.c-stock.ok{color:var(--gr);}
-.c-stock.check{color:var(--mg);}
-
-/* Column 6: Rating */
-.c-rating{font-family:'Nunito',sans-serif;font-weight:900;font-size:.72rem;color:var(--dk);}
-.c-rating-stars{color:#FFB400;font-size:.6rem;letter-spacing:.5px;line-height:1;margin-top:1px;}
-.c-rating-ct{font-size:.5rem;color:var(--mg);margin-top:1px;}
-
-/* Column 7: Buy button */
-.c-buy{background:var(--bl);color:#fff;border:none;border-radius:6px;padding:6px 4px;font-family:'Nunito',sans-serif;font-weight:900;font-size:.65rem;cursor:pointer;text-decoration:none;display:inline-block;width:100%;text-align:center;line-height:1.1;}
-.c-buy:hover{background:var(--b2);}
-.crow.best .c-buy{background:var(--gr);}
-
-/* Best deal ribbon */
-.best-rib{background:var(--gr);color:#fff;font-family:'Nunito',sans-serif;font-weight:900;font-size:.55rem;padding:2px 8px;letter-spacing:.5px;display:inline-block;margin-bottom:4px;border-radius:3px;}
-
-/* Mobile-only meta row (shown via media query below) */
-.c-mob-meta{display:none;}
+/* RESULT CARDS */
+.rcard{background:var(--wh);border:1.5px solid #E0E8F8;border-radius:14px;padding:12px 14px;margin-bottom:10px;display:grid;grid-template-columns:64px 1fr auto;align-items:center;gap:10px;box-shadow:0 2px 10px rgba(0,61,166,.06);transition:border-color .15s;}
+.rcard:hover{border-color:#AABFE0;}
+.rcard.best{border:2px solid var(--gr);background:linear-gradient(90deg,#F2FFF8,#fff);}
+.rcard-logo{display:flex;align-items:center;justify-content:center;width:64px;height:30px;flex-shrink:0;}
+.rcard-logo svg{max-width:100%;max-height:100%;}
+.rcard-mid{min-width:0;}
+.rcard-sup{font-family:'Nunito',sans-serif;font-weight:900;font-size:.72rem;color:var(--bl);display:flex;align-items:center;gap:5px;margin-bottom:2px;}
+.rcard-live{background:var(--ye);color:var(--bl);font-size:.5rem;font-weight:900;padding:1px 5px;border-radius:3px;letter-spacing:.3px;}
+.rcard-best{background:var(--gr);color:#fff;font-size:.5rem;font-weight:900;padding:1px 5px;border-radius:3px;letter-spacing:.3px;}
+.rcard-part{font-size:.75rem;color:var(--dk);font-weight:600;line-height:1.2;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.rcard-meta{font-size:.65rem;color:var(--mg);margin-top:3px;display:flex;gap:8px;flex-wrap:wrap;}
+.rcard-meta span{display:inline-flex;align-items:center;gap:2px;}
+.rcard-meta .fast{color:var(--gr);font-weight:700;}
+.rcard-meta .free{color:var(--gr);font-weight:700;}
+.rcard-right{text-align:right;flex-shrink:0;}
+.rcard-price{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.2rem;color:var(--dk);line-height:1;}
+.rcard-price.best{color:var(--gr);}
+.rcard-total{font-size:.58rem;color:var(--mg);margin-bottom:6px;}
+.rcard-btn{background:var(--bl);color:#fff;border:none;border-radius:8px;padding:8px 14px;font-family:'Nunito',sans-serif;font-weight:900;font-size:.78rem;cursor:pointer;text-decoration:none;display:inline-block;white-space:nowrap;}
+.rcard-btn:hover{background:var(--b2);}
+.rcard.best .rcard-btn{background:var(--gr);}
+.show-more-btn{width:100%;background:var(--lg);border:2px solid #D0DCEF;border-radius:10px;padding:12px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.85rem;color:var(--bl);cursor:pointer;margin-top:4px;transition:background .15s;}
+.show-more-btn:hover{background:#E0E8F8;}
 .stag{display:inline-flex;align-items:center;gap:4px;background:var(--lg);border:1.5px solid #D0DCEF;border-radius:6px;padding:3px 8px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.72rem;color:var(--bl);white-space:nowrap;}
 .pt{font-weight:700;font-size:.78rem;color:var(--dk);line-height:1.2;}
 .psb{font-size:.65rem;color:var(--mg);margin-top:1px;}
@@ -342,85 +305,11 @@ footer nav.fc{background:transparent !important;}
   .qb{width:100%;}
   .scan-grid{grid-template-columns:repeat(3,1fr);}
 
-  /* ───── MOBILE: convert table rows into stacked cards ───── */
-  .ctbl{border:none;box-shadow:none;background:transparent;overflow:visible;}
-  .ctbl-head{display:none;}
-  .crow{
-    display:grid;
-    grid-template-columns:1fr auto;
-    grid-template-areas:
-      "supplier price"
-      "part part"
-      "meta meta"
-      "buy buy";
-    gap:8px 10px;
-    background:var(--wh);
-    border:1.5px solid #E0E8F8;
-    border-radius:14px;
-    padding:14px;
-    margin-bottom:10px;
-    min-height:unset;
-    box-shadow:0 2px 10px rgba(0,61,166,.07);
-    align-items:start;
-  }
-  .crow.best{border:2px solid var(--gr);background:linear-gradient(135deg,#F0FFF7,#fff);}
-  .crow > div{text-align:left;padding:0;}
-
-  /* col 1 — supplier */
-  .crow > div:nth-child(1){grid-area:supplier;border-bottom:1px solid var(--lg);padding-bottom:10px;}
-  .c-sup{flex-direction:row;align-items:center;gap:10px;}
-  .c-sup-ico{width:60px;height:28px;margin-bottom:0;flex-shrink:0;}
-  .c-sup-name{font-size:.74rem;text-align:left;}
-  .c-sup-live{font-size:.55rem;padding:2px 5px;display:inline-block;margin-top:2px;}
-
-  /* col 3 — price (top right) */
-  .crow > div:nth-child(3){grid-area:price;text-align:right;border-bottom:1px solid var(--lg);padding-bottom:10px;}
-  .c-price{font-size:1.25rem;text-align:right;}
-  .c-price.best{font-size:1.35rem;}
-  .c-price-sub{font-size:.65rem;text-align:right;}
-
-  /* col 2 — part details */
-  .crow > div:nth-child(2){grid-area:part;padding-left:0;}
-  .c-part-t{font-size:.84rem;-webkit-line-clamp:3;line-height:1.3;}
-  .c-part-s{font-size:.72rem;margin-top:3px;}
-  .c-part-b{margin-top:6px;}
-  .c-mini-bdg{font-size:.62rem;padding:2px 6px;}
-  .best-rib{font-size:.6rem;padding:2px 8px;margin-bottom:6px;}
-
-  /* cols 4+5+6+7 — meta row (delivery / stock / rating / collect) */
-  .crow > div:nth-child(4),
-  .crow > div:nth-child(5),
-  .crow > div:nth-child(6),
-  .crow > div:nth-child(7){
-    display:none;
-  }
-  .c-mob-meta{
-    grid-area:meta;
-    display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;
-    padding:8px 0;border-top:1px solid var(--lg);border-bottom:1px solid var(--lg);
-    font-size:.72rem;color:var(--mg);
-  }
-  .c-mob-meta > span{display:inline-flex;align-items:center;gap:4px;font-weight:700;}
-  .c-mob-meta .mm-del{color:var(--dk);}
-  .c-mob-meta .mm-del.fast{color:var(--gr);}
-  .c-mob-meta .mm-stock{color:var(--gr);}
-  .c-mob-meta .mm-rating{color:var(--dk);}
-  .c-mob-meta .mm-cc{color:var(--bl);font-weight:800;}
-
-  /* col 8 — buy button full width at bottom */
-  .crow > div:nth-child(8){grid-area:buy;}
-  .c-buy{
-    display:block;width:100%;
-    font-size:.95rem;padding:13px;border-radius:10px;
-    text-align:center;font-weight:900;
-  }
+  /* mobile handled by rcard responsive layout */
 }
 @media(max-width:420px){
   .cats-grid{grid-template-columns:repeat(3,1fr);}
   .scan-grid{grid-template-columns:repeat(2,1fr);}
-  .crow{padding:12px;}
-  .c-sup-ico{width:54px;height:24px;}
-  .c-price{font-size:1.15rem;}
 }
 </style>
 
@@ -511,19 +400,7 @@ footer nav.fc{background:transparent !important;}
           <button class="ftab" data-filter="used" onclick="filterResults('used',this)">Used</button>
           <button class="ftab" data-filter="today" onclick="filterResults('today',this)">⚡ Today</button>
         </div>
-        <div class="ctbl" id="resTable">
-          <div class="ctbl-head">
-            <div>Supplier</div>
-            <div>Part</div>
-            <div>Price</div>
-            <div>Delivery</div>
-            <div>Stock</div>
-            <div>Rating</div>
-            <div>Collect</div>
-            <div>Buy</div>
-          </div>
-          <div id="resList"></div>
-        </div>
+        <div id="resList"></div>
       </div>
     </div>
 
@@ -1193,89 +1070,46 @@ function starsHtml(rating){
   return s.substring(0,5);
 }
 
-function makeRow(opts){
-  var info=SUP_INFO[opts.sup.n]||{delivery:'3-5 days',delCost:'varies',cc:false,rating:4.0,reviews:''};
-  var stars=starsHtml(info.rating);
-  var priceStr,totalStr;
-  if(opts.price){
-    priceStr='£'+opts.price;
-    if(opts.delCost!==undefined){var tot=parseFloat(opts.price)+(parseFloat(opts.delCost)||0);totalStr='Total £'+tot.toFixed(2);}
-  } else {priceStr='See site';}
+function makeCard(opts){
+  var info=SUP_INFO[opts.sup.n]||{delivery:'3-5 days',delCost:'varies',cc:false,rating:4.0};
+  var logoHtml=LOGOS[opts.sup.n]||'<div style="font-weight:900;font-size:11px;color:#003DA5;">'+opts.sup.n+'</div>';
   var partTitle=opts.partTitle||opts.part;
-  if(partTitle.length>80)partTitle=partTitle.substring(0,80)+'...';
+  if(partTitle.length>60)partTitle=partTitle.substring(0,60)+'...';
   var delText=opts.delivery||info.delivery;
-  var delCostText=opts.delCost!==undefined?(parseFloat(opts.delCost)===0?'Free':'£'+opts.delCost):info.delCost;
-  var isFastDel=delText.toLowerCase().includes('next');
-  var isFreeDel=delCostText.toLowerCase()==='free';
-  var stockText=opts.isLive?'✓ In Stock':'Check site';
-  var stockClass=opts.isLive?'ok':'check';
-  var miniBadges='';
-  if(info.cc)miniBadges+='<span class="c-mini-bdg cc">🏪 C&amp;C</span>';
-  if(info.prime)miniBadges+='<span class="c-mini-bdg prime">⚡Prime</span>';
-  if(isFreeDel)miniBadges+='<span class="c-mini-bdg free">🆓Free del.</span>';
-  miniBadges+='<span class="c-mini-bdg '+(opts.isUsed?'used':'new')+'">'+(opts.isUsed?'USED':'NEW')+'</span>';
-  var logoHtml=LOGOS[opts.sup.n]||'<div style="font-family:Arial;font-weight:900;font-size:11px;color:#003DA5;">'+opts.sup.n+'</div>';
-  var collectHtml=info.cc
-    ?'<span style="color:var(--gr);font-weight:800;font-size:.72rem;">🏪 C&amp;C Available</span>'
-    :'<span style="color:#B0B8C8;font-size:.72rem;">Delivery only</span>';
-
-  // Desktop: 8-col grid (unchanged). Mobile: single column card via CSS.
-  var html='<div class="crow'+(opts.isBest?' best':'')+'">';
-
-  // Col 1 — Supplier
-  html+='<div><div class="c-sup">'
-    +'<div class="c-sup-ico">'+logoHtml+'</div>'
-    +'<div class="c-sup-name">'+opts.sup.n+'</div>'
-    +(opts.isLive?'<div class="c-sup-live">LIVE</div>':'')
-    +'</div></div>';
-
-  // Col 2 — Part
-  html+='<div class="c-part">'
-    +(opts.isBest?'<div class="best-rib">🏆 BEST DEAL</div>':'')
-    +'<div class="c-part-t">'+partTitle+'</div>'
-    +(opts.seller?'<div class="c-part-s">'+opts.seller+'</div>':'')
-    +'<div class="c-part-b">'+miniBadges+'</div>'
-    +'</div>';
-
-  // Col 3 — Price
-  html+='<div>'
-    +'<div class="c-price'+(opts.isBest?' best':'')+'" style="'+(priceStr==='See site'?'color:var(--mg);font-size:.82rem;':'')+'">'+(priceStr==='See site'?'See site':'£'+opts.price)+'</div>'
-    +(totalStr?'<div class="c-price-sub">'+totalStr+'</div>':'')
-    +'</div>';
-
-  // Col 4 — Delivery
-  html+='<div>'
-    +'<div class="c-del'+(isFastDel?' fast':'')+'">'+delText+'</div>'
-    +'<div class="c-del-cost'+(isFreeDel?' free':'')+'">'+delCostText+'</div>'
-    +'</div>';
-
-  // Col 5 — Stock
-  html+='<div><div class="c-stock '+stockClass+'">'+stockText+'</div></div>';
-
-  // Col 6 — Rating
-  html+='<div>'
-    +'<div class="c-rating">'+info.rating.toFixed(1)+'</div>'
-    +'<div class="c-rating-stars">'+stars+'</div>'
-    +(info.reviews?'<div class="c-rating-ct">'+info.reviews+'</div>':'')
-    +'</div>';
-
-  // Col 7 — Collect
-  html+='<div style="text-align:center;">'+(info.cc
-    ?'<div style="color:var(--gr);font-weight:900;font-size:1.3rem;">✓</div><div style="font-size:.65rem;color:var(--gr);font-weight:800;line-height:1.2;">Collect<br>In Store</div>'
-    :'<div style="color:#B0B8C8;font-size:1.2rem;font-weight:700;">✕</div><div style="font-size:.65rem;color:#B0B8C8;font-weight:700;line-height:1.2;">Delivery<br>Only</div>')
-    +'</div>';
-
-  // Mobile-only consolidated meta row (hidden on desktop via CSS)
-  html+='<div class="c-mob-meta">'
-    +'<span class="mm-del'+(isFastDel?' fast':'')+'">🚚 '+delText+(delCostText&&delCostText!=='varies'?' · '+delCostText:'')+'</span>'
-    +(opts.isLive?'<span class="mm-stock">✓ In Stock</span>':'')
-    +'<span class="mm-rating">⭐ '+info.rating.toFixed(1)+(info.reviews?' ('+info.reviews+')':'')+'</span>'
-    +(info.cc?'<span class="mm-cc">🏪 Click &amp; Collect</span>':'')
-    +'</div>';
-
-  // Col 8 — Buy
-  html+='<div><a href="'+opts.url+'" target="_blank" rel="sponsored noopener" class="c-buy" onclick="trackClick(\''+opts.sup.n.replace(/\'/g,'')+'\',\''+opts.part.replace(/\'/g,'')+'\','+(opts.price||0)+')">'+(opts.price?'Buy →':'Search →')+'</a></div>';
-
+  var delCost=opts.delCost!==undefined?(parseFloat(opts.delCost)===0?'Free':'£'+parseFloat(opts.delCost).toFixed(2)):info.delCost;
+  var isFast=delText.toLowerCase().includes('next');
+  var isFree=delCost==='Free';
+  var priceHtml='',totalHtml='';
+  if(opts.price){
+    priceHtml='<div class="rcard-price'+(opts.isBest?' best':'')+'">£'+parseFloat(opts.price).toFixed(2)+'</div>';
+    if(opts.delCost!==undefined){
+      var tot=parseFloat(opts.price)+(parseFloat(opts.delCost)||0);
+      totalHtml='<div class="rcard-total">Total £'+tot.toFixed(2)+'</div>';
+    }
+  } else {
+    priceHtml='<div class="rcard-price" style="font-size:.8rem;color:var(--mg);">See site</div>';
+  }
+  var html='<div class="rcard'+(opts.isBest?' best':'')+'">';
+  // Logo
+  html+='<div class="rcard-logo">'+logoHtml+'</div>';
+  // Middle: supplier name + part + meta
+  html+='<div class="rcard-mid">';
+  html+='<div class="rcard-sup">'+opts.sup.n;
+  if(opts.isLive)html+='<span class="rcard-live">LIVE</span>';
+  if(opts.isBest)html+='<span class="rcard-best">🏆 BEST</span>';
+  html+='</div>';
+  html+='<div class="rcard-part">'+partTitle+'</div>';
+  html+='<div class="rcard-meta">';
+  html+='<span class="'+(isFast?'fast':'')+'">🚚 '+delText+'</span>';
+  html+='<span class="'+(isFree?'free':'')+'">'+delCost+'</span>';
+  if(info.cc)html+='<span style="color:var(--bl);">🏪 C&amp;C</span>';
+  html+='<span>⭐ '+info.rating.toFixed(1)+'</span>';
+  html+='</div></div>';
+  // Right: price + buy button
+  html+='<div class="rcard-right">';
+  html+=priceHtml+totalHtml;
+  html+='<a href="'+opts.url+'" target="_blank" rel="sponsored noopener" class="rcard-btn" onclick="trackClick(''+opts.sup.n.replace(/'/g,'')+'',''+opts.part.replace(/'/g,'')+'','+(opts.price||0)+')">'+(opts.price?'Buy →':'Go →')+'</a>';
+  html+='</div>';
   html+='</div>';
   return html;
 }
@@ -1293,28 +1127,46 @@ function renderResults(part,v){
   else if(currentFilter==='today')ebayRows=[];
   else ebayRows=ebayNew.concat(ebayUsed);
   ebayRows.forEach(function(r){
-    liveRows.push({sup:{n:r.supplier||'eBay',i:r.supplierIcon||'🛒'},isLive:true,part:part,partTitle:r.title,price:r.price,delCost:r.deliveryCost,seller:r.seller,url:r.url,isUsed:r.isUsed,totalPrice:parseFloat(r.totalPrice||r.price)});
+    liveRows.push({sup:{n:r.supplier||'eBay'},isLive:true,part:part,partTitle:r.title,price:r.price,delCost:r.deliveryCost,seller:r.seller,url:r.url,isUsed:r.isUsed,totalPrice:parseFloat(r.totalPrice||r.price)});
   });
   liveRows.sort(function(a,b){return a.totalPrice-b.totalPrice;});
-  if(liveRows.length>0)liveRows[0].isBest=true;
-  liveRows.forEach(function(r){html+=makeRow(r);});
+
+  // Build all rows array
+  var allCards=[];
+  liveRows.forEach(function(r,i){r.isBest=(i===0);allCards.push(r);});
   if(currentFilter!=='used'){
     ALL_SUPS.forEach(function(sup){
       if(sup.live)return;
       if(currentFilter==='today'){var info=SUP_INFO[sup.n];if(!info||!info.cc)return;}
-      var supUrl=sup.url(part,v?v.name:'');
-      html+=makeRow({sup:sup,isLive:false,part:part,partTitle:part,url:supUrl,isUsed:false,isBest:false});
+      allCards.push({sup:sup,isLive:false,part:part,partTitle:part,url:sup.url(part,v?v.name:''),isUsed:false,isBest:false});
     });
   }
-  if(!html){
-    if(currentFilter==='today'){html='<div style="text-align:center;padding:30px;color:var(--mg);font-size:.85rem;">No Click & Collect options available for this part. <br>Try "All" filter instead.</div>';}
-    else{html='<div style="text-align:center;padding:30px;color:var(--mg);">No results found.</div>';}
+
+  if(allCards.length===0){
+    html='<div style="text-align:center;padding:30px;color:var(--mg);">'+(currentFilter==='today'?'No Click & Collect options. Try "All" filter.':'No results found.')+'</div>';
+    list.innerHTML=html;return;
+  }
+
+  // Show top 5 by default
+  var showAll=list.getAttribute('data-showall')==='1';
+  var visible=showAll?allCards:allCards.slice(0,5);
+  visible.forEach(function(r){html+=makeCard(r);});
+  if(!showAll&&allCards.length>5){
+    html+='<button class="show-more-btn" onclick="showAllResults()">Show all '+allCards.length+' results ▼</button>';
   }
   list.innerHTML=html;
 }
 
+function showAllResults(){
+  var list=document.getElementById('resList');
+  list.setAttribute('data-showall','1');
+  renderResults(document.getElementById('partIn').value.trim(),vehicle);
+}
+
 function filterResults(type,btn){
   currentFilter=type;
+  var list=document.getElementById('resList');
+  if(list)list.removeAttribute('data-showall');
   document.querySelectorAll('.ftab').forEach(function(b){b.classList.remove('active');});
   btn.classList.add('active');
   renderResults(document.getElementById('partIn').value.trim(),vehicle);
