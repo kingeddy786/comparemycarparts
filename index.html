@@ -1108,7 +1108,7 @@ function makeCard(opts){
   // Right: price + buy button
   html+='<div class="rcard-right">';
   html+=priceHtml+totalHtml;
-  html+='<a href="'+opts.url+'" target="_blank" rel="sponsored noopener" class="rcard-btn" onclick="trackClick(''+opts.sup.n.replace(/'/g,'')+'',''+opts.part.replace(/'/g,'')+'','+(opts.price||0)+')">'+(opts.price?'Buy →':'Go →')+'</a>';
+  html+='<a href="'+opts.url+'" target="_blank" rel="sponsored noopener" class="rcard-btn" onclick="trackClick(\''+opts.sup.n.replace(/\'/g,'')+'\',\''+opts.part.replace(/\'/g,'')+'\','+(opts.price||0)+')">'+(opts.price?'Buy →':'Go →')+'</a>';
   html+='</div>';
   html+='</div>';
   return html;
