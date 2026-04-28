@@ -136,29 +136,58 @@ nav{background:var(--bl);position:sticky;top:0;z-index:300;box-shadow:0 2px 12px
 .ftab.active{background:var(--bl);color:var(--wh);}
 .ftab:hover:not(.active){border-color:var(--bl);color:var(--bl);}
 
-/* RESULT CARDS */
-.rcard{background:var(--wh);border:1.5px solid #E0E8F8;border-radius:14px;padding:12px 14px;margin-bottom:10px;display:grid;grid-template-columns:64px 1fr auto;align-items:center;gap:10px;box-shadow:0 2px 10px rgba(0,61,166,.06);transition:border-color .15s;}
-.rcard:hover{border-color:#AABFE0;}
-.rcard.best{border:2px solid var(--gr);background:linear-gradient(90deg,#F2FFF8,#fff);}
-.rcard-logo{display:flex;align-items:center;justify-content:center;width:64px;height:30px;flex-shrink:0;}
-.rcard-logo svg{max-width:100%;max-height:100%;}
-.rcard-mid{min-width:0;}
-.rcard-sup{font-family:'Nunito',sans-serif;font-weight:900;font-size:.72rem;color:var(--bl);display:flex;align-items:center;gap:5px;margin-bottom:2px;}
-.rcard-live{background:var(--ye);color:var(--bl);font-size:.5rem;font-weight:900;padding:1px 5px;border-radius:3px;letter-spacing:.3px;}
-.rcard-best{background:var(--gr);color:#fff;font-size:.5rem;font-weight:900;padding:1px 5px;border-radius:3px;letter-spacing:.3px;}
-.rcard-part{font-size:.75rem;color:var(--dk);font-weight:600;line-height:1.2;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
-.rcard-meta{font-size:.65rem;color:var(--mg);margin-top:3px;display:flex;gap:8px;flex-wrap:wrap;}
-.rcard-meta span{display:inline-flex;align-items:center;gap:2px;}
-.rcard-meta .fast{color:var(--gr);font-weight:700;}
-.rcard-meta .free{color:var(--gr);font-weight:700;}
-.rcard-right{text-align:right;flex-shrink:0;}
-.rcard-price{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.2rem;color:var(--dk);line-height:1;}
-.rcard-price.best{color:var(--gr);}
-.rcard-total{font-size:.58rem;color:var(--mg);margin-bottom:6px;}
-.rcard-btn{background:var(--bl);color:#fff;border:none;border-radius:8px;padding:8px 14px;font-family:'Nunito',sans-serif;font-weight:900;font-size:.78rem;cursor:pointer;text-decoration:none;display:inline-block;white-space:nowrap;}
-.rcard-btn:hover{background:var(--b2);}
-.rcard.best .rcard-btn{background:var(--gr);}
-.show-more-btn{width:100%;background:var(--lg);border:2px solid #D0DCEF;border-radius:10px;padding:12px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.85rem;color:var(--bl);cursor:pointer;margin-top:4px;transition:background .15s;}
+/* COMPARISON TABLE — all info visible at once */
+.ctbl-wrap{background:var(--wh);border:1.5px solid #E0E8F8;border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(0,61,166,.08);margin-bottom:10px;}
+.ctbl{display:block;width:100%;}
+.ctbl-head{display:grid;grid-template-columns:62px 1fr 56px 56px 48px 60px;background:var(--bl);padding:6px 4px;}
+.ctbl-head > div{font-family:'Nunito',sans-serif;font-weight:800;font-size:.5rem;color:rgba(255,255,255,.95);text-transform:uppercase;letter-spacing:.3px;text-align:center;padding:2px;line-height:1.1;}
+.ctbl-head > div:nth-child(2){text-align:left;padding-left:4px;}
+.crow{display:grid;grid-template-columns:62px 1fr 56px 56px 48px 60px;padding:5px 4px;border-bottom:1px solid #EEF2FA;align-items:center;min-height:54px;}
+.crow:last-child{border-bottom:none;}
+.crow:hover{background:#F8FBFF;}
+.crow.best{background:linear-gradient(90deg,#F0FFF7,#fff);border-left:3px solid var(--gr);}
+.crow > div{padding:1px 3px;text-align:center;}
+.crow > div:nth-child(2){text-align:left;padding-left:4px;}
+
+/* Col 1 — Supplier */
+.c-sup-ico{display:flex;align-items:center;justify-content:center;width:54px;height:24px;margin:0 auto 2px;}
+.c-sup-ico svg{max-width:100%;max-height:100%;}
+.c-sup-name{font-family:'Nunito',sans-serif;font-weight:900;font-size:.5rem;color:var(--bl);line-height:1;}
+.c-sup-live{background:var(--ye);color:var(--bl);font-weight:900;font-size:.42rem;padding:1px 3px;border-radius:2px;letter-spacing:.2px;display:inline-block;margin-top:1px;}
+
+/* Col 2 — Part / Info */
+.c-part-t{font-family:'Nunito',sans-serif;font-weight:700;font-size:.6rem;color:var(--dk);line-height:1.15;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.c-part-meta{display:flex;gap:4px;margin-top:2px;flex-wrap:wrap;align-items:center;}
+.c-mini-bdg{font-family:'Nunito',sans-serif;font-weight:800;font-size:.42rem;padding:1px 3px;border-radius:2px;letter-spacing:.2px;}
+.c-mini-bdg.cc{background:#E6F0FF;color:var(--bl);}
+.c-mini-bdg.prime{background:#FFF3D9;color:#A06000;}
+.c-mini-bdg.new{background:var(--bl);color:#fff;}
+.c-mini-bdg.used{background:var(--or);color:#fff;}
+.c-mini-bdg.free{background:var(--gn);color:var(--gr);}
+.c-mini-bdg.stock{background:var(--gn);color:var(--gr);}
+.best-rib{background:var(--gr);color:#fff;font-family:'Nunito',sans-serif;font-weight:900;font-size:.42rem;padding:1px 4px;letter-spacing:.3px;display:inline-block;margin-bottom:2px;border-radius:2px;}
+
+/* Col 3 — Price */
+.c-price{font-family:'Nunito',sans-serif;font-weight:900;font-size:.82rem;color:var(--dk);line-height:1;}
+.c-price.best{color:var(--gr);font-size:.86rem;}
+.c-price-sub{font-size:.46rem;color:var(--mg);margin-top:1px;font-weight:600;line-height:1;}
+
+/* Col 4 — Delivery */
+.c-del{font-family:'Nunito',sans-serif;font-weight:800;font-size:.54rem;color:var(--dk);line-height:1.1;}
+.c-del.fast{color:var(--gr);}
+.c-del-cost{font-size:.48rem;color:var(--mg);margin-top:1px;font-weight:700;}
+.c-del-cost.free{color:var(--gr);}
+
+/* Col 5 — Rating */
+.c-rating{font-family:'Nunito',sans-serif;font-weight:900;font-size:.62rem;color:var(--dk);line-height:1;}
+.c-rating-stars{color:#FFB400;font-size:.5rem;letter-spacing:.3px;line-height:1;margin-top:1px;}
+
+/* Col 6 — Buy */
+.c-buy{background:var(--bl);color:#fff;border:none;border-radius:5px;padding:6px 4px;font-family:'Nunito',sans-serif;font-weight:900;font-size:.58rem;cursor:pointer;text-decoration:none;display:inline-block;width:100%;text-align:center;line-height:1;}
+.c-buy:hover{background:var(--b2);}
+.crow.best .c-buy{background:var(--gr);}
+
+.show-more-btn{width:100%;background:var(--lg);border:2px solid #D0DCEF;border-radius:10px;padding:10px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.8rem;color:var(--bl);cursor:pointer;margin-top:4px;}
 .show-more-btn:hover{background:#E0E8F8;}
 .stag{display:inline-flex;align-items:center;gap:4px;background:var(--lg);border:1.5px solid #D0DCEF;border-radius:6px;padding:3px 8px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.72rem;color:var(--bl);white-space:nowrap;}
 .pt{font-weight:700;font-size:.78rem;color:var(--dk);line-height:1.2;}
@@ -305,7 +334,28 @@ footer nav.fc{background:transparent !important;}
   .qb{width:100%;}
   .scan-grid{grid-template-columns:repeat(3,1fr);}
 
-  /* mobile handled by rcard responsive layout */
+  /* MOBILE: tighter table columns */
+  .ctbl-head{grid-template-columns:62px 1fr 52px 56px 50px 44px 48px 56px;padding:5px 3px;}
+  .ctbl-head > div{font-size:.48rem;padding:1px;}
+  .crow{grid-template-columns:62px 1fr 52px 56px 50px 44px 48px 56px;padding:5px 3px;min-height:54px;font-size:.62rem;}
+  .crow > div{padding:1px 2px;}
+  .c-sup-ico{width:54px;height:22px;margin-bottom:2px;}
+  .c-sup-name{font-size:.5rem;}
+  .c-sup-live{font-size:.44rem;padding:1px 3px;}
+  .c-part-t{font-size:.64rem;-webkit-line-clamp:2;}
+  .c-part-s{font-size:.52rem;}
+  .c-mini-bdg{font-size:.46rem;padding:1px 3px;}
+  .c-price{font-size:.82rem;}
+  .c-price.best{font-size:.88rem;}
+  .c-price-sub{font-size:.48rem;}
+  .c-del{font-size:.58rem;}
+  .c-del-cost{font-size:.52rem;}
+  .c-stock{font-size:.54rem;}
+  .c-rating{font-size:.62rem;}
+  .c-rating-stars{font-size:.52rem;}
+  .c-rating-ct{font-size:.44rem;}
+  .c-buy{font-size:.55rem;padding:5px 2px;}
+  .best-rib{font-size:.48rem;padding:1px 5px;}
 }
 @media(max-width:420px){
   .cats-grid{grid-template-columns:repeat(3,1fr);}
@@ -400,7 +450,29 @@ footer nav.fc{background:transparent !important;}
           <button class="ftab" data-filter="used" onclick="filterResults('used',this)">Used</button>
           <button class="ftab" data-filter="today" onclick="filterResults('today',this)">⚡ Today</button>
         </div>
-        <div id="resList"></div>
+        <div class="ctbl-wrap">
+          <div class="ctbl-head">
+            <div>Supplier</div>
+            <div>Part / Info</div>
+            <div>Price</div>
+            <div>Delivery</div>
+            <div>Rating</div>
+            <div>Buy</div>
+          </div>
+          <div class="ctbl" id="resTable">
+          <div class="ctbl-head">
+            <div>Supplier</div>
+            <div>Part</div>
+            <div>Price</div>
+            <div>Delivery</div>
+            <div>Stock</div>
+            <div>Rating</div>
+            <div>Collect</div>
+            <div>Buy</div>
+          </div>
+          <div id="resList"></div>
+        </div>
+        </div>
       </div>
     </div>
 
@@ -1070,46 +1142,44 @@ function starsHtml(rating){
   return s.substring(0,5);
 }
 
-function makeCard(opts){
-  var info=SUP_INFO[opts.sup.n]||{delivery:'3-5 days',delCost:'varies',cc:false,rating:4.0};
-  var logoHtml=LOGOS[opts.sup.n]||'<div style="font-weight:900;font-size:11px;color:#003DA5;">'+opts.sup.n+'</div>';
+function makeRow(opts){
+  var info=SUP_INFO[opts.sup.n]||{delivery:'3-5 days',delCost:'varies',cc:false,rating:4.0,reviews:''};
+  var stars=starsHtml(info.rating);
+  var priceHtml;
+  if(opts.price){
+    priceHtml='<div class="c-price'+(opts.isBest?' best':'')+'">£'+opts.price+'</div>';
+    if(opts.delCost!==undefined){var total=parseFloat(opts.price)+(parseFloat(opts.delCost)||0);priceHtml+='<div class="c-price-sub">Total £'+total.toFixed(2)+'</div>';}
+  } else {priceHtml='<div class="c-price" style="color:var(--mg);font-size:.72rem;">See site</div>';}
   var partTitle=opts.partTitle||opts.part;
   if(partTitle.length>60)partTitle=partTitle.substring(0,60)+'...';
   var delText=opts.delivery||info.delivery;
-  var delCost=opts.delCost!==undefined?(parseFloat(opts.delCost)===0?'Free':'£'+parseFloat(opts.delCost).toFixed(2)):info.delCost;
-  var isFast=delText.toLowerCase().includes('next');
-  var isFree=delCost==='Free';
-  var priceHtml='',totalHtml='';
-  if(opts.price){
-    priceHtml='<div class="rcard-price'+(opts.isBest?' best':'')+'">£'+parseFloat(opts.price).toFixed(2)+'</div>';
-    if(opts.delCost!==undefined){
-      var tot=parseFloat(opts.price)+(parseFloat(opts.delCost)||0);
-      totalHtml='<div class="rcard-total">Total £'+tot.toFixed(2)+'</div>';
-    }
-  } else {
-    priceHtml='<div class="rcard-price" style="font-size:.8rem;color:var(--mg);">See site</div>';
-  }
-  var html='<div class="rcard'+(opts.isBest?' best':'')+'">';
-  // Logo
-  html+='<div class="rcard-logo">'+logoHtml+'</div>';
-  // Middle: supplier name + part + meta
-  html+='<div class="rcard-mid">';
-  html+='<div class="rcard-sup">'+opts.sup.n;
-  if(opts.isLive)html+='<span class="rcard-live">LIVE</span>';
-  if(opts.isBest)html+='<span class="rcard-best">🏆 BEST</span>';
-  html+='</div>';
-  html+='<div class="rcard-part">'+partTitle+'</div>';
-  html+='<div class="rcard-meta">';
-  html+='<span class="'+(isFast?'fast':'')+'">🚚 '+delText+'</span>';
-  html+='<span class="'+(isFree?'free':'')+'">'+delCost+'</span>';
-  if(info.cc)html+='<span style="color:var(--bl);">🏪 C&amp;C</span>';
-  html+='<span>⭐ '+info.rating.toFixed(1)+'</span>';
+  var delCostText=opts.delCost!==undefined?(parseFloat(opts.delCost)===0?'Free':'£'+opts.delCost):info.delCost;
+  var isFastDel=delText.toLowerCase().includes('next');
+  var isFreeDel=delCostText.toLowerCase()==='free';
+  var stockText=opts.isLive?'In Stock':'Check site';
+  var stockClass=opts.isLive?'ok':'check';
+  var miniBadges='';
+  if(info.cc)miniBadges+='<span class="c-mini-bdg cc">🏪 C&amp;C</span>';
+  if(info.prime)miniBadges+='<span class="c-mini-bdg prime">⚡Prime</span>';
+  if(isFreeDel)miniBadges+='<span class="c-mini-bdg free">🆓Free</span>';
+  miniBadges+='<span class="c-mini-bdg '+(opts.isUsed?'used':'new')+'">'+(opts.isUsed?'USED':'NEW')+'</span>';
+  var logoHtml=LOGOS[opts.sup.n]||'<div style="font-family:Arial;font-weight:900;font-size:11px;color:#003DA5;">'+opts.sup.n+'</div>';
+  var html='<div class="crow'+(opts.isBest?' best':'')+'">';
+  html+='<div><div class="c-sup"><div class="c-sup-ico">'+logoHtml+'</div><div class="c-sup-name">'+opts.sup.n+'</div>';
+  if(opts.isLive)html+='<div class="c-sup-live">LIVE</div>';
   html+='</div></div>';
-  // Right: price + buy button
-  html+='<div class="rcard-right">';
-  html+=priceHtml+totalHtml;
-  html+='<a href="'+opts.url+'" target="_blank" rel="sponsored noopener" class="rcard-btn" onclick="trackClick(\''+opts.sup.n.replace(/\'/g,'')+'\',\''+opts.part.replace(/\'/g,'')+'\','+(opts.price||0)+')">'+(opts.price?'Buy →':'Go →')+'</a>';
-  html+='</div>';
+  html+='<div class="c-part">';
+  if(opts.isBest)html+='<div class="best-rib">🏆 BEST DEAL</div>';
+  html+='<div class="c-part-t">'+partTitle+'</div>';
+  if(opts.seller)html+='<div class="c-part-s">'+opts.seller+'</div>';
+  html+='<div class="c-part-b">'+miniBadges+'</div></div>';
+  html+='<div>'+priceHtml+'</div>';
+  html+='<div><div class="c-del'+(isFastDel?' fast':'')+'">'+delText+'</div><div class="c-del-cost'+(isFreeDel?' free':'')+'">'+delCostText+'</div></div>';
+  html+='<div><div class="c-stock '+stockClass+'">'+stockText+'</div></div>';
+  html+='<div><div class="c-rating">'+info.rating.toFixed(1)+'</div><div class="c-rating-stars">'+stars+'</div>'+(info.reviews?'<div class="c-rating-ct">'+info.reviews+'</div>':'')+'</div>';
+  if(info.cc){html+='<div style="text-align:center;"><div style="color:var(--gr);font-weight:900;font-size:1.4rem;line-height:1;">✓</div><div style="font-size:.68rem;color:var(--gr);font-weight:800;margin-top:3px;line-height:1.1;">Collect<br/>In Store</div></div>';}
+  else{html+='<div style="text-align:center;"><div style="color:#B0B8C8;font-size:1.3rem;line-height:1;font-weight:700;">✕</div><div style="font-size:.68rem;color:#B0B8C8;font-weight:700;margin-top:3px;line-height:1.1;">Delivery<br/>Only</div></div>';}
+  html+='<div><a href="'+opts.url+'" target="_blank" rel="sponsored noopener" class="c-buy" onclick="trackClick(\''+opts.sup.n.replace(/\'/g,'')+'\',\''+opts.part.replace(/\'/g,'')+'\','+(opts.price||0)+')">'+(opts.price?'Buy →':'Search →')+'</a></div>';
   html+='</div>';
   return html;
 }
@@ -1127,46 +1197,28 @@ function renderResults(part,v){
   else if(currentFilter==='today')ebayRows=[];
   else ebayRows=ebayNew.concat(ebayUsed);
   ebayRows.forEach(function(r){
-    liveRows.push({sup:{n:r.supplier||'eBay'},isLive:true,part:part,partTitle:r.title,price:r.price,delCost:r.deliveryCost,seller:r.seller,url:r.url,isUsed:r.isUsed,totalPrice:parseFloat(r.totalPrice||r.price)});
+    liveRows.push({sup:{n:r.supplier||'eBay',i:r.supplierIcon||'🛒'},isLive:true,part:part,partTitle:r.title,price:r.price,delCost:r.deliveryCost,seller:r.seller,url:r.url,isUsed:r.isUsed,totalPrice:parseFloat(r.totalPrice||r.price)});
   });
   liveRows.sort(function(a,b){return a.totalPrice-b.totalPrice;});
-
-  // Build all rows array
-  var allCards=[];
-  liveRows.forEach(function(r,i){r.isBest=(i===0);allCards.push(r);});
+  if(liveRows.length>0)liveRows[0].isBest=true;
+  liveRows.forEach(function(r){html+=makeRow(r);});
   if(currentFilter!=='used'){
     ALL_SUPS.forEach(function(sup){
       if(sup.live)return;
       if(currentFilter==='today'){var info=SUP_INFO[sup.n];if(!info||!info.cc)return;}
-      allCards.push({sup:sup,isLive:false,part:part,partTitle:part,url:sup.url(part,v?v.name:''),isUsed:false,isBest:false});
+      var supUrl=sup.url(part,v?v.name:'');
+      html+=makeRow({sup:sup,isLive:false,part:part,partTitle:part,url:supUrl,isUsed:false,isBest:false});
     });
   }
-
-  if(allCards.length===0){
-    html='<div style="text-align:center;padding:30px;color:var(--mg);">'+(currentFilter==='today'?'No Click & Collect options. Try "All" filter.':'No results found.')+'</div>';
-    list.innerHTML=html;return;
-  }
-
-  // Show top 5 by default
-  var showAll=list.getAttribute('data-showall')==='1';
-  var visible=showAll?allCards:allCards.slice(0,5);
-  visible.forEach(function(r){html+=makeCard(r);});
-  if(!showAll&&allCards.length>5){
-    html+='<button class="show-more-btn" onclick="showAllResults()">Show all '+allCards.length+' results ▼</button>';
+  if(!html){
+    if(currentFilter==='today'){html='<div style="text-align:center;padding:30px;color:var(--mg);font-size:.85rem;">No Click & Collect options. Try "All" filter.</div>';}
+    else{html='<div style="text-align:center;padding:30px;color:var(--mg);">No results found.</div>';}
   }
   list.innerHTML=html;
 }
 
-function showAllResults(){
-  var list=document.getElementById('resList');
-  list.setAttribute('data-showall','1');
-  renderResults(document.getElementById('partIn').value.trim(),vehicle);
-}
-
 function filterResults(type,btn){
   currentFilter=type;
-  var list=document.getElementById('resList');
-  if(list)list.removeAttribute('data-showall');
   document.querySelectorAll('.ftab').forEach(function(b){b.classList.remove('active');});
   btn.classList.add('active');
   renderResults(document.getElementById('partIn').value.trim(),vehicle);
