@@ -1429,7 +1429,13 @@ document.addEventListener('DOMContentLoaded',function(){
     });
     partIn.addEventListener('keydown',function(e){if(e.key==='Enter'){doSearch();e.preventDefault();}else if(e.key==='Escape'){closeAC();}});
   }
-  document.addEventListener('click',function(e){if(!e.target.closest('.qw'))closeAC();});
+  // In-results search box (partIn2)
+  var partIn2=document.getElementById('partIn2');
+  if(partIn2){
+    partIn2.addEventListener('input',function(){showAC2(this.value);});
+    partIn2.addEventListener('keydown',function(e){if(e.key==='Enter'){doSearch2();e.preventDefault();}else if(e.key==='Escape'){closeAC2();}});
+  }
+  document.addEventListener('click',function(e){if(!e.target.closest('.qw'))closeAC();if(!e.target.closest('.qw'))closeAC2();});
   var regIn=document.getElementById('regIn');
   if(regIn){regIn.addEventListener('keydown',function(e){if(e.key==='Enter')lookupReg();});}
   var hbtn=document.getElementById('hbtn');
