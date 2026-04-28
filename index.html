@@ -127,6 +127,15 @@ nav{background:var(--bl);position:sticky;top:0;z-index:300;box-shadow:0 2px 12px
 .scan-fill{height:100%;background:linear-gradient(90deg,var(--bl),var(--ye));border-radius:3px;transition:width .3s ease;width:0%;}
 
 /* RESULTS */
+.rsr{background:linear-gradient(135deg,var(--lg),#fff);border:2px solid #D0DCEF;border-radius:14px;padding:12px 14px;margin-bottom:14px;}
+.rsr-lbl{font-family:'Nunito',sans-serif;font-weight:900;font-size:.78rem;color:var(--bl);margin-bottom:8px;letter-spacing:.3px;}
+.rsr-row{display:flex;gap:8px;align-items:flex-start;}
+@media(max-width:700px){
+  .rsr{padding:10px 12px;}
+  .rsr-lbl{font-size:.72rem;}
+  .rsr-row{flex-direction:column;}
+  .rsr-row .qb{width:100%;}
+}
 .aih{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap;}
 .aibdg{background:linear-gradient(135deg,var(--bl),var(--b2));color:var(--wh);font-family:'Nunito',sans-serif;font-weight:800;font-size:.68rem;text-transform:uppercase;letter-spacing:1px;padding:4px 10px;border-radius:20px;}
 .aivt{background:var(--gn);border:1px solid var(--gr);color:var(--gr);font-family:'Nunito',sans-serif;font-weight:700;font-size:.75rem;padding:3px 10px;border-radius:20px;}
@@ -464,7 +473,8 @@ footer nav.fc{background:transparent !important;}
 
       <div class="qr" id="partRow" style="margin-top:10px;">
         <div class="qw">
-          <input class="qi" id="partIn" type="text" placeholder="e.g. Front Brake Pads, Clutch Kit, Air Filter..." autocomplete="off"/>
+          <input class="qi" id="partIn" type="text" placeholder="Part name or part number (e.g. Brake Pads, 34216761239)" autocomplete="off"/>
+          <div id="searchTypeHint" style="font-family:Nunito,sans-serif;font-weight:800;font-size:.62rem;color:var(--bl);margin-top:4px;display:none;letter-spacing:.5px;"></div>
           <div class="acd" id="acDrop"></div>
         </div>
         <button class="qb" onclick="doSearch()">Compare Prices</button>
@@ -475,6 +485,18 @@ footer nav.fc{background:transparent !important;}
 
       <!-- RESULTS ZONE -->
       <div id="resultsZone" style="display:none;margin-top:14px;">
+        <!-- Search another part — sticky on results page -->
+        <div class="rsr">
+          <div class="rsr-lbl">🔍 Search a different part</div>
+          <div class="rsr-row">
+            <div class="qw" style="flex:1;">
+              <input class="qi" id="partIn2" type="text" placeholder="e.g. Oil Filter, Brake Pads, Battery..." autocomplete="off"/>
+              <div class="acd" id="acDrop2"></div>
+            </div>
+            <button class="qb" onclick="doSearch2()">Search</button>
+          </div>
+        </div>
+
         <div class="aih">
           <span class="aibdg">⚡ Live Results</span>
           <span class="aivt" id="aiVeh"></span>
@@ -834,6 +856,36 @@ function showAC(q){
 function selAC(name){document.getElementById('partIn').value=name;closeAC();doSearch();}
 function closeAC(){var d=document.getElementById('acDrop');if(d)d.classList.remove('open');}
 
+// In-results search box handlers
+function doSearch2(){
+  var v=document.getElementById('partIn2').value.trim();
+  if(!v){document.getElementById('partIn2').focus();return;}
+  document.getElementById('partIn').value=v;
+  document.getElementById('partIn2').value='';
+  closeAC2();
+  doSearch();
+}
+function showAC2(q){
+  if(!q||q.length<2){closeAC2();return;}
+  var ql=q.toLowerCase();
+  var matches=PARTS.filter(function(p){return p.n.toLowerCase().includes(ql);}).slice(0,8);
+  if(!matches.length){closeAC2();return;}
+  var bycat={};
+  matches.forEach(function(p){if(!bycat[p.c])bycat[p.c]=[];bycat[p.c].push(p);});
+  var html='';
+  Object.keys(bycat).forEach(function(cat){
+    html+='<div class="acs">'+cat+'</div>';
+    bycat[cat].forEach(function(p){
+      var hi=p.n.replace(new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi'),'<em>$1</em>');
+      html+='<div class="aci" onclick="selAC2(\''+p.n.replace(/\'/g,"\\'")+'\')"><span class="acio">'+p.i+'</span><div><div class="acn">'+hi+'</div><div class="acc">'+cat+'</div></div></div>';
+    });
+  });
+  var drop=document.getElementById('acDrop2');
+  if(drop){drop.innerHTML=html;drop.classList.add('open');}
+}
+function selAC2(name){document.getElementById('partIn2').value=name;closeAC2();doSearch2();}
+function closeAC2(){var d=document.getElementById('acDrop2');if(d)d.classList.remove('open');}
+
 function pickCat(name){
   if(!vehicle){shakePlate();return;}
   if(name==='Service'){showServiceModal();return;}
@@ -1075,9 +1127,11 @@ async function doSearch(){
   document.getElementById('resultsZone').style.display='none';
   var scanZone=document.getElementById('scanZone');
   scanZone.style.display='block';
+  var searchType=detectSearchType(part);
+  var searchLabel=searchType==='partnumber'?'part number':'part';
   var html='<div class="scan-box">'
     +'<div class="scan-title">🔍 Scanning 12 UK Suppliers</div>'
-    +'<div class="scan-sub">Finding the best price for <strong>'+part+'</strong> on your <strong>'+vehicle.name+'</strong></div>'
+    +'<div class="scan-sub">'+(searchType==='partnumber'?'Looking up <strong>'+part+'</strong> across all suppliers':'Finding the best price for <strong>'+part+'</strong> on your <strong>'+vehicle.name+'</strong>')+'</div>'
     +'<div class="scan-bar"><div class="scan-fill" id="scanFill"></div></div>'
     +'<div class="scan-grid">';
   SCAN_SUPS.forEach(function(s,i){
@@ -1111,9 +1165,24 @@ async function doSearch(){
   showResults(vehicle,part,results);
 }
 
+// Detects whether input is a part NUMBER or a part NAME
+function detectSearchType(input){
+  if(!input)return 'name';
+  var trimmed=input.trim();
+  // Strip spaces and dashes for digit count
+  var digitsOnly=trimmed.replace(/[^0-9]/g,'');
+  var lettersOnly=trimmed.replace(/[^a-zA-Z]/g,'');
+  // Pure long digit string = part number (e.g. 34216761239)
+  if(digitsOnly.length>=6 && lettersOnly.length<=3)return 'partnumber';
+  // Mixed alphanumeric short string = part number (e.g. OE12345, BRP-4321)
+  if(trimmed.length<=20 && digitsOnly.length>=4 && /[A-Z0-9]/.test(trimmed.toUpperCase()) && !/\s/.test(trimmed))return 'partnumber';
+  return 'name';
+}
+
 async function fetchResults(part){
   try{
-    var url=WORKER_URL+'/ebay?part='+encodeURIComponent(part)+'&vehicle='+encodeURIComponent(vehicle.name);
+    var searchType=detectSearchType(part);
+    var url=WORKER_URL+'/ebay?part='+encodeURIComponent(part)+'&vehicle='+encodeURIComponent(vehicle.name)+'&type='+searchType;
     var resp=await fetch(url);
     return await resp.json();
   }catch(e){return {items:[],error:e.message};}
@@ -1340,7 +1409,24 @@ if('serviceWorker' in navigator){
 document.addEventListener('DOMContentLoaded',function(){
   var partIn=document.getElementById('partIn');
   if(partIn){
-    partIn.addEventListener('input',function(){showAC(this.value);});
+    partIn.addEventListener('input',function(){
+      showAC(this.value);
+      // Live mode hint
+      var hint=document.getElementById('searchTypeHint');
+      if(hint){
+        var v=this.value.trim();
+        if(!v){hint.style.display='none';return;}
+        var t=detectSearchType(v);
+        if(t==='partnumber'){
+          hint.innerHTML='🔢 Searching by PART NUMBER (exact match)';
+          hint.style.color='var(--bl)';
+          hint.style.display='block';
+          closeAC(); // no autocomplete for part numbers
+        } else {
+          hint.style.display='none';
+        }
+      }
+    });
     partIn.addEventListener('keydown',function(e){if(e.key==='Enter'){doSearch();e.preventDefault();}else if(e.key==='Escape'){closeAC();}});
   }
   document.addEventListener('click',function(e){if(!e.target.closest('.qw'))closeAC();});
