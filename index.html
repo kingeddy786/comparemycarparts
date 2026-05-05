@@ -664,9 +664,9 @@ var LOGOS = {
   'Tayna Batteries': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="8" width="100" height="24" rx="3" fill="#003DA5"/><text x="4" y="20" font-family="Arial,sans-serif" font-weight="900" font-size="9" fill="#FFD100">TAYNA</text><text x="4" y="30" font-family="Arial,sans-serif" font-weight="800" font-size="8" fill="#fff">BATTERIES</text></svg>',
   'BlackCircles Tyres': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><circle cx="15" cy="20" r="12" fill="#1a1a1a"/><circle cx="15" cy="20" r="6" fill="none" stroke="#fff" stroke-width="2"/><text x="32" y="17" font-family="Arial,sans-serif" font-weight="900" font-size="8" fill="#1a1a1a">BLACK</text><text x="32" y="28" font-family="Arial,sans-serif" font-weight="900" font-size="8" fill="#1a1a1a">CIRCLES</text></svg>'
 };
-var ALL_SUPS = 
+var ALL_SUPS = [
   {n:'eBay', live:true, type:'marketplace'},
-  {n:'Amazon', type:'marketplace', url:function(p,v){return 'https://www.amazon.co.uk/s?k='+encodeURIComponent(p+' '+v)+'&tag='+[AFF.amazon;}},
+  {n:'Amazon', type:'marketplace', url:function(p,v){return 'https://www.amazon.co.uk/s?k='+encodeURIComponent(p+' '+v)+'&tag='+AFF.amazon;}},
   {n:'Euro Car Parts', type:'retailer', url:function(p,v){return 'https://www.awin1.com/cread.php?awinmid=197685&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.eurocarparts.com/search?q='+encodeURIComponent(p));}},
   {n:'GSF Car Parts', type:'retailer', url:function(p,v){return 'https://www.awin1.com/cread.php?awinmid=13655&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.gsfcarparts.com/search?query='+encodeURIComponent(p));}},
   {n:'Halfords', type:'retailer', url:function(p,v){return 'https://www.awin1.com/cread.php?awinmid=197&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.halfords.com/search?term='+encodeURIComponent(p));}},
