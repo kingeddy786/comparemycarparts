@@ -25,22 +25,24 @@
 <link rel="preconnect" href="https://cmcp-ebay.idris-b19.workers.dev"/>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
 <style>
-:root{--bl:#003DA6;--bm:#0052CC;--b2:#1A6FD4;--ye:#FFD100;--yd:#E6BC00;--wh:#fff;--lg:#EEF2FA;--mg:#6B7A99;--dk:#0A1A3A;--gr:#00A651;--gn:#E6F7EE;--or:#FF6600;--am:#D68000;--ab:#FFF6E0;}
+:root{--bl:#003DA6;--bm:#0052CC;--b2:#1A6FD4;--ye:#FFD100;--yd:#E6BC00;--wh:#fff;--ow:#F4F7FF;--lg:#EEF2FA;--mg:#6B7A99;--dk:#0A1A3A;--gr:#00A651;--gn:#E6F7EE;--or:#FF6600;}
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-padding-top:70px;scroll-behavior:smooth;}
 body{font-family:'Nunito Sans',sans-serif;background:var(--wh);color:var(--dk);overflow-x:hidden;}
+/* NAV */
 nav{background:var(--bl);position:sticky;top:0;z-index:300;box-shadow:0 2px 12px rgba(0,0,0,.2);}
 .ni{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;height:64px;gap:16px;}
 .logo{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.3rem;color:var(--wh);text-decoration:none;display:flex;align-items:center;gap:6px;white-space:nowrap;}
 .logo span{color:var(--ye);}
 .nl{display:flex;gap:2px;list-style:none;flex:1;}
-.nl a{font-family:'Nunito',sans-serif;font-weight:700;font-size:.85rem;color:rgba(255,255,255,.8);text-decoration:none;padding:6px 12px;border-radius:8px;white-space:nowrap;}
+.nl a{font-family:'Nunito',sans-serif;font-weight:700;font-size:.85rem;color:rgba(255,255,255,.8);text-decoration:none;padding:6px 12px;border-radius:8px;transition:background .15s;white-space:nowrap;}
 .nl a:hover{background:rgba(255,255,255,.12);color:var(--wh);}
 .nr{display:flex;gap:8px;align-items:center;}
-.btn-o{font-family:'Nunito',sans-serif;font-weight:700;font-size:.85rem;color:var(--wh);background:#25D366;border:none;border-radius:8px;padding:7px 14px;text-decoration:none;display:inline-flex;align-items:center;gap:5px;white-space:nowrap;}
-.btn-y{font-family:'Nunito',sans-serif;font-weight:800;font-size:.88rem;color:var(--bl);background:var(--ye);border:none;border-radius:8px;padding:8px 18px;text-decoration:none;white-space:nowrap;}
+.btn-o{font-family:'Nunito',sans-serif;font-weight:700;font-size:.85rem;color:var(--wh);background:#25D366;border:none;border-radius:8px;padding:7px 14px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:5px;white-space:nowrap;}
+.btn-o:hover{background:#20BD5A;}
+.btn-y{font-family:'Nunito',sans-serif;font-weight:800;font-size:.88rem;color:var(--bl);background:var(--ye);border:none;border-radius:8px;padding:8px 18px;cursor:pointer;text-decoration:none;white-space:nowrap;}
 .hb{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:none;background:transparent;margin-left:auto;}
-.hb span{display:block;width:24px;height:2.5px;background:var(--wh);border-radius:2px;}
+.hb span{display:block;width:24px;height:2.5px;background:var(--wh);border-radius:2px;transition:transform .25s,opacity .25s;}
 .hb.open span:nth-child(1){transform:translateY(7.5px) rotate(45deg);}
 .hb.open span:nth-child(2){opacity:0;}
 .hb.open span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg);}
@@ -49,21 +51,25 @@ nav{background:var(--bl);position:sticky;top:0;z-index:300;box-shadow:0 2px 12px
 .mm a{font-family:'Nunito',sans-serif;font-weight:700;font-size:.95rem;color:rgba(255,255,255,.85);text-decoration:none;padding:11px 14px;border-radius:8px;}
 .mmd{height:1px;background:rgba(255,255,255,.15);margin:6px 0;}
 .mbb{display:flex;gap:8px;margin-top:4px;}
-.hero{background:linear-gradient(140deg,#001a5e 0%,var(--bl) 50%,var(--bm) 100%);min-height:calc(100vh - 64px);display:flex;flex-direction:column;align-items:center;padding:28px 20px 40px;}
+/* HERO */
+.hero{background:linear-gradient(140deg,#001a5e 0%,var(--bl) 50%,var(--bm) 100%);min-height:calc(100vh - 64px);display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:28px 20px 40px;}
 .hero-inner{width:100%;max-width:780px;margin:0 auto;text-align:center;}
-.hero h1{font-family:'Nunito',sans-serif;font-weight:900;font-size:clamp(1.5rem,7vw,4.5rem);color:var(--wh);line-height:1.05;margin-bottom:14px;letter-spacing:-1px;}
+.hero h1{font-family:'Nunito',sans-serif;font-weight:900;font-size:clamp(1.5rem,7vw,4.5rem);color:var(--wh);line-height:1.05;margin-bottom:14px;letter-spacing:-1px;text-shadow:0 2px 12px rgba(0,0,0,.15);}
 .hero h1 span{color:var(--ye);}
 .hero .sub{color:rgba(255,255,255,.75);font-size:.95rem;margin-bottom:18px;font-weight:600;}
+/* SEARCH CARD */
 .sc{background:var(--wh);border-radius:20px;box-shadow:0 20px 60px rgba(0,30,100,.22);padding:22px;width:100%;max-width:900px;margin:0 auto;}
 .pr{display:flex;gap:8px;align-items:stretch;margin-bottom:12px;}
-.pw{flex:1;display:flex;border-radius:12px;overflow:hidden;border:3px solid #1a1a1a;background:#F5D000;}
+.pw{flex:1;display:flex;border-radius:12px;overflow:hidden;border:3px solid #1a1a1a;box-shadow:0 4px 12px rgba(0,0,0,.2);background:#F5D000;}
 .pg{background:var(--bl);color:var(--wh);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:5px 10px;min-width:42px;}
 .pg .fl{font-size:1.1rem;line-height:1;}
 .pg .gt{font-size:.52rem;letter-spacing:1px;color:rgba(255,255,255,.8);}
 .pi{flex:1;background:#F5D000;border:none;outline:none;font-family:'Nunito',sans-serif;font-weight:900;font-size:2.8rem;color:#111;letter-spacing:10px;text-transform:uppercase;padding:16px;width:100%;text-align:center;}
 .pi::placeholder{color:rgba(0,0,0,.2);letter-spacing:4px;font-size:1.5rem;}
-.pfb{background:var(--bl);color:var(--wh);border:none;border-radius:12px;padding:0 14px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.78rem;cursor:pointer;display:flex;align-items:center;gap:5px;white-space:nowrap;}
+.pfb{background:var(--bl);color:var(--wh);border:none;border-radius:12px;padding:0 14px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.78rem;cursor:pointer;display:flex;align-items:center;gap:5px;transition:background .15s;white-space:nowrap;}
+.pfb:hover{background:var(--b2);}
 .pfb:disabled{opacity:.6;cursor:not-allowed;}
+/* VEHICLE CONFIRMED */
 .vb{display:none;background:var(--gn);border:2px solid var(--gr);border-radius:10px;padding:8px 12px;margin-bottom:8px;align-items:center;gap:10px;}
 .vb.show{display:flex;}
 .vi{font-size:1.6rem;flex-shrink:0;}
@@ -72,36 +78,33 @@ nav{background:var(--bl);position:sticky;top:0;z-index:300;box-shadow:0 2px 12px
 .vn{font-family:'Nunito',sans-serif;font-weight:900;color:var(--dk);font-size:.92rem;}
 .vm{font-size:.75rem;color:var(--mg);}
 .vch{font-family:'Nunito',sans-serif;font-weight:700;font-size:.75rem;color:var(--bl);cursor:pointer;text-decoration:underline;white-space:nowrap;}
-.mp-box{display:none;background:#FFF9D9;border:2px solid #E6BC00;border-radius:12px;padding:12px;margin-bottom:8px;}
-.mp-box.show{display:block;}
-.mp-lbl{font-family:'Nunito',sans-serif;font-weight:900;font-size:.82rem;color:#7A6200;margin-bottom:6px;text-align:left;}
-.mp-sub{font-size:.74rem;color:#7A6200;margin-bottom:10px;text-align:left;}
-.mp-row{display:flex;gap:8px;}
-.mp-sel{flex:1;padding:10px 12px;border:2px solid #E6BC00;border-radius:8px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.95rem;background:#fff;color:var(--dk);}
-.mp-btn{background:var(--bl);color:#fff;border:none;border-radius:8px;padding:10px 16px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.85rem;cursor:pointer;white-space:nowrap;}
 .dvla-loading{display:flex;align-items:center;gap:8px;background:#FFF9D9;border:1px solid #E6BC00;border-radius:8px;padding:8px 12px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.8rem;color:#7A6200;margin-bottom:8px;}
 .dvla-err{background:#FFF0F0;border:1px solid #F5A0A0;border-radius:8px;padding:8px 12px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.8rem;color:#B00;margin-bottom:8px;text-align:left;}
+/* PART SEARCH */
 .qr{display:flex;gap:8px;align-items:flex-start;}
 .qw{flex:1;position:relative;}
-.qi{width:100%;padding:13px 16px;border:2.5px solid #C8D6F0;border-radius:12px;font-family:'Nunito',sans-serif;font-size:.95rem;font-weight:600;color:var(--dk);outline:none;}
+.qi{width:100%;padding:13px 16px;border:2.5px solid #C8D6F0;border-radius:12px;font-family:'Nunito',sans-serif;font-size:.95rem;font-weight:600;color:var(--dk);outline:none;transition:border-color .2s;}
 .qi:focus{border-color:var(--bl);}
-.qb{background:var(--ye);color:var(--bl);border:none;border-radius:12px;padding:13px 20px;font-family:'Nunito',sans-serif;font-weight:900;font-size:.92rem;cursor:pointer;white-space:nowrap;flex-shrink:0;}
+.qb{background:var(--ye);color:var(--bl);border:none;border-radius:12px;padding:13px 20px;font-family:'Nunito',sans-serif;font-weight:900;font-size:.92rem;cursor:pointer;white-space:nowrap;transition:background .15s;flex-shrink:0;}
+.qb:hover{background:var(--yd);}
 .od{text-align:center;color:var(--mg);font-size:.78rem;font-weight:700;margin:10px 0 0;font-family:'Nunito',sans-serif;}
+/* AUTOCOMPLETE */
 .acd{position:absolute;top:calc(100% + 5px);left:0;right:0;background:var(--wh);border-radius:14px;box-shadow:0 20px 50px rgba(0,61,166,.2);border:2px solid #D0DCEF;z-index:500;display:none;max-height:280px;overflow-y:auto;}
 .acd.open{display:block;}
-.acs{font-family:'Nunito',sans-serif;font-weight:900;font-size:.62rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--mg);padding:8px 14px 3px;background:var(--lg);}
-.aci{display:flex;align-items:center;gap:10px;padding:10px 14px;cursor:pointer;border-bottom:1px solid #F4F7FF;}
+.acs{font-family:'Nunito',sans-serif;font-weight:900;font-size:.62rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--mg);padding:8px 14px 3px;background:var(--lg);border-bottom:1px solid #E8EEF8;position:sticky;top:0;}
+.aci{display:flex;align-items:center;gap:10px;padding:10px 14px;cursor:pointer;transition:background .1s;border-bottom:1px solid #F4F7FF;}
 .aci:hover{background:var(--lg);}
 .acio{font-size:1.1rem;width:24px;text-align:center;flex-shrink:0;}
 .acn{font-family:'Nunito',sans-serif;font-weight:700;font-size:.88rem;color:var(--dk);text-align:left;}
 .acn em{color:var(--bl);font-style:normal;font-weight:900;}
 .acc{font-size:.7rem;color:var(--mg);text-align:left;}
+/* SCANNING ANIMATION */
 .scan-box{background:linear-gradient(135deg,var(--lg),#fff);border:2px solid var(--bl);border-radius:16px;padding:20px 16px;margin-top:14px;text-align:center;}
 .scan-title{font-family:'Nunito',sans-serif;font-weight:900;font-size:1rem;color:var(--bl);margin-bottom:4px;}
 .scan-sub{font-size:.82rem;color:var(--mg);margin-bottom:16px;}
 .scan-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px;}
-.scan-sup{background:var(--wh);border:2.5px solid #D0DCEF;border-radius:12px;padding:12px 6px 8px;text-align:center;opacity:.5;}
-.scan-sup.active{border-color:var(--ye);background:#FFFBEA;opacity:1;}
+.scan-sup{background:var(--wh);border:2.5px solid #D0DCEF;border-radius:12px;padding:12px 6px 8px;text-align:center;transition:all .25s;opacity:.5;}
+.scan-sup.active{border-color:var(--ye);background:#FFFBEA;opacity:1;transform:scale(1.08);box-shadow:0 0 18px rgba(255,209,0,.5);}
 .scan-sup.done{border-color:var(--gr);background:var(--gn);opacity:1;}
 .scan-sup .s-ico{display:flex;align-items:center;justify-content:center;height:32px;margin-bottom:6px;}
 .scan-sup .s-ico svg{max-width:100%;max-height:100%;}
@@ -109,92 +112,133 @@ nav{background:var(--bl);position:sticky;top:0;z-index:300;box-shadow:0 2px 12px
 .scan-sup.done .s-name{color:var(--gr);}
 .scan-status{font-family:'Nunito',sans-serif;font-weight:800;font-size:.82rem;color:var(--bl);}
 .scan-bar{height:5px;background:var(--lg);border-radius:3px;margin-bottom:12px;overflow:hidden;}
-.scan-fill{height:100%;background:linear-gradient(90deg,var(--bl),var(--ye));border-radius:3px;width:0%;}
+.scan-fill{height:100%;background:linear-gradient(90deg,var(--bl),var(--ye));border-radius:3px;transition:width .3s ease;width:0%;}
+/* RESULTS */
 .rsr{background:linear-gradient(135deg,var(--lg),#fff);border:2px solid #D0DCEF;border-radius:14px;padding:12px 14px;margin-bottom:14px;}
-.rsr-lbl{font-family:'Nunito',sans-serif;font-weight:900;font-size:.78rem;color:var(--bl);margin-bottom:8px;}
+.rsr-lbl{font-family:'Nunito',sans-serif;font-weight:900;font-size:.78rem;color:var(--bl);margin-bottom:8px;letter-spacing:.3px;}
 .rsr-row{display:flex;gap:8px;align-items:flex-start;}
-@media(max-width:700px){.rsr-row{flex-direction:column;}.rsr-row .qb{width:100%;}}
+@media(max-width:700px){
+  .rsr{padding:10px 12px;}
+  .rsr-lbl{font-size:.72rem;}
+  .rsr-row{flex-direction:column;}
+  .rsr-row .qb{width:100%;}
+}
 .aih{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap;}
-.aibdg{background:linear-gradient(135deg,var(--bl),var(--b2));color:var(--wh);font-family:'Nunito',sans-serif;font-weight:800;font-size:.68rem;text-transform:uppercase;padding:4px 10px;border-radius:20px;}
+.aibdg{background:linear-gradient(135deg,var(--bl),var(--b2));color:var(--wh);font-family:'Nunito',sans-serif;font-weight:800;font-size:.68rem;text-transform:uppercase;letter-spacing:1px;padding:4px 10px;border-radius:20px;}
 .aivt{background:var(--gn);border:1px solid var(--gr);color:var(--gr);font-family:'Nunito',sans-serif;font-weight:700;font-size:.75rem;padding:3px 10px;border-radius:20px;}
 .aipt{font-family:'Nunito',sans-serif;font-weight:900;font-size:1rem;color:var(--dk);}
 .filter-tabs{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap;}
-.ftab{background:var(--lg);border:2px solid transparent;border-radius:8px;padding:6px 14px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.78rem;color:var(--mg);cursor:pointer;}
+.ftab{background:var(--lg);border:2px solid transparent;border-radius:8px;padding:6px 14px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.78rem;color:var(--mg);cursor:pointer;transition:all .15s;}
 .ftab.active{background:var(--bl);color:var(--wh);}
-.ctbl{display:block;width:100%;background:var(--wh);border:1.5px solid #E0E8F8;border-radius:12px;overflow:hidden;}
+.ftab:hover:not(.active){border-color:var(--bl);color:var(--bl);}
+/* COMPARISON TABLE — all info visible at once */
+.ctbl-wrap{background:var(--wh);border:1.5px solid #E0E8F8;border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(0,61,166,.08);margin-bottom:10px;}
+.ctbl{display:block;width:100%;background:var(--wh);border:1.5px solid #E0E8F8;border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(0,61,166,.08);}
 .ctbl-head{display:grid;grid-template-columns:90px 1fr 62px 62px 60px 52px 56px 70px;background:var(--bl);padding:8px 4px;}
-.ctbl-head > div{font-family:'Nunito',sans-serif;font-weight:800;font-size:.6rem;color:rgba(255,255,255,.95);text-transform:uppercase;text-align:center;padding:2px;}
+.ctbl-head > div{font-family:'Nunito',sans-serif;font-weight:800;font-size:.6rem;color:rgba(255,255,255,.95);text-transform:uppercase;letter-spacing:.4px;text-align:center;padding:2px;line-height:1.1;}
 .ctbl-head > div:nth-child(2){text-align:left;padding-left:6px;}
 .crow{display:grid;grid-template-columns:90px 1fr 62px 62px 60px 52px 56px 70px;padding:6px 4px;border-bottom:1px solid #EEF2FA;align-items:center;min-height:56px;}
+.crow:last-child{border-bottom:none;}
+.crow:hover{background:#F8FBFF;}
 .crow.best{background:linear-gradient(90deg,#F0FFF7,#fff);border-left:3px solid var(--gr);}
 .crow > div{padding:1px 3px;text-align:center;}
 .crow > div:nth-child(2){text-align:left;padding-left:4px;}
+/* Col 1 — Supplier */
 .c-sup-ico{display:flex;align-items:center;justify-content:center;width:54px;height:24px;margin:0 auto 2px;}
 .c-sup-ico svg{max-width:100%;max-height:100%;}
-.c-sup-name{font-family:'Nunito',sans-serif;font-weight:900;font-size:.5rem;color:var(--bl);}
+.c-sup-name{font-family:'Nunito',sans-serif;font-weight:900;font-size:.5rem;color:var(--bl);line-height:1;}
+.c-sup-live{background:var(--ye);color:var(--bl);font-weight:900;font-size:.42rem;padding:1px 3px;border-radius:2px;letter-spacing:.2px;display:inline-block;margin-top:1px;}
+/* Col 2 — Part / Info */
 .c-part-t{font-family:'Nunito',sans-serif;font-weight:700;font-size:.6rem;color:var(--dk);line-height:1.15;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
-.c-part-meta{display:flex;gap:8px;margin-top:4px;flex-wrap:wrap;}
-.c-rating-inline,.c-stock-inline{font-family:'Nunito',sans-serif;font-weight:800;font-size:.62rem;}
-.c-stock-inline{color:var(--gr);}
-.c-mini-bdg{font-family:'Nunito',sans-serif;font-weight:800;font-size:.42rem;padding:1px 3px;border-radius:2px;}
+.c-part-meta{display:flex;gap:8px;margin-top:4px;flex-wrap:wrap;align-items:center;font-size:.62rem;}
+.c-rating-inline{font-family:'Nunito',sans-serif;font-weight:800;color:var(--dk);font-size:.62rem;}
+.c-rating-inline span{font-weight:600;}
+.c-stock-inline{font-family:'Nunito',sans-serif;font-weight:800;color:var(--gr);font-size:.62rem;}
+.c-mini-bdg{font-family:'Nunito',sans-serif;font-weight:800;font-size:.42rem;padding:1px 3px;border-radius:2px;letter-spacing:.2px;}
 .c-mini-bdg.cc{background:#E6F0FF;color:var(--bl);}
 .c-mini-bdg.prime{background:#FFF3D9;color:#A06000;}
 .c-mini-bdg.new{background:var(--bl);color:#fff;}
 .c-mini-bdg.used{background:var(--or);color:#fff;}
 .c-mini-bdg.free{background:var(--gn);color:var(--gr);}
-.fit-bdg{display:inline-flex;align-items:center;gap:3px;font-family:'Nunito',sans-serif;font-weight:900;font-size:.5rem;padding:2px 5px;border-radius:3px;line-height:1.2;margin-bottom:3px;}
-.fit-bdg.verified{background:var(--gn);color:var(--gr);border:1px solid var(--gr);}
-.fit-bdg.check{background:var(--ab);color:var(--am);border:1px solid #E6BC00;}
-@media(max-width:700px){.fit-bdg{font-size:.6rem;padding:3px 7px;margin-bottom:4px;}}
-.best-rib{background:var(--gr);color:#fff;font-family:'Nunito',sans-serif;font-weight:900;font-size:.42rem;padding:1px 4px;display:inline-block;margin-bottom:2px;border-radius:2px;}
+.c-mini-bdg.stock{background:var(--gn);color:var(--gr);}
+.best-rib{background:var(--gr);color:#fff;font-family:'Nunito',sans-serif;font-weight:900;font-size:.42rem;padding:1px 4px;letter-spacing:.3px;display:inline-block;margin-bottom:2px;border-radius:2px;}
+/* Col 3 — Price */
 .c-price{font-family:'Nunito',sans-serif;font-weight:900;font-size:.82rem;color:var(--dk);line-height:1;}
 .c-price.best{color:var(--gr);font-size:.86rem;}
 .c-price-sub{font-size:.46rem;color:var(--mg);margin-top:1px;font-weight:600;line-height:1;}
+/* Col 4 — Delivery */
 .c-del{font-family:'Nunito',sans-serif;font-weight:800;font-size:.54rem;color:var(--dk);line-height:1.1;}
 .c-del.fast{color:var(--gr);}
 .c-del-cost{font-size:.48rem;color:var(--mg);margin-top:1px;font-weight:700;}
 .c-del-cost.free{color:var(--gr);}
+/* Col 5 — Rating */
 .c-rating{font-family:'Nunito',sans-serif;font-weight:900;font-size:.62rem;color:var(--dk);line-height:1;}
-.c-rating-stars{color:#FFB400;font-size:.5rem;line-height:1;margin-top:1px;}
+.c-rating-stars{color:#FFB400;font-size:.5rem;letter-spacing:.3px;line-height:1;margin-top:1px;}
+/* Col 6 — Buy */
 .c-buy{background:var(--bl);color:#fff;border:none;border-radius:5px;padding:6px 4px;font-family:'Nunito',sans-serif;font-weight:900;font-size:.58rem;cursor:pointer;text-decoration:none;display:inline-block;width:100%;text-align:center;line-height:1;}
+.c-buy:hover{background:var(--b2);}
 .crow.best .c-buy{background:var(--gr);}
+.show-more-btn{width:100%;background:var(--lg);border:2px solid #D0DCEF;border-radius:10px;padding:10px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.8rem;color:var(--bl);cursor:pointer;margin-top:4px;}
+.show-more-btn:hover{background:#E0E8F8;}
+.stag{display:inline-flex;align-items:center;gap:4px;background:var(--lg);border:1.5px solid #D0DCEF;border-radius:6px;padding:3px 8px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.72rem;color:var(--bl);white-space:nowrap;}
+.pt{font-weight:700;font-size:.78rem;color:var(--dk);line-height:1.2;}
+.psb{font-size:.65rem;color:var(--mg);margin-top:1px;}
+.pc{font-family:'Nunito',sans-serif;font-weight:900;font-size:.95rem;color:var(--dk);}
+.pcb{color:var(--gr);}
+.bdg{display:inline-block;font-family:'Nunito',sans-serif;font-weight:800;font-size:.6rem;text-transform:uppercase;letter-spacing:.8px;padding:2px 6px;border-radius:4px;margin-left:4px;vertical-align:middle;}
+.bb{background:var(--gr);color:#fff;}
+.bn{background:var(--bl);color:#fff;}
+.bu{background:var(--or);color:#fff;}
+.bl{background:var(--ye);color:var(--bl);font-size:.55rem;}
+.fb{display:inline-flex;align-items:center;gap:3px;background:var(--gn);color:var(--gr);font-family:'Nunito',sans-serif;font-weight:800;font-size:.65rem;padding:2px 7px;border-radius:4px;border:1px solid #b2dfc9;white-space:nowrap;}
+.gbtn{background:var(--bl);color:var(--wh);border:none;border-radius:8px;padding:7px 14px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.78rem;cursor:pointer;white-space:nowrap;transition:background .15s;text-decoration:none;display:inline-block;}
+.gbtn:hover{background:var(--b2);}
 .spn{display:inline-block;width:32px;height:32px;border:3px solid #E8EEF8;border-top-color:var(--bl);border-radius:50%;animation:spin .7s linear infinite;margin-bottom:10px;}
 @keyframes spin{to{transform:rotate(360deg);}}
 @keyframes shake{0%,100%{transform:translateX(0);}25%{transform:translateX(-8px);}75%{transform:translateX(8px);}}
+/* CATEGORIES */
 .cats{width:100%;max-width:900px;margin:16px auto 0;}
 .cats-lbl{font-family:'Nunito',sans-serif;font-weight:900;font-size:.72rem;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.85);text-align:center;margin-bottom:10px;}
 .cats-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;}
-.catb{background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.2);border-radius:14px;padding:14px 4px 12px;text-align:center;cursor:pointer;text-decoration:none;color:inherit;display:flex;flex-direction:column;justify-content:center;align-items:center;height:90px;}
-.catb:hover{border-color:var(--ye);background:rgba(255,255,255,.22);}
-.catb .ci{display:flex;align-items:center;justify-content:center;margin-bottom:8px;line-height:1;height:40px;}
+.catb{background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.2);border-radius:14px;padding:14px 4px 12px;text-align:center;cursor:pointer;transition:border-color .2s,transform .2s,background .2s;text-decoration:none;color:inherit;display:flex;flex-direction:column;justify-content:center;align-items:center;height:90px;backdrop-filter:blur(8px);}
+.catb:hover{border-color:var(--ye);transform:translateY(-2px);background:rgba(255,255,255,.22);}
+.catb:hover .ci{transform:scale(1.1);}
+.catb .ci{display:flex;align-items:center;justify-content:center;margin-bottom:8px;line-height:1;height:40px;transition:transform .2s;}
 .catb .ci svg{width:38px;height:38px;}
-.catb .cn{font-family:'Nunito',sans-serif;font-weight:800;font-size:.72rem;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.4);}
+.catb .cn{font-family:'Nunito',sans-serif;font-weight:800;font-size:.72rem;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.4);letter-spacing:.2px;}
+/* SUPPLIER PILLS */
 .sup-sec{background:var(--lg);border-bottom:1px solid #E0E8F8;padding:14px 24px;}
 .sup-in{max-width:1200px;margin:0 auto;}
 .sup-lbl{text-align:center;font-family:'Nunito',sans-serif;font-weight:800;font-size:.65rem;text-transform:uppercase;letter-spacing:2px;color:var(--mg);margin-bottom:10px;}
 .sup-pills{display:flex;justify-content:center;flex-wrap:wrap;gap:6px;}
 .spill{background:var(--wh);border:1.5px solid #D0DCEF;border-radius:8px;padding:6px 10px;display:inline-flex;align-items:center;justify-content:center;height:36px;min-width:80px;}
 .spill svg{height:24px;width:auto;max-width:100px;}
+/* STATS */
 .stats{background:var(--bl);padding:14px 24px;display:flex;justify-content:center;gap:48px;flex-wrap:wrap;}
 .stat{text-align:center;}
 .stn{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.7rem;color:var(--ye);line-height:1;}
-.stl{font-family:'Nunito',sans-serif;font-weight:700;font-size:.68rem;color:rgba(255,255,255,.7);text-transform:uppercase;}
+.stl{font-family:'Nunito',sans-serif;font-weight:700;font-size:.68rem;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:.5px;}
+/* HOW IT WORKS */
 .hiw{max-width:1200px;margin:0 auto;padding:52px 24px;}
 .slb{font-family:'Nunito',sans-serif;font-weight:800;font-size:.7rem;text-transform:uppercase;letter-spacing:2px;color:var(--bm);margin-bottom:6px;}
 .sh{font-family:'Nunito',sans-serif;font-weight:900;font-size:clamp(1.8rem,3.5vw,2.5rem);color:var(--dk);line-height:1.1;margin-bottom:28px;}
 .sh span{color:var(--bl);}
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
-.step{background:var(--wh);border-radius:16px;padding:24px 18px;box-shadow:0 4px 16px rgba(0,61,166,.08);border:2.5px solid transparent;}
+.step{background:var(--wh);border-radius:16px;padding:24px 18px;box-shadow:0 4px 16px rgba(0,61,166,.08);border:2.5px solid transparent;transition:border-color .2s,transform .2s;}
+.step:hover{border-color:var(--ye);transform:translateY(-3px);}
 .stepn{font-family:'Nunito',sans-serif;font-weight:900;font-size:2.8rem;color:rgba(0,61,166,.07);line-height:1;margin-bottom:8px;}
 .stepi{font-size:1.9rem;margin-bottom:8px;display:block;}
 .step h3{font-family:'Nunito',sans-serif;font-weight:900;font-size:.95rem;color:var(--dk);margin-bottom:6px;}
 .step p{font-size:.83rem;color:var(--mg);line-height:1.6;}
+/* WHY US */
 .why{max-width:1200px;margin:0 auto;padding:0 24px 52px;}
 .wg{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
-.wc{background:var(--wh);border-radius:16px;padding:22px 18px;box-shadow:0 4px 16px rgba(0,61,166,.07);text-align:center;}
+.wc{background:var(--wh);border-radius:16px;padding:22px 18px;box-shadow:0 4px 16px rgba(0,61,166,.07);border:2.5px solid transparent;transition:border-color .2s,transform .2s;text-align:center;}
+.wc:hover{border-color:var(--ye);transform:translateY(-2px);}
 .wi{font-size:2.2rem;margin-bottom:10px;display:block;}
 .wc h4{font-family:'Nunito',sans-serif;font-weight:900;font-size:.92rem;color:var(--dk);margin-bottom:5px;}
 .wc p{font-size:.82rem;color:var(--mg);line-height:1.6;}
+/* TESTIMONIALS */
 .tsec{background:var(--bl);padding:52px 24px;}
 .tw{max-width:1200px;margin:0 auto;}
 .tlb{font-family:'Nunito',sans-serif;font-weight:800;font-size:.7rem;text-transform:uppercase;letter-spacing:2px;color:var(--ye);margin-bottom:6px;}
@@ -207,55 +251,127 @@ nav{background:var(--bl);position:sticky;top:0;z-index:300;box-shadow:0 2px 12px
 .av{width:36px;height:36px;border-radius:50%;background:var(--ye);color:var(--bl);display:flex;align-items:center;justify-content:center;font-family:'Nunito',sans-serif;font-weight:900;font-size:.85rem;flex-shrink:0;}
 .tn{font-family:'Nunito',sans-serif;font-weight:800;color:var(--wh);font-size:.85rem;}
 .ts{font-size:.72rem;color:rgba(255,255,255,.45);}
+/* FAQ */
 .faq-sec{background:var(--lg);padding:52px 24px;}
 .faq-inner{max-width:760px;margin:0 auto;}
 .faq-list{display:flex;flex-direction:column;gap:10px;margin-top:24px;}
 .faq-item{background:var(--wh);border-radius:12px;border:1.5px solid #D0DCEF;overflow:hidden;}
 .faq-q{width:100%;background:none;border:none;padding:16px 20px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.92rem;color:var(--dk);text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;}
-.faq-arr{font-size:1rem;color:var(--bl);flex-shrink:0;}
+.faq-q:hover{background:var(--lg);}
+.faq-arr{font-size:1rem;color:var(--bl);transition:transform .25s;flex-shrink:0;}
 .faq-item.open .faq-arr{transform:rotate(180deg);}
 .faq-a{display:none;padding:0 20px 16px;font-size:.85rem;color:var(--mg);line-height:1.7;}
 .faq-item.open .faq-a{display:block;}
+/* CTA */
 .cta{background:var(--ye);padding:44px 24px;text-align:center;}
 .cta h2{font-family:'Nunito',sans-serif;font-weight:900;font-size:clamp(1.6rem,4vw,2.6rem);color:var(--bl);margin-bottom:8px;line-height:1.1;}
 .cta p{font-size:.92rem;color:rgba(0,30,100,.7);margin-bottom:22px;}
 .ctab{background:var(--bl);color:var(--wh);border:none;border-radius:12px;padding:14px 40px;font-family:'Nunito',sans-serif;font-weight:900;font-size:1rem;cursor:pointer;}
-.wa-float{position:fixed;bottom:20px;right:20px;background:#25D366;color:#fff;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.8rem;text-decoration:none;box-shadow:0 6px 20px rgba(37,211,102,.4);z-index:200;}
+/* WHATSAPP FLOAT */
+.wa-float{position:fixed;bottom:20px;right:20px;background:#25D366;color:#fff;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.8rem;text-decoration:none;box-shadow:0 6px 20px rgba(37,211,102,.4);z-index:200;transition:transform .2s;}
+.wa-float:hover{transform:scale(1.08);}
+/* FOOTER */
 footer{background:var(--dk);padding:40px 24px 22px;}
 .fg{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px;max-width:1200px;margin:0 auto 28px;}
 footer nav{background:transparent !important;position:static !important;box-shadow:none !important;height:auto !important;padding:0 !important;display:block !important;}
+footer nav.fc{background:transparent !important;}
 .fc{background:transparent !important;}
 .flo{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.4rem;color:var(--wh);display:block;margin-bottom:10px;}
 .flo span{color:var(--ye);}
 .fbr p{font-size:.95rem;color:#8A9ABE;line-height:1.6;max-width:260px;}
+.fc{background:transparent;}
 .fc h5{font-family:'Nunito',sans-serif;font-weight:900;font-size:.88rem;text-transform:uppercase;letter-spacing:1.5px;color:#8A9ABE;margin-bottom:14px;}
-.fc ul{list-style:none;}.fc li{margin-bottom:12px;}
-.fc a{font-size:1rem;color:#C0CCE4;text-decoration:none;display:inline-block;font-weight:600;}
+.fc ul{list-style:none;background:transparent;}.fc li{margin-bottom:12px;background:transparent;}
+.fc a{font-size:1rem;color:#C0CCE4;text-decoration:none;background:transparent;-webkit-tap-highlight-color:transparent;display:inline-block;font-weight:600;}
+.fc a:hover{color:var(--ye);}
 .fbot{max-width:1200px;margin:0 auto;padding-top:22px;border-top:1px solid #1A2A4A;display:flex;justify-content:space-between;font-size:.88rem;color:#8A9ABE;flex-wrap:wrap;gap:6px;}
-@media(max-width:1000px){.steps{grid-template-columns:repeat(2,1fr);}.wg{grid-template-columns:repeat(2,1fr);}.tg{grid-template-columns:1fr 1fr;}.fg{grid-template-columns:1fr 1fr;}.nl a{font-size:.78rem;padding:5px 8px;}}
-@media(max-width:900px){.nl{display:none;}.hb{display:flex;}}
-@media(max-width:700px){
-  .nl,.nr{display:none;}.hb{display:flex;}
-  .ni{padding:0 16px;}.hero{padding:24px 16px 32px;min-height:auto;}.sc{padding:14px;}
-  .pi{font-size:1.6rem;letter-spacing:4px;}.cats-grid{grid-template-columns:repeat(4,1fr);gap:5px;}
-  .catb{aspect-ratio:1;}.steps{grid-template-columns:1fr;}.wg{grid-template-columns:1fr;}
-  .tg{grid-template-columns:1fr;}.fg{grid-template-columns:1fr;}.stats{gap:18px;padding:12px;}
-  .qr{flex-direction:column;}.qb{width:100%;}.scan-grid{grid-template-columns:repeat(3,1fr);}
-  .ctbl-head{grid-template-columns:60px minmax(0,1fr) 60px 60px 64px !important;}
-  .ctbl-head > div:nth-child(5),.ctbl-head > div:nth-child(6),.ctbl-head > div:nth-child(7){display:none !important;}
-  .crow{grid-template-columns:60px minmax(0,1fr) 60px 60px 64px !important;padding:10px 4px !important;min-height:90px !important;}
-  .crow > div:nth-child(5),.crow > div:nth-child(6),.crow > div:nth-child(7){display:none !important;}
-  .c-sup-ico{width:54px;height:24px;}.c-sup-name{font-size:.52rem;}
-  .c-part-t{font-size:.7rem;font-weight:700;line-height:1.2;}
-  .c-mini-bdg{font-size:.5rem;padding:2px 5px;}.c-part-meta{font-size:.55rem;gap:6px;margin-top:4px;}
-  .c-rating-inline,.c-stock-inline{font-size:.55rem;}
-  .c-price{font-size:.95rem;}.c-price.best{font-size:1rem;}.c-price-sub{font-size:.54rem;}
-  .c-del{font-size:.62rem;}.c-del-cost{font-size:.55rem;}
-  .c-buy{font-size:.7rem;padding:9px 4px;font-weight:900;border-radius:7px;}
-  .show-all-btn{display:block;width:100%;background:var(--lg);border:2px solid #D0DCEF;border-radius:10px;padding:11px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.82rem;color:var(--bl);cursor:pointer;margin-top:8px;}
+@media(max-width:1000px){
+  .steps{grid-template-columns:repeat(2,1fr);}
+  .wg{grid-template-columns:repeat(2,1fr);}
+  .tg{grid-template-columns:1fr 1fr;}
+  .fg{grid-template-columns:1fr 1fr;}
+  .nl a{font-size:.78rem;padding:5px 8px;}
 }
-.show-all-btn{display:block;width:100%;background:var(--lg);border:2px solid #D0DCEF;border-radius:10px;padding:10px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.8rem;color:var(--bl);cursor:pointer;margin-top:4px;}
-@media(max-width:420px){.cats-grid{grid-template-columns:repeat(3,1fr);}.scan-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:900px){
+  .nl{display:none;}
+  .hb{display:flex;}
+}
+@media(max-width:700px){
+  .nl,.nr{display:none;}
+  .hb{display:flex;}
+  .ni{padding:0 16px;}
+  .hero{padding:24px 16px 32px;min-height:auto;}
+  .sc{padding:14px;}
+  .pi{font-size:1.6rem;letter-spacing:4px;}
+  .cats-grid{grid-template-columns:repeat(4,1fr);gap:5px;}
+  .catb{aspect-ratio:1;}
+  .steps{grid-template-columns:1fr;}
+  .wg{grid-template-columns:1fr;}
+  .tg{grid-template-columns:1fr;}
+  .fg{grid-template-columns:1fr;}
+  .stats{gap:18px;padding:12px;}
+  .qr{flex-direction:column;}
+  .qb{width:100%;}
+  .scan-grid{grid-template-columns:repeat(3,1fr);}
+  /* MOBILE: 5-column table layout — bulletproof */
+  .ctbl{display:block !important;width:100% !important;}
+  .ctbl-head{
+    display:grid !important;
+    grid-template-columns:60px minmax(0,1fr) 60px 60px 64px !important;
+    padding:8px 4px !important;
+    width:100% !important;
+    box-sizing:border-box !important;
+  }
+  .ctbl-head > div{
+    font-size:.56rem !important;
+    padding:2px !important;
+    display:block !important;
+    text-align:center !important;
+    line-height:1.1 !important;
+  }
+  .ctbl-head > div:nth-child(2){text-align:left !important;padding-left:6px !important;}
+  .ctbl-head > div:nth-child(5),
+  .ctbl-head > div:nth-child(6),
+  .ctbl-head > div:nth-child(7){display:none !important;}
+  .crow{
+    display:grid !important;
+    grid-template-columns:60px minmax(0,1fr) 60px 60px 64px !important;
+    padding:10px 4px !important;
+    min-height:90px !important;
+    font-size:.65rem !important;
+    align-items:center !important;
+    width:100% !important;
+    box-sizing:border-box !important;
+  }
+  .crow > div{padding:2px 3px;}
+  .crow > div:nth-child(5),
+  .crow > div:nth-child(6),
+  .crow > div:nth-child(7){display:none !important;}
+  .c-sup-ico{width:54px;height:24px;margin-bottom:3px;}
+  .c-sup-name{font-size:.52rem;}
+  .c-sup-live{font-size:.46rem;padding:1px 3px;}
+  .c-part-t{font-size:.7rem;-webkit-line-clamp:2;font-weight:700;line-height:1.2;}
+  .c-part-s{font-size:.55rem;color:var(--mg);}
+  .c-mini-bdg{font-size:.5rem;padding:2px 5px;}
+  .c-part-meta{font-size:.55rem;gap:6px;margin-top:4px;}
+  .c-rating-inline{font-size:.55rem;}
+  .c-stock-inline{font-size:.55rem;}
+  .c-part-b{margin-top:5px;gap:3px;}
+  .c-price{font-size:.95rem;}
+  .c-price.best{font-size:1rem;}
+  .c-price-sub{font-size:.54rem;}
+  .c-del{font-size:.62rem;}
+  .c-del-cost{font-size:.55rem;}
+  .c-buy{font-size:.7rem;padding:9px 4px;font-weight:900;border-radius:7px;}
+  .best-rib{font-size:.5rem;padding:2px 6px;}
+  /* show-all button */
+  .show-all-btn{display:block;width:100%;background:var(--lg);border:2px solid #D0DCEF;border-radius:10px;padding:11px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.82rem;color:var(--bl);cursor:pointer;margin-top:8px;}
+  .show-all-btn:hover{background:#E0E8F8;}
+}
+@media(max-width:420px){
+  .cats-grid{grid-template-columns:repeat(3,1fr);}
+  .scan-grid{grid-template-columns:repeat(2,1fr);}
+}
 </style>
 </head>
 <body>
@@ -294,14 +410,6 @@ footer nav{background:transparent !important;position:static !important;box-shad
     <p class="sub">The UK's #1 car parts price comparison — 23+ suppliers, fitment guaranteed, free to use</p>
     <div class="sc">
       <div id="dvlaMsg"></div>
-      <div class="mp-box" id="mpBox">
-        <div class="mp-lbl">⚠️ Which model is your <span id="mpMakeLabel"></span>?</div>
-        <div class="mp-sub">DVLA didn't give us the model — pick yours so we can match exact-fit parts.</div>
-        <div class="mp-row">
-          <select class="mp-sel" id="mpSelect"></select>
-          <button class="mp-btn" onclick="confirmModel()">Confirm</button>
-        </div>
-      </div>
       <div class="vb" id="vcBox">
         <div class="vi">✅</div>
         <div class="vd">
@@ -321,13 +429,17 @@ footer nav{background:transparent !important;position:static !important;box-shad
       <div class="od" id="orDiv">Enter your reg above, then search for a part or tap a category</div>
       <div class="qr" id="partRow" style="margin-top:10px;">
         <div class="qw">
-          <input class="qi" id="partIn" type="text" placeholder="Part name or part number" autocomplete="off"/>
+          <input class="qi" id="partIn" type="text" placeholder="Part name or part number (e.g. Brake Pads, 34216761239)" autocomplete="off"/>
+          <div id="searchTypeHint" style="font-family:Nunito,sans-serif;font-weight:800;font-size:.62rem;color:var(--bl);margin-top:4px;display:none;letter-spacing:.5px;"></div>
           <div class="acd" id="acDrop"></div>
         </div>
         <button class="qb" onclick="doSearch()">Compare Prices</button>
       </div>
+      <!-- SCAN ANIMATION ZONE -->
       <div id="scanZone" style="display:none;"></div>
+      <!-- RESULTS ZONE -->
       <div id="resultsZone" style="display:none;margin-top:14px;">
+        <!-- Search another part — sticky on results page -->
         <div class="rsr">
           <div class="rsr-lbl">🔍 Search a different part</div>
           <div class="rsr-row">
@@ -351,8 +463,14 @@ footer nav{background:transparent !important;position:static !important;box-shad
         </div>
         <div class="ctbl" id="resTable">
           <div class="ctbl-head">
-            <div>Supplier</div><div>Part</div><div>Price</div><div>Delivery</div>
-            <div>Stock</div><div>Rating</div><div>Collect</div><div>Buy</div>
+            <div>Supplier</div>
+            <div>Part</div>
+            <div>Price</div>
+            <div>Delivery</div>
+            <div>Stock</div>
+            <div>Rating</div>
+            <div>Collect</div>
+            <div>Buy</div>
           </div>
           <div id="resList"></div>
         </div>
@@ -414,15 +532,17 @@ footer nav{background:transparent !important;position:static !important;box-shad
     <div class="slb">Got Questions?</div>
     <h2 class="sh">Frequently Asked <span>Questions</span></h2>
     <div class="faq-list">
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How do I compare car parts prices?<span class="faq-arr">▼</span></button><div class="faq-a">Enter your reg plate, then search for the part you need. We instantly compare prices from 23+ UK suppliers.</div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Is CompareMyCarParts.com free?<span class="faq-arr">▼</span></button><div class="faq-a">Yes, completely free. We earn a small referral fee when you click through to buy.</div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How do I know parts will fit?<span class="faq-arr">▼</span></button><div class="faq-a">Every result is fitment-verified against your exact vehicle reg using eBay's compatibility database.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How do I compare car parts prices?<span class="faq-arr">▼</span></button><div class="faq-a">Enter your reg plate, then search for the part you need. We instantly compare prices from 23+ UK suppliers including eBay, Amazon, Euro Car Parts, GSF and Halfords — plus used parts from breakers — all sorted cheapest first.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Is CompareMyCarParts.com free?<span class="faq-arr">▼</span></button><div class="faq-a">Yes, completely free. We earn a small referral fee when you click through to buy — at zero extra cost to you.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Do you show used parts too?<span class="faq-arr">▼</span></button><div class="faq-a">Yes! We show both new and used parts. Used options come from eBay and 1st Choice Spares.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How do I know parts will fit?<span class="faq-arr">▼</span></button><div class="faq-a">Every result is fitment-verified against your exact vehicle using your UK reg plate.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Which suppliers do you compare?<span class="faq-arr">▼</span></button><div class="faq-a">eBay, Amazon, Euro Car Parts, GSF Car Parts, Car Parts for Less, Autodoc, FCP Euro, Andrew Page, Halfords, Motor Factor, Parts Gateway and 1st Choice Spares.</div></div>
     </div>
   </div>
 </section>
 <section class="cta">
   <h2>Stop Overpaying for Car Parts.<br>Compare Now — It's Free.</h2>
-  <p>eBay · Amazon · Euro Car Parts · GSF · Halfords · and 7 more</p>
+  <p>eBay · Amazon · Euro Car Parts · GSF · Halfords · and 7 more — all in one search</p>
   <button class="ctab" onclick="window.scrollTo({top:0,behavior:'smooth'})">🚗 Enter Your Reg — Free</button>
 </section>
 </main>
@@ -432,177 +552,173 @@ footer nav{background:transparent !important;position:static !important;box-shad
     <div class="fbr">
       <span class="flo">Compare<span>MyCarParts</span>.com</span>
       <p>The UK's trusted car parts price comparison.</p>
-      <p style="font-size:.78rem;color:#8A9ABE;margin-top:10px;line-height:1.6;">CompareMyCarParts.com is a trading name of COMPAREMYCARPARTS LTD,<br>registered in England &amp; Wales. Company No. 17181274.<br>Registered Office: 71-75 Shelton Street, Covent Garden, London, WC2H 9JQ.</p>
+      <p style="font-size:.78rem;color:#8A9ABE;margin-top:10px;line-height:1.6;">
+        CompareMyCarParts.com is a trading name of COMPAREMYCARPARTS LTD,<br>
+        registered in England &amp; Wales. Company No. 17181274.<br>
+        Registered Office: 71-75 Shelton Street, Covent Garden, London, WC2H 9JQ.
+      </p>
     </div>
     <nav class="fc"><h5>Popular Parts</h5><ul><li><a href="#" onclick="pickCat('Front Brake Pads');return false">Brake Pads</a></li><li><a href="#" onclick="pickCat('Clutch Kit');return false">Clutch Kits</a></li><li><a href="#" onclick="pickCat('Front Shock Absorber');return false">Suspension</a></li><li><a href="#" onclick="pickCat('Oil Filter');return false">Service Parts</a></li></ul></nav>
     <nav class="fc"><h5>Company</h5><ul><li><a href="#">About</a></li><li><a href="#hiw" onclick="goTo('hiw');return false">How It Works</a></li><li><a href="/contact.html">Contact</a></li><li><a href="https://wa.me/447944111247" target="_blank">WhatsApp</a></li></ul></nav>
-    <nav class="fc"><h5>Legal</h5><ul><li><a href="/privacy.html">Privacy</a></li><li><a href="/terms.html">Terms</a></li></ul></nav>
+    <nav class="fc"><h5>Legal</h5><ul><li><a href="/privacy.html">Privacy</a></li><li><a href="/terms.html">Terms</a></li><li><a href="/privacy.html#cookies">Cookies</a></li></ul></nav>
   </div>
   <div class="fbot"><span>© 2026 CompareMyCarParts.com</span><span>Not a seller — we help you find the best deal.</span></div>
 </footer>
 <script>
-var WORKER_URL='https://cmcp-ebay.idris-b19.workers.dev';
-var AFF={amazon:'comparemycarp-21',ebay:'5339148906',awin:'2851027'};
-var vehicle=null,allRows=[],currentFilter='all',scanTimer=null;
-
-var KNOWN_MODELS={
-'FORD':['Focus','Fiesta','Mondeo','Kuga','Puma','Galaxy','Ka','Transit','Ranger','EcoSport','S-Max','C-Max'],
-'VAUXHALL':['Astra','Corsa','Insignia','Mokka','Crossland','Grandland','Zafira','Vivaro','Combo','Meriva','Antara','Adam'],
-'VOLKSWAGEN':['Golf','Polo','Passat','Tiguan','Touran','Up','Sharan','Caddy','Transporter','T-Roc','T-Cross','Arteon','Jetta','Beetle'],
-'VW':['Golf','Polo','Passat','Tiguan','Touran','Up','Sharan','Caddy','Transporter','T-Roc','T-Cross','Arteon','Jetta','Beetle'],
-'BMW':['1 Series','2 Series','3 Series','4 Series','5 Series','6 Series','7 Series','X1','X2','X3','X4','X5','X6','X7','M3','M4','M5','i3','i4','iX'],
-'AUDI':['A1','A3','A4','A5','A6','A7','A8','Q2','Q3','Q4','Q5','Q7','Q8','TT','RS3','RS4','RS5','RS6','S3','S4','S5','e-tron'],
-'MERCEDES-BENZ':['A-Class','B-Class','C-Class','E-Class','S-Class','CLA','CLS','GLA','GLB','GLC','GLE','GLS','SLK','SL','Vito','Sprinter','V-Class'],
-'MERCEDES':['A-Class','B-Class','C-Class','E-Class','S-Class','CLA','CLS','GLA','GLB','GLC','GLE','GLS','SLK','SL','Vito','Sprinter','V-Class'],
-'TOYOTA':['Yaris','Corolla','Auris','Avensis','Camry','RAV4','C-HR','Aygo','Hilux','Land Cruiser','Prius','Verso','GT86','Supra'],
-'HONDA':['Civic','Jazz','Accord','CR-V','HR-V','Insight','Type R'],
-'NISSAN':['Micra','Note','Juke','Qashqai','X-Trail','Leaf','Navara','GT-R','350Z','370Z'],
-'HYUNDAI':['i10','i20','i30','i40','Tucson','Santa Fe','Kona','Ioniq','ix35'],
-'KIA':['Picanto','Rio','Ceed','Sportage','Sorento','Niro','Soul','Stonic','Stinger','Optima','EV6'],
-'PEUGEOT':['108','208','308','408','508','2008','3008','5008','Partner','Boxer','Expert','Rifter'],
-'CITROEN':['C1','C3','C4','C5','Berlingo','C3 Aircross','C5 Aircross','DS3','DS4','DS5','Picasso'],
-'RENAULT':['Clio','Megane','Captur','Kadjar','Scenic','Twingo','Zoe','Trafic','Master','Kangoo'],
-'FIAT':['500','Panda','Punto','Tipo','500X','500L','Doblo','Ducato'],
-'SEAT':['Ibiza','Leon','Arona','Ateca','Tarraco','Mii','Alhambra','Toledo'],
-'SKODA':['Fabia','Octavia','Superb','Kodiaq','Karoq','Scala','Kamiq','Citigo','Yeti','Enyaq'],
-'JAGUAR':['XE','XF','XJ','F-Pace','E-Pace','I-Pace','F-Type','S-Type','X-Type'],
-'LAND ROVER':['Defender','Discovery','Discovery Sport','Range Rover','Range Rover Sport','Range Rover Evoque','Range Rover Velar','Freelander'],
-'MINI':['Cooper','Clubman','Countryman','Convertible','One','JCW'],
-'MAZDA':['2','3','6','CX-3','CX-30','CX-5','CX-7','MX-5','MX-30'],
-'SUZUKI':['Swift','Jimny','Vitara','S-Cross','Ignis','Baleno','Celerio','SX4','Alto'],
-'VOLVO':['XC40','XC60','XC90','S60','S90','V40','V60','V90'],
-'DACIA':['Sandero','Duster','Logan','Lodgy','Dokker','Spring','Jogger']
+var WORKER_URL = 'https://cmcp-ebay.idris-b19.workers.dev';
+var AFF = { amazon: 'comparemycarp-21', ebay: '5339148906', awin: '2851027' };
+var vehicle = null;
+var allRows = [];
+var currentFilter = 'all';
+var scanTimer = null;
+var PARTS = [
+  {n:'Front Brake Pads',c:'Brakes',i:'🛑'},{n:'Rear Brake Pads',c:'Brakes',i:'🛑'},
+  {n:'Front Brake Discs',c:'Brakes',i:'🛑'},{n:'Rear Brake Discs',c:'Brakes',i:'🛑'},
+  {n:'Brake Caliper',c:'Brakes',i:'🛑'},{n:'ABS Sensor',c:'Brakes',i:'🛑'},
+  {n:'Clutch Kit',c:'Clutch',i:'⚙️'},{n:'Clutch Plate',c:'Clutch',i:'⚙️'},
+  {n:'Dual Mass Flywheel',c:'Clutch',i:'⚙️'},
+  {n:'Oil Filter',c:'Engine',i:'🔧'},{n:'Air Filter',c:'Engine',i:'🔧'},
+  {n:'Fuel Filter',c:'Engine',i:'🔧'},{n:'Cabin Filter',c:'Engine',i:'🔧'},
+  {n:'Spark Plugs',c:'Engine',i:'🔧'},{n:'Glow Plugs',c:'Engine',i:'🔧'},
+  {n:'Timing Belt Kit',c:'Engine',i:'🔧'},{n:'Water Pump',c:'Engine',i:'🔧'},
+  {n:'Thermostat',c:'Engine',i:'🔧'},{n:'Engine Oil 5W-30',c:'Engine',i:'🔧'},
+  {n:'Alternator',c:'Engine',i:'🔧'},{n:'Starter Motor',c:'Engine',i:'🔧'},
+  {n:'Front Shock Absorber',c:'Suspension',i:'🚗'},{n:'Rear Shock Absorber',c:'Suspension',i:'🚗'},
+  {n:'Front Coil Spring',c:'Suspension',i:'🚗'},{n:'Wishbone',c:'Suspension',i:'🚗'},
+  {n:'Anti Roll Bar Link',c:'Suspension',i:'🚗'},{n:'Tie Rod End',c:'Suspension',i:'🚗'},
+  {n:'Wheel Bearing',c:'Suspension',i:'🚗'},
+  {n:'Catalytic Converter',c:'Exhaust',i:'💨'},{n:'DPF Filter',c:'Exhaust',i:'💨'},
+  {n:'Rear Silencer',c:'Exhaust',i:'💨'},{n:'Flexi Pipe',c:'Exhaust',i:'💨'},
+  {n:'Car Battery',c:'Electrical',i:'🔋'},{n:'Headlight Bulb H7',c:'Electrical',i:'🔋'},
+  {n:'Wiper Blades',c:'Electrical',i:'🔋'},
+  {n:'Air Con Compressor',c:'Air Con',i:'❄️'},{n:'Radiator',c:'Air Con',i:'❄️'},
+  {n:'Radiator Fan',c:'Air Con',i:'❄️'},
+  {n:'Door Mirror',c:'Body',i:'🚙'},{n:'Front Bumper',c:'Body',i:'🚙'},
+  {n:'Bonnet',c:'Body',i:'🚙'},{n:'Headlight',c:'Body',i:'🚙'},
+  {n:'Engine Oil 5W-30',c:'Oils',i:'💧'},{n:'Engine Oil 5W-40',c:'Oils',i:'💧'},
+  {n:'Brake Fluid',c:'Oils',i:'💧'},{n:'Coolant Antifreeze',c:'Oils',i:'💧'},
+  {n:'Front Wiper Blades',c:'Wipers',i:'🔵'},{n:'Rear Wiper Blade',c:'Wipers',i:'🔵'},
+  {n:'Headlight Bulb H7',c:'Lights',i:'💡'},{n:'Headlight Bulb H4',c:'Lights',i:'💡'},
+  {n:'Fog Light Bulb',c:'Lights',i:'💡'}
+];
+var ICONS = {
+  brakes: '<svg viewBox="0 0 64 64"><circle cx="28" cy="32" r="22" fill="#E0E0E0"/><circle cx="28" cy="32" r="14" fill="#D32F2F"/><circle cx="28" cy="32" r="5" fill="#424242"/><line x1="28" y1="14" x2="28" y2="20" stroke="#9E9E9E" stroke-width="2"/><line x1="28" y1="44" x2="28" y2="50" stroke="#9E9E9E" stroke-width="2"/><line x1="10" y1="32" x2="16" y2="32" stroke="#9E9E9E" stroke-width="2"/><line x1="40" y1="32" x2="46" y2="32" stroke="#9E9E9E" stroke-width="2"/><rect x="40" y="22" width="20" height="20" rx="3" fill="#1976D2"/><rect x="42" y="24" width="16" height="16" rx="1" fill="#FFD100"/></svg>',
+  clutch: '<svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="26" fill="#212121"/><circle cx="32" cy="32" r="22" fill="#FF9800"/><g fill="#212121"><rect x="29" y="10" width="6" height="10" rx="2"/><rect x="29" y="44" width="6" height="10" rx="2"/><rect x="10" y="29" width="10" height="6" rx="2"/><rect x="44" y="29" width="10" height="6" rx="2"/></g><circle cx="32" cy="32" r="10" fill="#212121"/><circle cx="32" cy="32" r="5" fill="#FFD100"/></svg>',
+  engine: '<svg viewBox="0 0 64 64"><rect x="8" y="22" width="48" height="30" rx="3" fill="#546E7A"/><rect x="12" y="18" width="40" height="8" rx="2" fill="#37474F"/><rect x="17" y="8" width="6" height="12" fill="#FFC107"/><rect x="29" y="8" width="6" height="12" fill="#FFC107"/><rect x="41" y="8" width="6" height="12" fill="#FFC107"/><line x1="20" y1="26" x2="20" y2="48" stroke="#212121" stroke-width="2"/><line x1="32" y1="26" x2="32" y2="48" stroke="#212121" stroke-width="2"/><line x1="44" y1="26" x2="44" y2="48" stroke="#212121" stroke-width="2"/><circle cx="14" cy="28" r="2" fill="#FFD100"/><circle cx="50" cy="28" r="2" fill="#FFD100"/><circle cx="14" cy="46" r="2" fill="#FFD100"/><circle cx="50" cy="46" r="2" fill="#FFD100"/></svg>',
+  service: '<svg viewBox="0 0 64 64"><g transform="rotate(-45 32 32)"><rect x="29" y="10" width="6" height="36" rx="1.5" fill="#9E9E9E"/><path d="M22 6 L42 6 L40 16 L36 16 L36 18 L28 18 L28 16 L24 16 Z" fill="#9E9E9E"/><circle cx="32" cy="11" r="3" fill="#FFD100"/></g><g transform="rotate(45 32 32)"><rect x="29" y="18" width="6" height="36" rx="1.5" fill="#D32F2F"/><path d="M22 58 L42 58 L40 48 L36 48 L36 46 L28 46 L28 48 L24 48 Z" fill="#D32F2F"/><circle cx="32" cy="53" r="3" fill="#FFD100"/></g><circle cx="32" cy="32" r="4" fill="#212121"/></svg>',
+  suspension: '<svg viewBox="0 0 64 64"><rect x="20" y="6" width="24" height="6" rx="2" fill="#37474F"/><ellipse cx="32" cy="16" rx="14" ry="3" fill="none" stroke="#FFC107" stroke-width="3.5"/><ellipse cx="32" cy="22" rx="14" ry="3" fill="none" stroke="#FFC107" stroke-width="3.5"/><ellipse cx="32" cy="28" rx="14" ry="3" fill="none" stroke="#FFC107" stroke-width="3.5"/><ellipse cx="32" cy="34" rx="14" ry="3" fill="none" stroke="#FFC107" stroke-width="3.5"/><ellipse cx="32" cy="40" rx="14" ry="3" fill="none" stroke="#FFC107" stroke-width="3.5"/><ellipse cx="32" cy="46" rx="14" ry="3" fill="none" stroke="#FFC107" stroke-width="3.5"/><rect x="29" y="12" width="6" height="40" fill="#546E7A"/><rect x="20" y="50" width="24" height="6" rx="2" fill="#37474F"/></svg>',
+  exhaust: '<svg viewBox="0 0 64 64"><rect x="4" y="32" width="22" height="20" rx="3" fill="#9E9E9E"/><rect x="6" y="34" width="18" height="16" rx="2" fill="#BDBDBD"/><line x1="9" y1="36" x2="9" y2="48" stroke="#616161" stroke-width="1.5"/><line x1="14" y1="36" x2="14" y2="48" stroke="#616161" stroke-width="1.5"/><line x1="19" y1="36" x2="19" y2="48" stroke="#616161" stroke-width="1.5"/><rect x="24" y="38" width="22" height="8" fill="#9E9E9E"/><rect x="24" y="38" width="22" height="3" fill="#E0E0E0"/><ellipse cx="50" cy="42" rx="6" ry="6" fill="#E0E0E0"/><ellipse cx="51" cy="42" rx="3.5" ry="4" fill="#212121"/><circle cx="56" cy="30" r="3.5" fill="#CFD8DC" opacity=".85"/><circle cx="51" cy="22" r="3" fill="#CFD8DC" opacity=".7"/><circle cx="58" cy="14" r="2.5" fill="#CFD8DC" opacity=".55"/></svg>',
+  electrical: '<svg viewBox="0 0 64 64"><rect x="8" y="18" width="48" height="36" rx="3" fill="#212121"/><rect x="10" y="20" width="44" height="32" rx="2" fill="#388E3C"/><rect x="14" y="24" width="36" height="8" rx="1" fill="#FFFFFF"/><text x="32" y="31" font-family="Arial Black" font-size="6" font-weight="900" fill="#212121" text-anchor="middle">12V</text><rect x="14" y="10" width="10" height="10" rx="1" fill="#D32F2F"/><text x="19" y="18" font-family="Arial Black" font-size="9" font-weight="900" fill="#FFF" text-anchor="middle">+</text><rect x="40" y="10" width="10" height="10" rx="1" fill="#212121"/><text x="45" y="18" font-family="Arial Black" font-size="9" font-weight="900" fill="#FFF" text-anchor="middle">−</text><circle cx="20" cy="44" r="3" fill="#1B5E20"/><circle cx="32" cy="44" r="3" fill="#1B5E20"/><circle cx="44" cy="44" r="3" fill="#1B5E20"/></svg>',
+  aircon: '<svg viewBox="0 0 64 64"><g stroke="#03A9F4" stroke-width="3.5" stroke-linecap="round" fill="none"><line x1="32" y1="6" x2="32" y2="58"/><line x1="9" y1="19" x2="55" y2="45"/><line x1="9" y1="45" x2="55" y2="19"/></g><g stroke="#0288D1" stroke-width="2.5" stroke-linecap="round" fill="none"><polyline points="26,12 32,6 38,12"/><polyline points="26,52 32,58 38,52"/><polyline points="9,25 9,19 15,19"/><polyline points="55,39 55,45 49,45"/><polyline points="9,39 9,45 15,45"/><polyline points="55,25 55,19 49,19"/></g><circle cx="32" cy="32" r="6" fill="#FFFFFF" stroke="#0288D1" stroke-width="2"/><circle cx="32" cy="32" r="3" fill="#0288D1"/></svg>',
+  body: '<svg viewBox="0 0 64 64"><path d="M6 42 L10 32 L18 26 L24 22 L40 22 L46 26 L54 32 L58 42 L58 48 L52 48 L48 48 L16 48 L12 48 L6 48 Z" fill="#D32F2F"/><path d="M20 28 L25 24 L40 24 L45 28 L42 36 L23 36 Z" fill="#42A5F5"/><line x1="32" y1="24" x2="32" y2="36" stroke="#1565C0" stroke-width="2"/><ellipse cx="9" cy="38" rx="2" ry="2" fill="#FFD100"/><ellipse cx="55" cy="38" rx="2" ry="2" fill="#FFD100"/><circle cx="16" cy="48" r="6.5" fill="#212121"/><circle cx="16" cy="48" r="2.5" fill="#9E9E9E"/><circle cx="48" cy="48" r="6.5" fill="#212121"/><circle cx="48" cy="48" r="2.5" fill="#9E9E9E"/></svg>',
+  oils: '<svg viewBox="0 0 64 64"><rect x="22" y="6" width="14" height="6" rx="1" fill="#212121"/><path d="M18 12 L40 12 L40 16 L46 20 L46 56 L18 56 Z" fill="#1976D2"/><path d="M19 14 L23 14 L23 54 L19 54 Z" fill="#42A5F5"/><rect x="22" y="26" width="22" height="22" rx="1" fill="#FFFFFF"/><rect x="22" y="26" width="22" height="6" fill="#D32F2F"/><text x="33" y="31" font-family="Arial Black" font-size="5" font-weight="900" fill="#FFFFFF" text-anchor="middle">5W-30</text><text x="33" y="42" font-family="Arial Black" font-size="6" font-weight="900" fill="#1976D2" text-anchor="middle">OIL</text><path d="M40 16 L48 16 L48 28 L46 28" fill="none" stroke="#212121" stroke-width="3" stroke-linecap="round"/></svg>',
+  wipers: '<svg viewBox="0 0 64 64"><path d="M14 50 Q32 18 50 50" fill="none" stroke="#0288D1" stroke-width="2" stroke-dasharray="3 3" opacity=".7"/><line x1="32" y1="54" x2="48" y2="14" stroke="#212121" stroke-width="4" stroke-linecap="round"/><circle cx="32" cy="54" r="5.5" fill="#212121"/><circle cx="32" cy="54" r="2" fill="#FFD100"/><rect x="40" y="6" width="16" height="3" rx="1.5" fill="#212121" transform="rotate(-65 48 8)"/><rect x="38" y="11" width="20" height="2" rx="1" fill="#424242" transform="rotate(-65 48 12)"/><circle cx="20" cy="40" r="1.8" fill="#03A9F4" opacity=".8"/><circle cx="44" cy="38" r="1.5" fill="#03A9F4" opacity=".7"/></svg>',
+  lights: '<svg viewBox="0 0 64 64"><g stroke="#FFC107" stroke-width="2.5" stroke-linecap="round" opacity=".7"><line x1="44" y1="20" x2="58" y2="14"/><line x1="44" y1="32" x2="60" y2="32"/><line x1="44" y1="44" x2="58" y2="50"/></g><ellipse cx="26" cy="32" rx="20" ry="16" fill="#FFEB3B"/><ellipse cx="26" cy="32" rx="20" ry="16" fill="none" stroke="#F57F17" stroke-width="2"/><ellipse cx="26" cy="32" rx="14" ry="11" fill="#FFFFFF"/><ellipse cx="26" cy="32" rx="4" ry="3" fill="#FF6F00"/><line x1="22" y1="32" x2="30" y2="32" stroke="#FFC107" stroke-width="1.5"/><rect x="2" y="28" width="8" height="8" fill="#424242"/></svg>'
 };
-
-function parseVehicle(v){
-  if(!v)return{year:'',make:'',model:''};
-  var name=v.name||'',raw=v.raw||{};
-  var yearMatch=name.match(/^(\d{4})/);
-  var year=yearMatch?yearMatch[1]:(raw.yearOfManufacture||'');
-  var make=raw.make?String(raw.make).toUpperCase():'';
-  var model=raw.model||'';
-  if(!model&&make&&KNOWN_MODELS[make]){
-    var ml=KNOWN_MODELS[make],nameUp=name.toUpperCase();
-    for(var i=0;i<ml.length;i++){if(nameUp.indexOf(ml[i].toUpperCase())!==-1){model=ml[i];break;}}
+var CATS = [
+  {k:'brakes',n:'Brakes',q:'Front Brake Pads'},
+  {k:'clutch',n:'Clutch',q:'Clutch Kit'},
+  {k:'engine',n:'Engine',q:'Oil Filter'},
+  {k:'service',n:'Service',q:'Service'},
+  {k:'suspension',n:'Suspension',q:'Front Shock Absorber'},
+  {k:'exhaust',n:'Exhaust',q:'Rear Silencer'},
+  {k:'electrical',n:'Electrical',q:'Car Battery'},
+  {k:'aircon',n:'Air Con',q:'Air Con Compressor'},
+  {k:'body',n:'Body',q:'Door Mirror'},
+  {k:'oils',n:'Oils',q:'Engine Oil 5W-30'},
+  {k:'wipers',n:'Wipers',q:'Front Wiper Blades'},
+  {k:'lights',n:'Lights',q:'Headlight Bulb H7'}
+];
+var SUPPLIERS = ['eBay','Amazon','Euro Car Parts','GSF','Halfords','Autodoc','Mister Auto','MicksGarage','Online Car Parts','Andrew Page','Motor World','Car Parts 4 Less','FCP Euro','Eurospares','Bosch','Brembo','NGK','Mintex','Febi','Tayna Batteries','BlackCircles','1st Choice','Breakerlink','Parts Gateway'];
+var SCAN_SUPS = [
+  {n:'eBay'},{n:'Amazon'},{n:'Euro Car Parts'},
+  {n:'GSF Car Parts'},{n:'Halfords'},{n:'Autodoc'},
+  {n:'Car Parts 4 Less'},{n:'FCP Euro'},
+  {n:'Andrew Page'},{n:'Motor Factor'},
+  {n:'Parts Gateway'},{n:'1st Choice Spares'}
+];
+var LOGOS = {
+  'eBay': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><text x="0" y="28" font-family="Arial,sans-serif" font-weight="900" font-size="26" font-style="italic"><tspan fill="#E53238">e</tspan><tspan fill="#0064D2">b</tspan><tspan fill="#F5AF02">a</tspan><tspan fill="#86B817">y</tspan></text></svg>',
+  'Amazon': '<svg viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg"><text x="0" y="24" font-family="Arial,sans-serif" font-weight="700" font-size="22" fill="#232F3E">amazon</text><path d="M5,30 Q40,38 80,30" stroke="#FF9900" stroke-width="3" fill="none" stroke-linecap="round"/><polygon points="75,28 82,30 75,33" fill="#FF9900"/></svg>',
+  'Euro Car Parts': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><circle cx="15" cy="20" r="12" fill="#003DA5"/><text x="9" y="25" font-family="Arial,sans-serif" font-weight="900" font-size="14" fill="#fff">ECP</text><text x="32" y="16" font-family="Arial,sans-serif" font-weight="800" font-size="9" fill="#003DA5">EURO CAR</text><text x="32" y="27" font-family="Arial,sans-serif" font-weight="800" font-size="9" fill="#003DA5">PARTS</text></svg>',
+  'GSF Car Parts': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="8" width="35" height="24" rx="3" fill="#F7941D"/><text x="5" y="26" font-family="Arial,sans-serif" font-weight="900" font-size="15" fill="#fff">GSF</text><text x="42" y="17" font-family="Arial,sans-serif" font-weight="800" font-size="8" fill="#1a1a1a">CAR</text><text x="42" y="28" font-family="Arial,sans-serif" font-weight="800" font-size="8" fill="#1a1a1a">PARTS</text></svg>',
+  'Halfords': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="8" width="100" height="24" rx="3" fill="#EE3124"/><text x="8" y="26" font-family="Arial,sans-serif" font-weight="900" font-size="14" fill="#fff">Halfords</text></svg>',
+  'Autodoc': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><text x="2" y="27" font-family="Arial,sans-serif" font-weight="900" font-size="16" fill="#003DA5">AUTO</text><text x="48" y="27" font-family="Arial,sans-serif" font-weight="900" font-size="16" fill="#E30613">DOC</text></svg>',
+  'Car Parts 4 Less': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="5" width="100" height="30" rx="3" fill="#FDD800"/><text x="4" y="18" font-family="Arial,sans-serif" font-weight="900" font-size="10" fill="#003DA5">CAR PARTS</text><text x="30" y="31" font-family="Arial,sans-serif" font-weight="900" font-size="13" fill="#E30613">4LESS</text></svg>',
+  'FCP Euro': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="6" width="40" height="28" rx="3" fill="#003DA5"/><text x="5" y="27" font-family="Arial,sans-serif" font-weight="900" font-size="15" fill="#fff">FCP</text><text x="48" y="17" font-family="Arial,sans-serif" font-weight="800" font-size="9" fill="#1a1a1a">EURO</text><text x="48" y="29" font-family="Arial,sans-serif" font-weight="700" font-size="7" fill="#666">SINCE 1986</text></svg>',
+  'Andrew Page': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="8" width="100" height="24" fill="#004B87"/><text x="4" y="20" font-family="Arial,sans-serif" font-weight="900" font-size="9" fill="#fff">ANDREW</text><text x="4" y="30" font-family="Arial,sans-serif" font-weight="900" font-size="9" fill="#FDD800">PAGE</text></svg>',
+  'Motor Factor': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><circle cx="15" cy="20" r="12" fill="#1a1a1a"/><text x="8" y="24" font-family="Arial,sans-serif" font-weight="900" font-size="11" fill="#FDD800">MF</text><text x="32" y="17" font-family="Arial,sans-serif" font-weight="800" font-size="8" fill="#1a1a1a">MOTOR</text><text x="32" y="28" font-family="Arial,sans-serif" font-weight="800" font-size="8" fill="#1a1a1a">FACTOR</text></svg>',
+  'Parts Gateway': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="8" width="100" height="24" rx="3" fill="#00A651"/><text x="5" y="26" font-family="Arial,sans-serif" font-weight="900" font-size="11" fill="#fff">PartsGateway</text></svg>',
+  '1st Choice Spares': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><text x="0" y="20" font-family="Arial,sans-serif" font-weight="900" font-size="18" fill="#E30613">1st</text><text x="28" y="20" font-family="Arial,sans-serif" font-weight="800" font-size="11" fill="#1a1a1a">CHOICE</text><text x="12" y="33" font-family="Arial,sans-serif" font-weight="700" font-size="9" fill="#666">SPARES</text></svg>',
+  'Mister Auto UK': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="8" width="100" height="24" rx="3" fill="#004B87"/><text x="4" y="26" font-family="Arial,sans-serif" font-weight="900" font-size="11" fill="#fff">MISTER AUTO</text></svg>',
+  'MicksGarage': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="8" width="100" height="24" rx="3" fill="#E30613"/><text x="4" y="26" font-family="Arial,sans-serif" font-weight="900" font-size="11" fill="#fff">MicksGarage</text></svg>',
+  'Online Car Parts': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="8" width="100" height="24" rx="3" fill="#1976D2"/><text x="3" y="20" font-family="Arial,sans-serif" font-weight="900" font-size="9" fill="#fff">ONLINE</text><text x="3" y="30" font-family="Arial,sans-serif" font-weight="900" font-size="9" fill="#FFD100">CAR PARTS</text></svg>',
+  'Motor World': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="20" r="11" fill="#E30613"/><text x="7" y="24" font-family="Arial,sans-serif" font-weight="900" font-size="11" fill="#fff">MW</text><text x="30" y="17" font-family="Arial,sans-serif" font-weight="900" font-size="9" fill="#1a1a1a">MOTOR</text><text x="30" y="29" font-family="Arial,sans-serif" font-weight="900" font-size="9" fill="#1a1a1a">WORLD</text></svg>',
+  'Eurospares': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="8" width="100" height="24" rx="3" fill="#0033A0"/><text x="4" y="20" font-family="Arial,sans-serif" font-weight="900" font-size="9" fill="#FFD100">EURO</text><text x="4" y="30" font-family="Arial,sans-serif" font-weight="900" font-size="9" fill="#fff">SPARES</text></svg>',
+  'Breakerlink': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="8" width="100" height="24" rx="3" fill="#FF6600"/><text x="4" y="26" font-family="Arial,sans-serif" font-weight="900" font-size="11" fill="#fff">Breakerlink</text></svg>',
+  'Bosch UK': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="14" fill="none" stroke="#E20015" stroke-width="3"/><line x1="6" y1="20" x2="34" y2="20" stroke="#E20015" stroke-width="3"/><text x="42" y="26" font-family="Arial,sans-serif" font-weight="900" font-size="14" fill="#E20015">BOSCH</text></svg>',
+  'Brembo': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="8" width="100" height="24" rx="3" fill="#E30613"/><text x="14" y="26" font-family="Arial,sans-serif" font-weight="900" font-size="13" fill="#fff" font-style="italic">brembo</text></svg>',
+  'NGK Spark Plugs': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="8" width="40" height="24" rx="3" fill="#FFD100"/><text x="3" y="26" font-family="Arial,sans-serif" font-weight="900" font-size="14" fill="#000">NGK</text><text x="44" y="17" font-family="Arial,sans-serif" font-weight="800" font-size="8" fill="#1a1a1a">SPARK</text><text x="44" y="28" font-family="Arial,sans-serif" font-weight="800" font-size="8" fill="#1a1a1a">PLUGS</text></svg>',
+  'Mintex': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="8" width="100" height="24" rx="3" fill="#1a1a1a"/><text x="14" y="26" font-family="Arial,sans-serif" font-weight="900" font-size="14" fill="#FFD100">MINTEX</text></svg>',
+  'Febi Bilstein': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="8" width="100" height="24" rx="3" fill="#FFD100"/><text x="6" y="20" font-family="Arial,sans-serif" font-weight="900" font-size="9" fill="#000">FEBI</text><text x="6" y="30" font-family="Arial,sans-serif" font-weight="900" font-size="9" fill="#000">BILSTEIN</text></svg>',
+  'Tayna Batteries': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="8" width="100" height="24" rx="3" fill="#003DA5"/><text x="4" y="20" font-family="Arial,sans-serif" font-weight="900" font-size="9" fill="#FFD100">TAYNA</text><text x="4" y="30" font-family="Arial,sans-serif" font-weight="800" font-size="8" fill="#fff">BATTERIES</text></svg>',
+  'BlackCircles Tyres': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><circle cx="15" cy="20" r="12" fill="#1a1a1a"/><circle cx="15" cy="20" r="6" fill="none" stroke="#fff" stroke-width="2"/><text x="32" y="17" font-family="Arial,sans-serif" font-weight="900" font-size="8" fill="#1a1a1a">BLACK</text><text x="32" y="28" font-family="Arial,sans-serif" font-weight="900" font-size="8" fill="#1a1a1a">CIRCLES</text></svg>'
+};
+var ALL_SUPS = 
+  {n:'eBay', live:true, type:'marketplace'},
+  {n:'Amazon', type:'marketplace', url:function(p,v){return 'https://www.amazon.co.uk/s?k='+encodeURIComponent(p+' '+v)+'&tag='+[AFF.amazon;}},
+  {n:'Euro Car Parts', type:'retailer', url:function(p,v){return 'https://www.awin1.com/cread.php?awinmid=197685&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.eurocarparts.com/search?q='+encodeURIComponent(p));}},
+  {n:'GSF Car Parts', type:'retailer', url:function(p,v){return 'https://www.awin1.com/cread.php?awinmid=13655&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.gsfcarparts.com/search?query='+encodeURIComponent(p));}},
+  {n:'Halfords', type:'retailer', url:function(p,v){return 'https://www.awin1.com/cread.php?awinmid=197&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.halfords.com/search?term='+encodeURIComponent(p));}},
+  {n:'Car Parts 4 Less', type:'retailer', url:function(p,v){return 'https://www.carparts4less.co.uk/search?q='+encodeURIComponent(p);}},
+  {n:'Mister Auto UK', type:'retailer', url:function(p,v){return 'https://www.mister-auto.co.uk/search?keywords='+encodeURIComponent(p);}},
+  {n:'MicksGarage', type:'retailer', url:function(p,v){return 'https://www.micksgarage.com/search?keyword='+encodeURIComponent(p);}},
+  {n:'Online Car Parts', type:'retailer', url:function(p,v){return 'https://www.onlinecarparts.co.uk/search?q='+encodeURIComponent(p);}},
+  {n:'Andrew Page', type:'retailer', url:function(p,v){return 'https://www.andrewpage.com/search?q='+encodeURIComponent(p);}},
+  {n:'Motor World', type:'retailer', url:function(p,v){return 'https://www.motorworld.co.uk/search?q='+encodeURIComponent(p);}},
+  {n:'Autodoc', type:'retailer', url:function(p,v){return 'https://www.autodoc.co.uk/search?query='+encodeURIComponent(p);}},
+  {n:'FCP Euro', type:'retailer', url:function(p,v){return 'https://www.fcpeuro.com/search?q='+encodeURIComponent(p);}},
+  {n:'Eurospares', type:'retailer', url:function(p,v){return 'https://www.eurospares.co.uk/search.php?q='+encodeURIComponent(p);}},
+  {n:'1st Choice Spares', type:'used', url:function(p,v){return 'https://www.awin1.com/cread.php?awinmid=6060&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.1stchoice.co.uk/search?q='+encodeURIComponent(p));}},
+  {n:'Breakerlink', type:'used', url:function(p,v){return 'https://www.breakerlink.com/parts.html?part='+encodeURIComponent(p);}},
+  {n:'Parts Gateway', type:'used', url:function(p,v){return 'https://www.partsgateway.co.uk/car-parts/'+encodeURIComponent(p.replace(/ /g,'-'))+'/';}},
+  {n:'Bosch UK', type:'oem', url:function(p,v){return 'https://www.bosch-automotive-aftermarket.com/gb/en/aftermarket/spare-parts/?q='+encodeURIComponent(p);}},
+  {n:'Brembo', type:'oem', url:function(p,v){return 'https://www.brembo.com/en/car/aftermarket/products?search='+encodeURIComponent(p);}},
+  {n:'NGK Spark Plugs', type:'oem', url:function(p,v){return 'https://www.ngkntk.com/uk/products/?search='+encodeURIComponent(p);}},
+  {n:'Mintex', type:'oem', url:function(p,v){return 'https://www.mintex.com/en-gb/products?search='+encodeURIComponent(p);}},
+  {n:'Febi Bilstein', type:'oem', url:function(p,v){return 'https://partsfinder.bilsteingroup.com/en/search?q='+encodeURIComponent(p);}},
+  {n:'Tayna Batteries', type:'specialty', url:function(p,v){return 'https://www.tayna.co.uk/search?q='+encodeURIComponent(p);}},
+  {n:'BlackCircles Tyres', type:'specialty', url:function(p,v){return 'https://www.blackcircles.com/search?q='+encodeURIComponent(p);}}
+];
+(function(){
+  function render(){
+    var cg = document.getElementById('catGrid');
+    var sp = document.getElementById('supPills');
+    if(!cg||!sp){setTimeout(render,10);return;}
+    var ch='';
+    CATS.forEach(function(c){
+      ch+='<a class="catb" href="#" onclick="pickCat(\''+c.q+'\');return false"><span class="ci">'+ICONS[c.k]+'</span><div class="cn">'+c.n+'</div></a>';
+    });
+    cg.innerHTML=ch;
+    var ph='';
+    ALL_SUPS.forEach(function(s){
+      var logo = LOGOS[s.n] || '<span style="font-weight:900;color:#003DA6;font-size:11px;">'+s.n+'</span>';
+      ph+='<span class="spill">'+logo+'</span>';
+    });
+    sp.innerHTML=ph;
   }
-  return{year:String(year||''),make:titleCase(String(make||'')),model:String(model||'')};
-}
-function buildVehicleQuery(part,v){
-  if(!v)return part;
-  var p=parseVehicle(v),pieces=[part];
-  if(p.year)pieces.push(p.year);
-  if(p.make)pieces.push(p.make);
-  if(p.model)pieces.push(p.model);
-  return pieces.join(' ');
-}
-function getMakeModel(v){if(!v)return{make:'',model:'',year:''};return parseVehicle(v);}
-
-var PARTS=[
-{n:'Front Brake Pads',c:'Brakes',i:'🛑'},{n:'Rear Brake Pads',c:'Brakes',i:'🛑'},
-{n:'Front Brake Discs',c:'Brakes',i:'🛑'},{n:'Rear Brake Discs',c:'Brakes',i:'🛑'},
-{n:'Brake Caliper',c:'Brakes',i:'🛑'},{n:'ABS Sensor',c:'Brakes',i:'🛑'},
-{n:'Clutch Kit',c:'Clutch',i:'⚙️'},{n:'Oil Filter',c:'Engine',i:'🔧'},
-{n:'Air Filter',c:'Engine',i:'🔧'},{n:'Fuel Filter',c:'Engine',i:'🔧'},
-{n:'Cabin Filter',c:'Engine',i:'🔧'},{n:'Spark Plugs',c:'Engine',i:'🔧'},
-{n:'Timing Belt Kit',c:'Engine',i:'🔧'},{n:'Water Pump',c:'Engine',i:'🔧'},
-{n:'Engine Oil 5W-30',c:'Engine',i:'🔧'},{n:'Alternator',c:'Engine',i:'🔧'},
-{n:'Starter Motor',c:'Engine',i:'🔧'},{n:'Front Shock Absorber',c:'Suspension',i:'🚗'},
-{n:'Rear Shock Absorber',c:'Suspension',i:'🚗'},{n:'Wishbone',c:'Suspension',i:'🚗'},
-{n:'Wheel Bearing',c:'Suspension',i:'🚗'},{n:'Catalytic Converter',c:'Exhaust',i:'💨'},
-{n:'DPF Filter',c:'Exhaust',i:'💨'},{n:'Rear Silencer',c:'Exhaust',i:'💨'},
-{n:'Car Battery',c:'Electrical',i:'🔋'},{n:'Headlight Bulb H7',c:'Electrical',i:'🔋'},
-{n:'Wiper Blades',c:'Electrical',i:'🔋'},{n:'Radiator',c:'Air Con',i:'❄️'},
-{n:'Door Mirror',c:'Body',i:'🚙'},{n:'Headlight',c:'Body',i:'🚙'},
-{n:'Brake Fluid',c:'Oils',i:'💧'},{n:'Coolant Antifreeze',c:'Oils',i:'💧'}
-];
-var ICONS={
-brakes:'<svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="22" fill="#E0E0E0"/><circle cx="32" cy="32" r="14" fill="#D32F2F"/><circle cx="32" cy="32" r="5" fill="#424242"/></svg>',
-clutch:'<svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="26" fill="#212121"/><circle cx="32" cy="32" r="22" fill="#FF9800"/><circle cx="32" cy="32" r="10" fill="#212121"/></svg>',
-engine:'<svg viewBox="0 0 64 64"><rect x="8" y="22" width="48" height="30" rx="3" fill="#546E7A"/><rect x="12" y="18" width="40" height="8" rx="2" fill="#37474F"/></svg>',
-service:'<svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="20" fill="#FFD100"/><circle cx="32" cy="32" r="6" fill="#212121"/></svg>',
-suspension:'<svg viewBox="0 0 64 64"><rect x="29" y="6" width="6" height="50" fill="#546E7A"/><ellipse cx="32" cy="20" rx="14" ry="3" fill="none" stroke="#FFC107" stroke-width="3"/><ellipse cx="32" cy="32" rx="14" ry="3" fill="none" stroke="#FFC107" stroke-width="3"/><ellipse cx="32" cy="44" rx="14" ry="3" fill="none" stroke="#FFC107" stroke-width="3"/></svg>',
-exhaust:'<svg viewBox="0 0 64 64"><rect x="4" y="32" width="22" height="20" rx="3" fill="#9E9E9E"/><ellipse cx="50" cy="42" rx="6" ry="6" fill="#E0E0E0"/></svg>',
-electrical:'<svg viewBox="0 0 64 64"><rect x="8" y="18" width="48" height="36" rx="3" fill="#212121"/><rect x="10" y="20" width="44" height="32" rx="2" fill="#388E3C"/></svg>',
-aircon:'<svg viewBox="0 0 64 64"><line x1="32" y1="6" x2="32" y2="58" stroke="#03A9F4" stroke-width="3"/><circle cx="32" cy="32" r="6" fill="#FFFFFF" stroke="#0288D1" stroke-width="2"/></svg>',
-body:'<svg viewBox="0 0 64 64"><path d="M6 42 L10 32 L18 26 L24 22 L40 22 L46 26 L54 32 L58 42 L58 48 L6 48 Z" fill="#D32F2F"/><circle cx="16" cy="48" r="6" fill="#212121"/><circle cx="48" cy="48" r="6" fill="#212121"/></svg>',
-oils:'<svg viewBox="0 0 64 64"><path d="M18 12 L40 12 L40 16 L46 20 L46 56 L18 56 Z" fill="#1976D2"/></svg>',
-wipers:'<svg viewBox="0 0 64 64"><line x1="32" y1="54" x2="48" y2="14" stroke="#212121" stroke-width="4"/><circle cx="32" cy="54" r="5" fill="#212121"/></svg>',
-lights:'<svg viewBox="0 0 64 64"><ellipse cx="26" cy="32" rx="20" ry="16" fill="#FFEB3B"/><ellipse cx="26" cy="32" rx="4" ry="3" fill="#FF6F00"/></svg>'
-};
-var CATS=[
-{k:'brakes',n:'Brakes',q:'Front Brake Pads'},{k:'clutch',n:'Clutch',q:'Clutch Kit'},
-{k:'engine',n:'Engine',q:'Oil Filter'},{k:'service',n:'Service',q:'Service'},
-{k:'suspension',n:'Suspension',q:'Front Shock Absorber'},{k:'exhaust',n:'Exhaust',q:'Rear Silencer'},
-{k:'electrical',n:'Electrical',q:'Car Battery'},{k:'aircon',n:'Air Con',q:'Air Con Compressor'},
-{k:'body',n:'Body',q:'Door Mirror'},{k:'oils',n:'Oils',q:'Engine Oil 5W-30'},
-{k:'wipers',n:'Wipers',q:'Front Wiper Blades'},{k:'lights',n:'Lights',q:'Headlight Bulb H7'}
-];
-var SCAN_SUPS=[{n:'eBay'},{n:'Amazon'},{n:'Euro Car Parts'},{n:'GSF Car Parts'},{n:'Halfords'},{n:'Autodoc'},{n:'Car Parts 4 Less'},{n:'FCP Euro'},{n:'Andrew Page'},{n:'Motor Factor'},{n:'Parts Gateway'},{n:'1st Choice Spares'}];
-var LOGOS={
-'eBay':'<svg viewBox="0 0 100 40"><text x="0" y="28" font-family="Arial" font-weight="900" font-size="26" font-style="italic"><tspan fill="#E53238">e</tspan><tspan fill="#0064D2">b</tspan><tspan fill="#F5AF02">a</tspan><tspan fill="#86B817">y</tspan></text></svg>',
-'Amazon':'<svg viewBox="0 0 120 40"><text x="0" y="24" font-family="Arial" font-weight="700" font-size="22" fill="#232F3E">amazon</text></svg>',
-'Euro Car Parts':'<svg viewBox="0 0 100 40"><circle cx="15" cy="20" r="12" fill="#003DA5"/><text x="9" y="25" font-family="Arial" font-weight="900" font-size="14" fill="#fff">ECP</text><text x="32" y="22" font-family="Arial" font-weight="800" font-size="9" fill="#003DA5">EURO CAR</text></svg>',
-'GSF Car Parts':'<svg viewBox="0 0 100 40"><rect x="2" y="8" width="35" height="24" rx="3" fill="#F7941D"/><text x="5" y="26" font-family="Arial" font-weight="900" font-size="15" fill="#fff">GSF</text></svg>',
-'Halfords':'<svg viewBox="0 0 100 40"><rect x="0" y="8" width="100" height="24" rx="3" fill="#EE3124"/><text x="8" y="26" font-family="Arial" font-weight="900" font-size="14" fill="#fff">Halfords</text></svg>',
-'Autodoc':'<svg viewBox="0 0 100 40"><text x="2" y="27" font-family="Arial" font-weight="900" font-size="16" fill="#003DA5">AUTO</text><text x="48" y="27" font-family="Arial" font-weight="900" font-size="16" fill="#E30613">DOC</text></svg>',
-'Car Parts 4 Less':'<svg viewBox="0 0 100 40"><rect x="0" y="5" width="100" height="30" rx="3" fill="#FDD800"/><text x="4" y="22" font-family="Arial" font-weight="900" font-size="11" fill="#003DA5">CAR PARTS 4LESS</text></svg>',
-'FCP Euro':'<svg viewBox="0 0 100 40"><rect x="2" y="6" width="40" height="28" rx="3" fill="#003DA5"/><text x="5" y="27" font-family="Arial" font-weight="900" font-size="15" fill="#fff">FCP</text></svg>',
-'Andrew Page':'<svg viewBox="0 0 100 40"><rect x="0" y="8" width="100" height="24" fill="#004B87"/><text x="4" y="26" font-family="Arial" font-weight="900" font-size="11" fill="#fff">ANDREW PAGE</text></svg>',
-'Motor Factor':'<svg viewBox="0 0 100 40"><circle cx="15" cy="20" r="12" fill="#1a1a1a"/><text x="32" y="26" font-family="Arial" font-weight="800" font-size="10" fill="#1a1a1a">MOTOR FACTOR</text></svg>',
-'Parts Gateway':'<svg viewBox="0 0 100 40"><rect x="0" y="8" width="100" height="24" rx="3" fill="#00A651"/><text x="5" y="26" font-family="Arial" font-weight="900" font-size="11" fill="#fff">PartsGateway</text></svg>',
-'1st Choice Spares':'<svg viewBox="0 0 100 40"><text x="0" y="22" font-family="Arial" font-weight="900" font-size="14" fill="#E30613">1st CHOICE</text><text x="0" y="34" font-family="Arial" font-weight="700" font-size="9" fill="#666">SPARES</text></svg>',
-'Mister Auto UK':'<svg viewBox="0 0 100 40"><rect x="0" y="8" width="100" height="24" rx="3" fill="#004B87"/><text x="4" y="26" font-family="Arial" font-weight="900" font-size="11" fill="#fff">MISTER AUTO</text></svg>',
-'MicksGarage':'<svg viewBox="0 0 100 40"><rect x="0" y="8" width="100" height="24" rx="3" fill="#E30613"/><text x="4" y="26" font-family="Arial" font-weight="900" font-size="11" fill="#fff">MicksGarage</text></svg>',
-'Online Car Parts':'<svg viewBox="0 0 100 40"><rect x="0" y="8" width="100" height="24" rx="3" fill="#1976D2"/><text x="3" y="26" font-family="Arial" font-weight="900" font-size="10" fill="#fff">ONLINE PARTS</text></svg>',
-'Motor World':'<svg viewBox="0 0 100 40"><circle cx="14" cy="20" r="11" fill="#E30613"/><text x="30" y="26" font-family="Arial" font-weight="900" font-size="10" fill="#1a1a1a">MOTOR WORLD</text></svg>',
-'Eurospares':'<svg viewBox="0 0 100 40"><rect x="0" y="8" width="100" height="24" rx="3" fill="#0033A0"/><text x="4" y="26" font-family="Arial" font-weight="900" font-size="11" fill="#FFD100">EUROSPARES</text></svg>',
-'Breakerlink':'<svg viewBox="0 0 100 40"><rect x="0" y="8" width="100" height="24" rx="3" fill="#FF6600"/><text x="4" y="26" font-family="Arial" font-weight="900" font-size="11" fill="#fff">Breakerlink</text></svg>',
-'Bosch UK':'<svg viewBox="0 0 100 40"><circle cx="20" cy="20" r="14" fill="none" stroke="#E20015" stroke-width="3"/><text x="42" y="26" font-family="Arial" font-weight="900" font-size="14" fill="#E20015">BOSCH</text></svg>',
-'Brembo':'<svg viewBox="0 0 100 40"><rect x="0" y="8" width="100" height="24" rx="3" fill="#E30613"/><text x="14" y="26" font-family="Arial" font-weight="900" font-size="13" fill="#fff" font-style="italic">brembo</text></svg>',
-'NGK Spark Plugs':'<svg viewBox="0 0 100 40"><rect x="0" y="8" width="40" height="24" rx="3" fill="#FFD100"/><text x="3" y="26" font-family="Arial" font-weight="900" font-size="14" fill="#000">NGK</text></svg>',
-'Mintex':'<svg viewBox="0 0 100 40"><rect x="0" y="8" width="100" height="24" rx="3" fill="#1a1a1a"/><text x="14" y="26" font-family="Arial" font-weight="900" font-size="14" fill="#FFD100">MINTEX</text></svg>',
-'Febi Bilstein':'<svg viewBox="0 0 100 40"><rect x="0" y="8" width="100" height="24" rx="3" fill="#FFD100"/><text x="6" y="26" font-family="Arial" font-weight="900" font-size="11" fill="#000">FEBI BILSTEIN</text></svg>',
-'Tayna Batteries':'<svg viewBox="0 0 100 40"><rect x="0" y="8" width="100" height="24" rx="3" fill="#003DA5"/><text x="4" y="26" font-family="Arial" font-weight="900" font-size="11" fill="#FFD100">TAYNA</text></svg>',
-'BlackCircles Tyres':'<svg viewBox="0 0 100 40"><circle cx="15" cy="20" r="12" fill="#1a1a1a"/><text x="32" y="26" font-family="Arial" font-weight="900" font-size="9" fill="#1a1a1a">BLACKCIRCLES</text></svg>'
-};
-var ALL_SUPS=[
-{n:'eBay',live:true,type:'marketplace'},
-{n:'Amazon',type:'marketplace',url:function(p,v){return 'https://www.amazon.co.uk/s?k='+encodeURIComponent(buildVehicleQuery(p,v))+'&tag='+AFF.amazon;}},
-{n:'Euro Car Parts',type:'retailer',url:function(p,v){var q=buildVehicleQuery(p,v);return 'https://www.awin1.com/cread.php?awinmid=197685&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.eurocarparts.com/search?q='+encodeURIComponent(q));}},
-{n:'GSF Car Parts',type:'retailer',url:function(p,v){var q=buildVehicleQuery(p,v);return 'https://www.awin1.com/cread.php?awinmid=13655&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.gsfcarparts.com/search?query='+encodeURIComponent(q));}},
-{n:'Halfords',type:'retailer',url:function(p,v){var q=buildVehicleQuery(p,v);return 'https://www.awin1.com/cread.php?awinmid=197&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.halfords.com/search?term='+encodeURIComponent(q));}},
-{n:'Car Parts 4 Less',type:'retailer',url:function(p,v){return 'https://www.carparts4less.co.uk/search?q='+encodeURIComponent(buildVehicleQuery(p,v));}},
-{n:'Autodoc',type:'retailer',url:function(p,v){return 'https://www.autodoc.co.uk/search?query='+encodeURIComponent(buildVehicleQuery(p,v));}},
-{n:'1st Choice Spares',type:'used',url:function(p,v){var q=buildVehicleQuery(p,v);return 'https://www.awin1.com/cread.php?awinmid=6060&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.1stchoice.co.uk/search?q='+encodeURIComponent(q));}},
-{n:'Breakerlink',type:'used',url:function(p,v){return 'https://www.breakerlink.com/parts.html?part='+encodeURIComponent(buildVehicleQuery(p,v));}},
-{n:'Parts Gateway',type:'used',url:function(p,v){var mm=getMakeModel(v);return 'https://www.partsgateway.co.uk/car-parts/'+encodeURIComponent(p.replace(/ /g,'-'))+'/?make='+encodeURIComponent(mm.make)+'&model='+encodeURIComponent(mm.model);}}
-];
-var SUP_INFO={
-'eBay':{delivery:'3-5 days',delCost:'varies',cc:false,rating:4.2,reviews:'10M+'},
-'Amazon':{delivery:'Next day (Prime)',delCost:'Free w/ Prime',cc:false,prime:true,rating:4.5,reviews:'50M+'},
-'Euro Car Parts':{delivery:'Next day',delCost:'£4.99',cc:true,rating:4.1,reviews:'120k'},
-'GSF Car Parts':{delivery:'Next day',delCost:'£5.99',cc:true,rating:4.0,reviews:'45k'},
-'Halfords':{delivery:'Next day',delCost:'£3.99',cc:true,rating:4.3,reviews:'280k'},
-'Autodoc':{delivery:'3-5 days',delCost:'£5.99',cc:false,rating:3.9,reviews:'90k'},
-'Car Parts 4 Less':{delivery:'Next day',delCost:'£4.99',cc:false,rating:4.0,reviews:'15k'},
-'1st Choice Spares':{delivery:'3-5 days',delCost:'Free',cc:false,rating:4.0,reviews:'18k'},
-'Breakerlink':{delivery:'5-7 days',delCost:'varies',cc:false,rating:3.9,reviews:'10k'},
-'Parts Gateway':{delivery:'2-3 days',delCost:'varies',cc:false,rating:4.1,reviews:'12k'}
-};
-(function(){function render(){var cg=document.getElementById('catGrid'),sp=document.getElementById('supPills');if(!cg||!sp){setTimeout(render,10);return;}
-var ch='';CATS.forEach(function(c){ch+='<a class="catb" href="#" onclick="pickCat(\''+c.q+'\');return false"><span class="ci">'+ICONS[c.k]+'</span><div class="cn">'+c.n+'</div></a>';});cg.innerHTML=ch;
-var ph='';ALL_SUPS.forEach(function(s){var logo=LOGOS[s.n]||'<span style="font-weight:900;color:#003DA6;font-size:11px;">'+s.n+'</span>';ph+='<span class="spill">'+logo+'</span>';});sp.innerHTML=ph;}render();})();
-
+  render();
+})();
 function titleCase(s){return s?s.replace(/\w\S*/g,function(t){return t.charAt(0).toUpperCase()+t.substr(1).toLowerCase();}):s;}
 function goTo(id){var el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});}
 function closeMob(){var h=document.getElementById('hbtn');if(h)h.classList.remove('open');var m=document.getElementById('mmenu');if(m)m.classList.remove('open');}
-
 async function lookupReg(){
   var reg=document.getElementById('regIn').value.replace(/\s/g,'').toUpperCase();
   document.getElementById('regIn').value=reg;
   if(reg.length<2){showDvlaErr('Please enter a valid UK registration.');return;}
   var btn=document.getElementById('findBtn');
-  btn.innerHTML='<span class="spn" style="width:16px;height:16px;border-width:2px;margin:0"></span>';btn.disabled=true;
+  btn.innerHTML='<span class="spn" style="width:16px;height:16px;border-width:2px;margin:0"></span>';
+  btn.disabled=true;
   showDvlaLoading('Checking DVLA for '+reg+'...');
   try{
     var resp=await fetch(WORKER_URL+'/dvla?reg='+encodeURIComponent(reg));
@@ -620,191 +736,603 @@ async function lookupReg(){
     var motStatus=data.motStatus||'';
     var name=year+' '+make+(engine?' · '+engine:'');
     var meta=[colour,fuel,taxStatus?'Tax: '+taxStatus:'',motStatus?'MOT: '+motStatus:''].filter(Boolean).join(' · ');
-    window._pendingVehicle={name:name,meta:meta,raw:data,reg:reg,make:make,year:year,engine:engine};
-    var pv=parseVehicle({name:name,raw:data});
-    if(pv.model){
-      applyVehicle({name:name,meta:meta,raw:data,reg:reg});
-    } else {
-      showModelPicker(make);
-    }
-  }catch(err){btn.innerHTML='🔍 Find Car';btn.disabled=false;clearDvlaMsg();showDvlaErr('Could not reach DVLA. Please try again.');}
-}
-
-function showModelPicker(make){
-  var makeUp=String(make||'').toUpperCase();
-  var models=KNOWN_MODELS[makeUp]||[];
-  if(makeUp==='VW')models=KNOWN_MODELS['VOLKSWAGEN']||[];
-  if(!models.length){
-    var pv=window._pendingVehicle;
-    if(pv)applyVehicle({name:pv.name,meta:pv.meta,raw:pv.raw,reg:pv.reg});
-    return;
+    applyVehicle({name:name,meta:meta,raw:data});
+  }catch(err){
+    btn.innerHTML='🔍 Find Car';btn.disabled=false;
+    clearDvlaMsg();showDvlaErr('Could not reach DVLA. Please try again.');
   }
-  document.getElementById('mpMakeLabel').textContent=make;
-  var sel=document.getElementById('mpSelect');
-  sel.innerHTML='<option value="">— Select your model —</option>'+models.map(function(m){return '<option value="'+m+'">'+m+'</option>';}).join('');
-  document.getElementById('mpBox').classList.add('show');
-  document.getElementById('plateRow').style.display='none';
-  document.getElementById('orDiv').style.display='none';
 }
-
-function confirmModel(){
-  var sel=document.getElementById('mpSelect');
-  var model=sel.value;
-  if(!model){sel.style.borderColor='#B00';setTimeout(function(){sel.style.borderColor='#E6BC00';},800);return;}
-  var pv=window._pendingVehicle;
-  if(!pv)return;
-  pv.raw.model=model;
-  var newName=pv.year+' '+pv.make+' '+model+(pv.engine?' · '+pv.engine:'');
-  document.getElementById('mpBox').classList.remove('show');
-  applyVehicle({name:newName,meta:pv.meta,raw:pv.raw,reg:pv.reg});
-}
-
-function hideModelPicker(){var b=document.getElementById('mpBox');if(b)b.classList.remove('show');}
-
 function showDvlaLoading(msg){document.getElementById('dvlaMsg').innerHTML='<div class="dvla-loading"><span class="spn" style="width:16px;height:16px;border-width:2px;margin:0;flex-shrink:0"></span> '+msg+'</div>';}
 function showDvlaErr(msg){document.getElementById('dvlaMsg').innerHTML='<div class="dvla-err">⚠️ '+msg+'</div>';}
 function clearDvlaMsg(){document.getElementById('dvlaMsg').innerHTML='';}
-function applyVehicle(v){vehicle=v;document.getElementById('vcName').textContent=v.name;document.getElementById('vcMeta').textContent=v.meta;document.getElementById('vcBox').classList.add('show');document.getElementById('plateRow').style.display='none';document.getElementById('orDiv').style.display='none';document.getElementById('partIn').focus();}
-function resetV(){hideModelPicker();vehicle=null;clearDvlaMsg();document.getElementById('vcBox').classList.remove('show');document.getElementById('plateRow').style.display='flex';document.getElementById('orDiv').style.display='block';document.getElementById('regIn').value='';document.getElementById('resultsZone').style.display='none';document.getElementById('scanZone').style.display='none';document.getElementById('regIn').focus();}
-
-function showAC(q){if(!q||q.length<2){closeAC();return;}var ql=q.toLowerCase(),matches=PARTS.filter(function(p){return p.n.toLowerCase().includes(ql);}).slice(0,8);if(!matches.length){closeAC();return;}var bycat={};matches.forEach(function(p){if(!bycat[p.c])bycat[p.c]=[];bycat[p.c].push(p);});var html='';Object.keys(bycat).forEach(function(cat){html+='<div class="acs">'+cat+'</div>';bycat[cat].forEach(function(p){var hi=p.n.replace(new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi'),'<em>$1</em>');html+='<div class="aci" onclick="selAC(\''+p.n.replace(/\'/g,"\\'")+'\')"><span class="acio">'+p.i+'</span><div><div class="acn">'+hi+'</div><div class="acc">'+cat+'</div></div></div>';});});var drop=document.getElementById('acDrop');drop.innerHTML=html;drop.classList.add('open');}
+function applyVehicle(v){
+  vehicle=v;
+  document.getElementById('vcName').textContent=v.name;
+  document.getElementById('vcMeta').textContent=v.meta;
+  document.getElementById('vcBox').classList.add('show');
+  document.getElementById('plateRow').style.display='none';
+  document.getElementById('orDiv').style.display='none';
+  document.getElementById('partIn').focus();
+}
+function resetV(){
+  vehicle=null;clearDvlaMsg();
+  document.getElementById('vcBox').classList.remove('show');
+  document.getElementById('plateRow').style.display='flex';
+  document.getElementById('orDiv').style.display='block';
+  document.getElementById('regIn').value='';
+  document.getElementById('resultsZone').style.display='none';
+  document.getElementById('scanZone').style.display='none';
+  document.getElementById('regIn').focus();
+}
+function showAC(q){
+  if(!q||q.length<2){closeAC();return;}
+  var ql=q.toLowerCase();
+  var matches=PARTS.filter(function(p){return p.n.toLowerCase().includes(ql);}).slice(0,8);
+  if(!matches.length){closeAC();return;}
+  var bycat={};
+  matches.forEach(function(p){if(!bycat[p.c])bycat[p.c]=[];bycat[p.c].push(p);});
+  var html='';
+  Object.keys(bycat).forEach(function(cat){
+    html+='<div class="acs">'+cat+'</div>';
+    bycat[cat].forEach(function(p){
+      var hi=p.n.replace(new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi'),'<em>$1</em>');
+      html+='<div class="aci" onclick="selAC(\''+p.n.replace(/\'/g,"\\'")+'\')" ><span class="acio">'+p.i+'</span><div><div class="acn">'+hi+'</div><div class="acc">'+cat+'</div></div></div>';
+    });
+  });
+  var drop=document.getElementById('acDrop');
+  drop.innerHTML=html;drop.classList.add('open');
+}
 function selAC(name){document.getElementById('partIn').value=name;closeAC();doSearch();}
 function closeAC(){var d=document.getElementById('acDrop');if(d)d.classList.remove('open');}
-function doSearch2(){var v=document.getElementById('partIn2').value.trim();if(!v){document.getElementById('partIn2').focus();return;}document.getElementById('partIn').value=v;document.getElementById('partIn2').value='';closeAC2();doSearch();}
-function showAC2(q){if(!q||q.length<2){closeAC2();return;}var ql=q.toLowerCase(),matches=PARTS.filter(function(p){return p.n.toLowerCase().includes(ql);}).slice(0,8);if(!matches.length){closeAC2();return;}var bycat={};matches.forEach(function(p){if(!bycat[p.c])bycat[p.c]=[];bycat[p.c].push(p);});var html='';Object.keys(bycat).forEach(function(cat){html+='<div class="acs">'+cat+'</div>';bycat[cat].forEach(function(p){var hi=p.n.replace(new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi'),'<em>$1</em>');html+='<div class="aci" onclick="selAC2(\''+p.n.replace(/\'/g,"\\'")+'\')"><span class="acio">'+p.i+'</span><div><div class="acn">'+hi+'</div><div class="acc">'+cat+'</div></div></div>';});});var drop=document.getElementById('acDrop2');if(drop){drop.innerHTML=html;drop.classList.add('open');}}
+// In-results search box handlers
+function doSearch2(){
+  var v=document.getElementById('partIn2').value.trim();
+  if(!v){document.getElementById('partIn2').focus();return;}
+  document.getElementById('partIn').value=v;
+  document.getElementById('partIn2').value='';
+  closeAC2();
+  doSearch();
+}
+function showAC2(q){
+  if(!q||q.length<2){closeAC2();return;}
+  var ql=q.toLowerCase();
+  var matches=PARTS.filter(function(p){return p.n.toLowerCase().includes(ql);}).slice(0,8);
+  if(!matches.length){closeAC2();return;}
+  var bycat={};
+  matches.forEach(function(p){if(!bycat[p.c])bycat[p.c]=[];bycat[p.c].push(p);});
+  var html='';
+  Object.keys(bycat).forEach(function(cat){
+    html+='<div class="acs">'+cat+'</div>';
+    bycat[cat].forEach(function(p){
+      var hi=p.n.replace(new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi'),'<em>$1</em>');
+      html+='<div class="aci" onclick="selAC2(\''+p.n.replace(/\'/g,"\\'")+'\')"><span class="acio">'+p.i+'</span><div><div class="acn">'+hi+'</div><div class="acc">'+cat+'</div></div></div>';
+    });
+  });
+  var drop=document.getElementById('acDrop2');
+  if(drop){drop.innerHTML=html;drop.classList.add('open');}
+}
 function selAC2(name){document.getElementById('partIn2').value=name;closeAC2();doSearch2();}
 function closeAC2(){var d=document.getElementById('acDrop2');if(d)d.classList.remove('open');}
-function pickCat(name){if(!vehicle){shakePlate();return;}document.getElementById('partIn').value=name;doSearch();}
+function pickCat(name){
+  if(!vehicle){shakePlate();return;}
+  if(name==='Service'){showServiceModal();return;}
+  document.getElementById('partIn').value=name;
+  doSearch();
+}
 function shakePlate(){var pw=document.querySelector('.pw');if(pw){pw.style.animation='shake .4s ease';setTimeout(function(){pw.style.animation='';},400);}document.getElementById('regIn').focus();}
-
+function showServiceModal(){
+  var modal=document.createElement('div');
+  modal.id='svcModal';
+  modal.style.cssText='position:fixed;inset:0;background:rgba(0,15,40,.6);z-index:1000;display:flex;align-items:flex-end;justify-content:center;';
+  modal.innerHTML='<div style="background:#fff;border-radius:24px 24px 0 0;width:100%;max-width:600px;max-height:85vh;overflow-y:auto;padding:20px;">'
+    +'<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">'
+    +'<div style="font-family:Nunito,sans-serif;font-weight:900;font-size:1.1rem;color:var(--bl);">🛠️ Service Packages</div>'
+    +'<button onclick="document.getElementById(\'svcModal\').remove()" style="background:var(--lg);border:none;width:36px;height:36px;border-radius:50%;font-size:1rem;cursor:pointer;">✕</button>'
+    +'</div>'
+    +'<p style="font-size:.85rem;color:var(--mg);margin-bottom:16px;">Choose a package for your <strong>'+vehicle.name+'</strong></p>'
+    +makeSvcCard('🔧 Basic / Interim Service','basic','Every 6 months or 6,000 miles','Engine Oil 5W-30, Oil Filter, Air Filter')
+    +makeSvcCard('🔧 Full Service','medium','Standard yearly service','Engine Oil 5W-30, Oil Filter, Air Filter, Fuel Filter, Cabin Filter, Spark Plugs, Wiper Blades')
+    +makeSvcCard('🔧 Major Service','major','Every 2 years — full overhaul','Engine Oil 5W-30, Oil Filter, Air Filter, Fuel Filter, Cabin Filter, Spark Plugs, Wiper Blades, Brake Fluid, Coolant Antifreeze, Front Brake Pads')
+    +'</div>';
+  document.body.appendChild(modal);
+}
+function makeSvcCard(title,key,desc,parts){
+  return '<div onclick="selectService(\''+key+'\')" style="background:var(--lg);border:2px solid #D0DCEF;border-radius:12px;padding:16px;margin-bottom:12px;cursor:pointer;">'
+    +'<div style="font-family:Nunito,sans-serif;font-weight:900;font-size:.95rem;color:var(--bl);margin-bottom:4px;">'+title+'</div>'
+    +'<div style="font-size:.78rem;color:var(--mg);margin-bottom:8px;">'+desc+'</div>'
+    +'<div style="font-size:.75rem;color:var(--dk);font-weight:700;">Includes: '+parts+'</div>'
+    +'<button style="margin-top:12px;width:100%;background:var(--bl);color:#fff;border:none;border-radius:8px;padding:10px;font-family:Nunito,sans-serif;font-weight:800;cursor:pointer;">Find Best Prices →</button>'
+    +'</div>';
+}
+var SERVICE_KITS = {
+  basic: {title:'🔧 Basic / Interim Service',parts:['Engine Oil 5W-30','Oil Filter','Air Filter']},
+  medium: {title:'🔧 Full Service',parts:['Engine Oil 5W-30','Oil Filter','Air Filter','Fuel Filter','Cabin Filter','Spark Plugs','Front Wiper Blades']},
+  major: {title:'🔧 Major Service',parts:['Engine Oil 5W-30','Oil Filter','Air Filter','Fuel Filter','Cabin Filter','Spark Plugs','Front Wiper Blades','Brake Fluid','Coolant Antifreeze','Front Brake Pads']}
+};
+async function selectService(key){
+  var modal=document.getElementById('svcModal');
+  if(modal)modal.remove();
+  var kit=SERVICE_KITS[key];
+  if(!kit||!vehicle)return;
+  document.getElementById('resultsZone').style.display='none';
+  var scanZone=document.getElementById('scanZone');
+  scanZone.style.display='block';
+  scanZone.innerHTML='<div class="scan-box"><div class="scan-title">🛠️ Building Your '+kit.title.replace(/^🔧 /,'')+' Kit</div>'
+    +'<div class="scan-sub">Finding the cheapest price for each part on your <strong>'+vehicle.name+'</strong></div>'
+    +'<div id="kitProgress" style="margin-top:14px;"></div>'
+    +'<div class="scan-bar" style="margin-top:14px;"><div class="scan-fill" id="kitFill"></div></div></div>';
+  scanZone.scrollIntoView({behavior:'smooth',block:'nearest'});
+  var results=[];
+  var done=0;
+  var prog=document.getElementById('kitProgress');
+  prog.innerHTML=kit.parts.map(function(p,i){return '<div id="kp'+i+'" style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:var(--lg);border-radius:8px;margin-bottom:6px;font-size:.82rem;"><span>⏳ '+p+'</span><span style="color:var(--mg);font-size:.75rem;">Searching...</span></div>';}).join('');
+  var promises=kit.parts.map(function(p,idx){
+    return fetch(WORKER_URL+'/ebay?part='+encodeURIComponent(p)+'&vehicle='+encodeURIComponent(vehicle.name))
+      .then(function(r){return r.json();})
+      .then(function(data){
+        var cheapest=null;
+        if(data.items&&data.items.length){cheapest=data.items.slice().sort(function(a,b){return parseFloat(a.totalPrice||a.price)-parseFloat(b.totalPrice||b.price);})[0];}
+        results[idx]={partName:p,cheapest:cheapest,all:data.items||[]};
+        done++;
+        var line=document.getElementById('kp'+idx);
+        if(line){
+          if(cheapest){line.innerHTML='<span>✅ '+p+'</span><span style="color:var(--gr);font-weight:900;">£'+parseFloat(cheapest.totalPrice||cheapest.price).toFixed(2)+'</span>';line.style.background='var(--gn)';}
+          else{line.innerHTML='<span>⚠️ '+p+'</span><span style="color:#D68000;font-size:.72rem;">No live price</span>';}
+        }
+        var fill=document.getElementById('kitFill');
+        if(fill)fill.style.width=Math.round((done/kit.parts.length)*100)+'%';
+      }).catch(function(){results[idx]={partName:p,cheapest:null,all:[]};done++;});
+  });
+  await Promise.all(promises);
+  await new Promise(function(r){setTimeout(r,600);});
+  showKitResults(kit,results);
+}
+function showKitResults(kit,results){
+  var scanZone=document.getElementById('scanZone');
+  scanZone.style.display='none';
+  var zone=document.getElementById('resultsZone');
+  zone.style.display='block';
+  document.getElementById('aiVeh').textContent=vehicle.name;
+  document.getElementById('aiPart').textContent='— '+kit.title.replace(/^🔧 /,'')+' Kit';
+  var tabs=document.querySelector('.filter-tabs');
+  if(tabs)tabs.style.display='none';
+  var SUPPLIER_MARGIN={'eBay':1.00,'Amazon':1.05,'Euro Car Parts':1.15,'GSF Car Parts':1.10,'Halfords':1.30,'Autodoc':0.95,'Car Parts 4 Less':1.00,'FCP Euro':1.20,'Andrew Page':1.12,'Motor Factor':1.08,'Parts Gateway':1.05,'1st Choice Spares':0.75};
+  var baselineTotal=0;var partsFound=0;var ebayTotal=0;
+  results.forEach(function(r){if(r.cheapest){var t=parseFloat(r.cheapest.totalPrice||r.cheapest.price);baselineTotal+=t;ebayTotal+=t;partsFound++;}});
+  if(partsFound===0){document.getElementById('resList').innerHTML='<div style="text-align:center;padding:40px;color:var(--mg);">Could not find prices for this kit. Try searching parts individually.</div>';return;}
+  var baskets=[];
+  Object.keys(SUPPLIER_MARGIN).forEach(function(supName){
+    var margin=SUPPLIER_MARGIN[supName];var total=baselineTotal*margin;
+    var delivery=total>75?0:4.99;
+    if(supName==='Amazon'&&total>35)delivery=0;
+    if(supName==='Halfords')delivery=0;
+    if(supName==='1st Choice Spares')delivery=0;
+    var grandTotal=total+delivery;
+    baskets.push({name:supName,subtotal:total,delivery:delivery,total:grandTotal,isEstimate:supName!=='eBay',url:buildKitUrl(supName,kit)});
+  });
+  baskets.sort(function(a,b){return a.total-b.total;});
+  var cheapest=baskets[0];var savings=baskets[baskets.length-1].total-cheapest.total;
+  var html='';
+  html+='<div style="background:linear-gradient(135deg,#00A651,#007D3D);color:#fff;border-radius:16px;padding:20px;margin-bottom:16px;text-align:center;">'
+    +'<div style="font-family:Nunito,sans-serif;font-weight:800;font-size:.72rem;letter-spacing:2px;text-transform:uppercase;opacity:.85;margin-bottom:6px;">🏆 Cheapest Complete Basket</div>'
+    +'<div style="font-family:Nunito,sans-serif;font-weight:900;font-size:1.4rem;margin-bottom:4px;">'+cheapest.name+'</div>'
+    +'<div style="font-family:Nunito,sans-serif;font-weight:900;font-size:2.5rem;line-height:1;margin:6px 0;">£'+cheapest.total.toFixed(2)+'</div>'
+    +'<div style="font-size:.82rem;opacity:.9;margin-bottom:14px;">All '+partsFound+' parts · '+(cheapest.delivery===0?'Free delivery':'£'+cheapest.delivery.toFixed(2)+' delivery')+'</div>'
+    +(savings>5?'<div style="display:inline-block;background:var(--ye);color:var(--bl);border-radius:8px;padding:4px 10px;font-family:Nunito,sans-serif;font-weight:900;font-size:.78rem;margin-bottom:14px;">💰 Save £'+savings.toFixed(2)+' vs most expensive</div>':'')
+    +'<div><a href="'+cheapest.url+'" target="_blank" rel="sponsored noopener" onclick="trackClick(\''+cheapest.name+'\',\'kit_'+kit.title.replace(/[^a-z]/gi,'')+'\','+cheapest.total.toFixed(2)+')" style="display:inline-block;background:#fff;color:var(--bl);padding:14px 28px;border-radius:12px;font-family:Nunito,sans-serif;font-weight:900;font-size:1rem;text-decoration:none;">🛒 Buy Full Kit at '+cheapest.name+' →</a></div>'
+    +'</div>';
+  html+='<div style="background:var(--lg);border-radius:12px;padding:14px 16px;margin-bottom:16px;">'
+    +'<div style="font-family:Nunito,sans-serif;font-weight:900;font-size:.85rem;color:var(--bl);margin-bottom:8px;">📋 Your Kit Includes ('+partsFound+' parts)</div>';
+  results.forEach(function(r){
+    if(r.cheapest){html+='<div style="display:flex;justify-content:space-between;padding:4px 0;font-size:.82rem;color:var(--dk);"><span>✓ '+r.partName+'</span><span style="color:var(--mg);font-size:.75rem;">from £'+parseFloat(r.cheapest.totalPrice||r.cheapest.price).toFixed(2)+'</span></div>';}
+    else{html+='<div style="display:flex;justify-content:space-between;padding:4px 0;font-size:.82rem;color:#D68000;"><span>⚠️ '+r.partName+'</span><span style="font-size:.75rem;">Not found live</span></div>';}
+  });
+  html+='</div>';
+  html+='<div style="font-family:Nunito,sans-serif;font-weight:900;font-size:.82rem;color:var(--bl);margin-bottom:10px;letter-spacing:.5px;text-transform:uppercase;">Compare All Supplier Baskets</div>';
+  html+='<div class="res-list">';
+  baskets.forEach(function(b,i){
+    var isBest=i===0;
+    var logo=LOGOS[b.name]||'<div style="font-weight:900;font-size:11px;color:var(--bl);">'+b.name+'</div>';
+    var rating=(SUP_INFO[b.name]||{rating:4.0}).rating;
+    html+='<div class="rcard'+(isBest?' best':'')+'">'
+      +'<div class="rc-head">'
+      +'<div class="rc-logo" style="background:var(--wh);border:1.5px solid #E0E8F8;">'+logo+'</div>'
+      +'<div class="rc-supinfo">'
+      +'<div class="rc-supname">'+b.name+(b.isEstimate?' <span style="background:#FFF3D9;color:#A06000;font-size:.55rem;padding:2px 6px;border-radius:4px;font-weight:800;">EST.</span>':' <span class="rc-livebdg">LIVE</span>')+'</div>'
+      +'<div class="rc-rating"><span class="stars">'+starsHtml(rating)+'</span> '+rating.toFixed(1)+'</div>'
+      +'</div>'
+      +'<div class="rc-price-main">'
+      +'<div class="rc-price'+(isBest?' cheapest':'')+'">£'+b.total.toFixed(2)+'</div>'
+      +'<div class="rc-price-lbl">full basket</div>'
+      +'</div>'
+      +'</div>'
+      +'<div style="display:flex;justify-content:space-between;padding:8px 0;font-size:.78rem;color:var(--mg);border-bottom:1px solid var(--lg);"><span>Parts subtotal</span><span>£'+b.subtotal.toFixed(2)+'</span></div>'
+      +'<div style="display:flex;justify-content:space-between;padding:8px 0;font-size:.78rem;color:var(--mg);"><span>Delivery</span><span style="color:'+(b.delivery===0?'var(--gr);font-weight:800':'var(--mg)')+';">'+(b.delivery===0?'FREE':'£'+b.delivery.toFixed(2))+'</span></div>'
+      +'<div style="text-align:center;padding-top:10px;"><a href="'+b.url+'" target="_blank" rel="sponsored noopener" class="rc-buy" onclick="trackClick(\''+b.name+'\',\'kit_basket\','+b.total.toFixed(2)+')">🛒 Buy Kit at '+b.name+' →</a></div>'
+      +'</div>';
+  });
+  html+='</div>';
+  html+='<div style="background:#FFFBEA;border:2px dashed #E6BC00;border-radius:12px;padding:16px;margin-top:16px;text-align:center;">'
+    +'<div style="font-family:Nunito,sans-serif;font-weight:900;font-size:.88rem;color:#7A6200;margin-bottom:6px;">💡 Want the absolute cheapest possible?</div>'
+    +'<div style="font-size:.82rem;color:#7A6200;margin-bottom:12px;">Buy each part from its individual cheapest supplier (£'+ebayTotal.toFixed(2)+' total, multiple orders)</div>'
+    +'<button onclick="showMixMatch()" style="background:var(--ye);color:var(--bl);border:none;border-radius:8px;padding:10px 20px;font-family:Nunito,sans-serif;font-weight:900;font-size:.85rem;cursor:pointer;">Show Mix & Match →</button>'
+    +'</div>';
+  html+='<div style="margin-top:16px;text-align:center;"><button onclick="resetFromKit()" style="background:transparent;color:var(--bl);border:2px solid var(--bl);border-radius:10px;padding:10px 24px;font-family:Nunito,sans-serif;font-weight:800;font-size:.85rem;cursor:pointer;">🔄 Start New Search</button></div>';
+  window._lastKitResults={kit:kit,results:results};
+  document.getElementById('resList').innerHTML=html;
+  setTimeout(function(){zone.scrollIntoView({behavior:'smooth',block:'nearest'});},100);
+}
+function buildKitUrl(supName,kit){
+  var query=kit.title.replace(/^🔧 /,'')+' kit '+(vehicle?vehicle.name:'');
+  var q=encodeURIComponent(query);
+  switch(supName){
+    case 'eBay': return 'https://www.ebay.co.uk/sch/i.html?_nkw='+q+'&campid='+AFF.ebay;
+    case 'Amazon': return 'https://www.amazon.co.uk/s?k='+q+'&tag='+AFF.amazon;
+    case 'Euro Car Parts': return 'https://www.awin1.com/cread.php?awinmid=197685&awinaffid='+AFF.awin+'&clickref=kit&p='+encodeURIComponent('https://www.eurocarparts.com/search?q=service+kit');
+    case 'GSF Car Parts': return 'https://www.awin1.com/cread.php?awinmid=13655&awinaffid='+AFF.awin+'&clickref=kit&p='+encodeURIComponent('https://www.gsfcarparts.com/search?query=service+kit');
+    case 'Halfords': return 'https://www.awin1.com/cread.php?awinmid=197&awinaffid='+AFF.awin+'&clickref=kit&p='+encodeURIComponent('https://www.halfords.com/search?term=service+kit');
+    case 'Autodoc': return 'https://www.autodoc.co.uk/search?query='+q;
+    case 'Car Parts 4 Less': return 'https://www.carparts4less.co.uk/search?q=service+kit';
+    case 'FCP Euro': return 'https://www.fcpeuro.com/search?q='+q;
+    case 'Andrew Page': return 'https://www.andrewpage.com/search?q=service+kit';
+    case 'Motor Factor': return 'https://www.motorfactordirect.co.uk/search?q=service+kit';
+    case 'Parts Gateway': return 'https://www.partsgateway.co.uk/car-parts/service-kit/';
+    case '1st Choice Spares': return 'https://www.awin1.com/cread.php?awinmid=6060&awinaffid='+AFF.awin+'&clickref=kit&p='+encodeURIComponent('https://www.1stchoice.co.uk/search?q=service+kit');
+    default: return '#';
+  }
+}
+function showMixMatch(){
+  var data=window._lastKitResults;
+  if(!data)return;
+  var kit=data.kit,results=data.results;
+  var total=0;
+  var html='<div style="background:linear-gradient(135deg,var(--ye),#FFB800);border-radius:16px;padding:18px;margin-bottom:14px;text-align:center;">'
+    +'<div style="font-family:Nunito,sans-serif;font-weight:900;font-size:.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--bl);margin-bottom:4px;">Mix & Match — Individual Cheapest</div>'
+    +'<div style="font-family:Nunito,sans-serif;font-weight:700;font-size:.82rem;color:var(--bl);">Buy each part from its cheapest supplier (multiple orders needed)</div>'
+    +'</div>';
+  html+='<div class="res-list">';
+  results.forEach(function(r){if(r.cheapest){var t=parseFloat(r.cheapest.totalPrice||r.cheapest.price);total+=t;html+=makeKitCard(r.partName,r.cheapest,t);}});
+  html+='</div>';
+  html+='<div style="background:var(--bl);color:#fff;border-radius:14px;padding:18px 20px;margin-top:16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">'
+    +'<div><div style="font-family:Nunito,sans-serif;font-weight:800;font-size:.72rem;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.7);">Total (Mix & Match)</div>'
+    +'<div style="font-family:Nunito,sans-serif;font-weight:900;font-size:1.8rem;color:var(--ye);">£'+total.toFixed(2)+'</div></div>'
+    +'<button onclick="showKitResults(window._lastKitResults.kit,window._lastKitResults.results)" style="background:var(--ye);color:var(--bl);border:none;border-radius:10px;padding:12px 20px;font-family:Nunito,sans-serif;font-weight:900;font-size:.88rem;cursor:pointer;">← Back to Baskets</button>'
+    +'</div>';
+  html+='<div style="margin-top:16px;text-align:center;"><button onclick="resetFromKit()" style="background:transparent;color:var(--bl);border:2px solid var(--bl);border-radius:10px;padding:10px 24px;font-family:Nunito,sans-serif;font-weight:800;font-size:.85rem;cursor:pointer;">🔄 Start New Search</button></div>';
+  document.getElementById('resList').innerHTML=html;
+  window.scrollTo({top:document.getElementById('resultsZone').offsetTop-80,behavior:'smooth'});
+}
+function makeKitCard(partName,item,total){
+  var info=SUP_INFO[item.supplier||'eBay']||{rating:4.2,delivery:'3-5 days'};
+  var logoHtml=LOGOS[item.supplier||'eBay']||'<div style="font-weight:900;color:#003DA5;font-size:11px;">'+(item.supplier||'eBay')+'</div>';
+  var title=item.title||partName;
+  if(title.length>60)title=title.substring(0,60)+'...';
+  var del=parseFloat(item.deliveryCost||0);
+  var delText=del===0?'Free':'£'+del.toFixed(2);
+  return '<div class="rcard">'
+    +'<div class="rc-head">'
+    +'<div class="rc-logo" style="background:var(--wh);border:1.5px solid #E0E8F8;">'+logoHtml+'</div>'
+    +'<div class="rc-supinfo">'
+    +'<div class="rc-supname">'+(item.supplier||'eBay')+' <span class="rc-livebdg">CHEAPEST</span></div>'
+    +'<div class="rc-rating"><span class="stars">'+starsHtml(info.rating)+'</span> '+info.rating.toFixed(1)+'</div>'
+    +'</div>'
+    +'<div class="rc-price-main">'
+    +'<div class="rc-price cheapest">£'+total.toFixed(2)+'</div>'
+    +'<div class="rc-price-lbl">inc. delivery</div>'
+    +'</div>'
+    +'</div>'
+    +'<div style="font-family:Nunito,sans-serif;font-weight:900;font-size:.88rem;color:var(--bl);margin-bottom:4px;">'+partName+'</div>'
+    +'<div class="rc-part" style="font-weight:500;font-size:.78rem;">'+title+(item.seller?'<div class="rc-seller">Seller: '+item.seller+'</div>':'')+'</div>'
+    +'<div style="display:flex;gap:8px;align-items:center;justify-content:space-between;padding-top:10px;border-top:1px solid var(--lg);">'
+    +'<div style="font-size:.78rem;color:var(--mg);">Part: £'+parseFloat(item.price).toFixed(2)+' · Delivery: '+delText+'</div>'
+    +'<a href="'+item.url+'" target="_blank" rel="sponsored noopener" class="rc-buy" style="padding:8px 16px;font-size:.82rem;" onclick="trackClick(\''+(item.supplier||'eBay').replace(/\'/g,'')+'\',\''+partName.replace(/\'/g,'')+'\','+item.price+')">Buy →</a>'
+    +'</div>'
+    +'</div>';
+}
+function resetFromKit(){
+  var tabs=document.querySelector('.filter-tabs');
+  if(tabs)tabs.style.display='flex';
+  document.getElementById('resultsZone').style.display='none';
+  document.getElementById('partIn').value='';
+  document.getElementById('partIn').focus();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
 async function doSearch(){
-  closeAC();var part=document.getElementById('partIn').value.trim();
+  closeAC();
+  var part=document.getElementById('partIn').value.trim();
   if(!part){document.getElementById('partIn').focus();return;}
   if(!vehicle){shakePlate();return;}
   document.getElementById('resultsZone').style.display='none';
-  var scanZone=document.getElementById('scanZone');scanZone.style.display='block';
-  var html='<div class="scan-box"><div class="scan-title">🔍 Scanning UK Suppliers</div><div class="scan-sub">Finding the best price for <strong>'+part+'</strong> on your <strong>'+vehicle.name+'</strong></div><div class="scan-bar"><div class="scan-fill" id="scanFill"></div></div><div class="scan-grid">';
-  SCAN_SUPS.forEach(function(s,i){var logo=LOGOS[s.n]||'<div style="font-weight:900;color:#003DA5;">'+s.n+'</div>';html+='<div class="scan-sup" id="ss'+i+'"><div class="s-ico">'+logo+'</div><div class="s-name">'+s.n+'</div></div>';});
+  var scanZone=document.getElementById('scanZone');
+  scanZone.style.display='block';
+  var searchType=detectSearchType(part);
+  var searchLabel=searchType==='partnumber'?'part number':'part';
+  var html='<div class="scan-box">'
+    +'<div class="scan-title">🔍 Scanning 12 UK Suppliers</div>'
+    +'<div class="scan-sub">'+(searchType==='partnumber'?'Looking up <strong>'+part+'</strong> across all suppliers':'Finding the best price for <strong>'+part+'</strong> on your <strong>'+vehicle.name+'</strong>')+'</div>'
+    +'<div class="scan-bar"><div class="scan-fill" id="scanFill"></div></div>'
+    +'<div class="scan-grid">';
+  SCAN_SUPS.forEach(function(s,i){
+    var logo=LOGOS[s.n]||'<div style="font-weight:900;color:#003DA5;">'+s.n+'</div>';
+    html+='<div class="scan-sup" id="ss'+i+'"><div class="s-ico">'+logo+'</div><div class="s-name">'+s.n+'</div></div>';
+  });
   html+='</div><div class="scan-status" id="scanStatus">Connecting to suppliers...</div></div>';
-  scanZone.innerHTML=html;scanZone.scrollIntoView({behavior:'smooth',block:'nearest'});
-  var idx=0;if(scanTimer)clearInterval(scanTimer);
+  scanZone.innerHTML=html;
+  scanZone.scrollIntoView({behavior:'smooth',block:'nearest'});
+  var idx=0;
+  if(scanTimer)clearInterval(scanTimer);
   scanTimer=setInterval(function(){
-    if(idx>0){var prev=document.getElementById('ss'+(idx-1));if(prev){prev.classList.remove('active');prev.classList.add('done');}}
-    if(idx<SCAN_SUPS.length){var cur=document.getElementById('ss'+idx);if(cur)cur.classList.add('active');var statEl=document.getElementById('scanStatus');if(statEl)statEl.textContent='Checking '+SCAN_SUPS[idx].n+'...';var fillEl=document.getElementById('scanFill');if(fillEl)fillEl.style.width=Math.round((idx/SCAN_SUPS.length)*100)+'%';idx++;}
+    if(idx>0){var prev=document.getElementById('ss'+(idx-1));if(prev){prev.classList.remove('active');prev.classList.add('done');prev.innerHTML=prev.innerHTML+'<div style="color:var(--gr);font-size:.8rem;font-weight:900;">✓</div>';}}
+    if(idx<SCAN_SUPS.length){
+      var cur=document.getElementById('ss'+idx);if(cur)cur.classList.add('active');
+      var statEl=document.getElementById('scanStatus');if(statEl)statEl.textContent='Checking '+SCAN_SUPS[idx].n+'...';
+      var fillEl=document.getElementById('scanFill');if(fillEl)fillEl.style.width=Math.round((idx/SCAN_SUPS.length)*100)+'%';
+      idx++;
+    }
   },280);
-  var results=await fetchResults(part);
-  await new Promise(function(r){setTimeout(r,3500);});
+  var workerPromise=fetchResults(part);
+  var minWait=new Promise(function(r){setTimeout(r,3500);});
+  var results=await workerPromise;
+  await minWait;
   clearInterval(scanTimer);
   for(var i=0;i<SCAN_SUPS.length;i++){var el=document.getElementById('ss'+i);if(el){el.classList.remove('active');el.classList.add('done');}}
   var fillEl2=document.getElementById('scanFill');if(fillEl2)fillEl2.style.width='100%';
+  var statEl2=document.getElementById('scanStatus');if(statEl2)statEl2.textContent='✓ All 12 suppliers checked — loading results';
   await new Promise(function(r){setTimeout(r,500);});
   scanZone.style.display='none';
   showResults(vehicle,part,results);
 }
-
-async function fetchResults(part){try{var url=WORKER_URL+'/ebay?part='+encodeURIComponent(part)+'&vehicle='+encodeURIComponent(vehicle.name);var resp=await fetch(url);return await resp.json();}catch(e){return{items:[],error:e.message};}}
-
+// Detects whether input is a part NUMBER or a part NAME
+function detectSearchType(input){
+  if(!input)return 'name';
+  var trimmed=input.trim();
+  // Strip spaces and dashes for digit count
+  var digitsOnly=trimmed.replace(/[^0-9]/g,'');
+  var lettersOnly=trimmed.replace(/[^a-zA-Z]/g,'');
+  // Pure long digit string = part number (e.g. 34216761239)
+  if(digitsOnly.length>=6 && lettersOnly.length<=3)return 'partnumber';
+  // Mixed alphanumeric short string = part number (e.g. OE12345, BRP-4321)
+  if(trimmed.length<=20 && digitsOnly.length>=4 && /[A-Z0-9]/.test(trimmed.toUpperCase()) && !/\s/.test(trimmed))return 'partnumber';
+  return 'name';
+}
+async function fetchResults(part){
+  try{
+    var searchType=detectSearchType(part);
+    var url=WORKER_URL+'/ebay?part='+encodeURIComponent(part)+'&vehicle='+encodeURIComponent(vehicle.name)+'&type='+searchType;
+    var resp=await fetch(url);
+    return await resp.json();
+  }catch(e){return {items:[],error:e.message};}
+}
 function showResults(v,part,data){
-  var zone=document.getElementById('resultsZone');zone.style.display='block';
-  var list=document.getElementById('resList');if(list)list.removeAttribute('data-showall');
+  var zone=document.getElementById('resultsZone');
+  zone.style.display='block';
+  var list=document.getElementById('resList');
+  if(list)list.removeAttribute('data-showall'); // fresh search = top 5
   document.getElementById('aiVeh').textContent=v.name;
   document.getElementById('aiPart').textContent='— '+part;
+  // Deduplicate: filter out duplicate eBay listings by title+seller, and filter out irrelevant ones
   var rawItems=(data&&data.items)?data.items:[];
-  var seen={},partKeywords=part.toLowerCase().split(/\s+/).filter(function(w){return w.length>2;});
+  var seen={};
+  var partKeywords=part.toLowerCase().split(/\s+/).filter(function(w){return w.length>2;});
   allRows=rawItems.filter(function(r){
+    // Build dedup key
     var key=(r.title||'').toLowerCase().trim()+'|'+(r.seller||'').toLowerCase().trim()+'|'+(r.price||'');
-    if(seen[key])return false;seen[key]=true;
+    if(seen[key])return false;
+    seen[key]=true;
+    // Relevance check: at least one part keyword must appear in title
     var title=(r.title||'').toLowerCase();
-    if(partKeywords.length>0){var matches=partKeywords.filter(function(w){return title.indexOf(w)!==-1;}).length;if(matches===0)return false;}
-    return true;
+    var matches=partKeywords.filter(function(w){return title.indexOf(w)!==-1;}).length;
+    return matches >= Math.min(1, partKeywords.length);
   });
   currentFilter='all';
   document.querySelectorAll('.ftab').forEach(function(b){b.classList.remove('active');});
-  var allTab=document.querySelector('.ftab[data-filter="all"]');if(allTab)allTab.classList.add('active');
+  var allTab=document.querySelector('.ftab[data-filter="all"]');
+  if(allTab)allTab.classList.add('active');
   renderResults(part,v);
   setTimeout(function(){zone.scrollIntoView({behavior:'smooth',block:'nearest'});},100);
 }
-function starsHtml(rating){var full=Math.floor(rating),half=rating-full>=0.5,s='';for(var i=0;i<full;i++)s+='★';if(half)s+='⯨';while(s.length<5)s+='☆';return s.substring(0,5);}
-function fitmentBadge(opts){
-  var carName='your car';
-  if(vehicle){var vp=parseVehicle(vehicle);if(vp.make){carName=vp.make;if(vp.model)carName+=' '+vp.model;}else{carName=vehicle.name||'your car';}}
-  if(opts.isLive){if(opts.fitVerified){return '<span class="fit-bdg verified">✅ Fits '+carName+'</span>';}else{return '<span class="fit-bdg check">⚠️ Check fitment</span>';}}
-  return '<span class="fit-bdg check">⚠️ Check on supplier site</span>';
+var SUP_INFO = {
+  'eBay':              {delivery:'3-5 days', delCost:'varies', cc:false, rating:4.2, reviews:'10M+'},
+  'Amazon':            {delivery:'Next day (Prime)', delCost:'Free w/ Prime', cc:false, prime:true, rating:4.5, reviews:'50M+'},
+  'Euro Car Parts':    {delivery:'Next day', delCost:'£4.99', cc:true, rating:4.1, reviews:'120k'},
+  'GSF Car Parts':     {delivery:'Next day', delCost:'£5.99', cc:true, rating:4.0, reviews:'45k'},
+  'Halfords':          {delivery:'Next day', delCost:'£3.99', cc:true, rating:4.3, reviews:'280k'},
+  'Autodoc':           {delivery:'3-5 days', delCost:'£5.99', cc:false, rating:3.9, reviews:'90k'},
+  'Car Parts 4 Less':  {delivery:'Next day', delCost:'£4.99', cc:false, rating:4.0, reviews:'15k'},
+  'Mister Auto UK':    {delivery:'3-5 days', delCost:'£4.99', cc:false, rating:4.1, reviews:'80k'},
+  'MicksGarage':       {delivery:'2-3 days', delCost:'£4.99', cc:false, rating:4.2, reviews:'45k'},
+  'Online Car Parts':  {delivery:'3-5 days', delCost:'£5.99', cc:false, rating:4.0, reviews:'30k'},
+  'Andrew Page':       {delivery:'Next day', delCost:'£4.99', cc:true, rating:4.2, reviews:'6k'},
+  'Motor World':       {delivery:'2-3 days', delCost:'£4.99', cc:false, rating:3.9, reviews:'5k'},
+  'FCP Euro':          {delivery:'5-7 days', delCost:'£9.99', cc:false, rating:4.4, reviews:'8k'},
+  'Eurospares':        {delivery:'2-3 days', delCost:'£4.99', cc:false, rating:4.2, reviews:'12k'},
+  '1st Choice Spares': {delivery:'3-5 days', delCost:'Free', cc:false, rating:4.0, reviews:'18k'},
+  'Breakerlink':       {delivery:'5-7 days', delCost:'varies', cc:false, rating:3.9, reviews:'10k'},
+  'Parts Gateway':     {delivery:'2-3 days', delCost:'varies', cc:false, rating:4.1, reviews:'12k'},
+  'Bosch UK':          {delivery:'2-3 days', delCost:'£5.99', cc:false, rating:4.7, reviews:'OEM', oem:true},
+  'Brembo':            {delivery:'3-5 days', delCost:'£7.99', cc:false, rating:4.7, reviews:'OEM', oem:true},
+  'NGK Spark Plugs':   {delivery:'2-3 days', delCost:'£3.99', cc:false, rating:4.6, reviews:'OEM', oem:true},
+  'Mintex':            {delivery:'3-5 days', delCost:'£4.99', cc:false, rating:4.5, reviews:'OEM', oem:true},
+  'Febi Bilstein':     {delivery:'3-5 days', delCost:'£5.99', cc:false, rating:4.4, reviews:'OEM', oem:true},
+  'Tayna Batteries':   {delivery:'Next day', delCost:'Free £50+', cc:false, rating:4.7, reviews:'120k'},
+  'BlackCircles Tyres':{delivery:'Fitted at garage', delCost:'Inc.', cc:true, rating:4.6, reviews:'200k'}
+};
+function starsHtml(rating){
+  var full=Math.floor(rating);var half=rating-full>=0.5;var s='';
+  for(var i=0;i<full;i++)s+='★';
+  if(half)s+='⯨';
+  while(s.length<5)s+='☆';
+  return s.substring(0,5);
 }
 function makeRow(opts){
   var info=SUP_INFO[opts.sup.n]||{delivery:'3-5 days',delCost:'varies',cc:false,rating:4.0,reviews:''};
   var stars=starsHtml(info.rating);
-  var partTitle=opts.partTitle||opts.part;if(partTitle.length>55)partTitle=partTitle.substring(0,55)+'...';
+  var partTitle=opts.partTitle||opts.part;
+  if(partTitle.length>55)partTitle=partTitle.substring(0,55)+'...';
   var delText=opts.delivery||info.delivery;
   var delCostText=opts.delCost!==undefined?(parseFloat(opts.delCost)===0?'Free':'£'+opts.delCost):info.delCost;
-  var isFastDel=delText.toLowerCase().includes('next'),isFreeDel=delCostText.toLowerCase()==='free';
+  var isFastDel=delText.toLowerCase().includes('next');
+  var isFreeDel=delCostText.toLowerCase()==='free';
   var logoHtml=LOGOS[opts.sup.n]||'<div style="font-family:Arial;font-weight:900;font-size:11px;color:#003DA5;">'+opts.sup.n+'</div>';
-  var badges='<span class="c-mini-bdg '+(opts.isUsed?'used':'new')+'">'+(opts.isUsed?'USED':'NEW')+'</span>';
-  if(info.cc)badges+='<span class="c-mini-bdg cc">🏪 C&amp;C</span>';
+  // Build all badges
+  var badges='';
+  badges+='<span class="c-mini-bdg '+(opts.isUsed?'used':'new')+'">'+(opts.isUsed?'USED':'NEW')+'</span>';
+  if(info.cc)badges+='<span class="c-mini-bdg cc">🏪 Click &amp; Collect</span>';
   if(info.prime)badges+='<span class="c-mini-bdg prime">⚡ Prime</span>';
-  if(isFreeDel)badges+='<span class="c-mini-bdg free">🆓 Free</span>';
+  if(isFreeDel)badges+='<span class="c-mini-bdg free">🆓 Free Delivery</span>';
+  if(opts.isLive)badges+='<span class="c-mini-bdg" style="background:var(--ye);color:var(--bl);">⚡ LIVE</span>';
+  // Price block
   var priceHtml;
-  if(opts.price){priceHtml='<div class="c-price'+(opts.isBest?' best':'')+'">£'+opts.price+'</div>';if(opts.delCost!==undefined){var total=parseFloat(opts.price)+(parseFloat(opts.delCost)||0);priceHtml+='<div class="c-price-sub">Total £'+total.toFixed(2)+'</div>';}}else{priceHtml='<div class="c-price" style="color:var(--mg);font-size:.78rem;">See site</div>';}
+  if(opts.price){
+    priceHtml='<div class="c-price'+(opts.isBest?' best':'')+'">£'+opts.price+'</div>';
+    if(opts.delCost!==undefined){var total=parseFloat(opts.price)+(parseFloat(opts.delCost)||0);priceHtml+='<div class="c-price-sub">Total £'+total.toFixed(2)+'</div>';}
+  } else {priceHtml='<div class="c-price" style="color:var(--mg);font-size:.78rem;">See site</div>';}
   var html='<div class="crow'+(opts.isBest?' best':'')+'">';
-  html+='<div><div class="c-sup-ico">'+logoHtml+'</div><div class="c-sup-name">'+opts.sup.n+'</div></div>';
-  html+='<div>';
+  // Col 1: Supplier
+  html+='<div><div class="c-sup"><div class="c-sup-ico">'+logoHtml+'</div><div class="c-sup-name">'+opts.sup.n+'</div></div></div>';
+  // Col 2: Part info (now richer — title, badges, rating, stock all inline)
+  html+='<div class="c-part">';
   if(opts.isBest)html+='<div class="best-rib">🏆 BEST DEAL</div>';
-  html+=fitmentBadge(opts);
   html+='<div class="c-part-t">'+partTitle+'</div>';
-  if(opts.seller)html+='<div style="font-size:.55rem;color:var(--mg);">Seller: '+opts.seller+'</div>';
-  html+='<div class="c-part-meta"><span class="c-rating-inline">⭐ '+info.rating.toFixed(1)+'</span>';
+  if(opts.seller)html+='<div class="c-part-s">Seller: '+opts.seller+'</div>';
+  // Inline rating + stock + reviews row
+  html+='<div class="c-part-meta">';
+  html+='<span class="c-rating-inline">⭐ '+info.rating.toFixed(1)+' '+stars+(info.reviews?' <span style="color:var(--mg);">('+info.reviews+')</span>':'')+'</span>';
   if(opts.isLive)html+='<span class="c-stock-inline">✓ In Stock</span>';
-  html+='</div><div style="display:flex;gap:3px;margin-top:3px;flex-wrap:wrap;">'+badges+'</div></div>';
+  html+='</div>';
+  html+='<div class="c-part-b">'+badges+'</div>';
+  html+='</div>';
+  // Col 3: Price
   html+='<div>'+priceHtml+'</div>';
+  // Col 4: Delivery
   html+='<div><div class="c-del'+(isFastDel?' fast':'')+'">🚚 '+delText+'</div><div class="c-del-cost'+(isFreeDel?' free':'')+'">'+delCostText+'</div></div>';
-  html+='<div><div style="font-family:Nunito,sans-serif;font-weight:800;font-size:.62rem;color:'+(opts.isLive?'var(--gr)':'var(--mg)')+';">'+(opts.isLive?'In Stock':'Check site')+'</div></div>';
-  html+='<div><div class="c-rating">'+info.rating.toFixed(1)+'</div><div class="c-rating-stars">'+stars+'</div></div>';
-  if(info.cc){html+='<div><div style="color:var(--gr);font-weight:900;font-size:1.4rem;line-height:1;">✓</div><div style="font-size:.68rem;color:var(--gr);font-weight:800;">Collect</div></div>';}else{html+='<div><div style="color:#B0B8C8;font-size:1.3rem;">✕</div><div style="font-size:.68rem;color:#B0B8C8;">Delivery</div></div>';}
-  html+='<div><a href="'+opts.url+'" target="_blank" rel="sponsored noopener" class="c-buy">'+(opts.price?'Buy →':'Search →')+'</a></div>';
+  // Col 5: (hidden on mobile) Stock
+  html+='<div><div class="c-stock '+(opts.isLive?'ok':'check')+'">'+(opts.isLive?'In Stock':'Check site')+'</div></div>';
+  // Col 6: (hidden on mobile) Rating
+  html+='<div><div class="c-rating">'+info.rating.toFixed(1)+'</div><div class="c-rating-stars">'+stars+'</div>'+(info.reviews?'<div class="c-rating-ct">'+info.reviews+'</div>':'')+'</div>';
+  // Col 7: (hidden on mobile) Click & Collect
+  if(info.cc){html+='<div style="text-align:center;"><div style="color:var(--gr);font-weight:900;font-size:1.4rem;line-height:1;">✓</div><div style="font-size:.68rem;color:var(--gr);font-weight:800;margin-top:3px;line-height:1.1;">Collect<br/>In Store</div></div>';}
+  else{html+='<div style="text-align:center;"><div style="color:#B0B8C8;font-size:1.3rem;line-height:1;font-weight:700;">✕</div><div style="font-size:.68rem;color:#B0B8C8;font-weight:700;margin-top:3px;line-height:1.1;">Delivery<br/>Only</div></div>';}
+  // Col 8: Buy
+  html+='<div><a href="'+opts.url+'" target="_blank" rel="sponsored noopener" class="c-buy" onclick="trackClick(\''+opts.sup.n.replace(/\'/g,'')+'\',\''+opts.part.replace(/\'/g,'')+'\','+(opts.price||0)+')">'+(opts.price?'Buy →':'Search →')+'</a></div>';
   html+='</div>';
   return html;
 }
 function renderResults(part,v){
   if(!v)v=vehicle;
   var list=document.getElementById('resList');
-  var ebayNew=allRows.filter(function(r){return !r.isUsed;}),ebayUsed=allRows.filter(function(r){return r.isUsed;});
-  var liveRows=[],ebayRows;
+  var ebayNew=allRows.filter(function(r){return !r.isUsed;});
+  var ebayUsed=allRows.filter(function(r){return r.isUsed;});
+  var liveRows=[];
+  var ebayRows;
   if(currentFilter==='used')ebayRows=ebayUsed;
   else if(currentFilter==='new')ebayRows=ebayNew;
   else if(currentFilter==='today')ebayRows=[];
   else ebayRows=ebayNew.concat(ebayUsed);
-  ebayRows.forEach(function(r){liveRows.push({sup:{n:r.supplier||'eBay'},isLive:true,part:part,partTitle:r.title,price:r.price,delCost:r.deliveryCost,seller:r.seller,url:r.url,isUsed:r.isUsed,totalPrice:parseFloat(r.totalPrice||r.price),fitVerified:r.fitVerified,fitScore:r.fitScore||0});});
-  liveRows.sort(function(a,b){if(a.isUsed!==b.isUsed)return a.isUsed?1:-1;if(a.fitVerified!==b.fitVerified)return a.fitVerified?-1:1;return a.totalPrice-b.totalPrice;});
+  ebayRows.forEach(function(r){
+    liveRows.push({sup:{n:r.supplier||'eBay',i:r.supplierIcon||'🛒'},isLive:true,part:part,partTitle:r.title,price:r.price,delCost:r.deliveryCost,seller:r.seller,url:r.url,isUsed:r.isUsed,totalPrice:parseFloat(r.totalPrice||r.price)});
+  });
+  // Sort: NEW parts first, then USED — within each group cheapest first
+  liveRows.sort(function(a,b){
+    if(a.isUsed!==b.isUsed)return a.isUsed?1:-1; // NEW (false) above USED (true)
+    return a.totalPrice-b.totalPrice;
+  });
+  // Build full list of all rows (live + non-live)
   var allCards=[];
   liveRows.forEach(function(r,i){r.isBest=(i===0);allCards.push(r);});
   if(currentFilter!=='used'){
     ALL_SUPS.forEach(function(sup){
       if(sup.live)return;
       if(currentFilter==='today'){var info=SUP_INFO[sup.n];if(!info||!info.cc)return;}
-      var supUrl=sup.url(part,v);
-      allCards.push({sup:sup,isLive:false,part:part,partTitle:part,url:supUrl,isUsed:false,isBest:false,fitVerified:false});
+      var supUrl=sup.url(part,v?v.name:'');
+      allCards.push({sup:sup,isLive:false,part:part,partTitle:part,url:supUrl,isUsed:false,isBest:false});
     });
   }
-  if(allCards.length===0){list.innerHTML='<div style="text-align:center;padding:30px;color:var(--mg);">No results found.</div>';return;}
+  if(allCards.length===0){
+    list.innerHTML='<div style="text-align:center;padding:30px;color:var(--mg);font-size:.85rem;">'+(currentFilter==='today'?'No Click & Collect options. Try "All" filter.':'No results found.')+'</div>';
+    return;
+  }
+  // Show top 5 by default; user can expand
   var showAll=list.getAttribute('data-showall')==='1';
   var visible=showAll?allCards:allCards.slice(0,5);
-  var html='';visible.forEach(function(r){html+=makeRow(r);});
-  if(!showAll&&allCards.length>5){html+='<button class="show-all-btn" onclick="showAllResults()">Show all '+allCards.length+' results ▼</button>';}
-  else if(showAll&&allCards.length>5){html+='<button class="show-all-btn" onclick="showFewerResults()">Show top 5 only ▲</button>';}
+  var html='';
+  visible.forEach(function(r){html+=makeRow(r);});
+  if(!showAll&&allCards.length>5){
+    html+='<button class="show-all-btn" onclick="showAllResults()">Show all '+allCards.length+' results ▼</button>';
+  } else if(showAll&&allCards.length>5){
+    html+='<button class="show-all-btn" onclick="showFewerResults()">Show top 5 only ▲</button>';
+  }
   list.innerHTML=html;
 }
-function showAllResults(){var list=document.getElementById('resList');list.setAttribute('data-showall','1');renderResults(document.getElementById('partIn').value.trim(),vehicle);}
-function showFewerResults(){var list=document.getElementById('resList');list.removeAttribute('data-showall');renderResults(document.getElementById('partIn').value.trim(),vehicle);}
-function filterResults(type,btn){currentFilter=type;var list=document.getElementById('resList');if(list)list.removeAttribute('data-showall');document.querySelectorAll('.ftab').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');renderResults(document.getElementById('partIn').value.trim(),vehicle);}
-function toggleFaq(btn){var item=btn.closest('.faq-item');item.classList.toggle('open');}
+function showAllResults(){
+  var list=document.getElementById('resList');
+  list.setAttribute('data-showall','1');
+  renderResults(document.getElementById('partIn').value.trim(),vehicle);
+}
+function showFewerResults(){
+  var list=document.getElementById('resList');
+  list.removeAttribute('data-showall');
+  renderResults(document.getElementById('partIn').value.trim(),vehicle);
+  document.getElementById('resultsZone').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function filterResults(type,btn){
+  currentFilter=type;
+  var list=document.getElementById('resList');
+  if(list)list.removeAttribute('data-showall'); // reset to top-5 view
+  document.querySelectorAll('.ftab').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  renderResults(document.getElementById('partIn').value.trim(),vehicle);
+}
+function trackClick(supplier,part,price){
+  try{
+    var url=WORKER_URL+'/track-click?supplier='+encodeURIComponent(supplier)+'&part='+encodeURIComponent(part)+'&vehicle='+encodeURIComponent(vehicle?vehicle.name:'')+'&price='+encodeURIComponent(price||0);
+    fetch(url).catch(function(){});
+  }catch(e){}
+}
+function toggleFaq(btn){
+  var item=btn.closest('.faq-item');
+  item.classList.toggle('open');
+}
+if('serviceWorker' in navigator){
+  window.addEventListener('load',function(){navigator.serviceWorker.register('/sw.js').catch(function(){});});
+}
 document.addEventListener('DOMContentLoaded',function(){
   var partIn=document.getElementById('partIn');
-  if(partIn){partIn.addEventListener('input',function(){showAC(this.value);});partIn.addEventListener('keydown',function(e){if(e.key==='Enter'){doSearch();e.preventDefault();}else if(e.key==='Escape'){closeAC();}});}
+  if(partIn){
+    partIn.addEventListener('input',function(){
+      showAC(this.value);
+      // Live mode hint
+      var hint=document.getElementById('searchTypeHint');
+      if(hint){
+        var v=this.value.trim();
+        if(!v){hint.style.display='none';return;}
+        var t=detectSearchType(v);
+        if(t==='partnumber'){
+          hint.innerHTML='🔢 Searching by PART NUMBER (exact match)';
+          hint.style.color='var(--bl)';
+          hint.style.display='block';
+          closeAC(); // no autocomplete for part numbers
+        } else {
+          hint.style.display='none';
+        }
+      }
+    });
+    partIn.addEventListener('keydown',function(e){if(e.key==='Enter'){doSearch();e.preventDefault();}else if(e.key==='Escape'){closeAC();}});
+  }
+  // In-results search box (partIn2)
   var partIn2=document.getElementById('partIn2');
-  if(partIn2){partIn2.addEventListener('input',function(){showAC2(this.value);});partIn2.addEventListener('keydown',function(e){if(e.key==='Enter'){doSearch2();e.preventDefault();}else if(e.key==='Escape'){closeAC2();}});}
-  document.addEventListener('click',function(e){if(!e.target.closest('.qw')){closeAC();closeAC2();}});
-  var regIn=document.getElementById('regIn');if(regIn){regIn.addEventListener('keydown',function(e){if(e.key==='Enter')lookupReg();});}
-  var hbtn=document.getElementById('hbtn');if(hbtn){hbtn.addEventListener('click',function(){this.classList.toggle('open');document.getElementById('mmenu').classList.toggle('open');});}
+  if(partIn2){
+    partIn2.addEventListener('input',function(){showAC2(this.value);});
+    partIn2.addEventListener('keydown',function(e){if(e.key==='Enter'){doSearch2();e.preventDefault();}else if(e.key==='Escape'){closeAC2();}});
+  }
+  document.addEventListener('click',function(e){if(!e.target.closest('.qw'))closeAC();if(!e.target.closest('.qw'))closeAC2();});
+  var regIn=document.getElementById('regIn');
+  if(regIn){regIn.addEventListener('keydown',function(e){if(e.key==='Enter')lookupReg();});}
+  var hbtn=document.getElementById('hbtn');
+  if(hbtn){
+    hbtn.addEventListener('click',function(){this.classList.toggle('open');document.getElementById('mmenu').classList.toggle('open');});
+  }
+  document.addEventListener('click',function(e){if(!e.target.closest('nav')&&!e.target.closest('.mm'))closeMob();});
 });
 </script>
 </body>
