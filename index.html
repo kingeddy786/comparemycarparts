@@ -738,15 +738,20 @@ async function lookupReg(){
     if(data.error){clearDvlaMsg();showDvlaErr(data.error);return;}
     clearDvlaMsg();
     var make=titleCase(data.make||'Unknown');
+    var model=titleCase(data.model||'');
     var colour=titleCase(data.colour||'');
     var fuel=titleCase(data.fuelType||'');
     var year=data.yearOfManufacture||'';
     var engine=data.engineCapacity?(data.engineCapacity/1000).toFixed(1)+'L':'';
     var taxStatus=data.taxStatus||'';
     var motStatus=data.motStatus||'';
-    var name=year+' '+make+(engine?' · '+engine:'');
-    var meta=[colour,fuel,taxStatus?'Tax: '+taxStatus:'',motStatus?'MOT: '+motStatus:''].filter(Boolean).join(' · ');
-    applyVehicle({name:name,meta:meta,raw:data});
+    // Build name as: YEAR MAKE MODEL  (e.g. "2025 BMW X5 Xdrive30d M Sport")
+    var name=year+' '+make+(model?' '+model:'');
+    var metaBits=[engine,colour,fuel];
+    if(motStatus)metaBits.push('MOT: '+motStatus);
+    if(taxStatus)metaBits.push('Tax: '+taxStatus);
+    var meta=metaBits.filter(Boolean).join(' · ');
+    applyVehicle({name:name,meta:meta,raw:data,make:make,model:model,year:year});
   }catch(err){
     btn.innerHTML='🔍 Find Car';btn.disabled=false;
     clearDvlaMsg();showDvlaErr('Could not reach DVLA. Please try again.');
