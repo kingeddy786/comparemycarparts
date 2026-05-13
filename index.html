@@ -672,10 +672,24 @@ var LOGOS = {
   'Mintex': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="8" width="100" height="24" rx="3" fill="#1a1a1a"/><text x="14" y="26" font-family="Arial,sans-serif" font-weight="900" font-size="14" fill="#FFD100">MINTEX</text></svg>',
   'Febi Bilstein': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="8" width="100" height="24" rx="3" fill="#FFD100"/><text x="6" y="20" font-family="Arial,sans-serif" font-weight="900" font-size="9" fill="#000">FEBI</text><text x="6" y="30" font-family="Arial,sans-serif" font-weight="900" font-size="9" fill="#000">BILSTEIN</text></svg>',
   'Tayna Batteries': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="8" width="100" height="24" rx="3" fill="#003DA5"/><text x="4" y="20" font-family="Arial,sans-serif" font-weight="900" font-size="9" fill="#FFD100">TAYNA</text><text x="4" y="30" font-family="Arial,sans-serif" font-weight="800" font-size="8" fill="#fff">BATTERIES</text></svg>',
-  'BlackCircles Tyres': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><circle cx="15" cy="20" r="12" fill="#1a1a1a"/><circle cx="15" cy="20" r="6" fill="none" stroke="#fff" stroke-width="2"/><text x="32" y="17" font-family="Arial,sans-serif" font-weight="900" font-size="8" fill="#1a1a1a">BLACK</text><text x="32" y="28" font-family="Arial,sans-serif" font-weight="900" font-size="8" fill="#1a1a1a">CIRCLES</text></svg>'
+  'BlackCircles Tyres': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><circle cx="15" cy="20" r="12" fill="#1a1a1a"/><circle cx="15" cy="20" r="6" fill="none" stroke="#fff" stroke-width="2"/><text x="32" y="17" font-family="Arial,sans-serif" font-weight="900" font-size="8" fill="#1a1a1a">BLACK</text><text x="32" y="28" font-family="Arial,sans-serif" font-weight="900" font-size="8" fill="#1a1a1a">CIRCLES</text></svg>',
+  'My Motor World': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="20" r="11" fill="#E30613"/><text x="7" y="24" font-family="Arial,sans-serif" font-weight="900" font-size="11" fill="#fff">MW</text><text x="30" y="17" font-family="Arial,sans-serif" font-weight="900" font-size="9" fill="#1a1a1a">MOTOR</text><text x="30" y="29" font-family="Arial,sans-serif" font-weight="900" font-size="9" fill="#1a1a1a">WORLD</text></svg>',
+  'mytyres.co.uk': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="20" r="11" fill="#1a1a1a"/><circle cx="14" cy="20" r="5" fill="none" stroke="#FFD100" stroke-width="2"/><text x="30" y="17" font-family="Arial,sans-serif" font-weight="900" font-size="9" fill="#1a1a1a">my</text><text x="30" y="28" font-family="Arial,sans-serif" font-weight="900" font-size="8" fill="#E30613">tyres</text></svg>',
+  'Click Mechanic': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="8" width="100" height="24" rx="3" fill="#FF6B35"/><text x="4" y="20" font-family="Arial,sans-serif" font-weight="900" font-size="9" fill="#fff">CLICK</text><text x="4" y="30" font-family="Arial,sans-serif" font-weight="900" font-size="9" fill="#fff">MECHANIC</text><circle cx="82" cy="20" r="8" fill="#fff"/><text x="77" y="24" font-family="Arial,sans-serif" font-weight="900" font-size="10" fill="#FF6B35">ð§</text></svg>',
+  'Car Audio Centre': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="8" width="100" height="24" rx="3" fill="#000"/><text x="4" y="20" font-family="Arial,sans-serif" font-weight="900" font-size="8" fill="#FFD100">CAR AUDIO</text><text x="4" y="30" font-family="Arial,sans-serif" font-weight="900" font-size="8" fill="#fff">CENTRE</text></svg>',
+  'Flava Car Scents': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="8" width="100" height="24" rx="3" fill="#6A1B9A"/><text x="4" y="20" font-family="Arial,sans-serif" font-weight="900" font-size="9" fill="#FFD100">FLAVA</text><text x="4" y="30" font-family="Arial,sans-serif" font-weight="800" font-size="7" fill="#fff">CAR SCENTS</text></svg>',
+  'EV Cable Shop': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><polygon points="4,8 12,8 8,18 14,18 6,32 9,22 3,22" fill="#00A651"/><text x="20" y="20" font-family="Arial,sans-serif" font-weight="900" font-size="11" fill="#1a1a1a">EV CABLE</text><text x="20" y="32" font-family="Arial,sans-serif" font-weight="700" font-size="9" fill="#00A651">SHOP</text></svg>'
 };
 var ALL_SUPS = [
   {n:'eBay', live:true, type:'marketplace'},
+  // === AWIN APPROVED PARTNERS (commission-earning — shown first) ===
+  {n:'My Motor World', type:'retailer', partner:true, url:function(p,v){return 'https://www.awin1.com/cread.php?awinmid=47487&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.mymotorworld.co.uk/search?q='+encodeURIComponent(p));}},
+  {n:'mytyres.co.uk', type:'specialty', partner:true, url:function(p,v){return 'https://www.awin1.com/cread.php?awinmid=4118&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.mytyres.co.uk/cgi-bin/rshop.pl?fns=search&w='+encodeURIComponent(p));}},
+  {n:'Click Mechanic', type:'service', partner:true, url:function(p,v){return 'https://www.awin1.com/cread.php?awinmid=67328&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.clickmechanic.com/');}},
+  {n:'Car Audio Centre', type:'specialty', partner:true, url:function(p,v){return 'https://www.awin1.com/cread.php?awinmid=67434&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.caraudiocentre.co.uk/search?keyword='+encodeURIComponent(p));}},
+  {n:'Flava Car Scents', type:'specialty', partner:true, url:function(p,v){return 'https://www.awin1.com/cread.php?awinmid=119599&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.flavacarscents.com/search?q='+encodeURIComponent(p));}},
+  {n:'EV Cable Shop', type:'specialty', partner:true, url:function(p,v){return 'https://www.awin1.com/cread.php?awinmid=22473&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.evcableshop.co.uk/search?q='+encodeURIComponent(p));}},
+  // === OTHER SUPPLIERS (no affiliate, plain search links) ===
   {n:'Amazon', type:'marketplace', url:function(p,v){return 'https://www.amazon.co.uk/s?k='+encodeURIComponent(p+' '+v)+'&tag='+AFF.amazon;}},
   {n:'Euro Car Parts', type:'retailer', url:function(p,v){return 'https://www.eurocarparts.com/search?q='+encodeURIComponent(p);}},
   {n:'GSF Car Parts', type:'retailer', url:function(p,v){return 'https://www.gsfcarparts.com/search?query='+encodeURIComponent(p);}},
@@ -698,14 +712,7 @@ var ALL_SUPS = [
   {n:'Mintex', type:'oem', url:function(p,v){return 'https://www.mintex.com/en-gb/products?search='+encodeURIComponent(p);}},
   {n:'Febi Bilstein', type:'oem', url:function(p,v){return 'https://partsfinder.bilsteingroup.com/en/search?q='+encodeURIComponent(p);}},
   {n:'Tayna Batteries', type:'specialty', url:function(p,v){return 'https://www.tayna.co.uk/search?q='+encodeURIComponent(p);}},
-  {n:'BlackCircles Tyres', type:'specialty', url:function(p,v){return 'https://www.blackcircles.com/search?q='+encodeURIComponent(p);}},
-  // === AWIN APPROVED ADVERTISERS — proper affiliate links ===
-  {n:'mytyres.co.uk', type:'specialty', url:function(p,v){return 'https://www.awin1.com/cread.php?awinmid=4118&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.mytyres.co.uk/cgi-bin/rshop.pl?fns=search&w='+encodeURIComponent(p));}},
-  {n:'My Motor World', type:'retailer', url:function(p,v){return 'https://www.awin1.com/cread.php?awinmid=47487&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.mymotorworld.co.uk/search?q='+encodeURIComponent(p));}},
-  {n:'Click Mechanic', type:'service', url:function(p,v){return 'https://www.awin1.com/cread.php?awinmid=67328&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.clickmechanic.com/');}},
-  {n:'Car Audio Centre', type:'specialty', url:function(p,v){return 'https://www.awin1.com/cread.php?awinmid=67434&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.caraudiocentre.co.uk/search?keyword='+encodeURIComponent(p));}},
-  {n:'Flava Car Scents', type:'specialty', url:function(p,v){return 'https://www.awin1.com/cread.php?awinmid=119599&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.flavacarscents.com/search?q='+encodeURIComponent(p));}},
-  {n:'EV Cable Shop', type:'specialty', url:function(p,v){return 'https://www.awin1.com/cread.php?awinmid=22473&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.evcableshop.co.uk/search?q='+encodeURIComponent(p));}}
+  {n:'BlackCircles Tyres', type:'specialty', url:function(p,v){return 'https://www.blackcircles.com/search?q='+encodeURIComponent(p);}}
 ];
 (function(){
   function render(){
@@ -1190,6 +1197,7 @@ function makeRow(opts){
   var logoHtml=LOGOS[opts.sup.n]||'<div style="font-family:Arial;font-weight:900;font-size:11px;color:#003DA5;">'+opts.sup.n+'</div>';
   var badges='';
   badges+='<span class="c-mini-bdg '+(opts.isUsed?'used':'new')+'">'+(opts.isUsed?'USED':'NEW')+'</span>';
+  if(opts.sup.partner)badges+='<span class="c-mini-bdg" style="background:#00A651;color:#fff;">✓ PARTNER</span>';
   if(info.cc)badges+='<span class="c-mini-bdg cc">🏪 Click &amp; Collect</span>';
   if(info.prime)badges+='<span class="c-mini-bdg prime">⚡ Prime</span>';
   if(isFreeDel)badges+='<span class="c-mini-bdg free">🆓 Free Delivery</span>';
