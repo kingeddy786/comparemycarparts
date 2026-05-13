@@ -683,12 +683,12 @@ var LOGOS = {
 var ALL_SUPS = [
   {n:'eBay', live:true, type:'marketplace'},
   // === AWIN APPROVED PARTNERS (commission-earning — shown first) ===
-  {n:'My Motor World', type:'retailer', partner:true, url:function(p,v){return 'https://www.awin1.com/cread.php?awinmid=47487&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.mymotorworld.co.uk/search?q='+encodeURIComponent(p));}},
-  {n:'mytyres.co.uk', type:'specialty', partner:true, url:function(p,v){return 'https://www.awin1.com/cread.php?awinmid=4118&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.mytyres.co.uk/cgi-bin/rshop.pl?fns=search&w='+encodeURIComponent(p));}},
-  {n:'Click Mechanic', type:'service', partner:true, url:function(p,v){return 'https://www.awin1.com/cread.php?awinmid=67328&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.clickmechanic.com/');}},
-  {n:'Car Audio Centre', type:'specialty', partner:true, url:function(p,v){return 'https://www.awin1.com/cread.php?awinmid=67434&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.caraudiocentre.co.uk/search?keyword='+encodeURIComponent(p));}},
-  {n:'Flava Car Scents', type:'specialty', partner:true, url:function(p,v){return 'https://www.awin1.com/cread.php?awinmid=119599&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.flavacarscents.com/search?q='+encodeURIComponent(p));}},
-  {n:'EV Cable Shop', type:'specialty', partner:true, url:function(p,v){return 'https://www.awin1.com/cread.php?awinmid=22473&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.evcableshop.co.uk/search?q='+encodeURIComponent(p));}},
+  {n:'My Motor World', type:'retailer', url:function(p,v){return 'https://www.awin1.com/cread.php?awinmid=47487&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.mymotorworld.co.uk/search?q='+encodeURIComponent(p));}},
+  {n:'mytyres.co.uk', type:'specialty', url:function(p,v){return 'https://www.awin1.com/cread.php?awinmid=4118&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.mytyres.co.uk/cgi-bin/rshop.pl?fns=search&w='+encodeURIComponent(p));}},
+  {n:'Click Mechanic', type:'service', url:function(p,v){return 'https://www.awin1.com/cread.php?awinmid=67328&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.clickmechanic.com/');}},
+  {n:'Car Audio Centre', type:'specialty', url:function(p,v){return 'https://www.awin1.com/cread.php?awinmid=67434&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.caraudiocentre.co.uk/search?keyword='+encodeURIComponent(p));}},
+  {n:'Flava Car Scents', type:'specialty', url:function(p,v){return 'https://www.awin1.com/cread.php?awinmid=119599&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.flavacarscents.com/search?q='+encodeURIComponent(p));}},
+  {n:'EV Cable Shop', type:'specialty', url:function(p,v){return 'https://www.awin1.com/cread.php?awinmid=22473&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.evcableshop.co.uk/search?q='+encodeURIComponent(p));}},
   // === OTHER SUPPLIERS (no affiliate, plain search links) ===
   {n:'Amazon', type:'marketplace', url:function(p,v){return 'https://www.amazon.co.uk/s?k='+encodeURIComponent(p+' '+v)+'&tag='+AFF.amazon;}},
   {n:'Euro Car Parts', type:'retailer', url:function(p,v){return 'https://www.eurocarparts.com/search?q='+encodeURIComponent(p);}},
@@ -1197,7 +1197,6 @@ function makeRow(opts){
   var logoHtml=LOGOS[opts.sup.n]||'<div style="font-family:Arial;font-weight:900;font-size:11px;color:#003DA5;">'+opts.sup.n+'</div>';
   var badges='';
   badges+='<span class="c-mini-bdg '+(opts.isUsed?'used':'new')+'">'+(opts.isUsed?'USED':'NEW')+'</span>';
-  if(opts.sup.partner)badges+='<span class="c-mini-bdg" style="background:#00A651;color:#fff;">✓ PARTNER</span>';
   if(info.cc)badges+='<span class="c-mini-bdg cc">🏪 Click &amp; Collect</span>';
   if(info.prime)badges+='<span class="c-mini-bdg prime">⚡ Prime</span>';
   if(isFreeDel)badges+='<span class="c-mini-bdg free">🆓 Free Delivery</span>';
