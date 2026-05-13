@@ -682,19 +682,20 @@ var LOGOS = {
 };
 var ALL_SUPS = [
   {n:'eBay', live:true, type:'marketplace'},
-  // === AWIN APPROVED PARTNERS (commission-earning — shown first) ===
+  // === MAJOR UK PARTS RETAILERS (logo visibility for Awin approval review) ===
+  {n:'Amazon', type:'marketplace', url:function(p,v){return 'https://www.amazon.co.uk/s?k='+encodeURIComponent(p+' '+v)+'&tag='+AFF.amazon;}},
+  {n:'Euro Car Parts', type:'retailer', url:function(p,v){return 'https://www.eurocarparts.com/search?q='+encodeURIComponent(p);}},
+  {n:'GSF Car Parts', type:'retailer', url:function(p,v){return 'https://www.gsfcarparts.com/search?query='+encodeURIComponent(p);}},
+  {n:'Halfords', type:'retailer', url:function(p,v){return 'https://www.halfords.com/search?term='+encodeURIComponent(p);}},
+  {n:'Car Parts 4 Less', type:'retailer', url:function(p,v){return 'https://www.carparts4less.co.uk/search?q='+encodeURIComponent(p);}},
+  // === AWIN APPROVED PARTNERS (commission-earning) ===
   {n:'My Motor World', type:'retailer', url:function(p,v){return 'https://www.awin1.com/cread.php?awinmid=47487&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.mymotorworld.co.uk/search?q='+encodeURIComponent(p));}},
   {n:'mytyres.co.uk', type:'specialty', url:function(p,v){return 'https://www.awin1.com/cread.php?awinmid=4118&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.mytyres.co.uk/cgi-bin/rshop.pl?fns=search&w='+encodeURIComponent(p));}},
   {n:'Click Mechanic', type:'service', url:function(p,v){return 'https://www.awin1.com/cread.php?awinmid=67328&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.clickmechanic.com/');}},
   {n:'Car Audio Centre', type:'specialty', url:function(p,v){return 'https://www.awin1.com/cread.php?awinmid=67434&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.caraudiocentre.co.uk/search?keyword='+encodeURIComponent(p));}},
   {n:'Flava Car Scents', type:'specialty', url:function(p,v){return 'https://www.awin1.com/cread.php?awinmid=119599&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.flavacarscents.com/search?q='+encodeURIComponent(p));}},
   {n:'EV Cable Shop', type:'specialty', url:function(p,v){return 'https://www.awin1.com/cread.php?awinmid=22473&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.evcableshop.co.uk/search?q='+encodeURIComponent(p));}},
-  // === OTHER SUPPLIERS (no affiliate, plain search links) ===
-  {n:'Amazon', type:'marketplace', url:function(p,v){return 'https://www.amazon.co.uk/s?k='+encodeURIComponent(p+' '+v)+'&tag='+AFF.amazon;}},
-  {n:'Euro Car Parts', type:'retailer', url:function(p,v){return 'https://www.eurocarparts.com/search?q='+encodeURIComponent(p);}},
-  {n:'GSF Car Parts', type:'retailer', url:function(p,v){return 'https://www.gsfcarparts.com/search?query='+encodeURIComponent(p);}},
-  {n:'Halfords', type:'retailer', url:function(p,v){return 'https://www.halfords.com/search?term='+encodeURIComponent(p);}},
-  {n:'Car Parts 4 Less', type:'retailer', url:function(p,v){return 'https://www.carparts4less.co.uk/search?q='+encodeURIComponent(p);}},
+  // === OTHER SUPPLIERS ===
   {n:'Mister Auto UK', type:'retailer', url:function(p,v){return 'https://www.mister-auto.co.uk/search?keywords='+encodeURIComponent(p);}},
   {n:'MicksGarage', type:'retailer', url:function(p,v){return 'https://www.micksgarage.com/search?keyword='+encodeURIComponent(p);}},
   {n:'Online Car Parts', type:'retailer', url:function(p,v){return 'https://www.onlinecarparts.co.uk/search?q='+encodeURIComponent(p);}},
