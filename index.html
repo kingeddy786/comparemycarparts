@@ -678,7 +678,8 @@ var LOGOS = {
   'Click Mechanic': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="8" width="100" height="24" rx="3" fill="#FF6B35"/><text x="4" y="20" font-family="Arial,sans-serif" font-weight="900" font-size="9" fill="#fff">CLICK</text><text x="4" y="30" font-family="Arial,sans-serif" font-weight="900" font-size="9" fill="#fff">MECHANIC</text><circle cx="82" cy="20" r="8" fill="#fff"/><text x="77" y="24" font-family="Arial,sans-serif" font-weight="900" font-size="10" fill="#FF6B35">ð§</text></svg>',
   'Car Audio Centre': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="8" width="100" height="24" rx="3" fill="#000"/><text x="4" y="20" font-family="Arial,sans-serif" font-weight="900" font-size="8" fill="#FFD100">CAR AUDIO</text><text x="4" y="30" font-family="Arial,sans-serif" font-weight="900" font-size="8" fill="#fff">CENTRE</text></svg>',
   'Flava Car Scents': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="8" width="100" height="24" rx="3" fill="#6A1B9A"/><text x="4" y="20" font-family="Arial,sans-serif" font-weight="900" font-size="9" fill="#FFD100">FLAVA</text><text x="4" y="30" font-family="Arial,sans-serif" font-weight="800" font-size="7" fill="#fff">CAR SCENTS</text></svg>',
-  'EV Cable Shop': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><polygon points="4,8 12,8 8,18 14,18 6,32 9,22 3,22" fill="#00A651"/><text x="20" y="20" font-family="Arial,sans-serif" font-weight="900" font-size="11" fill="#1a1a1a">EV CABLE</text><text x="20" y="32" font-family="Arial,sans-serif" font-weight="700" font-size="9" fill="#00A651">SHOP</text></svg>'
+  'EV Cable Shop': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><polygon points="4,8 12,8 8,18 14,18 6,32 9,22 3,22" fill="#00A651"/><text x="20" y="20" font-family="Arial,sans-serif" font-weight="900" font-size="11" fill="#1a1a1a">EV CABLE</text><text x="20" y="32" font-family="Arial,sans-serif" font-weight="700" font-size="9" fill="#00A651">SHOP</text></svg>',
+  'Norfolk Prestige Car Parts UK': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><path d="M5 24 Q15 14 30 14 L55 14 Q65 14 70 22 L70 24 Z" fill="#C8102E"/><text x="3" y="34" font-family="Times,serif" font-style="italic" font-weight="700" font-size="8" fill="#C8102E">Norfolk Prestige</text></svg>'
 };
 var ALL_SUPS = [
   {n:'eBay', live:true, type:'marketplace'},
@@ -689,6 +690,7 @@ var ALL_SUPS = [
   {n:'Halfords', type:'retailer', url:function(p,v){return 'https://www.halfords.com/search?term='+encodeURIComponent(p);}},
   {n:'Car Parts 4 Less', type:'retailer', url:function(p,v){return 'https://www.carparts4less.co.uk/search?q='+encodeURIComponent(p);}},
   // === AWIN APPROVED PARTNERS (commission-earning) ===
+  {n:'Norfolk Prestige Car Parts UK', type:'retailer', prestige:true, url:function(p,v){return 'https://www.awin1.com/cread.php?awinmid=63604&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.norfolkprestigecarparts.co.uk/search?q='+encodeURIComponent(p));}},
   {n:'My Motor World', type:'retailer', url:function(p,v){return 'https://www.awin1.com/cread.php?awinmid=47487&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.mymotorworld.co.uk/search?q='+encodeURIComponent(p));}},
   {n:'mytyres.co.uk', type:'specialty', url:function(p,v){return 'https://www.awin1.com/cread.php?awinmid=4118&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.mytyres.co.uk/cgi-bin/rshop.pl?fns=search&w='+encodeURIComponent(p));}},
   {n:'Click Mechanic', type:'service', url:function(p,v){return 'https://www.awin1.com/cread.php?awinmid=67328&awinaffid='+AFF.awin+'&clickref=cmcp&p='+encodeURIComponent('https://www.clickmechanic.com/');}},
@@ -1177,7 +1179,8 @@ var SUP_INFO = {
   'Mintex':            {delivery:'3-5 days', delCost:'£4.99', cc:false, rating:4.5, reviews:'OEM', oem:true},
   'Febi Bilstein':     {delivery:'3-5 days', delCost:'£5.99', cc:false, rating:4.4, reviews:'OEM', oem:true},
   'Tayna Batteries':   {delivery:'Next day', delCost:'Free £50+', cc:false, rating:4.7, reviews:'120k'},
-  'BlackCircles Tyres':{delivery:'Fitted at garage', delCost:'Inc.', cc:true, rating:4.6, reviews:'200k'}
+  'BlackCircles Tyres':{delivery:'Fitted at garage', delCost:'Inc.', cc:true, rating:4.6, reviews:'200k'},
+  'Norfolk Prestige Car Parts UK':{delivery:'2-5 days', delCost:'£5.99', cc:false, rating:4.5, reviews:'OEM Specialist'}
 };
 function starsHtml(rating){
   var full=Math.floor(rating);var half=rating-full>=0.5;var s='';
@@ -1229,6 +1232,16 @@ function makeRow(opts){
   html+='</div>';
   return html;
 }
+// Prestige makes — when detected, Norfolk Prestige gets promoted to top
+var PRESTIGE_MAKES=['Bentley','Ferrari','Lamborghini','Rolls-Royce','Rolls Royce','Maserati','Aston Martin','McLaren','Porsche','Range Rover','Land Rover','Bentley','Jaguar','Lotus','Lexus','Tesla','Audi','BMW','Mercedes','Mercedes-Benz'];
+function isPrestigeMake(makeName){
+  if(!makeName)return false;
+  var m=makeName.toString().toLowerCase();
+  for(var i=0;i<PRESTIGE_MAKES.length;i++){
+    if(m.indexOf(PRESTIGE_MAKES[i].toLowerCase())!==-1)return true;
+  }
+  return false;
+}
 function renderResults(part,v){
   if(!v)v=vehicle;
   var list=document.getElementById('resList');
@@ -1250,9 +1263,21 @@ function renderResults(part,v){
   var allCards=[];
   liveRows.forEach(function(r,i){r.isBest=(i===0);allCards.push(r);});
   if(currentFilter!=='used'){
-    ALL_SUPS.forEach(function(sup){
+    var isPrestige=v && isPrestigeMake(v.name);
+    var supsToShow=ALL_SUPS.slice();
+    // If prestige vehicle: move Norfolk Prestige to position 1 (right after eBay live)
+    if(isPrestige){
+      var prestigeIdx=supsToShow.findIndex(function(s){return s.prestige;});
+      if(prestigeIdx>0){
+        var prestigeSup=supsToShow.splice(prestigeIdx,1)[0];
+        supsToShow.unshift(prestigeSup);
+      }
+    }
+    supsToShow.forEach(function(sup){
       if(sup.live)return;
       if(currentFilter==='today'){var info=SUP_INFO[sup.n];if(!info||!info.cc)return;}
+      // Hide Norfolk Prestige for non-prestige vehicles (saves them irrelevant clicks)
+      if(sup.prestige && !isPrestige)return;
       var supUrl=sup.url(part,v?v.name:'');
       allCards.push({sup:sup,isLive:false,part:part,partTitle:part,url:supUrl,isUsed:false,isBest:false});
     });
