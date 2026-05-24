@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
@@ -34,6 +33,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link rel="preconnect" href="https://cmcp-ebay.idris-b19.workers.dev"/>
+<link rel="preconnect" href="https://cmcp-feeds.idris-b19.workers.dev"/>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
 <style>
 :root{--bl:#003DA6;--bm:#0052CC;--b2:#1A6FD4;--ye:#FFD100;--yd:#E6BC00;--wh:#fff;--ow:#F4F7FF;--lg:#EEF2FA;--mg:#6B7A99;--dk:#0A1A3A;--gr:#00A651;--gn:#E6F7EE;--or:#FF6600;}
@@ -577,6 +577,7 @@ footer nav.fc{background:transparent !important;}
 </footer>
 <script>
 var WORKER_URL = 'https://cmcp-ebay.idris-b19.workers.dev';
+var FEEDS_URL = 'https://cmcp-feeds.idris-b19.workers.dev';
 var AFF = { amazon: 'comparemycarp-21', ebay: '5339148906', awin: '2851027' };
 var vehicle = null;
 var allRows = [];
@@ -676,11 +677,16 @@ var LOGOS = {
   'BlackCircles Tyres': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><circle cx="15" cy="20" r="12" fill="#1a1a1a"/><circle cx="15" cy="20" r="6" fill="none" stroke="#fff" stroke-width="2"/><text x="32" y="17" font-family="Arial,sans-serif" font-weight="900" font-size="8" fill="#1a1a1a">BLACK</text><text x="32" y="28" font-family="Arial,sans-serif" font-weight="900" font-size="8" fill="#1a1a1a">CIRCLES</text></svg>',
   'My Motor World': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="20" r="11" fill="#E30613"/><text x="7" y="24" font-family="Arial,sans-serif" font-weight="900" font-size="11" fill="#fff">MW</text><text x="30" y="17" font-family="Arial,sans-serif" font-weight="900" font-size="9" fill="#1a1a1a">MOTOR</text><text x="30" y="29" font-family="Arial,sans-serif" font-weight="900" font-size="9" fill="#1a1a1a">WORLD</text></svg>',
   'mytyres.co.uk': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="20" r="11" fill="#1a1a1a"/><circle cx="14" cy="20" r="5" fill="none" stroke="#FFD100" stroke-width="2"/><text x="30" y="17" font-family="Arial,sans-serif" font-weight="900" font-size="9" fill="#1a1a1a">my</text><text x="30" y="28" font-family="Arial,sans-serif" font-weight="900" font-size="8" fill="#E30613">tyres</text></svg>',
-  'Click Mechanic': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="8" width="100" height="24" rx="3" fill="#FF6B35"/><text x="4" y="20" font-family="Arial,sans-serif" font-weight="900" font-size="9" fill="#fff">CLICK</text><text x="4" y="30" font-family="Arial,sans-serif" font-weight="900" font-size="9" fill="#fff">MECHANIC</text><circle cx="82" cy="20" r="8" fill="#fff"/><text x="77" y="24" font-family="Arial,sans-serif" font-weight="900" font-size="10" fill="#FF6B35">ð§</text></svg>',
+  'Click Mechanic': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="8" width="100" height="24" rx="3" fill="#FF6B35"/><text x="4" y="20" font-family="Arial,sans-serif" font-weight="900" font-size="9" fill="#fff">CLICK</text><text x="4" y="30" font-family="Arial,sans-serif" font-weight="900" font-size="9" fill="#fff">MECHANIC</text></svg>',
   'Car Audio Centre': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="8" width="100" height="24" rx="3" fill="#000"/><text x="4" y="20" font-family="Arial,sans-serif" font-weight="900" font-size="8" fill="#FFD100">CAR AUDIO</text><text x="4" y="30" font-family="Arial,sans-serif" font-weight="900" font-size="8" fill="#fff">CENTRE</text></svg>',
   'Flava Car Scents': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="8" width="100" height="24" rx="3" fill="#6A1B9A"/><text x="4" y="20" font-family="Arial,sans-serif" font-weight="900" font-size="9" fill="#FFD100">FLAVA</text><text x="4" y="30" font-family="Arial,sans-serif" font-weight="800" font-size="7" fill="#fff">CAR SCENTS</text></svg>',
   'EV Cable Shop': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><polygon points="4,8 12,8 8,18 14,18 6,32 9,22 3,22" fill="#00A651"/><text x="20" y="20" font-family="Arial,sans-serif" font-weight="900" font-size="11" fill="#1a1a1a">EV CABLE</text><text x="20" y="32" font-family="Arial,sans-serif" font-weight="700" font-size="9" fill="#00A651">SHOP</text></svg>',
-  'Norfolk Prestige Car Parts UK': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><path d="M5 24 Q15 14 30 14 L55 14 Q65 14 70 22 L70 24 Z" fill="#C8102E"/><text x="3" y="34" font-family="Times,serif" font-style="italic" font-weight="700" font-size="8" fill="#C8102E">Norfolk Prestige</text></svg>'
+  'Norfolk Prestige Car Parts UK': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><path d="M5 24 Q15 14 30 14 L55 14 Q65 14 70 22 L70 24 Z" fill="#C8102E"/><text x="3" y="34" font-family="Times,serif" font-style="italic" font-weight="700" font-size="8" fill="#C8102E">Norfolk Prestige</text></svg>',
+  'The Green Spark Plug Company': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="20" r="11" fill="#1a7a3a"/><text x="9" y="25" font-family="Arial,sans-serif" font-weight="900" font-size="12" fill="#fff">GS</text><text x="30" y="17" font-family="Arial,sans-serif" font-weight="800" font-size="8" fill="#1a7a3a">GREEN SPARK</text><text x="30" y="28" font-family="Arial,sans-serif" font-weight="800" font-size="8" fill="#1a1a1a">PLUG CO.</text></svg>',
+  'Japspeed': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="8" width="100" height="24" rx="3" fill="#1a1a1a"/><text x="6" y="26" font-family="Arial,sans-serif" font-weight="900" font-size="13" fill="#E30613">JAP</text><text x="38" y="26" font-family="Arial,sans-serif" font-weight="900" font-size="13" fill="#fff">SPEED</text></svg>',
+  'Japspeed UK': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="8" width="100" height="24" rx="3" fill="#1a1a1a"/><text x="6" y="26" font-family="Arial,sans-serif" font-weight="900" font-size="13" fill="#E30613">JAP</text><text x="38" y="26" font-family="Arial,sans-serif" font-weight="900" font-size="13" fill="#fff">SPEED</text></svg>',
+  '4x4 Predator': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="8" width="100" height="24" rx="3" fill="#3a4a1a"/><text x="5" y="26" font-family="Arial,sans-serif" font-weight="900" font-size="11" fill="#FFD100">4x4 PREDATOR</text></svg>',
+  'Tyres UK': '<svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="20" r="11" fill="#1a1a1a"/><circle cx="14" cy="20" r="5" fill="none" stroke="#FFD100" stroke-width="2"/><text x="30" y="25" font-family="Arial,sans-serif" font-weight="900" font-size="11" fill="#1a1a1a">TYRES UK</text></svg>'
 };
 var ALL_SUPS = [
   {n:'eBay', live:true, type:'marketplace'},
@@ -1123,13 +1129,45 @@ function detectSearchType(input){
   if(trimmed.length<=20 && digitsOnly.length>=4 && /[A-Z0-9]/.test(trimmed.toUpperCase()) && !/\s/.test(trimmed))return 'partnumber';
   return 'name';
 }
+// ===== fetchResults — now calls BOTH eBay AND the Awin product feeds =====
 async function fetchResults(part){
+  var searchType=detectSearchType(part);
+  var ebayUrl=WORKER_URL+'/ebay?part='+encodeURIComponent(part)+'&vehicle='+encodeURIComponent(vehicle.name)+'&type='+searchType;
+  var feedsUrl=FEEDS_URL+'/api/search?q='+encodeURIComponent(part);
+  var ebayItems=[];
+  var feedItems=[];
+  // --- eBay (unchanged behaviour) ---
   try{
-    var searchType=detectSearchType(part);
-    var url=WORKER_URL+'/ebay?part='+encodeURIComponent(part)+'&vehicle='+encodeURIComponent(vehicle.name)+'&type='+searchType;
-    var resp=await fetch(url);
-    return await resp.json();
-  }catch(e){return {items:[],error:e.message};}
+    var r=await fetch(ebayUrl);
+    var d=await r.json();
+    if(d&&d.items)ebayItems=d.items;
+  }catch(e){}
+  // --- Awin product feeds (new) ---
+  try{
+    var rf=await fetch(feedsUrl);
+    var df=await rf.json();
+    if(df&&df.products){
+      feedItems=df.products
+        .filter(function(p){ return parseFloat(p.price)>=1; })  // drop sub-£1 washer-type junk
+        .map(function(p){
+          var price=parseFloat(p.price)||0;
+          var del=parseFloat(p.delivery_cost)||0;
+          return {
+            title:p.name||part,
+            price:price.toFixed(2),
+            totalPrice:(price+del).toFixed(2),
+            deliveryCost:del.toFixed(2),
+            url:p.deep_link||'#',
+            seller:p.advertiser||'',
+            supplier:p.advertiser||'Awin Partner',
+            isUsed:false,
+            isFeed:true,
+            inStock:(p.in_stock==1||p.in_stock===true)
+          };
+        });
+    }
+  }catch(e){}
+  return { items: ebayItems.concat(feedItems) };
 }
 function showResults(v,part,data){
   var zone=document.getElementById('resultsZone');
@@ -1181,7 +1219,12 @@ var SUP_INFO = {
   'Febi Bilstein':     {delivery:'3-5 days', delCost:'£5.99', cc:false, rating:4.4, reviews:'OEM', oem:true},
   'Tayna Batteries':   {delivery:'Next day', delCost:'Free £50+', cc:false, rating:4.7, reviews:'120k'},
   'BlackCircles Tyres':{delivery:'Fitted at garage', delCost:'Inc.', cc:true, rating:4.6, reviews:'200k'},
-  'Norfolk Prestige Car Parts UK':{delivery:'2-5 days', delCost:'£5.99', cc:false, rating:4.5, reviews:'OEM Specialist'}
+  'Norfolk Prestige Car Parts UK':{delivery:'2-5 days', delCost:'£5.99', cc:false, rating:4.5, reviews:'OEM Specialist'},
+  'The Green Spark Plug Company':{delivery:'2-3 days', delCost:'£4.16', cc:false, rating:4.6, reviews:'Awin Partner'},
+  'Japspeed':          {delivery:'2-4 days', delCost:'£5.99', cc:false, rating:4.4, reviews:'Awin Partner'},
+  'Japspeed UK':       {delivery:'2-4 days', delCost:'£5.99', cc:false, rating:4.4, reviews:'Awin Partner'},
+  '4x4 Predator':      {delivery:'2-4 days', delCost:'£5.99', cc:false, rating:4.3, reviews:'Awin Partner'},
+  'Tyres UK':          {delivery:'2-3 days', delCost:'£4.99', cc:false, rating:4.4, reviews:'Awin Partner'}
 };
 function starsHtml(rating){
   var full=Math.floor(rating);var half=rating-full>=0.5;var s='';
@@ -1255,7 +1298,7 @@ function renderResults(part,v){
   else if(currentFilter==='today')ebayRows=[];
   else ebayRows=ebayNew.concat(ebayUsed);
   ebayRows.forEach(function(r){
-    liveRows.push({sup:{n:r.supplier||'eBay',i:r.supplierIcon||'🛒'},isLive:true,part:part,partTitle:r.title,price:r.price,delCost:r.deliveryCost,seller:r.seller,url:r.url,isUsed:r.isUsed,totalPrice:parseFloat(r.totalPrice||r.price)});
+    liveRows.push({sup:{n:r.supplier||'eBay',i:r.supplierIcon||'🛒'},isLive:true,part:part,partTitle:r.title,price:r.price,delCost:r.deliveryCost,seller:r.seller,url:r.url,isUsed:r.isUsed,isFeed:r.isFeed,totalPrice:parseFloat(r.totalPrice||r.price)});
   });
   liveRows.sort(function(a,b){
     if(a.isUsed!==b.isUsed)return a.isUsed?1:-1;
