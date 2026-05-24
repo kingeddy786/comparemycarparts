@@ -1133,7 +1133,12 @@ function detectSearchType(input){
 async function fetchResults(part){
   var searchType=detectSearchType(part);
   var ebayUrl=WORKER_URL+'/ebay?part='+encodeURIComponent(part)+'&vehicle='+encodeURIComponent(vehicle.name)+'&type='+searchType;
-  var feedsUrl=FEEDS_URL+'/api/search?q='+encodeURIComponent(part);
+  // feed DB stores singular names ("Spark Plug"), site searches plural ("Spark Plugs")
+  // -> strip trailing 's' from longer words so the feed search matches
+  var feedQuery=part.toLowerCase().split(/\s+/).map(function(w){
+    return (w.length>4 && w.charAt(w.length-1)==='s') ? w.slice(0,-1) : w;
+  }).join(' ');
+  var feedsUrl=FEEDS_URL+'/api/search?q='+encodeURIComponent(feedQuery);
   var ebayItems=[];
   var feedItems=[];
   // --- eBay (unchanged behaviour) ---
