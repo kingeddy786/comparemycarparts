@@ -790,7 +790,15 @@ var WRONG_NOUNS = [
   'motorcycle','motorbike','scooter','moped','bicycle','bike ',
   'basketball','football','hoops','trading card','panini','topps',
   'tamiya','airfix','scalextric','lego','playmobil','figure',
-  'tape','protector'
+  'tape','protector',
+  // Round 2 — tightening junk filter
+  'earplug','earplugs','ear plug','foam','noise',
+  'sleeve','seating sleeve','seating',
+  'thumb nut','wing nut','knurled',
+  'terminal','crimp','7mm cable','spark plug cable',
+  'keychain','keyring','desk','wall art','ornament',
+  'remover','installer','tester','gapping','gauge',
+  'boot','rubber boot','tester','puller'
 ];
 var POSITION_WORDS = ['front','rear','left','right','near','off','side','upper','lower','inner','outer','o/s','n/s','genuine','new','used','x','for','fits','the','and','with'];
 function coreNouns(partName){
@@ -818,6 +826,36 @@ function isRelevantResult(title, partName){
   }
   return true;
 }
+// === VEHICLE MAKE FILTER ===
+// Drop listings that mention OTHER car makes but not the user's car make.
+// Allows universal parts (no make mentioned) and multi-fit listings.
+var VEHICLE_MAKES = ['bmw','vw','volkswagen','ford','vauxhall','audi','mercedes','benz','renault','peugeot','citroen','fiat','toyota','honda','nissan','mazda','hyundai','kia','skoda','seat','mini','opel','volvo','jaguar','porsche','ferrari','lamborghini','maserati','bentley','tesla','jeep','chevrolet','mitsubishi','subaru','suzuki','lexus','infiniti','alfa','saab','dacia','smart','mclaren','lotus','aston','rover'];
+var MAKE_ALIASES = {
+  'volkswagen':['vw','volkswagen'],
+  'vw':['vw','volkswagen'],
+  'mercedes-benz':['mercedes','benz'],
+  'mercedes':['mercedes','benz'],
+  'land rover':['rover','land rover'],
+  'range rover':['rover','range rover','land rover'],
+  'aston martin':['aston','aston martin'],
+  'alfa romeo':['alfa','alfa romeo']
+};
+function vehicleMakeOK(title, vehicleMake){
+  if(!vehicleMake) return true;
+  var t = ' ' + (title||'').toLowerCase().replace(/[^a-z0-9\s]/g,' ').replace(/\s+/g,' ') + ' ';
+  var userMake = vehicleMake.toLowerCase().trim();
+  var aliases = MAKE_ALIASES[userMake] || [userMake];
+  var titleMakes = [];
+  for(var i=0;i<VEHICLE_MAKES.length;i++){
+    var m = VEHICLE_MAKES[i];
+    if(t.indexOf(' '+m+' ')!==-1) titleMakes.push(m);
+  }
+  if(titleMakes.length===0) return true; // universal part — no makes mentioned
+  for(var j=0;j<aliases.length;j++){
+    if(titleMakes.indexOf(aliases[j])!==-1) return true; // user's make is in title
+  }
+  return false; // title mentions makes but none match user's vehicle
+}
 function showResults(v,part,data){
   var zone=document.getElementById('resultsZone');
   zone.style.display='block';
@@ -831,7 +869,9 @@ function showResults(v,part,data){
     var key=(r.title||'').toLowerCase().trim()+'|'+(r.seller||'').toLowerCase().trim()+'|'+(r.price||'');
     if(seen[key])return false;
     seen[key]=true;
-    return isRelevantResult(r.title||'',part);
+    if(!isRelevantResult(r.title||'',part)) return false;
+    if(!vehicleMakeOK(r.title||'', v && v.make)) return false;
+    return true;
   });
   currentFilter='all';
   document.querySelectorAll('.ftab').forEach(function(b){b.classList.remove('active');});
